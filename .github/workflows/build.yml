@@ -73,6 +73,11 @@ jobs:
     env:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/scripts
+
       - name: Download the bundles
         uses: actions/download-artifact@v4
         with:
@@ -97,17 +102,19 @@ jobs:
         if: env.NPM_TOKEN != ''
         run: echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > ~/.npmrc
 
+      # A re-run of this job must not fail on a package that an earlier attempt
+      # already published, so each publish is skipped when the version exists.
       - name: Publish proxyherd
         working-directory: dist/proxyherd
         run: |
           chmod +x proxyherd.js
-          npm publish --access public --provenance ${{ env.DRY_RUN == 'true' && '--dry-run' || '' }}
+          "$GITHUB_WORKSPACE/.github/scripts/npm-publish.sh" ${{ env.DRY_RUN == 'true' && '--dry-run' || '' }}
 
       - name: Publish @proxyherd/fingerprint
         working-directory: dist/fingerprint
         run: |
           chmod +x fingerprint.js
-          npm publish --access public --provenance ${{ env.DRY_RUN == 'true' && '--dry-run' || '' }}
+          "$GITHUB_WORKSPACE/.github/scripts/npm-publish.sh" ${{ env.DRY_RUN == 'true' && '--dry-run' || '' }}
 
   docker:
     name: Publish container images
