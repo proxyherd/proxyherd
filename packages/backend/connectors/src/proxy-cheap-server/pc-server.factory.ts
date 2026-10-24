@@ -4,8 +4,8 @@ import {
     ConnectorprovidersService,
     CredentialInvalidError,
     validate,
-} from '@scrapoxy/backend-sdk';
-import { CONNECTOR_PROXY_CHEAP_SERVER_TYPE } from '@scrapoxy/common';
+} from '@proxyherd/backend-sdk';
+import { CONNECTOR_PROXY_CHEAP_SERVER_TYPE } from '@proxyherd/common';
 import { ProxyCheapServerApi } from './api';
 import { EProxyCheapNetworkType } from './pc-server.interface';
 import { ConnectorProxyCheapServerService } from './pc-server.service';
@@ -22,12 +22,12 @@ import type {
     IConnectorConfig,
     IConnectorFactory,
     IConnectorService,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import type {
     IConnectorListProxies,
     IConnectorToRefresh,
     ITaskToCreate,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Injectable()

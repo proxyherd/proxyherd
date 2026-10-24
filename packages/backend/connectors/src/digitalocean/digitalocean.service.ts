@@ -2,12 +2,12 @@ import { Logger } from '@nestjs/common';
 import {
     Agents,
     TRANSPORT_DATACENTER_TYPE,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     CONNECTOR_DIGITALOCEAN_TYPE,
     EProxyStatus,
     randomNames,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { DigitalOceanApi } from './api';
 import { getDigitalOceanPublicAddress } from './digitalocean.helpers';
 import { EDigitalOceanDropletStatus } from './digitalocean.interface';
@@ -19,11 +19,11 @@ import type {
 import type {
     IConnectorService,
     ITransportProxyRefreshedConfigDatacenter,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import type {
     IConnectorProxyRefreshed,
     IProxyKeyToRemove,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 function convertStatus(status: EDigitalOceanDropletStatus): EProxyStatus {

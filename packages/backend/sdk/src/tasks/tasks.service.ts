@@ -3,7 +3,7 @@ import {
     Logger,
 } from '@nestjs/common';
 import { TaskFactoryNotFoundError } from '../errors';
-import type { ITaskFactory } from '@scrapoxy/common';
+import type { ITaskFactory } from '@proxyherd/common';
 
 
 @Injectable()

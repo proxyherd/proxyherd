@@ -2,11 +2,11 @@ import {
     Injectable,
     Type,
 } from '@angular/core';
-import { CONNECTOR_DATACENTER_LOCAL_TYPE } from '@scrapoxy/common';
+import { CONNECTOR_DATACENTER_LOCAL_TYPE } from '@proxyherd/common';
 import {
     ConnectorprovidersService,
     EConnectorType,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import { ConnectorDatacenterLocalComponent } from './connector/connector.component';
 import { CredentialDatacenterLocalComponent } from './credential/credential.component';
 import { InstallDatacenterLocalComponent } from './install/install.component';
@@ -16,7 +16,7 @@ import type {
     IConnectorFactory,
     ICredentialComponent,
     IInstallComponent,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 
 
 @Injectable()
@@ -25,11 +25,11 @@ export class ConnectorDatacenterLocalFactory implements IConnectorFactory {
 
     readonly config: IConnectorConfig = {
         name: 'Local datacenter',
-        description: 'Local datacenter is test datacenter for Scrapoxy internal use.',
+        description: 'Local datacenter is test datacenter for ProxyHerd internal use.',
         coupon: null,
         defaultCredentialName: 'Local Datacenter Credential',
         defaultConnectorName: 'Local Datacenter Connector',
-        url: 'https://scrapoxy.io',
+        url: 'https://github.com/proxyherd/proxyherd',
         type: EConnectorType.Datacenter,
         canInstall: true,
         canUninstall: true,

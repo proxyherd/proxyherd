@@ -46,7 +46,7 @@ import {
     toUserView,
     UserUpdatedEvent,
     WINDOWS_CONFIG,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { v4 as uuid } from 'uuid';
 import {
     toConnectorProxiesSync,
@@ -137,7 +137,7 @@ import type {
     IUserData,
     IUserProject,
     IWindow,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 export abstract class AStorageLocal<C extends IStorageLocalModuleConfig> implements IStorageService, IProbeService {

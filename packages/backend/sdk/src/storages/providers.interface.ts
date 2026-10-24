@@ -32,7 +32,7 @@ import type {
     ITaskView,
     IUserData,
     IUserProject,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 export interface IStorageService {

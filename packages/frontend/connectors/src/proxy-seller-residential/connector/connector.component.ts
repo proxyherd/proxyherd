@@ -13,12 +13,12 @@ import {
     EProxySellerResidentialQueryCredential,
 
 
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import {
     CommanderFrontendClientService,
 
     ToastsService,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import type { OnInit } from '@angular/core';
 import type {
     ICommanderFrontendClient,
@@ -27,8 +27,8 @@ import type {
     IConnectorProxySellerResidentialQueryIsps,
     IConnectorProxySellerResidentialQueryRegions,
     IProxySellerGeoCountryView,
-} from '@scrapoxy/common';
-import type { IConnectorComponent } from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/common';
+import type { IConnectorComponent } from '@proxyherd/frontend-sdk';
 
 
 @Component({
@@ -112,7 +112,7 @@ export class ConnectorProxySellerResidentialComponent implements IConnectorCompo
                 region: 'all',
                 city: 'all',
                 isp: 'all',
-                title: 'Scrapoxy',
+                title: 'ProxyHerd',
             });
         }
 

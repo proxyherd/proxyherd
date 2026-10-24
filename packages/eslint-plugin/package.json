@@ -1,14 +1,14 @@
 {
-    "name": "@scrapoxy/eslint-plugin",
+    "name": "@proxyherd/eslint-plugin",
     "version": "1.0.11",
     "author": {
-        "name": "Fabien Vauchelles",
-        "url": "https://www.linkedin.com/in/fabienvauchelles"
+        "name": "ProxyHerd maintainers",
+        "url": "https://github.com/proxyherd"
     },
-    "description": "ESLint rules for Scrapoxy",
-    "url": "https://github.com/scrapoxy/scrapoxy",
-    "homepage": "https://scrapoxy.io",
-    "repository": "scrapoxy/scrapoxy",
+    "description": "ESLint rules for ProxyHerd",
+    "url": "https://github.com/proxyherd/proxyherd",
+    "homepage": "https://proxyherd.github.io/proxyherd/",
+    "repository": "proxyherd/proxyherd",
     "license": "MIT",
     "dependencies": {
         "@angular-eslint/eslint-plugin": "~17.1.0",

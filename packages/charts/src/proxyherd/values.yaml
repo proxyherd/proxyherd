@@ -1,0 +1,30 @@
+# Address of your fingerprint service (required): https://proxyherd.github.io/proxyherd/deployment/fingerprint
+fingerprintUrl: ""
+
+image:
+    repository: ghcr.io/proxyherd/proxyherd
+    tag: latest
+    pullPolicy: Always
+    pullSecrets: []
+
+resources:
+    limits:
+        cpu: 1000m
+        memory: 2Gi
+    requests:
+        cpu: 100m
+        memory: 256Mi
+
+fileStorageSize: 100Mi
+
+commander:
+    port: 8890
+
+master:
+    port: 8888
+
+priorityClassName: ""
+nodeSelector: {}
+tolerations: []
+affinity: {}
+podAnnotations: {}

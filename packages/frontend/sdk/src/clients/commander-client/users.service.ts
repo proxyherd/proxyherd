@@ -5,7 +5,7 @@ import type {
     IAuthService,
     IUserToUpdate,
     IUserView,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Injectable()

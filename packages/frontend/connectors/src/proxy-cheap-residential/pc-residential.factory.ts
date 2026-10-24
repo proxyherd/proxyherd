@@ -2,11 +2,11 @@ import {
     Injectable,
     Type,
 } from '@angular/core';
-import { CONNECTOR_PROXY_CHEAP_RESIDENTIAL_TYPE } from '@scrapoxy/common';
+import { CONNECTOR_PROXY_CHEAP_RESIDENTIAL_TYPE } from '@proxyherd/common';
 import {
     ConnectorprovidersService,
     EConnectorType,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import { ConnectorProxyCheapResidentialComponent } from './connector/connector.component';
 import { CredentialProxyCheapResidentialComponent } from './credential/credential.component';
 import type {
@@ -15,7 +15,7 @@ import type {
     IConnectorFactory,
     ICredentialComponent,
     IInstallComponent,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 
 
 @Injectable()
@@ -28,7 +28,7 @@ export class ConnectorProxyCheapResidentialFactory implements IConnectorFactory 
        coupon: null,
        defaultCredentialName: 'Proxy-Cheap Residential Credential',
        defaultConnectorName: 'Proxy-Cheap Residential Connector',
-       url: 'https://app.proxy-cheap.com/r/lt6xyT',
+       url: 'https://www.proxy-cheap.com',
        type: EConnectorType.DynamicIP,
        canInstall: false,
        canUninstall: false,

@@ -11,7 +11,7 @@ describe(
         it(
             'should not accept url without protocol',
             () => {
-                expect(urlToUrlOptions('scrapoxy.io'))
+                expect(urlToUrlOptions('proxyherd.io'))
                     .toBeUndefined();
             }
         );
@@ -19,12 +19,12 @@ describe(
         it(
             'should parse a simple url',
             () => {
-                expect(urlToUrlOptions('http://scrapoxy.io'))
+                expect(urlToUrlOptions('http://proxyherd.io'))
                     .toEqual({
                         protocol: 'http:',
                         username: void 0,
                         password: void 0,
-                        hostname: 'scrapoxy.io',
+                        hostname: 'proxyherd.io',
                         port: 80,
                         pathname: '/',
                         search: void 0,
@@ -36,12 +36,12 @@ describe(
         it(
             'should parse duplicate port information in a url',
             () => {
-                expect(urlToUrlOptions('http://scrapoxy.io:80'))
+                expect(urlToUrlOptions('http://proxyherd.io:80'))
                     .toEqual({
                         protocol: 'http:',
                         username: void 0,
                         password: void 0,
-                        hostname: 'scrapoxy.io',
+                        hostname: 'proxyherd.io',
                         port: 80,
                         pathname: '/',
                         search: void 0,
@@ -53,12 +53,12 @@ describe(
         it(
             'should parse port in a http url',
             () => {
-                expect(urlToUrlOptions('http://scrapoxy.io:443'))
+                expect(urlToUrlOptions('http://proxyherd.io:443'))
                     .toEqual({
                         protocol: 'http:',
                         username: void 0,
                         password: void 0,
-                        hostname: 'scrapoxy.io',
+                        hostname: 'proxyherd.io',
                         port: 443,
                         pathname: '/',
                         search: void 0,
@@ -70,12 +70,12 @@ describe(
         it(
             'should parse port in a https url',
             () => {
-                expect(urlToUrlOptions('https://scrapoxy.io:80'))
+                expect(urlToUrlOptions('https://proxyherd.io:80'))
                     .toEqual({
                         protocol: 'https:',
                         username: void 0,
                         password: void 0,
-                        hostname: 'scrapoxy.io',
+                        hostname: 'proxyherd.io',
                         port: 80,
                         pathname: '/',
                         search: void 0,
@@ -87,12 +87,12 @@ describe(
         it(
             'should parse a username in a url',
             () => {
-                expect(urlToUrlOptions('http://john@scrapoxy.io:443'))
+                expect(urlToUrlOptions('http://john@proxyherd.io:443'))
                     .toEqual({
                         protocol: 'http:',
                         username: 'john',
                         password: void 0,
-                        hostname: 'scrapoxy.io',
+                        hostname: 'proxyherd.io',
                         port: 443,
                         pathname: '/',
                         search: void 0,
@@ -104,12 +104,12 @@ describe(
         it(
             'should parse a password in a url',
             () => {
-                expect(urlToUrlOptions('http://:123@scrapoxy.io'))
+                expect(urlToUrlOptions('http://:123@proxyherd.io'))
                     .toEqual({
                         protocol: 'http:',
                         username: void 0,
                         password: '123',
-                        hostname: 'scrapoxy.io',
+                        hostname: 'proxyherd.io',
                         port: 80,
                         pathname: '/',
                         search: void 0,
@@ -121,12 +121,12 @@ describe(
         it(
             'should parse a username and password in a url',
             () => {
-                expect(urlToUrlOptions('http://john:123@scrapoxy.io'))
+                expect(urlToUrlOptions('http://john:123@proxyherd.io'))
                     .toEqual({
                         protocol: 'http:',
                         username: 'john',
                         password: '123',
-                        hostname: 'scrapoxy.io',
+                        hostname: 'proxyherd.io',
                         port: 80,
                         pathname: '/',
                         search: void 0,
@@ -138,12 +138,12 @@ describe(
         it(
             'should parse a pathname in a url',
             () => {
-                expect(urlToUrlOptions('http://john:123@scrapoxy.io/blog/index/1'))
+                expect(urlToUrlOptions('http://john:123@proxyherd.io/blog/index/1'))
                     .toEqual({
                         protocol: 'http:',
                         username: 'john',
                         password: '123',
-                        hostname: 'scrapoxy.io',
+                        hostname: 'proxyherd.io',
                         port: 80,
                         pathname: '/blog/index/1',
                         search: void 0,
@@ -155,12 +155,12 @@ describe(
         it(
             'should parse a search in a url',
             () => {
-                expect(urlToUrlOptions('http://scrapoxy.io?index=44&page=33'))
+                expect(urlToUrlOptions('http://proxyherd.io?index=44&page=33'))
                     .toEqual({
                         protocol: 'http:',
                         username: void 0,
                         password: void 0,
-                        hostname: 'scrapoxy.io',
+                        hostname: 'proxyherd.io',
                         port: 80,
                         pathname: '/',
                         search: '?index=44&page=33',
@@ -172,12 +172,12 @@ describe(
         it(
             'should parse a pathname and a search in a url',
             () => {
-                expect(urlToUrlOptions('http://scrapoxy.io/index/blog?index=44&page=33'))
+                expect(urlToUrlOptions('http://proxyherd.io/index/blog?index=44&page=33'))
                     .toEqual({
                         protocol: 'http:',
                         username: void 0,
                         password: void 0,
-                        hostname: 'scrapoxy.io',
+                        hostname: 'proxyherd.io',
                         port: 80,
                         pathname: '/index/blog',
                         search: '?index=44&page=33',
@@ -189,12 +189,12 @@ describe(
         it(
             'should parse a pathname and a search with a hash in a url',
             () => {
-                expect(urlToUrlOptions('http://scrapoxy.io/index/blog?index=44&page=33#my'))
+                expect(urlToUrlOptions('http://proxyherd.io/index/blog?index=44&page=33#my'))
                     .toEqual({
                         protocol: 'http:',
                         username: void 0,
                         password: void 0,
-                        hostname: 'scrapoxy.io',
+                        hostname: 'proxyherd.io',
                         port: 80,
                         pathname: '/index/blog',
                         search: '?index=44&page=33',
@@ -216,13 +216,13 @@ describe(
                     protocol: 'http:',
                     username: void 0,
                     password: void 0,
-                    hostname: 'scrapoxy.io',
+                    hostname: 'proxyherd.io',
                     port: 80,
                     pathname: '/',
                     search: void 0,
                     hash: void 0,
                 }))
-                    .toBe('http://scrapoxy.io/');
+                    .toBe('http://proxyherd.io/');
             }
         );
 
@@ -233,13 +233,13 @@ describe(
                     protocol: 'http:',
                     username: void 0,
                     password: void 0,
-                    hostname: 'scrapoxy.io',
+                    hostname: 'proxyherd.io',
                     port: 443,
                     pathname: '/',
                     search: void 0,
                     hash: void 0,
                 }))
-                    .toBe('http://scrapoxy.io:443/');
+                    .toBe('http://proxyherd.io:443/');
             }
         );
 
@@ -250,13 +250,13 @@ describe(
                     protocol: 'https:',
                     username: void 0,
                     password: void 0,
-                    hostname: 'scrapoxy.io',
+                    hostname: 'proxyherd.io',
                     port: 80,
                     pathname: '/',
                     search: void 0,
                     hash: void 0,
                 }))
-                    .toBe('https://scrapoxy.io:80/');
+                    .toBe('https://proxyherd.io:80/');
             }
         );
 
@@ -267,13 +267,13 @@ describe(
                     protocol: 'http:',
                     username: 'john',
                     password: void 0,
-                    hostname: 'scrapoxy.io',
+                    hostname: 'proxyherd.io',
                     port: 443,
                     pathname: '/',
                     search: void 0,
                     hash: void 0,
                 }))
-                    .toBe('http://john@scrapoxy.io:443/');
+                    .toBe('http://john@proxyherd.io:443/');
             }
         );
 
@@ -284,13 +284,13 @@ describe(
                     protocol: 'http:',
                     username: void 0,
                     password: '123',
-                    hostname: 'scrapoxy.io',
+                    hostname: 'proxyherd.io',
                     port: 80,
                     pathname: '/',
                     search: void 0,
                     hash: void 0,
                 }))
-                    .toBe('http://:123@scrapoxy.io/');
+                    .toBe('http://:123@proxyherd.io/');
             }
         );
 
@@ -301,13 +301,13 @@ describe(
                     protocol: 'http:',
                     username: 'john',
                     password: '123',
-                    hostname: 'scrapoxy.io',
+                    hostname: 'proxyherd.io',
                     port: 80,
                     pathname: '/',
                     search: void 0,
                     hash: void 0,
                 }))
-                    .toBe('http://john:123@scrapoxy.io/');
+                    .toBe('http://john:123@proxyherd.io/');
             }
         );
 
@@ -318,13 +318,13 @@ describe(
                     protocol: 'http:',
                     username: 'john',
                     password: '123',
-                    hostname: 'scrapoxy.io',
+                    hostname: 'proxyherd.io',
                     port: 80,
                     pathname: '/blog/index/1',
                     search: void 0,
                     hash: void 0,
                 }))
-                    .toBe('http://john:123@scrapoxy.io/blog/index/1');
+                    .toBe('http://john:123@proxyherd.io/blog/index/1');
             }
         );
 
@@ -335,13 +335,13 @@ describe(
                     protocol: 'http:',
                     username: void 0,
                     password: void 0,
-                    hostname: 'scrapoxy.io',
+                    hostname: 'proxyherd.io',
                     port: 80,
                     pathname: '/',
                     search: '?index=44&page=33',
                     hash: void 0,
                 }))
-                    .toBe('http://scrapoxy.io/?index=44&page=33');
+                    .toBe('http://proxyherd.io/?index=44&page=33');
             }
         );
 
@@ -352,13 +352,13 @@ describe(
                     protocol: 'http:',
                     username: void 0,
                     password: void 0,
-                    hostname: 'scrapoxy.io',
+                    hostname: 'proxyherd.io',
                     port: 80,
                     pathname: '/index/blog',
                     search: '?index=44&page=33',
                     hash: void 0,
                 }))
-                    .toBe('http://scrapoxy.io/index/blog?index=44&page=33');
+                    .toBe('http://proxyherd.io/index/blog?index=44&page=33');
             }
         );
 
@@ -369,13 +369,13 @@ describe(
                     protocol: 'http:',
                     username: void 0,
                     password: void 0,
-                    hostname: 'scrapoxy.io',
+                    hostname: 'proxyherd.io',
                     port: 80,
                     pathname: '/index/blog',
                     search: '?index=44&page=33',
                     hash: '#my',
                 }))
-                    .toBe('http://scrapoxy.io/index/blog?index=44&page=33#my');
+                    .toBe('http://proxyherd.io/index/blog?index=44&page=33#my');
             }
         );
 
@@ -387,7 +387,7 @@ describe(
                         protocol: 'http:',
                         username: void 0,
                         password: void 0,
-                        hostname: 'scrapoxy.io',
+                        hostname: 'proxyherd.io',
                         port: 80,
                         pathname: '/index/blog',
                         search: '?index=44&page=33',
@@ -407,7 +407,7 @@ describe(
                         protocol: 'http:',
                         username: void 0,
                         password: void 0,
-                        hostname: 'scrapoxy.io',
+                        hostname: 'proxyherd.io',
                         port: 80,
                         pathname: '/',
                         search: '?index=44&page=33',

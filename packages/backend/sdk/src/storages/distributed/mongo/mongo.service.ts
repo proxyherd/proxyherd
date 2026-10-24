@@ -5,7 +5,7 @@ import {
     toOptionalValue,
     toUserData,
     WINDOWS_CONFIG,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import {
     Collection,
     MongoClient,
@@ -153,7 +153,7 @@ import type {
     IUserData,
     IUserProject,
     IWindow,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import type { Filter } from 'mongodb';
 
 

@@ -3,7 +3,7 @@ import {
     formatFileUnit,
     formatNumberUnit,
     formatTimeUnit,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import type { PipeTransform } from '@angular/core';
 
 

@@ -4,11 +4,11 @@ import {
     ConnectorprovidersService,
     CredentialInvalidError,
     validate,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     CONNECTOR_ZYTE_TYPE,
     EZyteCredentialType,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import {
     ZyteApi,
     ZyteSmartProxyManagerApi,
@@ -28,12 +28,12 @@ import type {
     IConnectorConfig,
     IConnectorFactory,
     IConnectorService,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import type {
     IConnectorListProxies,
     IConnectorToRefresh,
     ITaskToCreate,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Injectable()

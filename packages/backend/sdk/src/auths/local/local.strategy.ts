@@ -9,7 +9,7 @@ import {
     AUTH_LOCAL_NAME,
 } from './local.constants';
 import type { IAuthLocalModuleConfig } from './local.module';
-import type { IProfile } from '@scrapoxy/common';
+import type { IProfile } from '@proxyherd/common';
 import type { IVerifyOptions } from 'passport-local';
 
 

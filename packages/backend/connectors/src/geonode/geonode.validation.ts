@@ -1,4 +1,4 @@
-import { GEONODE_PRODUCT_TYPES } from '@scrapoxy/common';
+import { GEONODE_PRODUCT_TYPES } from '@proxyherd/common';
 import * as Joi from 'joi';
 
 

@@ -2,11 +2,11 @@ import {
     Injectable,
     Type,
 } from '@angular/core';
-import { CONNECTOR_BRIGHTDATA_TYPE } from '@scrapoxy/common';
+import { CONNECTOR_BRIGHTDATA_TYPE } from '@proxyherd/common';
 import {
     ConnectorprovidersService,
     EConnectorType,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import { ConnectorBrightdataComponent } from './connector/connector.component';
 import { CredentialBrightdataComponent } from './credential/credential.component';
 import type {
@@ -15,7 +15,7 @@ import type {
     IConnectorFactory,
     ICredentialComponent,
     IInstallComponent,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 
 
 @Injectable()
@@ -28,7 +28,7 @@ export class ConnectorBrightdataFactory implements IConnectorFactory {
        coupon: null,
        defaultCredentialName: 'BrightData Credential',
        defaultConnectorName: 'BrightData Connector',
-       url: 'https://get.brightdata.com/khkl3keb25ld',
+       url: 'https://brightdata.com',
        type: EConnectorType.DynamicIP,
        canInstall: false,
        canUninstall: false,

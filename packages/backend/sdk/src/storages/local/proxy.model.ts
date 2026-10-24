@@ -4,7 +4,7 @@ import type {
     IProxyToConnect,
     IProxyToRefresh,
     IProxyView,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 export interface IProxyModel extends IProxyData, IProxySync, IProxyView {

@@ -22,9 +22,9 @@ Connect to [Dashboard](https://hello.ninjasproxy.com).
 On, the `Edit User access` section, remember `API Key`.
 
 
-## Scrapoxy
+## ProxyHerd
 
-Open Scrapoxy User Interface and select `Marketplace`:
+Open ProxyHerd User Interface and select `Marketplace`:
 
 
 ### Step 1: Create a new credential

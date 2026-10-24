@@ -20,8 +20,8 @@ import {
     toSubscriptionDatacenterLocalData,
     toSubscriptionDatacenterLocalStore,
     toSubscriptionDatacenterLocalView,
-} from '@scrapoxy/common';
-import { Proxy } from '@scrapoxy/proxy-sdk';
+} from '@proxyherd/common';
+import { Proxy } from '@proxyherd/proxy-sdk';
 import {
     DatacenterLocalNotFoundError,
     ImageDatacenterLocalAlreadyExistsError,
@@ -73,8 +73,8 @@ import type {
     ISubscriptionDatacenterLocalToUpdate,
     ISubscriptionDatacenterLocalView,
     ISubscriptionRegionDatacenterLocalModel,
-} from '@scrapoxy/common';
-import type { IProxy } from '@scrapoxy/proxy-sdk';
+} from '@proxyherd/common';
+import type { IProxy } from '@proxyherd/proxy-sdk';
 
 
 const REGIONS_STORE: IRegionDatacenterLocalStore[] = [

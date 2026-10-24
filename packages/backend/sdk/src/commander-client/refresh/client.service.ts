@@ -29,7 +29,7 @@ import type {
     ITaskData,
     ITaskToUpdate,
     ITaskView,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import type { AxiosInstance } from 'axios';
 
 

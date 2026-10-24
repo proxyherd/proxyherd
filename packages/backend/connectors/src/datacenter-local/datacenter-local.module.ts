@@ -3,7 +3,7 @@ import {
     ConnectorprovidersModule,
     StorageprovidersModule,
     TasksModule,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import { CONNECTOR_DATACENTER_LOCAL_MODULE_CONFIG } from './datacenter-local.constants';
 import { ConnectorDatacenterLocalFactory } from './datacenter-local.factory';
 import { TransportDatacenterLocalModule } from './transport';

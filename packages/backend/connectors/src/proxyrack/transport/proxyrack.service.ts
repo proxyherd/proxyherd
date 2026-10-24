@@ -3,7 +3,7 @@ import {
     ATransportResidentialService,
 
     TransportprovidersService,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import { TRANSPORT_PROXYRACK_TYPE } from './proxyrack.constants';
 import { DEFAULT_PROXYRACK_PORT } from '../api';
 import {
@@ -14,11 +14,11 @@ import type {
     IConnectorProxyrackConfig,
     IConnectorProxyrackCredential,
 } from '../proxyrack.interface';
-import type { IProxyToConnectConfigResidential } from '@scrapoxy/backend-sdk';
+import type { IProxyToConnectConfigResidential } from '@proxyherd/backend-sdk';
 import type {
     IConnectorProxyRefreshed,
     IConnectorToRefresh,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Injectable()

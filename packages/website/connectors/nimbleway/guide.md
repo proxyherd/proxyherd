@@ -2,14 +2,14 @@
 
 ![Nimble](/assets/images/nimbleway.svg){width=250 nozoom}
 
-[Nimble](https://tracking.nimbleway.com/SH4a) is an experience seamless data-gathering with high-performance residential proxies, optimized for superior quality and granular control.
+[Nimble](https://www.nimbleway.com) is an experience seamless data-gathering with high-performance residential proxies, optimized for superior quality and granular control.
 
 ## Prerequisites
 
 An active Nimble subscription is required.
 
 ::: warning
-Scrapoxy supports only `Nimble IP`.
+ProxyHerd supports only `Nimble IP`.
 :::
 
 
@@ -28,9 +28,9 @@ Connect to [Dashboard](https://app.nimbleway.com).
 4. And remember `Password` (just before the `@`).
 
 
-## Scrapoxy
+## ProxyHerd
 
-Open Scrapoxy User Interface and select `Marketplace`:
+Open ProxyHerd User Interface and select `Marketplace`:
 
 
 ### Step 1: Create a new credential

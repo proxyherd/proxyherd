@@ -12,7 +12,7 @@ import {
     Response as ResponseNest,
     UseGuards,
 } from '@nestjs/common';
-import { toUserToken } from '@scrapoxy/common';
+import { toUserToken } from '@proxyherd/common';
 import { CommanderUsersDispatchGuard } from './dispatch.guard';
 import { CommanderUsersTokenGuard } from './token.guard';
 import { COMMANDER_USERS_MODULE_CONFIG } from './users.constants';
@@ -35,7 +35,7 @@ import type {
     IAuthService,
     IUserToUpdate,
     IUserView,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import type { Response as ResponseExpress } from 'express';
 
 

@@ -14,19 +14,19 @@ import {
     ActivatedRoute,
     Router,
 } from '@angular/router';
-import { getFreename } from '@scrapoxy/common';
+import { getFreename } from '@proxyherd/common';
 import {
     CommanderFrontendClientService,
     ConnectorprovidersService,
     ProjectCurrentService,
     ToastsService,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import type { OnInit } from '@angular/core';
 import type {
     ICommanderFrontendClient,
     ICredentialToCreate,
-} from '@scrapoxy/common';
-import type { IHasModification } from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/common';
+import type { IHasModification } from '@proxyherd/frontend-sdk';
 
 
 @Component({

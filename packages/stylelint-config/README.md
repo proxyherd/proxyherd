@@ -1,4 +1,4 @@
-# Scrapoxy Stylelint Rules
+# ProxyHerd Stylelint Rules
 
 ## Build it
 
@@ -21,6 +21,6 @@ Add the file `.stylelintrc.js` on the project root:
 module.exports = {
     root: true,
 
-    extends: '@scrapoxy/stylelint-config',
+    extends: '@proxyherd/stylelint-config',
 };
 ```

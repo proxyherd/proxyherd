@@ -3,7 +3,7 @@ import type {
     ValidationErrors,
     ValidatorFn,
 } from '@angular/forms';
-import type { IOptionalValue } from '@scrapoxy/common';
+import type { IOptionalValue } from '@proxyherd/common';
 
 
 export interface IValidatorDelayOptionalOptions {

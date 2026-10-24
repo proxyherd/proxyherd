@@ -1,4 +1,4 @@
-import { EGeonodeProductType } from '@scrapoxy/common';
+import { EGeonodeProductType } from '@proxyherd/common';
 
 
 export interface IConnectorGeonodeCredential {

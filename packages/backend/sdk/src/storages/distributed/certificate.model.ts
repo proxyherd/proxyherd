@@ -1,4 +1,4 @@
-import type { ICertificate } from '@scrapoxy/common';
+import type { ICertificate } from '@proxyherd/common';
 
 
 export interface ICertificateModel extends ICertificate {

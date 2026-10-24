@@ -1,5 +1,5 @@
 import { Stream } from 'stream';
-import { sleep } from '@scrapoxy/common';
+import { sleep } from '@proxyherd/common';
 
 
 const COUNTER_MIN = 10;

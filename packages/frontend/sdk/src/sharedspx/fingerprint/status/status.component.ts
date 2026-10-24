@@ -2,8 +2,8 @@ import {
     Component,
     Input,
 } from '@angular/core';
-import { EProxyStatus } from '@scrapoxy/common';
-import type { IFingerprint } from '@scrapoxy/common';
+import { EProxyStatus } from '@proxyherd/common';
+import type { IFingerprint } from '@proxyherd/common';
 
 
 enum EFingerprintStatus {

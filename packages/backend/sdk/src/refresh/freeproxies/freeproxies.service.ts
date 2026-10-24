@@ -6,8 +6,8 @@ import {
 import {
     CONNECTOR_FREEPROXIES_TYPE,
     EFingerprintMode,
-} from '@scrapoxy/common';
-import { Sockets } from '@scrapoxy/proxy-sdk';
+} from '@proxyherd/common';
+import { Sockets } from '@proxyherd/proxy-sdk';
 import { REFRESH_FREEPROXIES_CONFIG } from './freeproxies.constants';
 import { CommanderRefreshClientService } from '../../commander-client';
 import { NoFreeproxyToRefreshError } from '../../errors';
@@ -24,7 +24,7 @@ import type {
     IFreeproxyRefreshed,
     IProxyToRefresh,
     IProxyTransport,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Injectable()

@@ -1,9 +1,9 @@
 import {
     CREDENTIAL_DATA_META,
     CREDENTIAL_VIEW_META,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { toMongoMeta } from './mongo/mongo.helpers';
-import type { ICredentialData } from '@scrapoxy/common';
+import type { ICredentialData } from '@proxyherd/common';
 
 
 export interface ICredentialModel extends Omit<ICredentialData, 'id'> {

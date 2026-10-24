@@ -1,13 +1,13 @@
 import { Logger } from '@nestjs/common';
-import { ConnectorFreeproxiesModule } from '@scrapoxy/backend-connectors';
-import { readCaCert } from '@scrapoxy/backend-sdk';
+import { ConnectorFreeproxiesModule } from '@proxyherd/backend-connectors';
+import { readCaCert } from '@proxyherd/backend-sdk';
 import {
     AgentProxyHttpsTunnel,
     CommanderApp,
     MasterApp,
     TestServers,
     waitFor,
-} from '@scrapoxy/backend-test-sdk';
+} from '@proxyherd/backend-test-sdk';
 import {
     CONNECTOR_FREEPROXIES_TYPE,
     countProxiesOnlineViews,
@@ -22,7 +22,7 @@ import {
     PROXY_TIMEOUT_DISCONNECTED_DEFAULT_TEST,
     PROXY_TIMEOUT_UNREACHABLE_DEFAULT,
     SCRAPOXY_HEADER_PREFIX,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import axios from 'axios';
 import type { OutgoingHttpHeaders } from 'http';
 

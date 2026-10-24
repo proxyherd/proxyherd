@@ -12,7 +12,7 @@ import {
     EConnectorType,
     ProjectCurrentService,
     ToastsService,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import {
     Subject,
     Subscription,
@@ -25,8 +25,8 @@ import type {
     OnDestroy,
     OnInit,
 } from '@angular/core';
-import type { ICommanderFrontendClient } from '@scrapoxy/common';
-import type { IConnectorConfig } from '@scrapoxy/frontend-sdk';
+import type { ICommanderFrontendClient } from '@proxyherd/common';
+import type { IConnectorConfig } from '@proxyherd/frontend-sdk';
 
 
 interface IConnectorUI {

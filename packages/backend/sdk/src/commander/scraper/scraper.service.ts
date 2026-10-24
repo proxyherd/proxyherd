@@ -5,7 +5,7 @@ import {
 import {
     EProjectStatus,
     toProjectView,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { validate } from '../../helpers';
 import { StorageprovidersService } from '../../storages';
 import { ACommanderService } from '../commander.abstract';
@@ -26,7 +26,7 @@ import type {
     IProxyIdToRemove,
     ISource,
     ISourceBase,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Injectable()

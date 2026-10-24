@@ -1,175 +1,93 @@
-# Scrapoxy
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/proxyherd/proxyherd/main/packages/website/public/assets/images/proxyherd-lockup-dark.svg">
+    <img alt="ProxyHerd" src="https://raw.githubusercontent.com/proxyherd/proxyherd/main/packages/website/public/assets/images/proxyherd-lockup.svg" width="420">
+  </picture>
+</p>
 
-## What is Scrapoxy?
+<p align="center"><b>One endpoint for every proxy.</b> Open-source super proxy manager.</p>
 
-Scrapoxy is a **super proxies manager** that orchestrates all your proxies into **one place 🎯**,
-rather than spreading management across multiple scrapers 🕸️.
+<p align="center">
+  <a href="https://proxyherd.github.io/proxyherd/">Documentation</a> ·
+  <a href="https://github.com/proxyherd/proxyherd/discussions">Discussions</a> ·
+  <a href="https://github.com/proxyherd/proxyherd/issues">Issues</a>
+</p>
 
-Deployed on your own infrastructure, Scrapoxy serves as a **single proxy endpoint** for your scrapers.
+---
 
-It creates a pool of private proxies from your datacenter subscription 🔒,
-integrates them with proxy vendors 🔌, handles IP rotation and fingerprinting,
-and smartly routes traffic to **avoid bans** 🚫.
+ProxyHerd orchestrates all your proxies from one place instead of spreading
+proxy logic across every scraper. Deployed on your own infrastructure, it is
+the **single proxy endpoint** your scrapers talk to. It builds a pool of
+private proxies from your cloud accounts, plugs in proxy vendors, checks
+every proxy's health and location, rotates IP addresses, keeps sessions
+sticky for browsers, and routes traffic to avoid bans.
 
-<br/>
-
-![Scrapoxy](https://raw.githubusercontent.com/scrapoxy/scrapoxy/master/packages/website/public/assets/images/scrapoxy.gif)
-
-**🚀🚀 [GO TO SCRAPOXY.IO FOR MORE INFORMATION!](https://scrapoxy.io) 🚀🚀**
-
+ProxyHerd is a **community fork of Scrapoxy 4.17.4**, the last release of that
+project published under the MIT licence, continued after its original author
+discontinued it. It is not affiliated with, endorsed by, or supported by the
+original author or CoreDump Engineering. See [NOTICE.md](NOTICE.md) for
+provenance.
 
 ## Features
 
-### ☁️ Datacenter Providers with easy installation ☁️
-
-Scrapoxy supports many datacenter providers like [AWS](https://aws.amazon.com), [Azure](https://azure.com), or [GCP](https://cloud.google.com).
-
-It installs a proxy image on each datacenter, helping the quick launch of a proxy instance.
-Traffic is routed to proxy instances to provide many IP addresses.
-
-Scrapoxy handles the startup/shutdown of proxy instances to rotate IP addresses effectively.
-
-
-### 🌐 Proxy Services 🌐
-
-Scrapoxy supports many proxy services like [Rayobyte](https://billing.rayobyte.com/hosting/aff.php?aff=2444&redirectTo=https://rayobyte.com), [IPRoyal](https://iproyal.com/?r=432273) or [Zyte](https://www.zyte.com).
-
-It connects to these services and uses a variety of parameters such as country or OS type,
-to create a diversity of proxies.
-
-
-### 💻 Hardware materials 💻
-
-Scrapoxy supports many 4G proxy farms hardware types like [Proxidize](https://proxidize.com).
-
-It uses their APIs to handle IP rotation on 4G networks.
-
-
-### 📜 Free Proxy Lists 📜
-
-Scrapoxy supports lists of HTTP/HTTPS proxies and SOCKS4/SOCKS5 proxies.
-
-It takes care of testing their connectivity to aggregate them into the proxy pool.
-
-
-### ⏰ Timeout free ⏰
-
-Scrapoxy only routes traffic to online proxies.
-
-This feature is useful with residential proxies.
-Sometimes, proxies may be too slow or inactive.
-Scrapoxy detects these offline nodes and excludes them from the proxy pool.
-
-
-### 🔄 Auto-Rotate proxies 🔄
-
-Scrapoxy automatically changes IP addresses at regular intervals.
-
-Scrapers can have thousands of IP addresses without managing proxy rotation.
-
-
-### 🏃 Auto-Scale proxies 🏃
-
-Scrapoxy monitors incoming traffic
-and automatically scales the number of proxies according to your needs.
-
-It also reduces proxy count to minimize your costs.
-
-
-### 🍪 Sticky sessions on Browser 🍪
-
-Scrapoxy can keep the same IP address for a scraping session, even for browsers.
-
-It includes HTTP requests/responses interception mechanism to inject a session cookie,
-ensuring continuity of the IP address throughout the browser session.
-
-
-### 🚨 Ban management 🚨
-
-Scrapoxy injects the name of the proxy into the HTTP responses.
-
-When a scraper detects that a ban has occurred, it can notify Scrapoxy to remove the proxy from the pool.
-
-
-### 📡 Traffic interception 📡
-
-Scrapoxy intercepts HTTP requests/responses to modify headers,
-keeping consistency in your scraping stack.
-It can add session cookies or specific headers like user-agent.
-
-
-###  📊 Traffic monitoring 📊
-
-Scrapoxy measures incoming and outgoing traffic to provide an overview of your scraping session.
-
-It tracks metrics such as the number of requests, active proxy count, requests per proxy, and more.
-
-
-### 🌍 Coverage monitoring 🌍
-
-Scrapoxy displays the geographic coverage of your proxies to better understand the global distribution of your proxies.
-
-
-### 🚀 Easy-to-use and production-ready 🚀
-
-Scrapoxy is suitable for both beginners and experts.
-
-It can be started in seconds using Docker, or be deployed in a complex, distributed environment with Kubernetes.
-
-
-### 🔓 Free and Open Source 🔓
-
-And of course, Scrapoxy remains free and open source, under the MIT license.
-
-I simply ask you to give me **credit** if you redistribute or use it in a project 🙌.
-
-A warm thank-you message is appreciated as well 😃🙏.
-
-
-## Documentation
-
-More information on [scrapoxy.io](https://scrapoxy.io).
-
-
-## Contributors
-
-[![Contributors](https://contrib.rocks/image?repo=scrapoxy/scrapoxy)](https://github.com/scrapoxy/scrapoxy/graphs/contributors)
-
-Want to contribute? Check out the [guide](https://scrapoxy.io/contrib/guidelines)!
-
-Here is my contact on [![Linkedin Badge](https://img.shields.io/badge/-Linkedin-blue?style=flat&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/fabienvauchelles)
-
-
-## Sponsorship
-
-Scrapoxy is an open-source project.
-The project is **free** for users, but it does come with **costs for me**.
-
-I invest significant time and resources into maintaining and improving this project,
-covering expenses for hosting, promotion, and more.
-
-If you appreciate the value Scrapoxy provides and wish to support its continued development,
-discuss new features, access the roadmap, or receive professional support, please consider [becoming a sponsor](https://www.buymeacoffee.com/scrapoxy)!
-
-Your support would greatly contribute to the project's sustainability and growth:
-
-<a href="https://www.buymeacoffee.com/scrapoxy" target="_blank"><img src="https://raw.githubusercontent.com/scrapoxy/scrapoxy/master/packages/website/public/assets/images/buymeacoffee.svg" width="230"/></a>
-
+- **Cloud providers**: AWS, Azure, GCP, DigitalOcean and OVH. ProxyHerd installs a proxy image on each instance, starts and stops instances to rotate addresses, and scales the pool with your traffic.
+- **Proxy vendors**: Bright Data, Smartproxy, IPRoyal, Zyte, Rayobyte, Proxy-Seller, NetNut, Proxy-Cheap, Geonode, HypeProxy, Live Proxies, Nimble, Ninjas Proxy, Proxyrack and more, with country and OS selection where the vendor supports it.
+- **Hardware**: 4G proxy farms such as Proxidize and XProxy, with IP rotation through their APIs.
+- **Proxy lists**: plain HTTP, HTTPS, SOCKS4 and SOCKS5 lists, tested for connectivity before use.
+- **Health checks and geo data** from a fingerprint service you host yourself. Offline or slow proxies are removed from the pool automatically; no data leaves your infrastructure.
+- **Auto-rotation** of IP addresses at the interval you choose, and **auto-scaling** of the pool to match incoming traffic.
+- **Sticky sessions**, including for headless browsers, by intercepting requests and injecting a session cookie.
+- **Ban management**: the proxy name is injected into every response, so a scraper that detects a ban can ask ProxyHerd to drop that proxy.
+- **Traffic interception** to add or rewrite headers and keep your scraping stack consistent.
+- **Monitoring**: requests, active proxies, per-proxy metrics and a world map of your coverage.
+- **Production ready**: one container to start, or a distributed deployment on Kubernetes with the Helm charts.
+
+## Quick start
+
+```shell
+docker run -d -p 8888:8888 -p 8890:8890 -v ./proxyherd:/cfg \
+  -e AUTH_LOCAL_USERNAME=admin -e AUTH_LOCAL_PASSWORD=password \
+  -e BACKEND_JWT_SECRET=secret1 -e FRONTEND_JWT_SECRET=secret2 \
+  -e STORAGE_FILE_FILENAME=/cfg/proxyherd.json \
+  -e FINGERPRINT_URL=https://fingerprint.example.com/api/json \
+  ghcr.io/proxyherd/proxyherd
+```
+
+Then open http://localhost:8890 and log in with `admin` / `password`.
+
+`FINGERPRINT_URL` must point at a ProxyHerd fingerprint service reachable from
+the public internet, because every proxy fetches it to prove it is online. The
+service is part of this repository and takes minutes to deploy. See the
+[documentation](https://proxyherd.github.io/proxyherd/) for the full guide.
+
+## Compatibility with Scrapoxy 4.17.4
+
+ProxyHerd 1.0 reads the same configuration, storage and REST API as
+Scrapoxy 4.17.4, so an existing installation can be upgraded in place. The
+wire identifiers that scrapers depend on are unchanged on purpose:
+
+- the `X-Scrapoxy-*` response and request headers, including `X-Scrapoxy-Proxyname`;
+- the `scrapoxy-proxyname` sticky-session cookie;
+- the `scrapoxy` prefix of cloud resources, so existing instances are found and reused.
+
+The npm package, binary, container image and Helm charts are named
+`proxyherd`. The fingerprint service is now self-hosted and must be
+configured; the hosted service the original project depended on no longer
+exists.
+
+## Contributing
+
+Bug reports, feature requests and pull requests are welcome. Read the
+[contribution guidelines](https://proxyherd.github.io/proxyherd/contrib/guidelines)
+first. Contributions are accepted under the
+[Developer Certificate of Origin](https://proxyherd.github.io/proxyherd/contrib/licence):
+sign your commits off with `git commit -s`.
+
+Questions and ideas go to [GitHub Discussions](https://github.com/proxyherd/proxyherd/discussions).
 
 ## Licence
 
-See [The MIT License (MIT)](https://github.com/scrapoxy/scrapoxy/blob/master/LICENCE.md)
-
-
-## Acknowledgements
-
-I would like to thank all the contributors to the project and the open-source community for their support.
-
-
-## Follow-up
-
-[![Discord](https://img.shields.io/discord/1095676356496461934?logo=discord&label=Discord&color=7289da&style=flat-square)](https://discord.gg/ktNGGwZnUD)
-[![Docker](https://img.shields.io/docker/v/scrapoxy/scrapoxy?logo=docker&label=Docker&style=flat-square)](https://hub.docker.com/r/scrapoxy/scrapoxy)
-[![NPM](https://img.shields.io/npm/v/scrapoxy?label=NPM&color=bc3433&style=flat-square)](https://www.npmjs.com/package/scrapoxy)
-
-[![Star History Chart](https://api.star-history.com/svg?repos=scrapoxy/scrapoxy&type=Timeline)](https://star-history.com/#scrapoxy/scrapoxy&Timeline)
+[MIT](LICENCE.md). ProxyHerd includes work copyright © 2016-2024 Fabien
+Vauchelles, the author of Scrapoxy, under the same licence. Scrapoxy is a
+trademark of its author; the name is used here only to describe the origin of
+this project.

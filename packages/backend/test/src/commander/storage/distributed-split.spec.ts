@@ -1,7 +1,7 @@
 import { Logger } from '@nestjs/common';
 import { Transport } from '@nestjs/microservices';
 import { Test } from '@nestjs/testing';
-import { ConnectorDatacenterLocalModule } from '@scrapoxy/backend-connectors';
+import { ConnectorDatacenterLocalModule } from '@proxyherd/backend-connectors';
 import {
     Agents,
     AuthLocalModule,
@@ -29,7 +29,7 @@ import {
     StorageDistributedMsModule,
     StorageMongoService,
     SUBSCRIPTION_LOCAL_DEFAULTS,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     CommanderUsersClient,
     ProxyReverse,
@@ -37,7 +37,7 @@ import {
     USERAGENT_TEST,
     VERSION_TEST,
     waitFor,
-} from '@scrapoxy/backend-test-sdk';
+} from '@proxyherd/backend-test-sdk';
 import {
     CONNECTOR_DATACENTER_LOCAL_TYPE,
     countProxiesOnlineViews,
@@ -45,7 +45,7 @@ import {
     ONE_SECOND_IN_MS,
     PROXY_TIMEOUT_DISCONNECTED_DEFAULT_TEST,
     PROXY_TIMEOUT_UNREACHABLE_DEFAULT,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import axios from 'axios';
 import { v4 as uuid } from 'uuid';
 import type {
@@ -57,8 +57,8 @@ import type { MicroserviceOptions } from '@nestjs/microservices';
 import type {
     IConnectorDatacenterLocalConfig,
     IConnectorDatacenterLocalCredential,
-} from '@scrapoxy/backend-connectors';
-import type { ICommanderFrontendClient } from '@scrapoxy/common';
+} from '@proxyherd/backend-connectors';
+import type { ICommanderFrontendClient } from '@proxyherd/common';
 import type { AddressInfo } from 'net';
 
 
@@ -111,7 +111,10 @@ async function createApi(
                 url: datacenterLocalApp.url,
             }),
             CommanderEventsModule.forRoot(),
-            CommanderFrontendModule.forRoot(fingerprintUrl),
+            CommanderFrontendModule.forRoot(
+                VERSION_TEST,
+                fingerprintUrl
+            ),
             CommanderMasterModule.forRoot(),
             CommanderRefreshModule.forRootFromEnv(),
             CommanderScraperModule,

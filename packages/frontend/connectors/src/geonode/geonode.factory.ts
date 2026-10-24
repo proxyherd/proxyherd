@@ -2,11 +2,11 @@ import {
     Injectable,
     Type,
 } from '@angular/core';
-import { CONNECTOR_GEONODE_TYPE } from '@scrapoxy/common';
+import { CONNECTOR_GEONODE_TYPE } from '@proxyherd/common';
 import {
     ConnectorprovidersService,
     EConnectorType,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import { ConnectorGeonodeComponent } from './connector/connector.component';
 import { CredentialGeonodeComponent } from './credential/credential.component';
 import type {
@@ -15,7 +15,7 @@ import type {
     IConnectorFactory,
     ICredentialComponent,
     IInstallComponent,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 
 
 @Injectable()
@@ -28,7 +28,7 @@ export class ConnectorGeonodeFactory implements IConnectorFactory {
        coupon: null,
        defaultCredentialName: 'Geonode Credential',
        defaultConnectorName: 'Geonode Connector',
-       url: 'https://geonode.pxf.io/c/5392682/2020638/25070?trafsrc=impact',
+       url: 'https://geonode.com',
        type: EConnectorType.StaticIp,
        canInstall: false,
        canUninstall: false,

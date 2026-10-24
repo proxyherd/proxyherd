@@ -2,7 +2,7 @@ import {
     Component,
     Input,
 } from '@angular/core';
-import type { ISource } from '@scrapoxy/common';
+import type { ISource } from '@proxyherd/common';
 
 
 @Component({

@@ -7,9 +7,9 @@ import {
     FormGroup,
     Validators,
 } from '@angular/forms';
-import { CONNECTOR_PROXY_CHEAP_SERVER_TYPE } from '@scrapoxy/common';
+import { CONNECTOR_PROXY_CHEAP_SERVER_TYPE } from '@proxyherd/common';
 import type { OnInit } from '@angular/core';
-import type { IConnectorComponent } from '@scrapoxy/frontend-sdk';
+import type { IConnectorComponent } from '@proxyherd/frontend-sdk';
 
 
 @Component({

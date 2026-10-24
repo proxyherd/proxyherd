@@ -9,11 +9,11 @@ import {
     CredentialQueryNotFoundError,
     getEnvAssetsPath,
     validate,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     CONNECTOR_PROXY_SELLER_RESIDENTIAL_TYPE,
     EProxySellerResidentialQueryCredential,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { ProxySellerResidentialApi } from './api';
 import { toProxySellerGeoCountryView } from './ps-residential.helpers';
 import { ConnectorProxySellerResidentialService } from './ps-residential.service';
@@ -34,7 +34,7 @@ import type {
     IConnectorConfig,
     IConnectorFactory,
     IConnectorService,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import type {
     IConnectorListProxies,
     IConnectorProxySellerResidentialQueryCities,
@@ -45,7 +45,7 @@ import type {
     ICredentialQuery,
     IProxySellerGeoCountryView,
     ITaskToCreate,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Injectable()

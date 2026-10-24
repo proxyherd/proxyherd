@@ -6,9 +6,9 @@ import {
     FormBuilder,
     FormGroup,
 } from '@angular/forms';
-import { CONNECTOR_AZURE_TYPE } from '@scrapoxy/common';
+import { CONNECTOR_AZURE_TYPE } from '@proxyherd/common';
 import type { OnInit } from '@angular/core';
-import type { IInstallComponent } from '@scrapoxy/frontend-sdk';
+import type { IInstallComponent } from '@proxyherd/frontend-sdk';
 
 
 @Component({

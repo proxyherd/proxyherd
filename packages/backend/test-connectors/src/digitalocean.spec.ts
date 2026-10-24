@@ -3,17 +3,17 @@ import {
     ConnectorDigitaloceanModule,
     DigitalOceanApi,
     IConnectorDigitalOceanConfig,
-} from '@scrapoxy/backend-connectors';
-import { Agents } from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-connectors';
+import { Agents } from '@proxyherd/backend-sdk';
 import {
     ITestCredential,
     testConnectors,
-} from '@scrapoxy/backend-test-sdk';
+} from '@proxyherd/backend-test-sdk';
 import {
     CONNECTOR_DIGITALOCEAN_TYPE,
     DIGITALOCEAN_DEFAULT_REGION,
     DIGITALOCEAN_DEFAULT_SIZE,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 describe(

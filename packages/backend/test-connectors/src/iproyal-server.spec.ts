@@ -2,10 +2,10 @@ import * as fs from 'fs';
 import {
     ConnectorIproyalServerModule,
     IConnectorIproyalServerConfig,
-} from '@scrapoxy/backend-connectors';
-import { Agents } from '@scrapoxy/backend-sdk';
-import { testConnectors } from '@scrapoxy/backend-test-sdk';
-import { CONNECTOR_IPROYAL_SERVER_TYPE } from '@scrapoxy/common';
+} from '@proxyherd/backend-connectors';
+import { Agents } from '@proxyherd/backend-sdk';
+import { testConnectors } from '@proxyherd/backend-test-sdk';
+import { CONNECTOR_IPROYAL_SERVER_TYPE } from '@proxyherd/common';
 
 
 describe(

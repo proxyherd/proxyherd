@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import {
     ConnectorprovidersModule,
     TransportProxyModule,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import { ConnectorIproyalServerFactory } from './iproyal-server.factory';
 
 

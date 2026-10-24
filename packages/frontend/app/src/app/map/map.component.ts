@@ -10,14 +10,14 @@ import {
     EProxyStatus,
     isProxyOnline,
     ProxiesSynchronizedEvent,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import {
     CommanderFrontendClientService,
     EventsService,
     getCountryName,
     ProjectCurrentService,
     ToastsService,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import jsVectorMap from 'jsvectormap';
 import 'jsvectormap/dist/maps/world';
 import { Subscription } from 'rxjs';
@@ -31,7 +31,7 @@ import type {
     IFingerprint,
     IProxyBase,
     ISynchronizeLocalProxiesBase,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 interface IMarker {

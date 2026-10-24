@@ -1,6 +1,0 @@
-apiVersion: v2
-name: scrapoxy
-description: Scrapoxy Single Instance
-type: application
-version: 1.0.0
-appVersion: "4.0.0"

@@ -11,7 +11,7 @@ import type {
     IFingerprintOptions,
     IProxyKeyToRemove,
     ITaskToCreate,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 export interface IConnectorConfig {

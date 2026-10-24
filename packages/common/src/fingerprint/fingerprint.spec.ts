@@ -15,7 +15,7 @@ const
         latitude: 48.85889,
         longitude: 2.320041,
         timezone: 'Europe/Paris',
-        useragent: 'Scrapoxy/1.2.3',
+        useragent: 'ProxyHerd/1.2.3',
     },
     fpB: IFingerprint = {
         ip: '5.6.7.8',
@@ -29,7 +29,7 @@ const
         latitude: 38.895037,
         longitude: -77.036543,
         timezone: 'Europe/Paris',
-        useragent: 'Scrapoxy/1.2.3',
+        useragent: 'ProxyHerd/1.2.3',
     };
 
 

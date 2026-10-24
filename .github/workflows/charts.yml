@@ -1,36 +1,37 @@
-name: Helm Charts Deployment
+name: Helm Charts
 
 on:
   push:
-    branches:
-      - master
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
 
       - name: Install Helm
-        uses: azure/setup-helm@v3
+        uses: azure/setup-helm@v4
 
-      - name: Build Helm charts
+      - name: Package charts
         run: |
           rm -Rf dist/charts
           mkdir -p dist/charts
-          helm package packages/charts/src/scrapoxy -d dist/charts
-          helm package packages/charts/src/scrapoxy-simple-cluster -d dist/charts
-          helm repo index dist/charts --url https://charts.scrapoxy.io
+          helm package packages/charts/src/proxyherd -d dist/charts
+          helm package packages/charts/src/proxyherd-simple-cluster -d dist/charts
 
-      - name: Copy file via SSH
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.SCRAPOXY_SSH_HOST }}
-          username: ${{ secrets.SCRAPOXY_SSH_USERNAME }}
-          port: ${{ secrets.SCRAPOXY_SSH_PORT }}
-          key: ${{ secrets.SCRAPOXY_SSH_KEY }}
-          rm: true
-          strip_components: 2
-          source: dist/charts
-          target: ${{ secrets.CHARTS_PATH }}
+      - name: Login to GitHub Container Registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | helm registry login ghcr.io --username "${{ github.actor }}" --password-stdin
+
+      - name: Push charts as OCI artifacts
+        run: |
+          for chart in dist/charts/*.tgz; do
+            helm push "$chart" oci://ghcr.io/proxyherd/charts
+          done

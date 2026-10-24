@@ -8,12 +8,12 @@ import {
     ConfirmService,
     ProjectCurrentService,
     ToastsService,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import type { OnInit } from '@angular/core';
 import type {
     ICommanderFrontendClient,
     IUserProject,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Component({

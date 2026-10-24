@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { TransportprovidersModule } from '@scrapoxy/backend-sdk';
+import { TransportprovidersModule } from '@proxyherd/backend-sdk';
 import { TransportProxyrackService } from './proxyrack.service';
 
 

@@ -1,13 +1,13 @@
 # API Reference
 
-Scrapoxy provides a REST API to manage your instances directly from the scraper.
+ProxyHerd provides a REST API to manage your instances directly from the scraper.
 
 Base URL is `http://localhost:8890` (depending on your configuration).
 
 
 ## Swagger
 
-Scrapoxy exposes a Swagger UI on `http://localhost:8890/api`.
+ProxyHerd exposes a Swagger UI on `http://localhost:8890/api`.
 
 Additionally, it offers:
 - a Swagger JSON file at `http://localhost:8890/api-json`
@@ -16,7 +16,7 @@ Additionally, it offers:
 
 ## Authentication
 
-Scrapoxy employs HTTP Basic Authentication for request authentication.
+ProxyHerd employs HTTP Basic Authentication for request authentication.
 
 The username/password comes from the project settings.
 

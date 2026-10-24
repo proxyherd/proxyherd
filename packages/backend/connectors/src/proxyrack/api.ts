@@ -1,6 +1,9 @@
 import { Agent } from 'https';
-import { Agents } from '@scrapoxy/backend-sdk';
-import { Retry } from '@scrapoxy/common';
+import {
+    Agents,
+    getEnvFingerprintUrl,
+} from '@proxyherd/backend-sdk';
+import { Retry } from '@proxyherd/common';
 import axios, { AxiosError } from 'axios';
 import {
     formatUsername,
@@ -180,7 +183,7 @@ export class ProxyrackApi {
 
         try {
             await this.instance.get(
-                'https://fingerprint.scrapoxy.io/api/json',
+                getEnvFingerprintUrl(),
                 {
                     proxy: {
                         host: this.proxyHost,

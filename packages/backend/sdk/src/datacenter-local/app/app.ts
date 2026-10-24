@@ -11,7 +11,7 @@ import type {
     INestApplication,
     LoggerService,
 } from '@nestjs/common';
-import type { IProxy } from '@scrapoxy/proxy-sdk';
+import type { IProxy } from '@proxyherd/proxy-sdk';
 import type { AddressInfo } from 'net';
 
 

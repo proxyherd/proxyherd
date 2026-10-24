@@ -3,18 +3,18 @@ import {
     ATransportResidentialService,
 
     TransportprovidersService,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import { TRANSPORT_NIMBLEWAY_TYPE } from './nimbleway.constants';
 import { formatUsername } from '../nimbleway.helpers';
 import type {
     IConnectorNimblewayConfig,
     IConnectorNimblewayCredential,
 } from '../nimbleway.interface';
-import type { IProxyToConnectConfigResidential } from '@scrapoxy/backend-sdk';
+import type { IProxyToConnectConfigResidential } from '@proxyherd/backend-sdk';
 import type {
     IConnectorProxyRefreshed,
     IConnectorToRefresh,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Injectable()

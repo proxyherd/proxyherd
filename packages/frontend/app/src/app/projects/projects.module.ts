@@ -19,7 +19,7 @@ import {
     UtilitiesModule,
 } from '@coreui/angular';
 import { IconModule } from '@coreui/icons-angular';
-import { SharedSpxModule } from '@scrapoxy/frontend-sdk';
+import { SharedSpxModule } from '@proxyherd/frontend-sdk';
 import { ProjectCreateComponent } from './project/create/create.component';
 import { ProjectLayoutComponent } from './project/layout.component';
 import { ProjectUpdateComponent } from './project/update/update.component';

@@ -2,11 +2,11 @@ import {
     Injectable,
     Type,
 } from '@angular/core';
-import { CONNECTOR_PROXY_SELLER_SERVER_TYPE } from '@scrapoxy/common';
+import { CONNECTOR_PROXY_SELLER_SERVER_TYPE } from '@proxyherd/common';
 import {
     ConnectorprovidersService,
     EConnectorType,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import { ConnectorProxySellerServerComponent } from './connector/connector.component';
 import { CredentialProxySellerServerComponent } from './credential/credential.component';
 import type {
@@ -15,7 +15,7 @@ import type {
     IConnectorFactory,
     ICredentialComponent,
     IInstallComponent,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 
 
 @Injectable()
@@ -25,13 +25,10 @@ export class ConnectorProxySellerServerFactory implements IConnectorFactory {
    readonly config: IConnectorConfig = {
        name: 'Proxy-Seller Server',
        description: 'Proxy-Seller\'s DC/ISP/Mobile proxy service offers businesses a high-quality, cost-effective solution for reliable data access, tailored to meet the demands of professional use.',
-       coupon: {
-           name: 'SCRAPOXY',
-           description: '(20% off all plans)',
-       },
+       coupon: null,
        defaultCredentialName: 'Proxy-Seller Server Credential',
        defaultConnectorName: 'Proxy-Seller Server Connector',
-       url: 'https://proxy-seller.com/?partner=GR930FP5IOO78P',
+       url: 'https://proxy-seller.com',
        type: EConnectorType.StaticIp,
        canInstall: false,
        canUninstall: false,

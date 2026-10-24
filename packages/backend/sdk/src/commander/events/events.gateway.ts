@@ -26,7 +26,7 @@ import type {
 import type {
     IProjectNamespace,
     IUserToken,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @WebSocketGateway({

@@ -1,5 +1,9 @@
 # Cluster with file storage Deployment
 
+::: warning FINGERPRINT_URL is required
+ProxyHerd refuses to start without `FINGERPRINT_URL`, the address of your [fingerprint service](fingerprint). Add `-e FINGERPRINT_URL=https://fingerprint.example.com/api/json` to the commands below, or the equivalent in Compose or Helm (`fingerprintUrl`).
+:::
+
 This deployment consists of 3 instances:
 - 1 Commander instance with file storage;
 - 1 Master instance;
@@ -8,7 +12,7 @@ This deployment consists of 3 instances:
 For additional details, refer to the [Architecture](/architecture/overview) section.
 
 ::: warning
-Use a separate instance for running Scrapoxy at scale.
+Use a separate instance for running ProxyHerd at scale.
 Don’t run **VPNs** or **complicated network setups** on the same machine, 
 as this can cause connection problems, especially when scaling up.
 :::
@@ -20,8 +24,8 @@ Edit `docker-compose.yml` with the following content:
 ```yaml
 services:
     commander:
-        image: scrapoxy/scrapoxy
-        command: "node scrapoxy.js start -f -c --storage file"
+        image: ghcr.io/proxyherd/proxyherd
+        command: "node proxyherd.js start -f -c --storage file"
         ports:
             - 8890:8890
         environment:
@@ -30,13 +34,13 @@ services:
             - AUTH_LOCAL_PASSWORD=password
             - BACKEND_JWT_SECRET=secret1
             - FRONTEND_JWT_SECRET=secret2
-            - STORAGE_FILE_FILENAME=/etc/scrapoxy/config.json
+            - STORAGE_FILE_FILENAME=/etc/proxyherd/config.json
         volumes:
-            - ./scrapoxy:/etc/scrapoxy
+            - ./proxyherd:/etc/proxyherd
 
     master:
-        image: scrapoxy/scrapoxy
-        command: "node scrapoxy.js start -m"
+        image: ghcr.io/proxyherd/proxyherd
+        command: "node proxyherd.js start -m"
         ports:
             - 8888:8888
         environment:
@@ -47,8 +51,8 @@ services:
             - commander
 
     refresh:
-        image: scrapoxy/scrapoxy
-        command: "node scrapoxy.js start -r"
+        image: ghcr.io/proxyherd/proxyherd
+        command: "node proxyherd.js start -r"
         environment:
             - NODE_ENV=production
             - COMMANDER_URL=http://commander:8890/api
@@ -68,7 +72,7 @@ docker compose up -d
 Create an umbrella chart with Helm with the following files structure:
 
 ```
-myscrapoxy/
+myproxyherd/
 |- Chart.yaml
 |- values.yaml
 ```
@@ -77,21 +81,21 @@ Edit `Chart.yaml` with the following content:
 
 ```yaml
 apiVersion: v2
-name: scrapoxy-simple-cluster
-description: Scrapoxy Simple Cluster
+name: proxyherd-simple-cluster
+description: ProxyHerd Simple Cluster
 type: application
 version: 1.0.0
 appVersion: latest
 dependencies:
-    -   name: scrapoxy-simple-cluster
+    -   name: proxyherd-simple-cluster
         version: 1.0.0
-        repository: https://charts.scrapoxy.io
+        repository: oci://ghcr.io/proxyherd/charts
 ```
 
 Edit `values.yaml` with the following content:
 
 ```yaml
-scrapoxy-simple-cluster:
+proxyherd-simple-cluster:
     auth:
         local:
             username: "admin"
@@ -104,11 +108,11 @@ scrapoxy-simple-cluster:
 Build dependencies:
 
 ```shell
-helm dependency build ./myscrapoxy
+helm dependency build ./myproxyherd
 ```
 
 Install the chart:
 
 ```shell
-helm install scrapoxy ./myscrapoxy
+helm install proxyherd ./myproxyherd
 ```

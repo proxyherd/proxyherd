@@ -2,14 +2,14 @@ import * as fs from 'fs';
 import {
     ConnectorOvhModule,
     OvhApi,
-} from '@scrapoxy/backend-connectors';
-import { Agents } from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-connectors';
+import { Agents } from '@proxyherd/backend-sdk';
 import {
     ITestCredential,
     testConnectors,
-} from '@scrapoxy/backend-test-sdk';
-import { CONNECTOR_OVH_TYPE } from '@scrapoxy/common';
-import type { IConnectorOvhConfig } from '@scrapoxy/backend-connectors';
+} from '@proxyherd/backend-test-sdk';
+import { CONNECTOR_OVH_TYPE } from '@proxyherd/common';
+import type { IConnectorOvhConfig } from '@proxyherd/backend-connectors';
 
 
 describe(

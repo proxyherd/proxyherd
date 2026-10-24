@@ -1,18 +1,18 @@
 import { Logger } from '@nestjs/common';
-import { Agents } from '@scrapoxy/backend-sdk';
+import { Agents } from '@proxyherd/backend-sdk';
 import {
     CONNECTOR_PROXY_LOCAL_TYPE,
     EProxyStatus,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { ProxyLocalApi } from './api';
 import { TRANSPORT_PROXY_LOCAL_TYPE } from './transport/proxy-local.constants';
 import type { IConnectorProxyLocalCredential } from './proxy-local.interface';
 import type { IConnectorProxyRefreshedConfigProxyLocal } from './transport/proxy-local.interface';
-import type { IConnectorService } from '@scrapoxy/backend-sdk';
+import type { IConnectorService } from '@proxyherd/backend-sdk';
 import type {
     IConnectorProxyRefreshed,
     IProxyKeyToRemove,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 function convertToProxy(

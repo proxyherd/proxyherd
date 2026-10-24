@@ -1,4 +1,4 @@
-import type { IFingerprint } from '@scrapoxy/common';
+import type { IFingerprint } from '@proxyherd/common';
 
 
 export const DEFAULT_FINGERPRINT: IFingerprint = {

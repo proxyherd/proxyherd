@@ -8,7 +8,7 @@ This tutorial uses the famous Python web scraping framework [Scrapy](https://scr
 ## Step 1: Install the framework
 
 ```shell
-pip install scrapy scrapoxy
+pip install scrapy proxyherd
 ```
 
 
@@ -16,7 +16,7 @@ pip install scrapy scrapoxy
 
 ![Credentials](../../credentials.png)
 
-1. Open Scrapoxy User interface, and go to the project `Settings`;
+1. Open ProxyHerd User interface, and go to the project `Settings`;
 2. Remember the project's `Username`;
 3. Remember the project's `Password`.
 
@@ -37,19 +37,19 @@ scrapy genspider myspider mydomain.com
 ```
 
 
-## Step 4: Add Scrapoxy usage
+## Step 4: Add ProxyHerd usage
 
 Edit `myproject/settings.py` and modify the following lines:
 
 ```python
 DOWNLOADER_MIDDLEWARES = {
-    'scrapoxy.ProxyDownloaderMiddleware': 100,
+    'proxyherd.ProxyDownloaderMiddleware': 100,
 }
 
-SCRAPOXY_MASTER = "http://localhost:8888"
-SCRAPOXY_API = "http://localhost:8890/api"
-SCRAPOXY_USERNAME = "USERNAME"
-SCRAPOXY_PASSWORD = "PASSWORD"
+PROXYHERD_MASTER = "http://localhost:8888"
+PROXYHERD_API = "http://localhost:8890/api"
+PROXYHERD_USERNAME = "USERNAME"
+PROXYHERD_PASSWORD = "PASSWORD"
 ```
 
 Replace `USERNAME` and `PASSWORD` by the credentials you copied earlier.
@@ -57,33 +57,33 @@ Replace `USERNAME` and `PASSWORD` by the credentials you copied earlier.
 
 ## Step 5: Remove blacklisted instances (optional)
 
-Scrapy uses Scrapoxy's API to kill blacklisted instances.
+Scrapy uses ProxyHerd's API to kill blacklisted instances.
 
 Edit `myproject/settings.py` and add the following lines:
 
 ```python
 DOWNLOADER_MIDDLEWARES = {
-    'scrapoxy.ProxyDownloaderMiddleware': 100,
-    'scrapoxy.BlacklistDownloaderMiddleware': 101,
+    'proxyherd.ProxyDownloaderMiddleware': 100,
+    'proxyherd.BlacklistDownloaderMiddleware': 101,
 }
 
-SCRAPOXY_BLACKLIST_HTTP_STATUS_CODES = [400, 429, 503]
-SCRAPOXY_BLACKLIST_FORCE = True
-SCRAPOXY_SLEEP_MIN = 60
-SCRAPOXY_SLEEP_MAX = 180
+PROXYHERD_BLACKLIST_HTTP_STATUS_CODES = [400, 429, 503]
+PROXYHERD_BLACKLIST_FORCE = True
+PROXYHERD_SLEEP_MIN = 60
+PROXYHERD_SLEEP_MAX = 180
 ```
 
-This middleware requires **enabling MITM** in Scrapoxy.
+This middleware requires **enabling MITM** in ProxyHerd.
 
 ::: tip
-Add the HTTP status codes you want to blacklist in `SCRAPOXY_BLACKLIST_HTTP_STATUS_CODES`.
+Add the HTTP status codes you want to blacklist in `PROXYHERD_BLACKLIST_HTTP_STATUS_CODES`.
 :::
 
-Scrapy will pause for a duration ranging between `SCRAPOXY_SLEEP_MIN` and `SCRAPOXY_SLEEP_MAX` seconds
+Scrapy will pause for a duration ranging between `PROXYHERD_SLEEP_MIN` and `PROXYHERD_SLEEP_MAX` seconds
 when no proxy instance is available.
 
-If `SCRAPOXY_BLACKLIST_FORCE` is set to `True`, the middleware will automatically enforce instance removal.
-This feature is only available for certain connector types, indicated by the presence of a `Trash` icon in the Scrapoxy UI.
+If `PROXYHERD_BLACKLIST_FORCE` is set to `True`, the middleware will automatically enforce instance removal.
+This feature is only available for certain connector types, indicated by the presence of a `Trash` icon in the ProxyHerd UI.
 
 
 ## Step 6: Auto-scale the scraping session (optional)
@@ -95,13 +95,13 @@ Edit `myproject/settings.py` and add the following lines:
 
 ```python
 SPIDER_MIDDLEWARES = {
-   "scrapoxy.ScaleSpiderMiddleware": 100,
+   "proxyherd.ScaleSpiderMiddleware": 100,
 }
 
-SCRAPOXY_WAIT_FOR_SCALE = 120
+PROXYHERD_WAIT_FOR_SCALE = 120
 ```
 
-Scrapy will wait for a duration of `SCRAPOXY_WAIT_FOR_SCALE` seconds before initiating the scraping session,
+Scrapy will wait for a duration of `PROXYHERD_WAIT_FOR_SCALE` seconds before initiating the scraping session,
 allowing time for the instances to be ready.
 
 
@@ -113,14 +113,14 @@ Edit `myproject/settings.py` and add the following lines:
 
 ```python
 SPIDER_MIDDLEWARES = {
-   "scrapoxy.StickySpiderMiddleware": 101,
+   "proxyherd.StickySpiderMiddleware": 101,
 }
 ```
 
-This middleware requires **enabling MITM** in Scrapoxy.
+This middleware requires **enabling MITM** in ProxyHerd.
 
 
-## Step 8: Render page with Splash using Scrapy and Scrapoxy (optional)
+## Step 8: Render page with Splash using Scrapy and ProxyHerd (optional)
 
 Before using Splash, follow the [Splash integration guide](../splash/guide.md).
 
@@ -173,7 +173,7 @@ class SplashSpider(Spider):
 ```
 
 Replace `USERNAME` and `PASSWORD` with the previously copied credentials,
-and `HOST_IP` with the IP address of the machine running Scrapoxy.
+and `HOST_IP` with the IP address of the machine running ProxyHerd.
 
 
 ## Step 9: Integrate scrapy-impersonate (optional)
@@ -183,7 +183,7 @@ This project integrates [curl_cffi](https://github.com/yifeikong/curl_cffi) to p
 so it can impersonate browsers' TLS signatures or JA3 fingerprints.
 
 ::: warning
-Using this library to change the TLS fingerprint disables Scrapoxy's MITM functionality. 
+Using this library to change the TLS fingerprint disables ProxyHerd's MITM functionality. 
 Also, `BlacklistDownloaderMiddleware` and `StickySpiderMiddleware` do not work with `scrapy-impersonate`.
 :::
 
@@ -226,7 +226,7 @@ In this example, the request will emulate a Chrome 110 browser,
 but you have the flexibility to choose from [many other useragents](https://github.com/jxlil/scrapy-impersonate?tab=readme-ov-file#supported-browsers).
 
 ::: info
-The middleware `scrapoxy.ProxyDownloaderMiddleware` is compatible with `scrapy-impersonate`.
+The middleware `proxyherd.ProxyDownloaderMiddleware` is compatible with `scrapy-impersonate`.
 It will set the `verify` option to `False` and the proxy authentication.
 :::
 
@@ -234,6 +234,6 @@ Also, remember to turn **off** `Intercept HTTPS requests with MITM`:
 
 ![Project Settings MITM](project_settings_mitm.png)
 
-Otherwise, Scrapoxy will use a **Node.js** TLS fingerprint to connect to the website,
+Otherwise, ProxyHerd will use a **Node.js** TLS fingerprint to connect to the website,
 bypassing the `scrapy-impersonate` TLS fingerprint.
 

@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ScheduleModule } from '@nestjs/schedule';
-import { ONE_SECOND_IN_MS } from '@scrapoxy/common';
+import { ONE_SECOND_IN_MS } from '@proxyherd/common';
 import { REFRESH_PROXIES_CONFIG } from './proxies.constants';
 import { RefreshProxiesService } from './proxies.service';
 import { CommanderRefreshClientModule } from '../../commander-client';
@@ -14,7 +14,7 @@ import { TransportprovidersModule } from '../../transports';
 import type { ICommanderRefreshClientModuleConfig } from '../../commander-client';
 import type { IRefreshConfig } from '../refresh.abstract';
 import type { DynamicModule } from '@nestjs/common';
-import type { IFingerprintOptions } from '@scrapoxy/common';
+import type { IFingerprintOptions } from '@proxyherd/common';
 
 
 export interface IRefreshProxiesModuleConfig extends ICommanderRefreshClientModuleConfig, IRefreshConfig {

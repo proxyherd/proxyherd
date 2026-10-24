@@ -12,7 +12,7 @@ import {
     TooltipModule,
 } from '@coreui/angular';
 import { IconModule } from '@coreui/icons-angular';
-import { ConnectorprovidersModule } from '@scrapoxy/frontend-sdk';
+import { ConnectorprovidersModule } from '@proxyherd/frontend-sdk';
 import { ConnectorProxyCheapResidentialComponent } from './connector/connector.component';
 import { CredentialProxyCheapResidentialComponent } from './credential/credential.component';
 import { ConnectorProxyCheapResidentialFactory } from './pc-residential.factory';

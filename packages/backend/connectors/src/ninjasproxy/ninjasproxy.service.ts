@@ -2,23 +2,23 @@ import { Logger } from '@nestjs/common';
 import {
     Agents,
     TRANSPORT_PROXY_TYPE,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     CONNECTOR_NINJASPROXY_TYPE,
     EProxyStatus,
     EProxyType,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { NinjasproxyApi } from './api';
 import type {
     IConnectorNinjasproxyCredential,
     INinjasproxyProxy,
 } from './ninjasproxy.interface';
-import type { IConnectorService } from '@scrapoxy/backend-sdk';
+import type { IConnectorService } from '@proxyherd/backend-sdk';
 import type {
     IConnectorProxyRefreshed,
     IProxyKeyToRemove,
     IProxyTransport,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 function convertToProxy(proxy: INinjasproxyProxy): IConnectorProxyRefreshed | undefined {

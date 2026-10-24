@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { EProjectStatus } from '@scrapoxy/common';
+import { EProjectStatus } from '@proxyherd/common';
 import { lastValueFrom } from 'rxjs';
 import type {
     ICertificateToRenew,
@@ -36,7 +36,7 @@ import type {
     ITaskView,
     IUserProject,
     IUserProjectEmail,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Injectable()

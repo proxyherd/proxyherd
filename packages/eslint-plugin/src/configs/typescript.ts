@@ -10,7 +10,7 @@ export default {
         '@nx/eslint-plugin',
         'unused-imports',
         'import',
-        '@scrapoxy/eslint-plugin',
+        '@proxyherd/eslint-plugin',
     ],
 
     extends: [
@@ -353,6 +353,6 @@ export default {
 
         'unused-imports/no-unused-vars': 'warn',
 
-        '@scrapoxy/import-newline': 'error',
+        '@proxyherd/import-newline': 'error',
     },
 };

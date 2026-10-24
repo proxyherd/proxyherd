@@ -4,7 +4,7 @@ import {
     Logger,
 } from '@nestjs/common';
 import { Timeout } from '@nestjs/schedule';
-import { sleep } from '@scrapoxy/common';
+import { sleep } from '@proxyherd/common';
 import { REFRESH_METRICS_CONFIG } from './metrics.constants';
 import { CommanderRefreshClientService } from '../../commander-client';
 import type { IRefreshMetricsModuleConfig } from './metrics.module';

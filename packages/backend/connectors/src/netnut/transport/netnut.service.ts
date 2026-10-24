@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 import {
     ATransportResidentialService,
     TransportprovidersService,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import { TRANSPORT_NETNUT_TYPE } from './netnut.constants';
 import { EConnectorNetnutProxyType } from '../netnut.interface';
 import type {
@@ -11,11 +11,11 @@ import type {
     IConnectorNetnutCredential,
     IProxyNetnutSessionOptions,
 } from '../netnut.interface';
-import type { IProxyToConnectConfigResidential } from '@scrapoxy/backend-sdk';
+import type { IProxyToConnectConfigResidential } from '@proxyherd/backend-sdk';
 import type {
     IConnectorProxyRefreshed,
     IConnectorToRefresh,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 function formatUsername(

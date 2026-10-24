@@ -5,7 +5,7 @@ import {
 import {
     ECommanderError,
     safeJoin,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 //////////// BASE ////////////

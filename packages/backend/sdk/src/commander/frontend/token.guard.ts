@@ -15,7 +15,7 @@ import type {
     CanActivate,
     ExecutionContext,
 } from '@nestjs/common';
-import type { IUserToken } from '@scrapoxy/common';
+import type { IUserToken } from '@proxyherd/common';
 
 
 @Injectable()

@@ -1,10 +1,10 @@
 import { Logger } from '@nestjs/common';
-import { Agents } from '@scrapoxy/backend-sdk';
+import { Agents } from '@proxyherd/backend-sdk';
 import {
     CONNECTOR_PROXYRACK_TYPE,
     EProxyStatus,
     randomName,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { ProxyrackApi } from './api';
 import { TRANSPORT_PROXYRACK_TYPE } from './transport/proxyrack.constants';
 import type {
@@ -12,11 +12,11 @@ import type {
     IConnectorProxyrackCredential,
     IProxyrackSession,
 } from './proxyrack.interface';
-import type { IConnectorService } from '@scrapoxy/backend-sdk';
+import type { IConnectorService } from '@proxyherd/backend-sdk';
 import type {
     IConnectorProxyRefreshed,
     IProxyKeyToRemove,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 function convertSessionToProxy(session: IProxyrackSession): IConnectorProxyRefreshed {

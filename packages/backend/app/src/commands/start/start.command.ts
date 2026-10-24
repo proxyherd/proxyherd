@@ -14,12 +14,9 @@ import {
     ProxyLocalApp,
     ScrapoxyExpressAdapter,
     SUBSCRIPTION_LOCAL_DEFAULTS,
-} from '@scrapoxy/backend-sdk';
-import {
-    capitalize,
-    ONE_MINUTE_IN_MS,
-} from '@scrapoxy/common';
-import { sigstop } from '@scrapoxy/proxy-sdk';
+} from '@proxyherd/backend-sdk';
+import { ONE_MINUTE_IN_MS } from '@proxyherd/common';
+import { sigstop } from '@proxyherd/proxy-sdk';
 import {
     Command,
     Option,
@@ -132,7 +129,7 @@ async function command(
         config.proxyLocalAppUrl = proxyLocalApp.url;
     }
 
-    // Start Scrapoxy
+    // Start ProxyHerd
     const app = await NestFactory.create(
         AppStartModule.forRoot(config),
         new ScrapoxyExpressAdapter(),
@@ -189,7 +186,7 @@ async function command(
     }
 
     const swaggerConfig = new DocumentBuilder()
-        .setTitle(capitalize(config.package.name))
+        .setTitle('ProxyHerd')
         .setVersion(config.package.version)
         .setDescription(config.package.description)
         .addBasicAuth()
@@ -262,7 +259,7 @@ export function addCommand(
                 isDefault: true,
             }
         )
-        .description(`Start ${capitalize(pkg.name)}`)
+        .description('Start ProxyHerd')
         .addOption(new Option(
             '-s, --standalone',
             'Run as a standalone instance'

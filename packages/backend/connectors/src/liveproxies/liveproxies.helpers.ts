@@ -1,4 +1,4 @@
-import type { ILiveproxiesPlanB2C } from '@scrapoxy/common';
+import type { ILiveproxiesPlanB2C } from '@proxyherd/common';
 
 
 export function toLiveproxiesPlanB2C(p: ILiveproxiesPlanB2C): ILiveproxiesPlanB2C {

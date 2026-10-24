@@ -5,12 +5,12 @@ import {
     CredentialInvalidError,
     CredentialQueryNotFoundError,
     validate,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     CONNECTOR_GEONODE_TYPE,
     EGeonodeProductType,
     EGeonodeQueryCredential,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { GeonodeApi } from './api';
 import { ConnectorGeonodeService } from './geonode.service';
 import {
@@ -26,7 +26,7 @@ import type {
     IConnectorConfig,
     IConnectorFactory,
     IConnectorService,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import type {
     IConnectorListProxies,
     IConnectorToRefresh,
@@ -35,7 +35,7 @@ import type {
     IGeonodeQueryCountries,
     IIsocodeCountry,
     ITaskToCreate,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Injectable()

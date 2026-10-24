@@ -11,7 +11,7 @@ import {
     TooltipModule,
 } from '@coreui/angular';
 import { IconModule } from '@coreui/icons-angular';
-import { ConnectorprovidersModule } from '@scrapoxy/frontend-sdk';
+import { ConnectorprovidersModule } from '@proxyherd/frontend-sdk';
 import { ConnectorNimblewayComponent } from './connector/connector.component';
 import { CredentialNimblewayComponent } from './credential/credential.component';
 import { ConnectorNimblewayFactory } from './nimbleway.factory';

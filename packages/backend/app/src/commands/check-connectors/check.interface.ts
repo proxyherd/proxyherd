@@ -1,4 +1,4 @@
-import type { IConnectorListProxies } from '@scrapoxy/common';
+import type { IConnectorListProxies } from '@proxyherd/common';
 
 
 export interface ICheckConnectorRequest {

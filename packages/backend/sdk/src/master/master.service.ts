@@ -21,13 +21,13 @@ import {
     SCRAPOXY_COOKIE_PREFIX,
     SCRAPOXY_HEADER_PREFIX,
     SCRAPOXY_HEADER_PREFIX_LC,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import {
     parseConnectUrl,
     parseError,
     sanitizeHeadersValue,
     Sockets,
-} from '@scrapoxy/proxy-sdk';
+} from '@proxyherd/proxy-sdk';
 import { MASTER_MODULE_CONFIG } from './master.constants';
 import {
     getProxynameFromHeaders,
@@ -63,8 +63,8 @@ import type {
     IProjectToConnect,
     IProxyMetricsAdd,
     IProxyToConnect,
-} from '@scrapoxy/common';
-import type { ISockets } from '@scrapoxy/proxy-sdk';
+} from '@proxyherd/common';
+import type { ISockets } from '@proxyherd/proxy-sdk';
 import type {
     ClientRequestArgs,
     OutgoingHttpHeaders,

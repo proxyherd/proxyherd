@@ -2,7 +2,7 @@
 
 ![Splash](splash.svg){width=180 nozoom}
 
-This tutorial explains how to use the Splash rendering engine with Scrapoxy.
+This tutorial explains how to use the Splash rendering engine with ProxyHerd.
 
 
 ## Step 1: Use the correct Docker Image
@@ -10,12 +10,12 @@ This tutorial explains how to use the Splash rendering engine with Scrapoxy.
 The official image has the following issues:
 
 * Proxy Issue with HTTPS: Splash has a [known issue](https://github.com/scrapinghub/splash/pull/1194) when using proxies on HTTPS URLs.
-* Page Cache: By default, Splash caches pages. If you request the same page twice, the second request will return the cached version rather than making a new request via Scrapoxy.
+* Page Cache: By default, Splash caches pages. If you request the same page twice, the second request will return the cached version rather than making a new request via ProxyHerd.
 
-Use the image `scrapoxy/splash` to solve these issues.
+Use the image `ghcr.io/proxyherd/splash` to solve these issues.
 
 ::: info
-If you're interested in the underlying code, you can find it [here](https://github.com/scrapoxy/scrapoxy/tree/master/packages/splash/src).
+If you're interested in the underlying code, you can find it [here](https://github.com/ghcr.io/proxyherd/proxyherd/tree/master/packages/splash/src).
 :::
 
 
@@ -24,21 +24,21 @@ If you're interested in the underlying code, you can find it [here](https://gith
 Run the following command to start Splash:
 
 ```shell
-docker run -p 8050:8050 --rm scrapoxy/splash
+docker run -p 8050:8050 --rm ghcr.io/proxyherd/splash
 ```
 
 ### Step 3: Retrieve project credentials
 
 ![Credentials](../../credentials.png)
 
-1. Open Scrapoxy User interface, and go to the project `Settings`;
+1. Open ProxyHerd User interface, and go to the project `Settings`;
 2. Remember the project's `Username`;
 3. Remember the project's `Password`.
 
 
-## Step 4: Use Splash with Scrapoxy
+## Step 4: Use Splash with ProxyHerd
 
-Run the following command to use Splash with Scrapoxy:
+Run the following command to use Splash with ProxyHerd:
 
 ```shell
 curl \
@@ -48,16 +48,16 @@ curl \
 ```
 
 Replace `USERNAME` and `PASSWORD` with the previously copied credentials, 
-and `HOST_IP` with the IP address of the machine running Scrapoxy.
+and `HOST_IP` with the IP address of the machine running ProxyHerd.
 
 ::: warning
 For the `HOST_IP`, avoid using `localhost`.
 
-Since Splash runs inside a Docker container, Scrapoxy is not running within this container. Use the correct IP address of the machine running Scrapoxy.
+Since Splash runs inside a Docker container, ProxyHerd is not running within this container. Use the correct IP address of the machine running ProxyHerd.
 :::
 
 
 ## Step 5: Use Splash with Scrapy
 
-See the guide [here](../scrapy/guide.md#step-8-render-page-with-splash-using-scrapy-and-scrapoxy-optional).
+See the guide [here](../scrapy/guide.md#step-8-render-page-with-splash-using-scrapy-and-proxyherd-optional).
 

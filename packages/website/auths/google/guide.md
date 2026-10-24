@@ -14,7 +14,7 @@ Connect to [Console](https://console.cloud.google.com).
 ### Step 1: Create new project (optional)
 
 ::: info
-If you already have a `scrapoxy` project, you can skip this step.
+If you already have a `proxyherd` project, you can skip this step.
 :::
 
 ![GCP Project Create Select](gcp_project_create_select.png)
@@ -26,7 +26,7 @@ If you already have a `scrapoxy` project, you can skip this step.
 
 ![GCP Project Create](gcp_project_create.png)
 
-1. Enter `scrapoxy` as Project name;
+1. Enter `proxyherd` as Project name;
 2. And click on `CREATE`.
 
 ---
@@ -59,7 +59,7 @@ Select the type you want and click on `CREATE`.
 
 ![GCP Consent Info](gcp_consent_info.png)
 
-1. Enter `Scrapoxy` as App name;
+1. Enter `ProxyHerd` as App name;
 2. Select your email address as User support email;
 3. Enter your email address as Developer contact information;
 4. And click on `SAVE AND CONTINUE`.
@@ -81,7 +81,7 @@ Select the type you want and click on `CREATE`.
 ![GCP Consent Users](gcp_consent_users.png)
 
 1. Click on `ADD USERS`;
-2. If you have an external account, enter the gmail address of the person you want to access to Scrapoxy (including your address);
+2. If you have an external account, enter the gmail address of the person you want to access to ProxyHerd (including your address);
 3. Click on `ADD`.
 4. And click on `SAVE AND CONTINUE`.
 
@@ -111,8 +111,8 @@ Click on `BACK TO DASHBOARD`.
 ![GCP Credentials OAuth Client](gcp_credentials_oauth_client.png)
 
 1. Select `Web application` as Application type;
-2. Enter `Scrapoxy Client` as Name;
-3. Enter `http://localhost:8890/api/users/auths/google` as Authorized redirect URIs (replace `http://localhost:8890` by the **external URL** of your Scrapoxy instance)
+2. Enter `ProxyHerd Client` as Name;
+3. Enter `http://localhost:8890/api/users/auths/google` as Authorized redirect URIs (replace `http://localhost:8890` by the **external URL** of your ProxyHerd instance)
 4. And click on `CREATE`.
 
 ::: info
@@ -126,21 +126,21 @@ Google only accepts HTTPS URLS.
 2. Remember the Client secret;
 
 
-## Scrapoxy
+## ProxyHerd
 
 ### With Docker
 
 Open the **terminal** and run the following command:
 
 ```shell
-docker run -d -p 8888:8888 -p 8890:8890 -e FRONTEND_URL=http://localhost:8890 -e AUTH_GOOGLE_CLIENT_ID=my_client_id -e AUTH_GOOGLE_CLIENT_SECRET=my_client_secret -e BACKEND_JWT_SECRET=secret1 -e FRONTEND_JWT_SECRET=secret2 scrapoxy/scrapoxy
+docker run -d -p 8888:8888 -p 8890:8890 -e FRONTEND_URL=http://localhost:8890 -e AUTH_GOOGLE_CLIENT_ID=my_client_id -e AUTH_GOOGLE_CLIENT_SECRET=my_client_secret -e BACKEND_JWT_SECRET=secret1 -e FRONTEND_JWT_SECRET=secret2 ghcr.io/proxyherd/proxyherd
 ```
 
 Replace:
 - `my_client_id` and `my_client_secret` with the values you copied earlier;
-- `http://localhost:8890` by the external URL of your Scrapoxy instance (HTTPS only).
+- `http://localhost:8890` by the external URL of your ProxyHerd instance (HTTPS only).
 
-Scrapoxy will automatically bootstrap the Google authentication:
+ProxyHerd will automatically bootstrap the Google authentication:
 
 ![SPX Auth](spx_auth.png)
 
@@ -152,12 +152,12 @@ Scrapoxy will automatically bootstrap the Google authentication:
 Open the **terminal** and run the following command:
 
 ```shell
-FRONTEND_URL=http://localhost:8890 AUTH_GOOGLE_CLIENT_ID=my_client_id AUTH_GOOGLE_CLIENT_SECRET=my_client_secret BACKEND_JWT_SECRET=secret1 FRONTEND_JWT_SECRET=secret2 npx --yes scrapoxy
+FRONTEND_URL=http://localhost:8890 AUTH_GOOGLE_CLIENT_ID=my_client_id AUTH_GOOGLE_CLIENT_SECRET=my_client_secret BACKEND_JWT_SECRET=secret1 FRONTEND_JWT_SECRET=secret2 npx --yes proxyherd
 ```
 
 Replace:
 - `my_client_id` and `my_client_secret` with the values you copied earlier;
-- `http://localhost:8890` by the external URL of your Scrapoxy instance (HTTPS only).
+- `http://localhost:8890` by the external URL of your ProxyHerd instance (HTTPS only).
 
 
 ### On Windows
@@ -170,9 +170,9 @@ set AUTH_GOOGLE_CLIENT_ID=my_client_id
 set AUTH_GOOGLE_CLIENT_SECRET=my_client_secret
 set BACKEND_JWT_SECRET=secret1
 set FRONTEND_JWT_SECRET=secret2
-npx --yes scrapoxy
+npx --yes proxyherd
 ```
 
 Replace:
 - `my_client_id` and `my_client_secret` with the values you copied earlier;
-- `http://localhost:8890` by the external URL of your Scrapoxy instance (HTTPS only).
+- `http://localhost:8890` by the external URL of your ProxyHerd instance (HTTPS only).

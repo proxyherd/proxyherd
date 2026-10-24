@@ -1,6 +1,34 @@
 {
     "releases": [
         {
+            "version": "1.0.0",
+            "description": "First release of ProxyHerd, the community fork of Scrapoxy 4.17.4 (MIT). Configuration, storage, the REST API and the wire identifiers scrapers rely on (`X-Scrapoxy-*` headers, the sticky-session cookie, cloud resource names) are unchanged, so a 4.17.4 installation upgrades in place.",
+            "breaking": "The hosted fingerprint service no longer exists. Deploy the <a href=\"/proxyherd/deployment/fingerprint\">ProxyHerd fingerprint service</a> and set <code>FINGERPRINT_URL</code>; ProxyHerd refuses to start without it. The npm package, binary, container image (<code>ghcr.io/proxyherd/proxyherd</code>) and Helm charts are named <code>proxyherd</code>. The Python package is <code>proxyherd</code> (settings <code>PROXYHERD_*</code>); the <code>scrapoxy</code> module and <code>SCRAPOXY_*</code> settings keep working as deprecated aliases.",
+            "commitGroups": [
+                {
+                    "title": "Features",
+                    "commits": [
+                        "**fingerprint**: self-hosted fingerprint service (`packages/fingerprint/app`, image `ghcr.io/proxyherd/fingerprint`, npm `@proxyherd/fingerprint`) with DB-IP Lite by default, MaxMind GeoLite2 with a licence key, or IP-only mode; weekly database refresh",
+                        "**fingerprint**: Cloudflare Worker variant (`packages/fingerprint/worker`) with no database to manage",
+                        "**fingerprint**: protocol version 3 sends no installation id or traffic counters; opt back in with `FINGERPRINT_SEND_STATS=true`",
+                        "**charts**: `fingerprintUrl` value wired into the commander and refresh pods",
+                        "**python**: `proxyherd` package with `PROXYHERD_*` settings and a backward-compatible `scrapoxy` shim"
+                    ]
+                },
+                {
+                    "title": "Changes",
+                    "commits": [
+                        "**brand**: new name, logo and documentation site; MIT licence and the original copyright retained, provenance recorded in NOTICE",
+                        "**privacy**: Google Analytics, Algolia search, Discord links, sponsorship pages and every affiliate or referral link removed; search is local",
+                        "**contrib**: Developer Certificate of Origin replaces the contributor licence agreement",
+                        "**ci**: releases publish to GitHub Container Registry, npm and OCI Helm charts; the documentation deploys to GitHub Pages",
+                        "**security**: the original author's OAuth credentials were removed from the IDE run configuration",
+                        "**test**: free-proxy key expectations updated to the `hostname#hash` format"
+                    ]
+                }
+            ]
+        },
+        {
             "version": "4.17.4",
             "description": "This release doesn't include any code changes. Simply update the repository!",
             "breaking": "Please update your Docker image from **fabienvauchelles/scrapoxy** to **scrapoxy/scrapoxy**",
@@ -60,7 +88,7 @@
                 {
                     "title": "Features",
                     "commits": [
-                        "**geonode**: add [Geonode](https://geonode.pxf.io/c/5392682/2020638/25070?trafsrc=impact) proxies support"
+                        "**geonode**: add [Geonode](https://geonode.com) proxies support"
                     ]
                 },
                 {
@@ -158,7 +186,7 @@
                 {
                     "title": "Features",
                     "commits": [
-                        "**liveproxies**: add [Live Proxies](https://liveproxies.io/aff/pv5i8f8) support"
+                        "**liveproxies**: add [Live Proxies](https://liveproxies.io) support"
                     ]
                 },
                 {
@@ -207,7 +235,7 @@
                 {
                     "title": "Features",
                     "commits": [
-                        "**smartproxy**: added support for [Smartproxy](https://smartproxy.pxf.io/Qy5mVo) datacenter pay per GB product"
+                        "**smartproxy**: added support for [Smartproxy](https://smartproxy.com) datacenter pay per GB product"
                     ]
                 }
             ]
@@ -218,7 +246,7 @@
                 {
                     "title": "Features",
                     "commits": [
-                        "**smartproxy**: added support for [Smartproxy](https://smartproxy.pxf.io/Qy5mVo)",
+                        "**smartproxy**: added support for [Smartproxy](https://smartproxy.com)",
                         "**task**: enabled naming tasks for better identification"
                     ]
                 },
@@ -266,7 +294,7 @@
                 {
                     "title": "Features",
                     "commits": [
-                        "**brightdata**: add support for Residential and Mobile proxies for [BrightData](https://get.brightdata.com/khkl3keb25ld)",
+                        "**brightdata**: add support for Residential and Mobile proxies for [BrightData](https://brightdata.com)",
                         "**fingerprint**: use GET instead of POST method to access fingerprint server (to bypass firewall restrictions)"
                     ]
                 },
@@ -284,7 +312,7 @@
                 {
                     "title": "Features",
                     "commits": [
-                        "**netnut**: add [NetNut](https://netnut.io?ref=ymzmmmu) connector"
+                        "**netnut**: add [NetNut](https://netnut.io) connector"
                     ]
                 },
                 {
@@ -395,7 +423,7 @@
                 {
                     "title": "Features",
                     "commits": [
-                        "**proxy-seller**: add [Proxy-Seller connector](https://proxy-seller.com/?partner=GR930FP5IOO78P)"
+                        "**proxy-seller**: add [Proxy-Seller connector](https://proxy-seller.com)"
                     ]
                 },
                 {
@@ -579,7 +607,8 @@
                         "**freeproxies**: support HTTPS proxies",
                         "**freeproxies**: support SOCKS4/SOCKS5 proxies"
                     ]
-                },{
+                },
+                {
                     "title": "Bug fixes",
                     "commits": [
                         "**protocol**: Accept only HTTP and HTTPS requests from master"

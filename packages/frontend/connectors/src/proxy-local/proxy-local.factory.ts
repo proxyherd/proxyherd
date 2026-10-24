@@ -2,11 +2,11 @@ import {
     Injectable,
     Type,
 } from '@angular/core';
-import { CONNECTOR_PROXY_LOCAL_TYPE } from '@scrapoxy/common';
+import { CONNECTOR_PROXY_LOCAL_TYPE } from '@proxyherd/common';
 import {
     ConnectorprovidersService,
     EConnectorType,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import { ConnectorProxyLocalComponent } from './connector/connector.component';
 import { CredentialProxyLocalComponent } from './credential/credential.component';
 import type {
@@ -15,7 +15,7 @@ import type {
     IConnectorFactory,
     ICredentialComponent,
     IInstallComponent,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 
 
 @Injectable()
@@ -24,7 +24,7 @@ export class ConnectorProxyLocalFactory implements IConnectorFactory {
 
     readonly config: IConnectorConfig = {
         name: 'Local proxies API',
-        description: 'Local proxies API is test proxies service for Scrapoxy internal use.',
+        description: 'Local proxies API is test proxies service for ProxyHerd internal use.',
         coupon: null,
         defaultCredentialName: 'Local proxies Credential',
         defaultConnectorName: 'Local proxies Connector',

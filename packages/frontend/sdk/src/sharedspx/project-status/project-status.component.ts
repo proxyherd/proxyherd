@@ -2,16 +2,16 @@ import {
     Component,
     Inject,
 } from '@angular/core';
-import { EProjectStatus } from '@scrapoxy/common';
+import { EProjectStatus } from '@proxyherd/common';
 import {
     CommanderFrontendClientService,
     ProjectCurrentService,
     ToastsService,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import type {
     ICommanderFrontendClient,
     IProjectData,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Component({

@@ -1,4 +1,4 @@
-import { Agents } from '@scrapoxy/backend-sdk';
+import { Agents } from '@proxyherd/backend-sdk';
 import axios from 'axios';
 import type { INinjasproxyProxy } from './ninjasproxy.interface';
 import type { AxiosInstance } from 'axios';

@@ -2,24 +2,24 @@ import { Logger } from '@nestjs/common';
 import {
     Agents,
     TRANSPORT_PROXY_TYPE,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     CONNECTOR_GEONODE_TYPE,
     EGeonodeProductType,
     EProxyStatus,
     EProxyType,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { GeonodeApi } from './api';
 import type {
     IConnectorGeonodeConfig,
     IConnectorGeonodeCredential,
 } from './geonode.interface';
-import type { IConnectorService } from '@scrapoxy/backend-sdk';
+import type { IConnectorService } from '@proxyherd/backend-sdk';
 import type {
     IConnectorProxyRefreshed,
     IProxyKeyToRemove,
     IProxyTransport,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 const

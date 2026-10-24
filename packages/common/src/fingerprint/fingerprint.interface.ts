@@ -135,4 +135,6 @@ export interface IFingerprintOptions {
     url: string;
     followRedirectMax: number;
     retryMax: number;
+    /** Send installation id and traffic counters with every check (off by default). */
+    sendStats?: boolean;
 }

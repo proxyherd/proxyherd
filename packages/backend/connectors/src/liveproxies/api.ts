@@ -1,10 +1,10 @@
-import { Agents } from '@scrapoxy/backend-sdk';
+import { Agents } from '@proxyherd/backend-sdk';
 import axios from 'axios';
 import type {
     ILiveproxiesPlanB2B,
     ILiveproxiesProxyList,
 } from './liveproxies.interface';
-import type { ILiveproxiesPlanB2C } from '@scrapoxy/common';
+import type { ILiveproxiesPlanB2C } from '@proxyherd/common';
 import type { AxiosInstance } from 'axios';
 
 

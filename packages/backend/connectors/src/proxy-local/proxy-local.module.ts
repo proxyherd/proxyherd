@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import {
     ConnectorprovidersModule,
     StorageprovidersModule,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import { CONNECTOR_PROXY_LOCAL_MODULE_CONFIG } from './proxy-local.constants';
 import { ConnectorProxyLocalFactory } from './proxy-local.factory';
 import { TransportProxyLocalModule } from './transport';

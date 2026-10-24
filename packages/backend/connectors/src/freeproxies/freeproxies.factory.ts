@@ -3,8 +3,8 @@ import {
     CommanderRefreshClientService,
     ConnectorprovidersService,
     validate,
-} from '@scrapoxy/backend-sdk';
-import { CONNECTOR_FREEPROXIES_TYPE } from '@scrapoxy/common';
+} from '@proxyherd/backend-sdk';
+import { CONNECTOR_FREEPROXIES_TYPE } from '@proxyherd/common';
 import { ValidationError } from 'joi';
 import { ConnectorFreeproxiesService } from './freeproxies.service';
 import { schemaConfig } from './freeproxies.validation';
@@ -12,13 +12,13 @@ import type {
     IConnectorConfig,
     IConnectorFactory,
     IConnectorService,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import type {
     IConnectorFreeproxyConfig,
     IConnectorListProxies,
     IConnectorToRefresh,
     ITaskToCreate,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Injectable()

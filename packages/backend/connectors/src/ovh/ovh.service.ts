@@ -2,12 +2,12 @@ import { Logger } from '@nestjs/common';
 import {
     Agents,
     TRANSPORT_DATACENTER_TYPE,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     CONNECTOR_OVH_TYPE,
     EProxyStatus,
     randomName,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { OvhApi } from './api';
 import { getOvhExternalIp } from './ovh.helpers';
 import { EOvhInstanceStatus } from './ovh.interface';
@@ -19,11 +19,11 @@ import type {
 import type {
     IConnectorService,
     ITransportProxyRefreshedConfigDatacenter,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import type {
     IConnectorProxyRefreshed,
     IProxyKeyToRemove,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 function convertStatus(status: EOvhInstanceStatus): EProxyStatus {

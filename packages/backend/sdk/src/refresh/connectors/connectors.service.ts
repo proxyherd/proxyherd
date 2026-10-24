@@ -10,7 +10,7 @@ import { NoConnectorToRefreshError } from '../../errors';
 import { TransportprovidersService } from '../../transports';
 import { ARefresh } from '../refresh.abstract';
 import type { IRefreshConnectorsModuleConfig } from './connectors.module';
-import type { IConnectorToRefresh } from '@scrapoxy/common';
+import type { IConnectorToRefresh } from '@proxyherd/common';
 
 
 @Injectable()

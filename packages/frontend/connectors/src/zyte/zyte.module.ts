@@ -10,7 +10,7 @@ import {
     TooltipModule,
 } from '@coreui/angular';
 import { IconModule } from '@coreui/icons-angular';
-import { ConnectorprovidersModule } from '@scrapoxy/frontend-sdk';
+import { ConnectorprovidersModule } from '@proxyherd/frontend-sdk';
 import { ConnectorZyteComponent } from './connector/connector.component';
 import { CredentialZyteComponent } from './credential/credential.component';
 import { ConnectorZyteFactory } from './zyte.factory';

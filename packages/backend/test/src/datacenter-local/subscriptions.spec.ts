@@ -5,12 +5,12 @@ import {
     SubscriptionDatacenterLocalAlreadyExistsError,
     SubscriptionDatacenterLocalNotFoundError,
     ValidationError,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import { v4 as uuid } from 'uuid';
 import type {
     ISubscriptionDatacenterLocalToCreate,
     ISubscriptionDatacenterLocalToUpdate,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 describe(

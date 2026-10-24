@@ -1,4 +1,4 @@
-import type { IAddress } from '@scrapoxy/common';
+import type { IAddress } from '@proxyherd/common';
 
 
 export interface IProxyToConnectConfigResidential {

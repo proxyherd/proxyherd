@@ -24,7 +24,7 @@ import type {
     ISubscriptionDatacenterLocalToCreate,
     ISubscriptionDatacenterLocalToUpdate,
     ISubscriptionDatacenterLocalView,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Controller()

@@ -9,7 +9,7 @@ import type {
     IDigitalOceanRegionView,
     IDigitalOceanSizeView,
     IDigitalOceanSnapshotView,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 export function getDigitalOceanPublicAddress(droplet: IDigitalOceanDroplet): string | undefined {

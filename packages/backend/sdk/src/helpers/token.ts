@@ -1,7 +1,7 @@
-import { SCRAPOXY_COOKIE_PREFIX } from '@scrapoxy/common';
+import { SCRAPOXY_COOKIE_PREFIX } from '@proxyherd/common';
 import * as cookie from 'cookie';
 import * as jwt from 'jsonwebtoken';
-import type { IUserToken } from '@scrapoxy/common';
+import type { IUserToken } from '@proxyherd/common';
 import type { Response } from 'express';
 import type { IncomingHttpHeaders } from 'http';
 

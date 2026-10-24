@@ -6,7 +6,7 @@ import {
     TRANSPORT_DATACENTER_TYPE,
     TransportDatacenterServiceImpl,
     validate,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     ATaskCommand,
     CONNECTOR_AZURE_TYPE,
@@ -17,8 +17,8 @@ import {
     PROXY_TIMEOUT_DISCONNECTED_DEFAULT,
     randomName,
     SCRAPOXY_DATACENTER_PREFIX,
-} from '@scrapoxy/common';
-import { Sockets } from '@scrapoxy/proxy-sdk';
+} from '@proxyherd/common';
+import { Sockets } from '@proxyherd/proxy-sdk';
 import * as Joi from 'joi';
 import { v4 as uuid } from 'uuid';
 import { AzureApi } from '../api';
@@ -36,7 +36,7 @@ import {
     AzureVmsTemplateBuilder,
 } from '../template';
 import type { IConnectorAzureCredential } from '../azure.interface';
-import type { IProxyToConnectConfigDatacenter } from '@scrapoxy/backend-sdk';
+import type { IProxyToConnectConfigDatacenter } from '@proxyherd/backend-sdk';
 import type {
     ICertificate,
     IFingerprintOptions,
@@ -45,7 +45,7 @@ import type {
     ITaskData,
     ITaskFactory,
     ITaskToUpdate,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 export interface IAzureInstallCommandData extends IConnectorAzureCredential {

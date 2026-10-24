@@ -7,7 +7,7 @@ import {
 import {
     ConnectorprovidersService,
     validate,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import { createTransport } from 'nodemailer';
 import { CHECK_CONNECTORS_MODULE_CONFIG } from './check.constants';
 import { schema } from './check.validation';

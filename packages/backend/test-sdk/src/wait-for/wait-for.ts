@@ -1,4 +1,4 @@
-import { sleep } from '@scrapoxy/common';
+import { sleep } from '@proxyherd/common';
 
 
 export function waitFor(

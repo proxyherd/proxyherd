@@ -12,11 +12,11 @@ import {
     DatacenterLocalClient,
     TasksService,
     validate,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     CONNECTOR_DATACENTER_LOCAL_TYPE,
     EDatacenterLocalQueryCredential,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { CONNECTOR_DATACENTER_LOCAL_MODULE_CONFIG } from './datacenter-local.constants';
 import { ConnectorDatacenterLocalService } from './datacenter-local.service';
 import {
@@ -41,7 +41,7 @@ import type {
     IConnectorConfig,
     IConnectorFactory,
     IConnectorService,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import type {
     ICertificate,
     IConnectorData,
@@ -53,7 +53,7 @@ import type {
     IRegionDatacenterLocal,
     IRegionSizeDatacenterLocal,
     ITaskToCreate,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Injectable()

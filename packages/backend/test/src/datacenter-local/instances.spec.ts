@@ -10,19 +10,19 @@ import {
     SUBSCRIPTION_LOCAL_DEFAULTS,
     SubscriptionDatacenterLocalNotFoundError,
     ValidationError,
-} from '@scrapoxy/backend-sdk';
-import { waitFor } from '@scrapoxy/backend-test-sdk';
+} from '@proxyherd/backend-sdk';
+import { waitFor } from '@proxyherd/backend-test-sdk';
 import {
     EImageDatacenterLocalStatus,
     EInstanceDatacenterLocalStatus,
     randomName,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { v4 as uuid } from 'uuid';
 import type {
     IImageDatacenterLocalView,
     IInstancesDatacenterLocalToCreate,
     ISubscriptionDatacenterLocalView,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 describe(

@@ -10,7 +10,7 @@ import {
 } from './github.constants';
 import type { IProfileGithub } from './github.interface';
 import type { IAuthGithubModuleConfig } from './github.module';
-import type { IProfile } from '@scrapoxy/common';
+import type { IProfile } from '@proxyherd/common';
 import type { VerifyCallback } from 'passport-oauth2';
 
 

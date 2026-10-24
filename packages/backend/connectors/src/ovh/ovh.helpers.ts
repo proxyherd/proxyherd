@@ -10,7 +10,7 @@ import type {
     IOvhProjectView,
     IOvhRegionView,
     IOvhSnapshotView,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 export function getOvhExternalIp(instance: IOvhInstance): string | undefined {

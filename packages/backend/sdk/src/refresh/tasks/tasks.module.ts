@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ScheduleModule } from '@nestjs/schedule';
-import { ONE_SECOND_IN_MS } from '@scrapoxy/common';
+import { ONE_SECOND_IN_MS } from '@proxyherd/common';
 import { REFRESH_TASKS_MODULE_CONFIG } from './tasks.constants';
 import { RefreshTasksService } from './tasks.service';
 import { CommanderRefreshClientModule } from '../../commander-client';

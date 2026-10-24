@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { AUTH_GITHUB_NAME } from './github.constants';
 import { AuthprovidersService } from '../providers.service';
-import type { IAuthService } from '@scrapoxy/common';
+import type { IAuthService } from '@proxyherd/common';
 
 
 @Injectable()

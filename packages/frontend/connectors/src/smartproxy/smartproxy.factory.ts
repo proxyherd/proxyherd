@@ -2,11 +2,11 @@ import {
     Injectable,
     Type,
 } from '@angular/core';
-import { CONNECTOR_SMARTPROXY_TYPE } from '@scrapoxy/common';
+import { CONNECTOR_SMARTPROXY_TYPE } from '@proxyherd/common';
 import {
     ConnectorprovidersService,
     EConnectorType,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import { ConnectorSmartproxyComponent } from './connector/connector.component';
 import { CredentialSmartproxyComponent } from './credential/credential.component';
 import type {
@@ -15,7 +15,7 @@ import type {
     IConnectorFactory,
     ICredentialComponent,
     IInstallComponent,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 
 
 @Injectable()
@@ -28,7 +28,7 @@ export class ConnectorSmartproxyFactory implements IConnectorFactory {
        coupon: null,
        defaultCredentialName: 'Smartproxy Credential',
        defaultConnectorName: 'Smartproxy Connector',
-       url: 'https://smartproxy.pxf.io/Qy5mVo',
+       url: 'https://smartproxy.com',
        type: EConnectorType.DynamicIP,
        canInstall: false,
        canUninstall: false,

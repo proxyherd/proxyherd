@@ -11,19 +11,19 @@ import {
 import {
     CONNECTOR_PROXYRACK_TYPE,
     EProxyrackQueryCredential,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import {
     CommanderFrontendClientService,
     convertCodesToCountries,
     ToastsService,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import type { OnInit } from '@angular/core';
 import type {
     ICommanderFrontendClient,
     IIsocodeCountry,
     IProxyrackQueryByCountry,
-} from '@scrapoxy/common';
-import type { IConnectorComponent } from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/common';
+import type { IConnectorComponent } from '@proxyherd/frontend-sdk';
 
 
 @Component({

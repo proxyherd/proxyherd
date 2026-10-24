@@ -1,4 +1,4 @@
-import { ConfirmGuard } from '@scrapoxy/frontend-sdk';
+import { ConfirmGuard } from '@proxyherd/frontend-sdk';
 import { ProfileUpdateComponent } from './update/update.component';
 import type { Routes } from '@angular/router';
 

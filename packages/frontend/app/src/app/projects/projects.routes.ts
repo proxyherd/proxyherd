@@ -1,4 +1,4 @@
-import { ConfirmGuard } from '@scrapoxy/frontend-sdk';
+import { ConfirmGuard } from '@proxyherd/frontend-sdk';
 import { ProjectCreateComponent } from './project/create/create.component';
 import { ProjectLayoutComponent } from './project/layout.component';
 import { ProjectUpdateComponent } from './project/update/update.component';

@@ -71,4 +71,5 @@ program.parseAsync(process.argv)
             err,
             err.stack
         );
+        process.exitCode = 1;
     });

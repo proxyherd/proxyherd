@@ -2,8 +2,8 @@ import {
     Component,
     Input,
 } from '@angular/core';
-import { ConfirmService } from '@scrapoxy/frontend-sdk';
-import type { IConfirmComponent } from '@scrapoxy/frontend-sdk';
+import { ConfirmService } from '@proxyherd/frontend-sdk';
+import type { IConfirmComponent } from '@proxyherd/frontend-sdk';
 
 
 const NOT_DEFINED = '[not defined]';

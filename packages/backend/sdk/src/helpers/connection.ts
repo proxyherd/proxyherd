@@ -4,7 +4,7 @@ import {
 } from 'net';
 import { connect } from 'tls';
 import { isUrl } from './url';
-import type { ISockets } from '@scrapoxy/proxy-sdk';
+import type { ISockets } from '@proxyherd/proxy-sdk';
 import type { ClientRequestArgs } from 'http';
 import type { ConnectionOptions } from 'tls';
 

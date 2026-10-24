@@ -23,7 +23,7 @@ import { IconModule } from '@coreui/icons-angular';
 import {
     ConnectorprovidersModule,
     SharedSpxModule,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import { CredentialCreateComponent } from './credential/create/create.component';
 import { CredentialLayoutComponent } from './credential/layout.component';
 import { CredentialUpdateComponent } from './credential/update/update.component';

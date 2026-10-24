@@ -2,7 +2,7 @@ import { PassThrough } from 'stream';
 import type {
     IProxyMetricsAdd,
     IProxyToConnect,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import type {
     ClientRequestArgs,
     IncomingMessage,

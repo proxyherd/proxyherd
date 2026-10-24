@@ -11,7 +11,7 @@ import {
     TooltipModule,
 } from '@coreui/angular';
 import { IconModule } from '@coreui/icons-angular';
-import { ConnectorprovidersModule } from '@scrapoxy/frontend-sdk';
+import { ConnectorprovidersModule } from '@proxyherd/frontend-sdk';
 import { ConnectorIproyalServerComponent } from './connector/connector.component';
 import { CredentialIproyalServerComponent } from './credential/credential.component';
 import { ConnectorIproyalServerFactory } from './iproyal-server.factory';

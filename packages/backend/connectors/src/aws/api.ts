@@ -1,7 +1,7 @@
 import {
     Agents,
     AxiosFormData,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import axios, { AxiosError } from 'axios';
 import { parseStringPromise } from 'xml2js';
 import { AwsSignatureV4 } from './signature';

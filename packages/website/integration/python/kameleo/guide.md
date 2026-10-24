@@ -2,7 +2,7 @@
 
 ![Kameleo](kameleo.svg){width=230 nozoom}
 
-This tutorial uses [Kameleo](https://kameleo.io/web-scraping?utm_source=scrapoxy&utm_medium=github&utm_campaign=scrapoxy_integration_guide), 
+This tutorial uses [Kameleo](https://kameleo.io/web-scraping), 
 an anti-detect browser designed for web-scraping.
 
 Kameleo provides a powerful antidetect browser for better data collection on websites with anti-bot detection systems such as Cloudflare, DataDome, and PerimeterX.
@@ -10,7 +10,7 @@ It combines headless browsers, proxies, and top-tier automation framework suppor
 Change fingerprint parameters to ensure your activities blend seamlessly into regular web traffic, **minimizing bot detection risks**.
 
 ::: warning
-Kameleo **cannot use the MITM mode of Scrapoxy**,
+Kameleo **cannot use the MITM mode of ProxyHerd**,
 as it would disrupt the TLS fingerprint and compromise anti-detection functionality.
 :::
 
@@ -26,11 +26,11 @@ pip install kameleo.local-api-client
 ```
 
 
-### Step 2: Retrieve Scrapoxy credentials
+### Step 2: Retrieve ProxyHerd credentials
 
 ![Credentials](../../credentials.png)
 
-1. Open Scrapoxy User interface, and go to the project `Settings`;
+1. Open ProxyHerd User interface, and go to the project `Settings`;
 2. Remember the project's `Username`;
 3. Remember the project's `Password`.
 
@@ -38,7 +38,7 @@ pip install kameleo.local-api-client
 ## Step 3: Download and install Kameleo.CLI
 
 Kameleo can be found
-[here](https://kameleo.io/downloads?utm_source=scrapoxy&utm_medium=github&utm_campaign=scrapoxy_integration_guide).
+[here](https://kameleo.io/downloads).
 
 
 ## Step 4: Start Kameleo.CLI
@@ -113,9 +113,9 @@ base_profiles = client.search_base_profiles(
 ```
 
 
-## Step 7: Configure browser fingerprint & Set Up Scrapoxy
+## Step 7: Configure browser fingerprint & Set Up ProxyHerd
 
-Set up a profile compatible with Scrapoxy:
+Set up a profile compatible with ProxyHerd:
 
 ```python
 from kameleo.local_api_client.builder_for_create_profile import BuilderForCreateProfile
@@ -123,7 +123,7 @@ from kameleo.local_api_client.models import Server
 
 create_profile_request = BuilderForCreateProfile \
   .for_base_profile(base_profiles[0].id) \
-  .set_name('kameleo scrapoxy integration') \
+  .set_name('kameleo proxyherd integration') \
   .set_recommended_defaults() \
   .set_proxy('http', Server(host='localhost', port=8888, id='USERNAME', secret='PASSWORD')) \
   .set_start_page("https://kameleo.io") \

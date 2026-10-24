@@ -9,13 +9,13 @@ import {
 import {
     EProjectStatus,
     EventsConnectorsClient,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import {
     CommanderFrontendClientService,
     EventsService,
     ProjectCurrentService,
     ToastsService,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import type {
     OnDestroy,
     OnInit,
@@ -23,7 +23,7 @@ import type {
 import type {
     ICommanderFrontendClient,
     IProjectData,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Component({

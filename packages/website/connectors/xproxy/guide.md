@@ -10,7 +10,7 @@
 Before using XProxy, ensure the following prerequisites are met:
 
 1. Obtain XProxy materials and subscribe to the service.
-2. Ensure that Scrapoxy has access to the XProxy admin interface and proxy IP addresses.
+2. Ensure that ProxyHerd has access to the XProxy admin interface and proxy IP addresses.
 
 
 ::: warning
@@ -53,9 +53,9 @@ The password can only be changed and not viewed.
 :::
 
 
-## Scrapoxy
+## ProxyHerd
 
-Open Scrapoxy User Interface and select `Marketplace`:
+Open ProxyHerd User Interface and select `Marketplace`:
 
 
 ### Step 1: Create a new credential

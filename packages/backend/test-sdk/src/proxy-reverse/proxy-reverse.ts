@@ -8,7 +8,7 @@ import { Logger } from '@nestjs/common';
 import {
     parseError,
     Sockets,
-} from '@scrapoxy/proxy-sdk';
+} from '@proxyherd/proxy-sdk';
 import type { AddressInfo } from 'net';
 
 

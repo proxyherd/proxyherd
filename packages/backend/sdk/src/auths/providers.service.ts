@@ -3,7 +3,7 @@ import {
     Logger,
 } from '@nestjs/common';
 import { AuthNotFoundError } from '../errors';
-import type { IAuthService } from '@scrapoxy/common';
+import type { IAuthService } from '@proxyherd/common';
 
 
 @Injectable()

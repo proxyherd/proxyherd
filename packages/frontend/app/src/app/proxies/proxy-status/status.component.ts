@@ -2,7 +2,7 @@ import {
     Component,
     Input,
 } from '@angular/core';
-import { EProxyStatus } from '@scrapoxy/common';
+import { EProxyStatus } from '@proxyherd/common';
 
 
 @Component({

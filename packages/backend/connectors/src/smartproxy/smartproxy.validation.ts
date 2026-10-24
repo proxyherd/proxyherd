@@ -1,4 +1,4 @@
-import { SMARTPROXY_PRODUCT_TYPES } from '@scrapoxy/common';
+import { SMARTPROXY_PRODUCT_TYPES } from '@proxyherd/common';
 import * as Joi from 'joi';
 
 

@@ -13,7 +13,7 @@ import type {
     ITaskContext,
     ITaskData,
     ITaskToUpdate,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Injectable()

@@ -1,13 +1,13 @@
 import { IncomingMessage } from 'http';
 import { Socket } from 'net';
 import { TLSSocket } from 'tls';
-import { SCRAPOXY_HEADER_PREFIX_LC } from '@scrapoxy/common';
-import { socketWriteAsync } from '@scrapoxy/proxy-sdk';
+import { SCRAPOXY_HEADER_PREFIX_LC } from '@proxyherd/common';
+import { socketWriteAsync } from '@proxyherd/proxy-sdk';
 import {
     ArrayHttpHeaders,
     SCRAPOXY_COOKIE_REGEX,
 } from '../helpers';
-import type { IProjectToConnect } from '@scrapoxy/common';
+import type { IProjectToConnect } from '@proxyherd/common';
 import type { OutgoingHttpHeaders } from 'http';
 import type { TLSSocketOptions } from 'tls';
 

@@ -2,11 +2,11 @@ import {
     Injectable,
     Type,
 } from '@angular/core';
-import { CONNECTOR_RAYOBYTE_TYPE } from '@scrapoxy/common';
+import { CONNECTOR_RAYOBYTE_TYPE } from '@proxyherd/common';
 import {
     ConnectorprovidersService,
     EConnectorType,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import { ConnectorRayobyteComponent } from './connector/connector.component';
 import { CredentialRayobyteComponent } from './credential/credential.component';
 import type {
@@ -15,7 +15,7 @@ import type {
     IConnectorFactory,
     ICredentialComponent,
     IInstallComponent,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 
 
 @Injectable()
@@ -28,7 +28,7 @@ export class ConnectorRayobyteFactory implements IConnectorFactory {
         coupon: null,
         defaultCredentialName: 'Rayobyte Credential',
         defaultConnectorName: 'Rayobyte Connector',
-        url: 'https://billing.rayobyte.com/hosting/aff.php?aff=2444&redirectTo=https://rayobyte.com',
+        url: 'https://rayobyte.com',
         type: EConnectorType.StaticIp,
         canInstall: false,
         canUninstall: false,

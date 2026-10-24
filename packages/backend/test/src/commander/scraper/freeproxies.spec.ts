@@ -1,12 +1,12 @@
 import { Logger } from '@nestjs/common';
-import { ConnectorFreeproxiesModule } from '@scrapoxy/backend-connectors';
+import { ConnectorFreeproxiesModule } from '@proxyherd/backend-connectors';
 import {
     CommanderApp,
     CommanderScraperClient,
     TestServers,
     USERAGENT_TEST,
     waitFor,
-} from '@scrapoxy/backend-test-sdk';
+} from '@proxyherd/backend-test-sdk';
 import {
     CONNECTOR_FREEPROXIES_TYPE,
     EProxyType,
@@ -16,11 +16,11 @@ import {
     ONE_MINUTE_IN_MS,
     PROXY_TIMEOUT_DISCONNECTED_DEFAULT_TEST,
     PROXY_TIMEOUT_UNREACHABLE_DEFAULT,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import type {
     IConnectorView,
     IProjectData,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 describe(

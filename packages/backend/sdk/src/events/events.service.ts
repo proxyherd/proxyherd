@@ -4,7 +4,7 @@ import {
     formatEventNamespace,
     formatProjectNamespace,
     ProjectUserRemovedEvent,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import {
     Server,
     Socket,
@@ -19,7 +19,7 @@ import type {
     IProjectUserLink,
     IUserToken,
     IUserView,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Injectable()

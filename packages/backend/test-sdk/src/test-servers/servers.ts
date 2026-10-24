@@ -4,7 +4,7 @@ import { createSecureContext } from 'tls';
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { ExpressAdapter } from '@nestjs/platform-express';
-import { generateCertificateSelfSignedForTest } from '@scrapoxy/backend-sdk';
+import { generateCertificateSelfSignedForTest } from '@proxyherd/backend-sdk';
 import * as express from 'express';
 import { trackClientHellos } from 'read-tls-client-hello';
 import { FingerprintServer } from './fingerprint';

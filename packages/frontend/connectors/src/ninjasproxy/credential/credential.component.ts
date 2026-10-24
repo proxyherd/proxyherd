@@ -7,10 +7,10 @@ import {
     FormGroup,
     Validators,
 } from '@angular/forms';
-import { CONNECTOR_NINJASPROXY_TYPE } from '@scrapoxy/common';
+import { CONNECTOR_NINJASPROXY_TYPE } from '@proxyherd/common';
 import type { OnInit } from '@angular/core';
 import type { InputType } from '@coreui/angular';
-import type { ICredentialComponent } from '@scrapoxy/frontend-sdk';
+import type { ICredentialComponent } from '@proxyherd/frontend-sdk';
 
 
 @Component({

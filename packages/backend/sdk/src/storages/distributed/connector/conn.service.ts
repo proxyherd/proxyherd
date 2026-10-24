@@ -90,7 +90,7 @@ import type {
     ITaskView,
     IUserData,
     IUserProject,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Injectable()

@@ -10,13 +10,14 @@ import {
     DatacenterLocalApp,
     getEnvCommanderRefreshModuleConfig,
     SUBSCRIPTION_LOCAL_DEFAULTS,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     CommanderApp,
     MasterApp,
     TestServers,
+    VERSION_TEST,
     waitFor,
-} from '@scrapoxy/backend-test-sdk';
+} from '@proxyherd/backend-test-sdk';
 import {
     CONNECTOR_DATACENTER_LOCAL_TYPE,
     EEventScope,
@@ -25,16 +26,16 @@ import {
     ONE_MINUTE_IN_MS,
     PROXY_TIMEOUT_DISCONNECTED_DEFAULT_TEST,
     sleep,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { v4 as uuid } from 'uuid';
 import type {
     IConnectorDatacenterLocalConfig,
     IConnectorDatacenterLocalCredential,
-} from '@scrapoxy/backend-connectors';
+} from '@proxyherd/backend-connectors';
 import type {
     IConnectorView,
     IProjectData,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 describe(
@@ -72,7 +73,10 @@ describe(
                         test: true,
                     }),
                     CommanderEventsModule.forRoot(),
-                    CommanderFrontendModule.forRoot(servers.urlFingerprint),
+                    CommanderFrontendModule.forRoot(
+                        VERSION_TEST,
+                        servers.urlFingerprint
+                    ),
                     CommanderMasterModule.forRoot(),
                     CommanderRefreshModule.forRoot(getEnvCommanderRefreshModuleConfig()),
                     CommanderScraperModule,

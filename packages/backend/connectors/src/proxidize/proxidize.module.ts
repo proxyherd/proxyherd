@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import {
     ConnectorprovidersModule,
     TransportHardwareModule,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import { ConnectorProxidizeFactory } from './proxidize.factory';
 
 

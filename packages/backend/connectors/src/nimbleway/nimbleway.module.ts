@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ConnectorprovidersModule } from '@scrapoxy/backend-sdk';
+import { ConnectorprovidersModule } from '@proxyherd/backend-sdk';
 import { ConnectorNimblewayFactory } from './nimbleway.factory';
 import { TransportNimblewayModule } from './transport';
 

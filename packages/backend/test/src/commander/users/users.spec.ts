@@ -10,14 +10,14 @@ import {
     UserEmailAlreadyExistsError,
     UserProfileIncompleteError,
     ValidationError,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     CommanderApp,
     CommanderUsersClient,
     TestServers,
     USERAGENT_TEST,
     waitFor,
-} from '@scrapoxy/backend-test-sdk';
+} from '@proxyherd/backend-test-sdk';
 import {
     ECommanderError,
     EEventScope,
@@ -26,7 +26,7 @@ import {
     EventsUserClient,
     ONE_MINUTE_IN_MS,
     sleep,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { v4 as uuid } from 'uuid';
 import type {
     ICommanderFrontendClient,
@@ -35,7 +35,7 @@ import type {
     IProjectToUpdate,
     IUserToUpdate,
     IUserView,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 describe(

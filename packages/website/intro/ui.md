@@ -8,9 +8,9 @@ User interface is accessible at: [http://localhost:8890](http://localhost:8890).
 
 ![Login](login.png)
 
-When you open Scrapoxy User interface, Scrapoxy prompts you to log in.
+When you open ProxyHerd User interface, ProxyHerd prompts you to log in.
 
-Scrapoxy offers various login methods depending on your configuration:
+ProxyHerd offers various login methods depending on your configuration:
 - **Local User/Password**: Allows only one user.
 - **Social Logins**: Supports authentication through platforms like Google, Github, etc.
 
@@ -32,7 +32,7 @@ The administration interface includes the following components:
 
 ![Project settings](project_settings.png)
 
-During the initial connection, Scrapoxy will guide you through the creation of a new project with the following settings:
+During the initial connection, ProxyHerd will guide you through the creation of a new project with the following settings:
 1. **Name**: Unique identifier for the project;
 2. **Username**: Authentication username used for proxy authentication in requests (click on the `clipboard` icon to copy the username);
 3. **Password**: Authentication password used for proxy authentication in requests (click on the `clipboard` icon to copy the password);
@@ -41,13 +41,13 @@ During the initial connection, Scrapoxy will guide you through the creation of a
 6. **Auto Rotate Proxies**: If enabled, proxies are automatically rotated at random intervals within the specified **Delay range**; 
 7. **Auto Scale Up**: When enabled, the project status switches to `HOT` upon receiving a request, and all proxies are started;
 8. **Auto Scale Down**: When enabled, the project status switches to `CALM` if no requests are received after a specified delay, and all proxies are stopped;
-9. **Intercept HTTPS requests with MITM**: If enabled, Scrapoxy intercepts and modifies HTTPS requests and responses. 
+9. **Intercept HTTPS requests with MITM**: If enabled, ProxyHerd intercepts and modifies HTTPS requests and responses. 
 10. **Certificate**: Install this CA certificate to avoid security warnings in Browsers or Scrapers;
-11. **Keep the same proxy with cookie injection**: If enabled, Scrapoxy injects a cookie to maintain the same proxy for a browser session (sticky cookie);
-12. **Override User-Agent**: If enabled, Scrapoxy overrides the User-Agent header with the value assigned to a proxy instance. All requests made with this instance will have the same User-Agent header;
-13. **Shuffle TLS Ciphersuite**: If enabled, Scrapoxy assigns a random TLS cipher suite to each proxy instance, helping to prevent [TLS fingerprinting](https://youtu.be/0S5SRT-WIUo?t=497);
+11. **Keep the same proxy with cookie injection**: If enabled, ProxyHerd injects a cookie to maintain the same proxy for a browser session (sticky cookie);
+12. **Override User-Agent**: If enabled, ProxyHerd overrides the User-Agent header with the value assigned to a proxy instance. All requests made with this instance will have the same User-Agent header;
+13. **Shuffle TLS Ciphersuite**: If enabled, ProxyHerd assigns a random TLS cipher suite to each proxy instance, helping to prevent [TLS fingerprinting](https://youtu.be/0S5SRT-WIUo?t=497);
 
-After saving these settings, Scrapoxy will prompt you to create the first credential for the project.
+After saving these settings, ProxyHerd will prompt you to create the first credential for the project.
 
 ---
 
@@ -60,7 +60,7 @@ Settings can also be accessed through the left menu.
 
 ![Project list](projects_list.png)
 
-If you come back to the `Projects` section, Scrapoxy will display a list of all accessible projects.
+If you come back to the `Projects` section, ProxyHerd will display a list of all accessible projects.
 
 
 ## Marketplace
@@ -68,7 +68,7 @@ If you come back to the `Projects` section, Scrapoxy will display a list of all 
 ![Marketplace](marketplace.png)
 
 Upon the first connection:
-1. Scrapoxy will redirect you to the `Marketplace` section;
+1. ProxyHerd will redirect you to the `Marketplace` section;
 2. Search for a provider by name or type;
 3. Providers are categorized by type (e.g., datacenter provider, proxies services, etc.);
 4. Click on `Create` to commence the configuration the chosen provider.
@@ -87,7 +87,7 @@ The settings for the connector's credential include:
 3. **Options**: Configuration options for the credential, dependent on the type of provider.
 
 ::: info
-When you save the settings, Scrapoxy performs a validation test to ensure that the entered credentials are valid.
+When you save the settings, ProxyHerd performs a validation test to ensure that the entered credentials are valid.
 :::
 
 
@@ -95,12 +95,12 @@ When you save the settings, Scrapoxy performs a validation test to ensure that t
 
 ![Credential list](credentials_list.png)
 
-After saving, Scrapoxy will display the list of credentials.
+After saving, ProxyHerd will display the list of credentials.
 
 
 ### Credential update
 
-If you open a credential, Scrapoxy displays the settings:
+If you open a credential, ProxyHerd displays the settings:
 
 ![Credential update](credential_update.png)
 
@@ -115,14 +115,14 @@ You have the following options when managing a credential:
 
 ![Connector create](connector_create.png)
 
-Upon the first connection, Scrapoxy will guide you through the creation of a new connector with the following settings:
+Upon the first connection, ProxyHerd will guide you through the creation of a new connector with the following settings:
 1. **Credential**: Selection from the list of available credentials from the previous section;
 2. **Name**: Unique identifier for the connector within the project;
 3. **# of proxies**: Maximum number of proxies that the connector can provide and that you intend to use;
 4. **Proxies Timeout**: Maximum duration for connecting to a proxy before considering it as offline;
 5. **Proxies Kick**: If enabled, maximum duration for a proxy to be offline before being removed from the pool;
 
-When you save the settings, Scrapoxy performs a validation test to ensure that the entered configuration is valid.
+When you save the settings, ProxyHerd performs a validation test to ensure that the entered configuration is valid.
 
 ::: info
 Proxies Kick must be greater than Proxies Timeout.
@@ -133,18 +133,18 @@ Proxies Kick must be greater than Proxies Timeout.
 
 ![Connector list](connectors_list.png)
 
-After saving, Scrapoxy will display the list of connectors.
+After saving, ProxyHerd will display the list of connectors.
 
 
 ### Connector update
 
-If you open the connector, Scrapoxy will present the associated settings:
+If you open the connector, ProxyHerd will present the associated settings:
 
 ![Connector update](connector_update.png)
 
-Upon opening the connector, Scrapoxy provides the following options:
+Upon opening the connector, ProxyHerd provides the following options:
 1. **Update**: Modify the connector with new settings;
-2. **Validate**: Confirm the validity of the connector configuration. Particularly useful for datacenter providers, as Scrapoxy checks for the existence of the template image;
+2. **Validate**: Confirm the validity of the connector configuration. Particularly useful for datacenter providers, as ProxyHerd checks for the existence of the template image;
 3. **Delete**: Remove the connector only if the project's status is OFF.
 
 ::: info
@@ -166,11 +166,11 @@ The project can have the following statuses:
 
 
 
-Scrapoxy requires a minimum number of proxies to maintain a stable connection;
+ProxyHerd requires a minimum number of proxies to maintain a stable connection;
 otherwise, all requests will fail.
-This remaining connection is essential for detecting whether Scrapoxy is receiving any activity.
+This remaining connection is essential for detecting whether ProxyHerd is receiving any activity.
 If traffic is detected and `Auto Scale Up` is enabled, 
-Scrapoxy will change the project's status from `CALM` to `HOT.` 
+ProxyHerd will change the project's status from `CALM` to `HOT.` 
 
 If you prefer not to keep at least one proxy active, 
 please disable `Auto Scale Up` and use the [API](/integration/api-reference#change-project-s-status) to manually change the project's status.
@@ -206,7 +206,7 @@ The connector can have the following statuses:
 
 ![Proxies list](proxies_list.png)
 
-If you open the `Proxies` section, Scrapoxy will present a list of proxies.
+If you open the `Proxies` section, ProxyHerd will present a list of proxies.
 
 This compilation includes proxies from all connectors, with pagination to enhance performance.
 
@@ -265,7 +265,7 @@ The proxy has 2 sets of statuses:
 
 
 ::: info
-Scrapoxy will route traffic only when the proxy status is `STARTED` and connection is `ONLINE`.
+ProxyHerd will route traffic only when the proxy status is `STARTED` and connection is `ONLINE`.
 :::
 
 
@@ -273,14 +273,14 @@ Scrapoxy will route traffic only when the proxy status is `STARTED` and connecti
 
 ![Coverage](map.png)
 
-1. When you access the `Coverage` section, Scrapoxy presents a world map showcasing the locations of all proxies. This visualization aids in comprehending the geographic distribution of your proxies;
-2. Scrapoxy furnishes metrics such as active proxies, countries, or cities;
+1. When you access the `Coverage` section, ProxyHerd presents a world map showcasing the locations of all proxies. This visualization aids in comprehending the geographic distribution of your proxies;
+2. ProxyHerd furnishes metrics such as active proxies, countries, or cities;
 3. Click on the full-screen icon to expand the map for a more detailed view.
 
 Checking the origin of your proxies is valuable for optimizing your scraping performance.
 
 ::: info
-The map displays only proxies that have been used **at least once**, allowing Scrapoxy to fingerprint them.
+The map displays only proxies that have been used **at least once**, allowing ProxyHerd to fingerprint them.
 :::
 
 
@@ -297,7 +297,7 @@ Additionally, it provides a ranking of top countries, cities, and ASNs (Autonomo
 
 ![Metrics](metrics.png)
 
-In the `Metrics` section, Scrapoxy provides a set of metrics for monitoring your project.
+In the `Metrics` section, ProxyHerd provides a set of metrics for monitoring your project.
 These metrics include:
 
 1. **Range**: Adjusts the window of the metrics (e.g., 1 minute, 5 minutes);
@@ -333,14 +333,14 @@ Only the last 3 charts use the window setting.
 
 ![Tasks](tasks_list.png)
 
-If you open the `Tasks` section, Scrapoxy displays a list of executed tasks.
+If you open the `Tasks` section, ProxyHerd displays a list of executed tasks.
 
 
 ### Task details
 
 ![Task details](task_details.png)
 
-If you open a task, Scrapoxy presents detailed information about the task.
+If you open a task, ProxyHerd presents detailed information about the task.
 
 
 ## Users
@@ -349,9 +349,9 @@ If you open a task, Scrapoxy presents detailed information about the task.
 
 ![Users](users_list.png)
 
-If you open the `Users` section, Scrapoxy displays the list of users authorized to access the project.
+If you open the `Users` section, ProxyHerd displays the list of users authorized to access the project.
 
 ::: warning
-1. You can only add users who have previously been authenticated by Scrapoxy.
+1. You can only add users who have previously been authenticated by ProxyHerd.
 2. It is impossible to remove yourself from the project.
 :::

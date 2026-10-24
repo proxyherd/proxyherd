@@ -1,7 +1,7 @@
 import type {
     IFreeproxy,
     IFreeproxyToRefresh,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 export interface IFreeproxyModel extends IFreeproxy {

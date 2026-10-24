@@ -1,5 +1,5 @@
-import { Agents } from '@scrapoxy/backend-sdk';
-import { EProxySellerNetworkType } from '@scrapoxy/common';
+import { Agents } from '@proxyherd/backend-sdk';
+import { EProxySellerNetworkType } from '@proxyherd/common';
 import axios from 'axios';
 import {
     EProxySellerProxyStatus,

@@ -8,18 +8,18 @@ import {
     formatFileUnit,
     formatNumberUnit,
     MetricsStore,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import {
     CommanderFrontendClientService,
     EventsService,
     ProjectCurrentService,
     ToastsService,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import type {
     OnDestroy,
     OnInit,
 } from '@angular/core';
-import type { ICommanderFrontendClient } from '@scrapoxy/common';
+import type { ICommanderFrontendClient } from '@proxyherd/common';
 import type {
     ChartData,
     ChartOptions,

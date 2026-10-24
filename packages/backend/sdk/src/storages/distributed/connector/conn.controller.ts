@@ -2,7 +2,7 @@ import { Controller } from '@nestjs/common';
 import { EventPattern } from '@nestjs/microservices';
 import { EventsService } from '../../../events';
 import { MESSAGE_EVENTS } from '../distributed.constants';
-import type { IEvent } from '@scrapoxy/common';
+import type { IEvent } from '@proxyherd/common';
 
 
 @Controller()

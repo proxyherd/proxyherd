@@ -7,9 +7,9 @@ import {
     FormGroup,
     Validators,
 } from '@angular/forms';
-import { CONNECTOR_DIGITALOCEAN_TYPE } from '@scrapoxy/common';
+import { CONNECTOR_DIGITALOCEAN_TYPE } from '@proxyherd/common';
 import type { OnInit } from '@angular/core';
-import type { ICredentialComponent } from '@scrapoxy/frontend-sdk';
+import type { ICredentialComponent } from '@proxyherd/frontend-sdk';
 
 
 @Component({

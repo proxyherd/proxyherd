@@ -5,7 +5,7 @@ import {
 import {
     parseError,
     Sockets,
-} from '@scrapoxy/proxy-sdk';
+} from '@proxyherd/proxy-sdk';
 import {
     ArrayHttpHeaders,
     formatUseragent,
@@ -17,7 +17,7 @@ import type {
     IFingerprintOptions,
     IFingerprintRequest,
     IProxyToRefresh,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import type { ClientRequestArgs } from 'http';
 
 
@@ -136,7 +136,8 @@ function fingerprintImpl(
     sockets: Sockets,
     useragent: string,
     followRedirectCount: number,
-    retry: number
+    retry: number,
+    sendStats: boolean
 ): Promise<IFingerprint> {
     const urlOpts = urlToUrlOptions(url);
 
@@ -144,16 +145,21 @@ function fingerprintImpl(
         throw new Error('Invalid url');
     }
 
-    urlOpts.pathname += '?version=2'
-        + '&installId=' + fpRequest.installId
-        + '&mode=' + fpRequest.mode
-        + '&connectorType=' + fpRequest.connectorType
-        + '&proxyId=' + encodeURIComponent(fpRequest.proxyId)
-        + '&requests=' + proxy.requests
-        + '&requestsValid=' + proxy.requestsValid
-        + '&requestsInvalid=' + proxy.requestsInvalid
-        + '&bytesReceived=' + proxy.bytesReceived
-        + '&bytesSent=' + proxy.bytesSent;
+    // Protocol version 3 carries no telemetry. The former fields are only sent when the
+    // operator opts in (FINGERPRINT_SEND_STATS=true), for the logs of their own service.
+    urlOpts.pathname += '?version=3';
+
+    if (sendStats) {
+        urlOpts.pathname += '&installId=' + fpRequest.installId
+            + '&mode=' + fpRequest.mode
+            + '&connectorType=' + fpRequest.connectorType
+            + '&proxyId=' + encodeURIComponent(fpRequest.proxyId)
+            + '&requests=' + proxy.requests
+            + '&requestsValid=' + proxy.requestsValid
+            + '&requestsInvalid=' + proxy.requestsInvalid
+            + '&bytesReceived=' + proxy.bytesReceived
+            + '&bytesSent=' + proxy.bytesSent;
+    }
 
     const reqArgs = transport.buildFingerprintRequestArgs(
         'GET',
@@ -195,7 +201,8 @@ function fingerprintImpl(
                     sockets,
                     useragent,
                     followRedirectCount - 1,
-                    retry
+                    retry,
+                    sendStats
                 );
             }
 
@@ -208,7 +215,8 @@ function fingerprintImpl(
                     sockets,
                     useragent,
                     followRedirectCount,
-                    retry - 1
+                    retry - 1,
+                    sendStats
                 );
             }
 
@@ -232,8 +240,46 @@ export function fingerprint(
         sockets,
         options.useragent,
         options.followRedirectMax,
-        options.retryMax
+        options.retryMax,
+        options.sendStats ?? false
     );
+}
+
+
+const FINGERPRINT_URL_HELP = 'FINGERPRINT_URL is not set. ProxyHerd needs the address of your fingerprint service, '
+    + 'for example https://fingerprint.example.com/api/json. '
+    + 'See https://proxyherd.github.io/proxyherd/deployment/fingerprint';
+
+
+/**
+ * The fingerprint service URL, from the argument or FINGERPRINT_URL. There is no default:
+ * the hosted service the original project depended on no longer exists.
+ */
+export function getEnvFingerprintUrl(url?: string): string {
+    const resolved = url && url.length > 0 ? url : process.env.FINGERPRINT_URL;
+
+    if (!resolved || resolved.length <= 0) {
+        throw new Error(FINGERPRINT_URL_HELP);
+    }
+
+    return resolved;
+}
+
+
+/**
+ * The plain-text variant of the fingerprint endpoint (".../api/text"), derived from the JSON one.
+ */
+export function getEnvFingerprintTextUrl(url?: string): string {
+    const json = getEnvFingerprintUrl(url);
+
+    if (json.endsWith('/api/json')) {
+        return `${json.substring(
+            0,
+            json.length - '/api/json'.length
+        )}/api/text`;
+    }
+
+    return json.endsWith('/') ? `${json}api/text` : `${json}/api/text`;
 }
 
 
@@ -242,7 +288,7 @@ export function getEnvFingerprintConfig(
     url?: string
 ): IFingerprintOptions {
     return {
-        url: url && url.length > 0 ? url : process.env.FINGERPRINT_URL ?? 'https://fingerprint.scrapoxy.io/api/json',
+        url: getEnvFingerprintUrl(url),
         useragent: formatUseragent(version),
         followRedirectMax: parseInt(
             process.env.FINGERPRINT_FOLLOW_REDIRECT_MAX ?? '3',
@@ -252,5 +298,6 @@ export function getEnvFingerprintConfig(
             process.env.FINGERPRINT_RETRY_MAX ?? '2',
             10
         ),
+        sendStats: (process.env.FINGERPRINT_SEND_STATS ?? 'false').toLowerCase() === 'true',
     };
 }

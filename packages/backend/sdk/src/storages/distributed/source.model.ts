@@ -1,6 +1,6 @@
-import { SOURCE_META } from '@scrapoxy/common';
+import { SOURCE_META } from '@proxyherd/common';
 import { toMongoMeta } from './mongo/mongo.helpers';
-import type { ISource } from '@scrapoxy/common';
+import type { ISource } from '@proxyherd/common';
 
 
 export interface ISourceModel extends Omit<ISource, 'id'> {

@@ -1,5 +1,9 @@
 # Get Started
 
+::: warning FINGERPRINT_URL is required
+ProxyHerd refuses to start without `FINGERPRINT_URL`, the address of your [fingerprint service](/deployment/fingerprint). Add `-e FINGERPRINT_URL=https://fingerprint.example.com/api/json` to the commands below, or the equivalent in Compose or Helm (`fingerprintUrl`).
+:::
+
 ## With Docker
 
 Ensure that [Docker](https://www.docker.com) is installed on your computer.
@@ -7,7 +11,7 @@ Ensure that [Docker](https://www.docker.com) is installed on your computer.
 Open the **terminal** and run the following command:
 
 ```shell
-docker run -d -p 8888:8888 -p 8890:8890 -v ./scrapoxy:/cfg -e AUTH_LOCAL_USERNAME=admin -e AUTH_LOCAL_PASSWORD=password -e BACKEND_JWT_SECRET=secret1 -e FRONTEND_JWT_SECRET=secret2 -e STORAGE_FILE_FILENAME=/cfg/scrapoxy.json scrapoxy/scrapoxy
+docker run -d -p 8888:8888 -p 8890:8890 -v ./proxyherd:/cfg -e AUTH_LOCAL_USERNAME=admin -e AUTH_LOCAL_PASSWORD=password -e BACKEND_JWT_SECRET=secret1 -e FRONTEND_JWT_SECRET=secret2 -e STORAGE_FILE_FILENAME=/cfg/proxyherd.json ghcr.io/proxyherd/proxyherd
 ```
 
 Replace `admin`, `password`, `secret1` and `secret2` with your own values.
@@ -15,7 +19,7 @@ Replace `admin`, `password`, `secret1` and `secret2` with your own values.
 User interface is now running on http://localhost:8890 with `admin` as username and `password` as password.
 
 :::tip
-To upgrade Scrapoxy, pull the latest image with `docker pull scrapoxy/scrapoxy`.
+To upgrade ProxyHerd, pull the latest image with `docker pull ghcr.io/proxyherd/proxyherd`.
 :::
 
 
@@ -28,7 +32,7 @@ Make sure that [Node.js](https://nodejs.org) is installed on your computer.
 Open the **terminal** and run the following command:
 
 ```shell
-AUTH_LOCAL_USERNAME=admin AUTH_LOCAL_PASSWORD=password BACKEND_JWT_SECRET=secret1 FRONTEND_JWT_SECRET=secret2 npx --yes scrapoxy
+AUTH_LOCAL_USERNAME=admin AUTH_LOCAL_PASSWORD=password BACKEND_JWT_SECRET=secret1 FRONTEND_JWT_SECRET=secret2 npx --yes proxyherd
 ```
 
 Replace `admin`, `password`, `secret1` and `secret2` with your own values.
@@ -43,7 +47,7 @@ set AUTH_LOCAL_USERNAME=admin
 set AUTH_LOCAL_PASSWORD=password
 set BACKEND_JWT_SECRET=secret1
 set FRONTEND_JWT_SECRET=secret2
-npx --yes scrapoxy
+npx --yes proxyherd
 ```
 
 Replace `admin`, `password`, `secret1` and `secret2` with your own values.

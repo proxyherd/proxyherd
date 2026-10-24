@@ -1,5 +1,5 @@
 import { HttpStatus } from '@nestjs/common';
-import { ECommanderError } from '@scrapoxy/common';
+import { ECommanderError } from '@proxyherd/common';
 import * as Joi from 'joi';
 import { HttpBaseException } from '../errors';
 

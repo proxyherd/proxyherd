@@ -1,4 +1,4 @@
-import type { ICredentialData } from '@scrapoxy/common';
+import type { ICredentialData } from '@proxyherd/common';
 
 
 export type ICredentialModel = ICredentialData;

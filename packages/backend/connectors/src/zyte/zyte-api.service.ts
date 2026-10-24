@@ -2,14 +2,14 @@ import { Logger } from '@nestjs/common';
 import {
     CONNECTOR_ZYTE_TYPE,
     EProxyStatus,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { v4 as uuid } from 'uuid';
 import { TRANSPORT_ZYTE_API_TYPE } from './transport/zyte.constants';
-import type { IConnectorService } from '@scrapoxy/backend-sdk';
+import type { IConnectorService } from '@proxyherd/backend-sdk';
 import type {
     IConnectorProxyRefreshed,
     IProxyKeyToRemove,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 function convertToProxy(id: string): IConnectorProxyRefreshed {

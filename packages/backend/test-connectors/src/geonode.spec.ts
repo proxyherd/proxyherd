@@ -3,13 +3,13 @@ import {
     ConnectorGeonodeModule,
     IConnectorGeonodeConfig,
     IConnectorGeonodeCredential,
-} from '@scrapoxy/backend-connectors';
-import { Agents } from '@scrapoxy/backend-sdk';
-import { testConnectors } from '@scrapoxy/backend-test-sdk';
+} from '@proxyherd/backend-connectors';
+import { Agents } from '@proxyherd/backend-sdk';
+import { testConnectors } from '@proxyherd/backend-test-sdk';
 import {
     CONNECTOR_GEONODE_TYPE,
     EGeonodeProductType,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 describe(

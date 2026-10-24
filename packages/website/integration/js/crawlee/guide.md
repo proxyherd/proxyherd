@@ -17,7 +17,7 @@ cd my-crawler
 
 ![Credentials](../../credentials.png)
 
-1. Open Scrapoxy User interface, and go to the project `Settings`;
+1. Open ProxyHerd User interface, and go to the project `Settings`;
 2. Remember the project's `Username`;
 3. Remember the project's `Password`.
 
@@ -49,7 +49,7 @@ const crawler = new CheerioCrawler({
 });
 
 (async () => {
-    await crawler.run(['https://fingerprint.scrapoxy.io']);
+    await crawler.run(['https://api.ipify.org?format=json']);
 })()
     .catch(console.error);
 ```

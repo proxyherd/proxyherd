@@ -14,7 +14,7 @@ import { IconModule } from '@coreui/icons-angular';
 import {
     ConnectorprovidersModule,
     SharedSpxModule,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import { ConnectorFreeproxiesComponent } from './connector/connector.component';
 import { FreeproxiesComponent } from './connector/freeproxies/freeproxies.component';
 import { FreeproxiesAddComponent } from './connector/freeproxies-add/freeproxies-add.component';

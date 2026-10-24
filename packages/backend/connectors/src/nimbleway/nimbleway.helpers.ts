@@ -1,5 +1,5 @@
 import type { INimblewaySessionOptions } from './nimbleway.interface';
-import type { INimblewayGeoItem } from '@scrapoxy/common';
+import type { INimblewayGeoItem } from '@proxyherd/common';
 
 
 export function formatUsername(

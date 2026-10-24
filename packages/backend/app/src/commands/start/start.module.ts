@@ -29,7 +29,7 @@ import {
     ConnectorSmartproxyModule,
     ConnectorXProxyModule,
     ConnectorZyteModule,
-} from '@scrapoxy/backend-connectors';
+} from '@proxyherd/backend-connectors';
 import {
     AuthGithubModule,
     AuthGoogleModule,
@@ -57,7 +57,7 @@ import {
     StorageDistributedMsModule,
     StorageFileModule,
     StorageMemoryModule,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import { getEnvCommanderPort } from './start.helpers';
 import type { IAppStartModuleConfig } from './start.interface';
 import type { DynamicModule } from '@nestjs/common';

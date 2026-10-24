@@ -9,7 +9,7 @@ import {
     toCredentialView,
     toTaskView,
     toUserProject,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { ValidationError } from 'joi';
 import { v4 as uuid } from 'uuid';
 import { COMMANDER_FRONTEND_MODULE_CONFIG } from './frontend.constants';
@@ -89,7 +89,7 @@ import type {
     ITaskToCreate,
     ITaskView,
     IUserProject,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Injectable()

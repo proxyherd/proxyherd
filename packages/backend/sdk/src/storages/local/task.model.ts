@@ -1,4 +1,4 @@
-import type { ITaskData } from '@scrapoxy/common';
+import type { ITaskData } from '@proxyherd/common';
 
 
 export interface ITaskModel extends ITaskData {

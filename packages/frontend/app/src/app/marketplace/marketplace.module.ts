@@ -13,7 +13,7 @@ import {
     GridModule,
 } from '@coreui/angular';
 import { IconModule } from '@coreui/icons-angular';
-import { ConnectorprovidersModule } from '@scrapoxy/frontend-sdk';
+import { ConnectorprovidersModule } from '@proxyherd/frontend-sdk';
 import { MarketplaceComponent } from './marketplace.component';
 import { routes } from './marketplace.routes';
 

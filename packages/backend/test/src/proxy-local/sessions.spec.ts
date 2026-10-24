@@ -1,10 +1,10 @@
 import { Logger } from '@nestjs/common';
-import { ProxyLocalApp } from '@scrapoxy/backend-sdk';
+import { ProxyLocalApp } from '@proxyherd/backend-sdk';
 import {
     AgentProxyHttpsTunnel,
     TestServers,
-} from '@scrapoxy/backend-test-sdk';
-import { ONE_MINUTE_IN_MS } from '@scrapoxy/common';
+} from '@proxyherd/backend-test-sdk';
+import { ONE_MINUTE_IN_MS } from '@proxyherd/common';
 import axios from 'axios';
 import { v4 as uuid } from 'uuid';
 

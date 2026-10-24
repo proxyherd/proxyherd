@@ -2,7 +2,7 @@ import {
     Component,
     Input,
 } from '@angular/core';
-import type { IFingerprint } from '@scrapoxy/common';
+import type { IFingerprint } from '@proxyherd/common';
 
 
 @Component({

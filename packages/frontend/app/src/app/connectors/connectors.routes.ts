@@ -1,4 +1,4 @@
-import { ConfirmGuard } from '@scrapoxy/frontend-sdk';
+import { ConfirmGuard } from '@proxyherd/frontend-sdk';
 import { ConnectorCreateComponent } from './connector/create/create.component';
 import { ConnectorInstallComponent } from './connector/install/install.component';
 import { ConnectorLayoutComponent } from './connector/layout.component';

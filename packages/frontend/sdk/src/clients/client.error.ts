@@ -1,4 +1,4 @@
-import { ECommanderError } from '@scrapoxy/common';
+import { ECommanderError } from '@proxyherd/common';
 
 
 export class ClientError extends Error {

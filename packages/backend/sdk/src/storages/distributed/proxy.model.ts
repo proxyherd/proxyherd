@@ -4,13 +4,13 @@ import {
     PROXY_TO_CONNECT_META,
     PROXY_TO_REFRESH_META,
     PROXY_VIEW_META,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { toMongoMeta } from './mongo/mongo.helpers';
 import type {
     IProxyData,
     IProxySync,
     IProxyView,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 export interface IProxyModel extends Omit<IProxyData, 'id'>, Omit<IProxySync, 'id'>, Omit<IProxyView, 'id'> {

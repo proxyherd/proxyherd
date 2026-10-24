@@ -1,9 +1,9 @@
 import {
     FREEPROXY_META,
     FREEPROXY_TO_REFRESH_META,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { toMongoMeta } from './mongo/mongo.helpers';
-import type { IFreeproxy } from '@scrapoxy/common';
+import type { IFreeproxy } from '@proxyherd/common';
 
 
 export interface IFreeproxyModel extends Omit<IFreeproxy, 'id'> {

@@ -1,7 +1,7 @@
-import { Agents } from '@scrapoxy/backend-sdk';
-import { EGeonodeProductType } from '@scrapoxy/common';
+import { Agents } from '@proxyherd/backend-sdk';
+import { EGeonodeProductType } from '@proxyherd/common';
 import axios from 'axios';
-import type { IIsocodeCountry } from '@scrapoxy/common';
+import type { IIsocodeCountry } from '@proxyherd/common';
 import type { AxiosInstance } from 'axios';
 
 

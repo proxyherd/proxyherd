@@ -2,11 +2,11 @@ import {
     Injectable,
     Type,
 } from '@angular/core';
-import { CONNECTOR_LIVEPROXIES_TYPE } from '@scrapoxy/common';
+import { CONNECTOR_LIVEPROXIES_TYPE } from '@proxyherd/common';
 import {
     ConnectorprovidersService,
     EConnectorType,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import { ConnectorLiveproxiesComponent } from './connector/connector.component';
 import { CredentialLiveproxiesComponent } from './credential/credential.component';
 import type {
@@ -15,7 +15,7 @@ import type {
     IConnectorFactory,
     ICredentialComponent,
     IInstallComponent,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 
 
 @Injectable()
@@ -28,7 +28,7 @@ export class ConnectorLiveproxiesFactory implements IConnectorFactory {
        coupon: null,
        defaultCredentialName: 'Live Proxies Credential',
        defaultConnectorName: 'Live Proxies Connector',
-       url: 'https://liveproxies.io/aff/pv5i8f8',
+       url: 'https://liveproxies.io',
        type: EConnectorType.StaticIp,
        canInstall: false,
        canUninstall: false,

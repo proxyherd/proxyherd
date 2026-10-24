@@ -1,7 +1,7 @@
 import {
     PROXY_TIMEOUT_DISCONNECTED_DEFAULT,
     PROXY_TIMEOUT_UNREACHABLE_DEFAULT,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 export const migration = {

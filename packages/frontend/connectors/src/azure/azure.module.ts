@@ -11,7 +11,7 @@ import {
     TooltipModule,
 } from '@coreui/angular';
 import { IconModule } from '@coreui/icons-angular';
-import { ConnectorprovidersModule } from '@scrapoxy/frontend-sdk';
+import { ConnectorprovidersModule } from '@proxyherd/frontend-sdk';
 import { ConnectorAzureFactory } from './azure.factory';
 import { ConnectorAzureComponent } from './connector/connector.component';
 import { CredentialAzureComponent } from './credential/credential.component';

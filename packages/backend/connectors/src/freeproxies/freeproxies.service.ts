@@ -2,19 +2,19 @@ import { Logger } from '@nestjs/common';
 import {
     CommanderRefreshClientService,
     TRANSPORT_PROXY_TYPE,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     CONNECTOR_FREEPROXIES_TYPE,
     EProxyStatus,
-} from '@scrapoxy/common';
-import type { IConnectorService } from '@scrapoxy/backend-sdk';
+} from '@proxyherd/common';
+import type { IConnectorService } from '@proxyherd/backend-sdk';
 import type {
     IConnectorProxyRefreshed,
     IConnectorToRefresh,
     IFreeproxy,
     IProxyKeyToRemove,
     IProxyTransport,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 function convertToProxy(f: IFreeproxy): IConnectorProxyRefreshed {

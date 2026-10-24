@@ -1,7 +1,7 @@
 import { promises as fs } from 'fs';
 import { resolve } from 'path';
 import { getEnvAssetsPath } from './config';
-import type { ICertificate } from '@scrapoxy/common';
+import type { ICertificate } from '@proxyherd/common';
 
 
 export class InstallScriptBuilder {

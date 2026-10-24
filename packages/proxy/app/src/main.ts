@@ -2,8 +2,8 @@ import { promises as fs } from 'fs';
 import {
     Proxy,
     sigstop,
-} from '@scrapoxy/proxy-sdk';
-import type { IProxyLogger } from '@scrapoxy/proxy-sdk';
+} from '@proxyherd/proxy-sdk';
+import type { IProxyLogger } from '@proxyherd/proxy-sdk';
 
 
 class ProxyLoggerConsole implements IProxyLogger {

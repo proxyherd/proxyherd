@@ -7,12 +7,12 @@ import {
 import {
     CommanderUsersClientService,
     ToastsService,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import type { OnInit } from '@angular/core';
 import type {
     IUserToUpdate,
     IUserView,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Component({

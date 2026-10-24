@@ -1,7 +1,7 @@
 import type {
     IAddress,
     ICertificate,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 export interface ITransportProxyRefreshedConfigDatacenter {

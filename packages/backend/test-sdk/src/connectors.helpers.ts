@@ -10,6 +10,7 @@ import {
     CommanderRefreshModule,
     CommanderScraperModule,
     CommanderUsersModule,
+    getEnvFingerprintTextUrl,
     LogExceptionFilter,
     MasterModule,
     MasterService,
@@ -21,7 +22,7 @@ import {
     RefreshTasksModule,
     ScrapoxyExpressAdapter,
     TaskStepError,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     countProxiesOnlineViews,
     countProxiesViews,
@@ -41,8 +42,8 @@ import {
     PROXY_TIMEOUT_UNREACHABLE_DEFAULT,
     SCRAPOXY_HEADER_PREFIX,
     sleep,
-} from '@scrapoxy/common';
-import { SCRAPOXY_PROXY_HEADER_PREFIX_LC } from '@scrapoxy/proxy-sdk';
+} from '@proxyherd/common';
+import { SCRAPOXY_PROXY_HEADER_PREFIX_LC } from '@proxyherd/proxy-sdk';
 import axios from 'axios';
 import { AgentProxyHttpsTunnel } from './agent-proxy-https-tunnel';
 import { CommanderUsersClient } from './commander-users-client';
@@ -56,7 +57,7 @@ import type {
     INestApplication,
     LoggerService,
 } from '@nestjs/common';
-import type { ICredentialView } from '@scrapoxy/common';
+import type { ICredentialView } from '@proxyherd/common';
 import type { OutgoingHttpHeaders } from 'http';
 import type { AddressInfo } from 'net';
 
@@ -406,7 +407,7 @@ export function testConnectors(
                             jest.it(
                                 'should get a response without proxy',
                                 async() => {
-                                    const res = await instance.get('https://fingerprint.scrapoxy.io/api/text');
+                                    const res = await instance.get(getEnvFingerprintTextUrl());
 
                                     jest.expect(res.status)
                                         .toBe(200);
@@ -424,7 +425,7 @@ export function testConnectors(
                                 'should get different IPs with HTTP over HTTP',
                                 async() => {
                                     const res = await instance.get(
-                                        'http://fingerprint.scrapoxy.io/api/text',
+                                        getEnvFingerprintTextUrl(),
                                         {
                                             headers: {
                                                 'Proxy-Authorization': `Basic ${token}`,
@@ -456,7 +457,7 @@ export function testConnectors(
                                 'should get different IPs with HTTPS over HTTP',
                                 async() => {
                                     const res = await instance.get(
-                                        'https://fingerprint.scrapoxy.io/api/text',
+                                        getEnvFingerprintTextUrl(),
                                         {
                                             headers: {
                                                 'Proxy-Authorization': `Basic ${token}`,
@@ -498,7 +499,7 @@ export function testConnectors(
 
                                     try {
                                         const res = await instance.get(
-                                            'https://fingerprint.scrapoxy.io/api/text',
+                                            getEnvFingerprintTextUrl(),
                                             {
                                                 httpsAgent,
                                             }
@@ -538,7 +539,7 @@ export function testConnectors(
 
                                     try {
                                         const res = await instance.get(
-                                            'https://fingerprint.scrapoxy.io/api/text',
+                                            getEnvFingerprintTextUrl(),
                                             {
                                                 httpsAgent,
                                             }

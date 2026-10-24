@@ -6,14 +6,14 @@ import {
     ActivatedRoute,
     Router,
 } from '@angular/router';
-import { EventsProxiesClient } from '@scrapoxy/common';
+import { EventsProxiesClient } from '@proxyherd/common';
 import {
     CommanderFrontendClientService,
     ConnectorprovidersService,
     EventsService,
     ProjectCurrentService,
     ToastsService,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import type {
     OnDestroy,
     OnInit,
@@ -22,8 +22,8 @@ import type {
     ICommanderFrontendClient,
     IProxyView,
     IProxyViewUI,
-} from '@scrapoxy/common';
-import type { IConnectorConfig } from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/common';
+import type { IConnectorConfig } from '@proxyherd/frontend-sdk';
 
 
 const ITEMS_PER_PAGE = 20;

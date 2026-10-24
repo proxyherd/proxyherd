@@ -5,13 +5,13 @@ import {
     DatacenterLocalNotFoundError,
     TaskStepError,
     validate,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     ATaskCommand,
     CONNECTOR_DATACENTER_LOCAL_TYPE,
     EImageDatacenterLocalStatus,
     randomName,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import * as Joi from 'joi';
 import type { IConnectorDatacenterLocalConfig } from '../datacenter-local.interface';
 import type {
@@ -22,7 +22,7 @@ import type {
     ITaskData,
     ITaskFactory,
     ITaskToUpdate,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 export interface IDatacenterLocalInstallCommandData {

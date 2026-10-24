@@ -2,14 +2,14 @@ import { Logger } from '@nestjs/common';
 import {
     CONNECTOR_NETNUT_TYPE,
     EProxyStatus,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { TRANSPORT_NETNUT_TYPE } from './transport/netnut.constants';
 import type { IConnectorNetnutConfig } from './netnut.interface';
-import type { IConnectorService } from '@scrapoxy/backend-sdk';
+import type { IConnectorService } from '@proxyherd/backend-sdk';
 import type{
     IConnectorProxyRefreshed,
     IProxyKeyToRemove,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 function convertToProxy(session: string): IConnectorProxyRefreshed {

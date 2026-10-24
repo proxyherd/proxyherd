@@ -17,8 +17,8 @@
             "options": {
                 "target": "node",
                 "compiler": "tsc",
-                "outputPath": "dist/scrapoxy",
-                "outputFileName": "scrapoxy.js",
+                "outputPath": "dist/proxyherd",
+                "outputFileName": "proxyherd.js",
                 "main": "packages/backend/app/src/main.ts",
                 "tsConfig": "packages/backend/app/tsconfig.app.json",
                 "isolatedConfig": true,
@@ -61,7 +61,7 @@
             }
         },
         "build-docker": {
-            "command": "docker build --no-cache -f packages/backend/app/Dockerfile . -t scrapoxy/scrapoxy"
+            "command": "docker build --no-cache -f packages/backend/app/Dockerfile . -t ghcr.io/proxyherd/proxyherd"
         },
         "serve": {
             "executor": "@nx/js:node",

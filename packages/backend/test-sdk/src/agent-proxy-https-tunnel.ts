@@ -7,10 +7,10 @@ import {
 import { request as requestHttps } from 'https';
 import { Socket } from 'net';
 import { connect } from 'tls';
-import { isUrl } from '@scrapoxy/backend-sdk';
-import { SCRAPOXY_HEADER_PREFIX_LC } from '@scrapoxy/common';
-import { Sockets } from '@scrapoxy/proxy-sdk';
-import type { ICreateConnectionAutoOptions } from '@scrapoxy/backend-sdk';
+import { isUrl } from '@proxyherd/backend-sdk';
+import { SCRAPOXY_HEADER_PREFIX_LC } from '@proxyherd/common';
+import { Sockets } from '@proxyherd/proxy-sdk';
+import type { ICreateConnectionAutoOptions } from '@proxyherd/backend-sdk';
 import type {
     IncomingHttpHeaders,
     OutgoingHttpHeaders,

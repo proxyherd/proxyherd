@@ -40,7 +40,7 @@ This is the recommended method for generating a new credential with AWS.
 
 ![AWS Usergroup Add](aws_usergroup_add.png)
 
-1. Enter `scrapoxy` as group name;
+1. Enter `proxyherd` as group name;
 2. Search for `AmazonEC2FullAccess`;
 3. Select it;
 4. And click on `Create group`.
@@ -56,7 +56,7 @@ This is the recommended method for generating a new credential with AWS.
 
 ![AWS User Add Step 1](aws_user_add_step1.png)
 
-1. Enter `scrapoxy` as user name;
+1. Enter `proxyherd` as user name;
 2. And click on `Next`.
 
 ---
@@ -64,7 +64,7 @@ This is the recommended method for generating a new credential with AWS.
 ![AWS User Add Step 2](aws_user_add_step2.png)
 
 1. Select `Add user to group`;
-2. Select `scrapoxy` as group;
+2. Select `proxyherd` as group;
 3. And click on `Next`.
 
 ---
@@ -77,7 +77,7 @@ Click on `Create user`.
 
 ![AWS User Select](aws_user_select.png)
 
-Click on the user `scrapoxy`.
+Click on the user `proxyherd`.
 
 ---
 
@@ -139,9 +139,9 @@ Click on `Create access key`.
 Remember the `Access key ID` and the `Secret access key` values.
 
 
-## Scrapoxy
+## ProxyHerd
 
-Open Scrapoxy User Interface and select `Marketplace`:
+Open ProxyHerd User Interface and select `Marketplace`:
 
 
 ### Step 1: Create a new credential
@@ -201,11 +201,11 @@ On the connector list, click on `Install`.
 
 Click on `Install`.
 
-Scrapoxy will start, install and stop the VM to create a custom image.
+ProxyHerd will start, install and stop the VM to create a custom image.
 
 ::: warning
 Do not reuse an installation from a prior setup:
-Scrapoxy embeds a unique TLS certificate within the instance image to secure communication and communication with the Master will fail.
+ProxyHerd embeds a unique TLS certificate within the instance image to secure communication and communication with the Master will fail.
 :::
 
 ---
@@ -243,4 +243,4 @@ Confirm the uninstallation.
 
 ![Connector Uninstalled](spx_connector_uninstalled.png)
 
-Wait for the uninstallation to finish: Scrapoxy will delete the custom image.
+Wait for the uninstallation to finish: ProxyHerd will delete the custom image.

@@ -1,5 +1,5 @@
-import { EBrightdataProductType } from '@scrapoxy/common';
-import type { IBrightdataZoneView } from '@scrapoxy/common';
+import { EBrightdataProductType } from '@proxyherd/common';
+import type { IBrightdataZoneView } from '@proxyherd/common';
 
 
 export function getBrightdataPrefix(zoneType: EBrightdataProductType): string {

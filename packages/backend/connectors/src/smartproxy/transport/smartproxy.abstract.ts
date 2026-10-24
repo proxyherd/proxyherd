@@ -1,4 +1,4 @@
-import { ATransportResidentialService } from '@scrapoxy/backend-sdk';
+import { ATransportResidentialService } from '@proxyherd/backend-sdk';
 import type { IncomingMessage } from 'http';
 
 

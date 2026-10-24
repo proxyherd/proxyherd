@@ -1,9 +1,9 @@
 import * as fs from 'fs';
-import { ConnectorNimblewayModule } from '@scrapoxy/backend-connectors';
-import { Agents } from '@scrapoxy/backend-sdk';
-import { testConnectors } from '@scrapoxy/backend-test-sdk';
-import { CONNECTOR_NIMBLEWAY_TYPE } from '@scrapoxy/common';
-import type { IConnectorNimblewayConfig } from '@scrapoxy/backend-connectors';
+import { ConnectorNimblewayModule } from '@proxyherd/backend-connectors';
+import { Agents } from '@proxyherd/backend-sdk';
+import { testConnectors } from '@proxyherd/backend-test-sdk';
+import { CONNECTOR_NIMBLEWAY_TYPE } from '@proxyherd/common';
+import type { IConnectorNimblewayConfig } from '@proxyherd/backend-connectors';
 
 
 describe(

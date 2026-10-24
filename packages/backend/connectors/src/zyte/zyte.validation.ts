@@ -1,4 +1,4 @@
-import { ZYTE_PRODUCT_TYPES } from '@scrapoxy/common';
+import { ZYTE_PRODUCT_TYPES } from '@proxyherd/common';
 import * as Joi from 'joi';
 
 

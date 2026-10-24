@@ -8,12 +8,12 @@ import {
     CredentialQueryNotFoundError,
     TasksService,
     validate,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     AWS_DEFAULT_REGION,
     CONNECTOR_AWS_TYPE,
     EAwsQueryCredential,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { AwsApi } from './api';
 import { ConnectorAwsService } from './aws.service';
 import {
@@ -37,7 +37,7 @@ import type {
     IConnectorConfig,
     IConnectorFactory,
     IConnectorService,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import type {
     IAwsQueryInstanceType,
     ICertificate,
@@ -49,7 +49,7 @@ import type {
     IFingerprintOptions,
     IProxyInfo,
     ITaskToCreate,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 const FILTER_INSTANCE_TYPES = [

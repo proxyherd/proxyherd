@@ -6,12 +6,12 @@ import { Router } from '@angular/router';
 import {
     CommanderFrontendClientService,
     ToastsService,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import type { OnInit } from '@angular/core';
 import type {
     ICommanderFrontendClient,
     IProjectView,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Component({

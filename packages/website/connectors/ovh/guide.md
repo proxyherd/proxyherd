@@ -25,7 +25,7 @@ Click on `+ Create a new project`.
 
 ![OVH Project Create](ovh_project_create.png)
 
-1. Enter `scrapoxy` as Project name;
+1. Enter `proxyherd` as Project name;
 2. And click on `Continue`.
 
 ---
@@ -48,8 +48,8 @@ Connect on [https://www.ovh.com/auth/api/createToken](https://www.ovh.com/auth/a
 ![OVH Credential_Create](ovh_credential_create.png)
 
 Complete the form with the following information:
-1. **Application name**: `Scrapoxy`
-2. **Description**: `Scrapoxy`
+1. **Application name**: `ProxyHerd`
+2. **Description**: `ProxyHerd`
 3. **Validity**: `Unlimited`
 4. **Rights**: see table below
 
@@ -77,9 +77,9 @@ Remember:
 3. And Consumer Key.
 
 
-## Scrapoxy
+## ProxyHerd
 
-Open Scrapoxy User Interface and select `Marketplace`:
+Open ProxyHerd User Interface and select `Marketplace`:
 
 
 ### Step 1: Create a new credential
@@ -140,11 +140,11 @@ On the connector list, click on `Install`.
 
 Click on `Install`.
 
-Scrapoxy will start, install and stop the VM to create a custom image.
+ProxyHerd will start, install and stop the VM to create a custom image.
 
 ::: warning
 Do not reuse an installation from a prior setup:
-Scrapoxy embeds a unique TLS certificate within the instance image to secure communication and communication with the Master will fail.
+ProxyHerd embeds a unique TLS certificate within the instance image to secure communication and communication with the Master will fail.
 :::
 
 ---
@@ -182,4 +182,4 @@ Confirm the uninstallation.
 
 ![Connector Uninstalled](spx_connector_uninstalled.png)
 
-Wait for the uninstallation to finish: Scrapoxy will delete the custom image.
+Wait for the uninstallation to finish: ProxyHerd will delete the custom image.

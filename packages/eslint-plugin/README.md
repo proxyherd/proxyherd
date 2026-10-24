@@ -1,4 +1,4 @@
-# Scrapoxy ESLint Rules
+# ProxyHerd ESLint Rules
 
 ## Build it
 
@@ -28,9 +28,9 @@ module.exports = {
             ],
 
             extends: [
-                'plugin:@scrapoxy/base',
-                'plugin:@scrapoxy/typescript',
-                'plugin:@scrapoxy/naming-conventions',
+                'plugin:@proxyherd/base',
+                'plugin:@proxyherd/typescript',
+                'plugin:@proxyherd/naming-conventions',
             ],
 
             parserOptions: {
@@ -47,10 +47,10 @@ For Angular, you can add :
 ```js
             ...
             extends: [
-                'plugin:@scrapoxy/base',
-                'plugin:@scrapoxy/typescript',
-                'plugin:@scrapoxy/naming-conventions',
-                'plugin:@scrapoxy/angular',
+                'plugin:@proxyherd/base',
+                'plugin:@proxyherd/typescript',
+                'plugin:@proxyherd/naming-conventions',
+                'plugin:@proxyherd/angular',
             ],
             ...
 ```

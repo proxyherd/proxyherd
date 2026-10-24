@@ -6,7 +6,7 @@ Before we dive into the architecture, let's define some **keys concepts**.
 
 ![model](model.png)
 
-Scrapoxy data model has Projects, Credentials, Connectors, Proxies, Freeproxies and Tasks.
+ProxyHerd data model has Projects, Credentials, Connectors, Proxies, Freeproxies and Tasks.
 
 ### Project 🏗️
 
@@ -61,7 +61,7 @@ It includes a **transport** module that defines protocol implementations.
 
 ### Commander module 🎓
 
-The commander module serves as the central entry point for Scrapoxy. 
+The commander module serves as the central entry point for ProxyHerd. 
 It operates as an API communicating with storage modules to store data.
 
 All modules interact with the commander module to access data.
@@ -97,9 +97,9 @@ Subsequently, the master module routes the request to the connector endpoint usi
 
 Periodically, the refresh module queries the connector to update the list of proxies. 
 
-On datacenter providers, Scrapoxy instructs the start or removal of VM instances.
+On datacenter providers, ProxyHerd instructs the start or removal of VM instances.
 
-Additionally, Scrapoxy leverages the master module to query [fingerprint.scrapoxy.io](https://fingerprint.scrapoxy.io) to obtain proxies' status. 
+Additionally, ProxyHerd leverages the master module to query your self-hosted fingerprint service (`FINGERPRINT_URL`) to obtain proxies' status. 
 This server provides details such as the real IP address, geo-localization, and other information about the proxy.
 
 

@@ -52,7 +52,7 @@ import type {
     ITaskView,
     IUserProject,
     IUserProjectEmail,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Controller('api/frontend')

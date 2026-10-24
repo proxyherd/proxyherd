@@ -1,9 +1,9 @@
 import {
     TASK_DATA_META,
     TASK_VIEW_META,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { toMongoMeta } from './mongo/mongo.helpers';
-import type { ITaskData } from '@scrapoxy/common';
+import type { ITaskData } from '@proxyherd/common';
 
 
 export interface ITaskModel extends Omit<ITaskData, 'id'> {

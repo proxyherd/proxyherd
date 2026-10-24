@@ -4,11 +4,11 @@ import {
     ConnectorprovidersService,
     CredentialQueryNotFoundError,
     validate,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     CONNECTOR_NIMBLEWAY_TYPE,
     ENimblewayQueryCredential,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { NimblewayApi } from './api';
 import { toNimblewayGeoItem } from './nimbleway.helpers';
 import { ConnectorNimblewayService } from './nimbleway.service';
@@ -25,14 +25,14 @@ import type {
     IConnectorConfig,
     IConnectorFactory,
     IConnectorService,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import type {
     IConnectorListProxies,
     ICredentialData,
     ICredentialQuery,
     INimblewayGeoItem,
     ITaskToCreate,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Injectable()

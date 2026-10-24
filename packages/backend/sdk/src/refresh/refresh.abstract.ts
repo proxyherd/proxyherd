@@ -1,5 +1,5 @@
 import { Timeout } from '@nestjs/schedule';
-import { sleep } from '@scrapoxy/common';
+import { sleep } from '@proxyherd/common';
 import type {
     LoggerService,
     OnApplicationShutdown,

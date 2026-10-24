@@ -1,11 +1,11 @@
-import { Agents } from '@scrapoxy/backend-sdk';
-import { sleep } from '@scrapoxy/common';
+import { Agents } from '@proxyherd/backend-sdk';
+import { sleep } from '@proxyherd/common';
 import axios from 'axios';
 import type {
     IBrightdataStatus,
     IBrightdataZoneData,
 } from './brightdata.interface';
-import type { IBrightdataZoneView } from '@scrapoxy/common';
+import type { IBrightdataZoneView } from '@proxyherd/common';
 import type { AxiosInstance } from 'axios';
 
 

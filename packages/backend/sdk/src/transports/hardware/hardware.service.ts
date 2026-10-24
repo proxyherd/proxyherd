@@ -7,7 +7,7 @@ import type {
     IConnectorProxyRefreshed,
     IConnectorToRefresh,
     IProxyTransport,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Injectable()

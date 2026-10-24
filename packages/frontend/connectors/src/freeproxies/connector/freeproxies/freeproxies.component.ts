@@ -4,7 +4,7 @@ import {
     Input,
     Output,
 } from '@angular/core';
-import { ConfirmService } from '@scrapoxy/frontend-sdk';
+import { ConfirmService } from '@proxyherd/frontend-sdk';
 import { Observable } from 'rxjs';
 import type {
     OnDestroy,
@@ -13,7 +13,7 @@ import type {
 import type {
     IFreeproxiesToRemoveOptions,
     IFreeproxy,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import type { Subscription } from 'rxjs';
 
 

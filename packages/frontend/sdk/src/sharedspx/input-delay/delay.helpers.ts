@@ -5,7 +5,7 @@ import {
     ONE_MONTH_IN_MS,
     ONE_SECOND_IN_MS,
     ONE_YEAR_IN_MS,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { ETimeType } from './delay.interface';
 import type { IDelay } from './delay.interface';
 

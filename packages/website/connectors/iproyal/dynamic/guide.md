@@ -2,7 +2,7 @@
 
 ![IPRoyal](/assets/images/iproyal.svg){width=230 nozoom}
 
-[IPRoyal](https://iproyal.com/?r=432273) is a proxy provider that offers a versatile selection of different proxies. These include top-end residential proxies, datacenter proxies, and even niche-specific sneaker proxies
+[IPRoyal](https://iproyal.com) is a proxy provider that offers a versatile selection of different proxies. These include top-end residential proxies, datacenter proxies, and even niche-specific sneaker proxies
 
 This connector is for Royal Residential Proxies.
 
@@ -18,7 +18,7 @@ An active IPRoyal subscription is required on Royal Residential Proxies.
 
 ## IPRoyal Dashboard
 
-Connect to [Dashboard](https://dashboard.iproyal.com?r=432273).
+Connect to [Dashboard](https://dashboard.iproyal.com).
 
 
 ## Get the proxy credentials
@@ -34,9 +34,9 @@ On the password, only keep the first part before the `_` character.
 :::
 
 
-## Scrapoxy
+## ProxyHerd
 
-Open Scrapoxy User Interface and select `Marketplace`:
+Open ProxyHerd User Interface and select `Marketplace`:
 
 
 ### Step 1: Create a new credential

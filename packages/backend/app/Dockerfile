@@ -4,15 +4,15 @@ ENV NODE_ENV=production
 
 WORKDIR /app
 
-RUN addgroup --system scrapoxy && \
-    adduser --system -G scrapoxy scrapoxy
+RUN addgroup --system proxyherd && \
+    adduser --system -G proxyherd proxyherd
 
-COPY ["dist/scrapoxy/package*.json", "./"]
+COPY ["dist/proxyherd/package*.json", "./"]
 
 RUN npm install --production
 
-COPY dist/scrapoxy .
+COPY dist/proxyherd .
 
-RUN chown -R scrapoxy:scrapoxy .
+RUN chown -R proxyherd:proxyherd .
 
-CMD [ "node", "scrapoxy.js" ]
+CMD [ "node", "proxyherd.js" ]

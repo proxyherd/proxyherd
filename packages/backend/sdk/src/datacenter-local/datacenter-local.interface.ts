@@ -1,4 +1,4 @@
-import { EProxyStatus } from '@scrapoxy/common';
+import { EProxyStatus } from '@proxyherd/common';
 
 
 export interface IProxyTest {

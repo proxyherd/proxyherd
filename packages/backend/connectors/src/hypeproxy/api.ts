@@ -1,4 +1,4 @@
-import { Agents } from '@scrapoxy/backend-sdk';
+import { Agents } from '@proxyherd/backend-sdk';
 import axios from 'axios';
 import type { IHypeproxyProxy } from './hypeproxy.interface';
 import type { AxiosInstance } from 'axios';

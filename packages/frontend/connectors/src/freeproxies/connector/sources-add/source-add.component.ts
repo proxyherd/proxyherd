@@ -12,9 +12,9 @@ import {
 
     ONE_DAY_IN_MS,
     ONE_SECOND_IN_MS,
-} from '@scrapoxy/common';
-import { ValidatorUrl } from '@scrapoxy/frontend-sdk';
-import type { ISourceBase } from '@scrapoxy/common';
+} from '@proxyherd/common';
+import { ValidatorUrl } from '@proxyherd/frontend-sdk';
+import type { ISourceBase } from '@proxyherd/common';
 
 
 @Component({
