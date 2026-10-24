@@ -1,5 +1,8 @@
 import { Module } from '@nestjs/common';
-import { ONE_SECOND_IN_MS } from '@proxyherd/common';
+import {
+    ONE_MINUTE_IN_MS,
+    ONE_SECOND_IN_MS, 
+} from '@proxyherd/common';
 import { COMMANDER_REFRESH_MODULE_CONFIG } from './refresh.constants';
 import { CommanderRefreshController } from './refresh.controller';
 import { CommanderRefreshService } from './refresh.service';
@@ -33,7 +36,7 @@ export function getEnvCommanderRefreshModuleConfig(): ICommanderRefreshModuleCon
         jwtSecret: jwt.secret,
         freeproxyRefresh: {
             delay: parseInt(
-                process.env.FREEPROXY_REFRESH_DELAY ?? ONE_SECOND_IN_MS.toString(),
+                process.env.FREEPROXY_REFRESH_DELAY ?? ONE_MINUTE_IN_MS.toString(),
                 10
             ),
             count: parseInt(
@@ -43,7 +46,7 @@ export function getEnvCommanderRefreshModuleConfig(): ICommanderRefreshModuleCon
         },
         proxyRefresh: {
             delay: parseInt(
-                process.env.PROXY_REFRESH_DELAY ?? ONE_SECOND_IN_MS.toString(),
+                process.env.PROXY_REFRESH_DELAY ?? ONE_MINUTE_IN_MS.toString(),
                 10
             ),
             count: parseInt(

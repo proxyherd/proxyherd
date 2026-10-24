@@ -71,18 +71,47 @@ Then, on ProxyHerd: `FINGERPRINT_URL=https://fingerprint.example.com/api/json`.
 ## Option B: Cloudflare Worker
 
 No server and no database: Cloudflare attaches the caller's location and
-network to every request. The Worker lives in `packages/fingerprint/worker`.
+network to every request, and the Worker returns them in the same shape as the
+Docker service. Suitable for small installations; read [Sizing](#sizing-and-proxy-traffic)
+before choosing it.
+
+You need:
+
+- a Cloudflare account (the free plan is enough to start; no domain required);
+- Node.js 18 or later on your machine, for the `wrangler` command;
+- the Worker's source, which lives in this repository under
+  `packages/fingerprint/worker` (clone the repository or download that folder).
+
+Deploy it:
 
 ```shell
-cd packages/fingerprint/worker
-npx wrangler login
-npx wrangler deploy
+git clone https://github.com/proxyherd/proxyherd.git
+cd proxyherd/packages/fingerprint/worker
+npx wrangler login     # opens the browser once
+npx wrangler deploy    # the first deploy asks you to pick a workers.dev subdomain
 ```
 
-Then `FINGERPRINT_URL=https://proxyherd-fingerprint.<your-subdomain>.workers.dev/api/json`.
+`wrangler deploy` prints the public address. Check it from a shell:
 
-`asnNetwork` is always `null` on this variant, and the free plan allows
-100,000 requests per day.
+```shell
+curl https://proxyherd-fingerprint.<your-subdomain>.workers.dev/api/json
+```
+
+Then set `FINGERPRINT_URL=https://proxyherd-fingerprint.<your-subdomain>.workers.dev/api/json`
+on ProxyHerd.
+
+Limits of this variant:
+
+- `asnNetwork` is always `null` (Cloudflare does not expose the prefix), and
+  city accuracy depends on Cloudflare's data.
+- The free plan allows **100,000 requests per day** for all your Workers
+  together; past that, requests fail until the next day and your proxies are
+  marked offline. At the default one-minute check interval the free plan
+  covers about 60 proxies plus pool entries (see Sizing); shorter
+  `PROXY_REFRESH_DELAY` / `FREEPROXY_REFRESH_DELAY` values reduce that quickly.
+  Beyond that, use the paid Workers plan or run the Docker service.
+- To update the Worker after a new ProxyHerd release, pull the repository and
+  run `npx wrangler deploy` again.
 
 
 ## Option C: from npm
@@ -91,6 +120,41 @@ Then `FINGERPRINT_URL=https://proxyherd-fingerprint.<your-subdomain>.workers.dev
 npm install -g @proxyherd/fingerprint
 GEOIP_DIR=/var/lib/proxyherd/geoip proxyherd-fingerprint
 ```
+
+
+## Sizing and proxy traffic
+
+ProxyHerd checks every proxy again and again: the refresh loop takes the proxies
+whose last check is older than `PROXY_REFRESH_DELAY`, fetches the fingerprint
+through each of them, and starts over. The default is **one minute**, and
+entries of a Proxy List pool follow `FREEPROXY_REFRESH_DELAY`, also one minute.
+Scrapoxy and ProxyHerd 1.0.0 used one second, which meant a check through every
+proxy every 5 to 10 seconds; set the variables to `1000` if you want that back.
+
+Measured on a 1.0.0 installation with 50 proxies from a Proxy List connector
+(50 running proxies plus the 50 pool entries) at the former one-second delay:
+about **1,000 requests per minute**, that is 1.4 million requests per day, or
+roughly 14,000 checks per proxy per day. At the one-minute default the same
+installation makes about 1,400 checks per proxy per day.
+
+Consequences:
+
+- **Service capacity.** The Docker service handles any of this on the smallest
+  machine; it answers from memory. The Cloudflare free plan allows 100,000
+  requests per day: about 60 proxies plus pool entries at the one-minute
+  default, about 6 at a one-second delay. The paid Workers plan removes the
+  limit.
+- **Proxy bandwidth.** Every check goes through the proxy. Over HTTPS each one
+  pays a TLS handshake, several kilobytes; over plain HTTP a check is about one
+  kilobyte in total. If your proxies are billed per gigabyte, point
+  `FINGERPRINT_URL` at an `http://` address and, if needed, raise the two delays
+  further. The fingerprint answer carries nothing confidential.
+- **Detection speed.** A longer delay means a dead proxy is noticed later. One
+  minute is a reasonable compromise for paid, stable proxies. For free proxy
+  lists, which die constantly, lower `FREEPROXY_REFRESH_DELAY` and
+  `PROXY_REFRESH_DELAY` to a few seconds, at the price of more checks.
+
+Requests per day ≈ (proxies + pool entries) × 86,400 / (delay in seconds + about 5).
 
 
 ## Configuration

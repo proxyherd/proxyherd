@@ -9,7 +9,7 @@
                     "title": "Features",
                     "commits": [
                         "**fingerprint**: self-hosted fingerprint service (`packages/fingerprint/app`, image `ghcr.io/proxyherd/fingerprint`, npm `@proxyherd/fingerprint`) with DB-IP Lite by default, MaxMind GeoLite2 with a licence key, or IP-only mode; weekly database refresh",
-                        "**fingerprint**: Cloudflare Worker variant (`packages/fingerprint/worker`) with no database to manage",
+                        "**fingerprint**: Cloudflare Worker variant (`packages/fingerprint/worker`) with no database to manage; prerequisites, request limits and sizing on the <a href=\"/proxyherd/deployment/fingerprint#option-b-cloudflare-worker\">fingerprint page</a>",
                         "**fingerprint**: protocol version 3 sends no installation id or traffic counters; opt back in with `FINGERPRINT_SEND_STATS=true`",
                         "**charts**: `fingerprintUrl` value wired into the commander and refresh pods",
                         "**python**: `proxyherd` package with `PROXYHERD_*` settings and a backward-compatible `scrapoxy` shim"

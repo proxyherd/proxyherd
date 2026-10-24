@@ -62,20 +62,24 @@ machine running ProxyHerd.
 
 ### How much bandwidth does the fingerprint use?
 
-ProxyHerd periodically sends requests to the fingerprint service to verify connectivity and collect GEO information.
-If a request fails, ProxyHerd will avoid using that particular proxy.
+ProxyHerd periodically sends requests to the fingerprint service, through each proxy, to verify
+connectivity and collect GEO information. If a request fails, ProxyHerd stops using that proxy.
 
-Each request is compressed and consumes approximately **600 bytes** in received bandwidth.
+A proxy is checked again about `PROXY_REFRESH_DELAY` after its previous check finished (default
+one minute; Scrapoxy and ProxyHerd 1.0.0 used one second, that is a check every 5 to 10 seconds).
+The answer is about 600 bytes; over HTTPS the
+TLS handshake of each check adds several kilobytes through the proxy, over plain HTTP a check is
+about one kilobyte in total.
 
-_Example:_ 
-
-With a proxy timeout set to 20 seconds, ProxyHerd will send 3 requests per minute, totaling 180 requests per hour and 4,320 requests per day.
-
-The bandwidth consumption per day can be calculated using the following formula:
+_Example:_ at the one-minute default, 50 proxies produce about 70,000 checks per day. At a
+one-second delay the same proxies produce about 1,000 checks per minute, 1.4 million per day,
+which over HTTPS is a few gigabytes of proxy traffic per day.
 
 ```
-Bandwidth in Mb Per Day = (# proxies / Proxy Timeout) * 49.44
+Checks per day ≈ (# proxies + # pool entries) × 86,400 / (PROXY_REFRESH_DELAY in seconds + 5)
 ```
+
+See [Sizing and proxy traffic](/deployment/fingerprint#sizing-and-proxy-traffic).
 
 
 ## Errors
