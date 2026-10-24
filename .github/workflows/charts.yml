@@ -25,8 +25,10 @@ jobs:
 
       - name: Lint charts
         run: |
-          helm lint packages/charts/src/proxyherd --set fingerprintUrl=http://fingerprint.example/api/json
-          helm lint packages/charts/src/proxyherd-simple-cluster --set fingerprintUrl=http://fingerprint.example/api/json
+          for chart in proxyherd proxyherd-simple-cluster; do
+            helm lint "packages/charts/src/$chart" --strict --values "packages/charts/src/$chart/ci/lint-values.yaml"
+            helm template lint "packages/charts/src/$chart" --values "packages/charts/src/$chart/ci/lint-values.yaml" > /dev/null
+          done
 
       - name: Package charts
         run: |

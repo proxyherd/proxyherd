@@ -1,0 +1,8 @@
+# Values used by `helm lint` in CI (.github/workflows/charts.yml); not shipped in the package.
+fingerprintUrl: http://fingerprint.example/api/json
+backendJwtSecret: lint-backend-secret
+frontendJwtSecret: lint-frontend-secret
+auth:
+    local:
+        username: admin
+        password: lint-password

@@ -1,6 +1,22 @@
 # Address of your fingerprint service (required): https://proxyherd.github.io/proxyherd/deployment/fingerprint
 fingerprintUrl: ""
 
+# Secrets used to sign the backend and frontend JWT tokens (required): two long random strings
+backendJwtSecret: ""
+frontendJwtSecret: ""
+
+# Authentication providers for the user interface (configure at least one)
+auth: {}
+#    local:
+#        username: admin
+#        password: change-me
+#    google:
+#        clientId: ""
+#        clientSecret: ""
+#    github:
+#        clientId: ""
+#        clientSecret: ""
+
 image:
     repository: ghcr.io/proxyherd/proxyherd
     tag: latest
