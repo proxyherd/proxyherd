@@ -1,8 +1,8 @@
 {
     "name": "frontend-connectors",
     "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-    "root": "packages/frontend-connectors",
-    "sourceRoot": "packages/frontend-connectors/src",
+    "root": "packages/frontend/connectors",
+    "sourceRoot": "packages/frontend/connectors/src",
     "projectType": "library",
     "targets": {
         "build": {
@@ -41,7 +41,7 @@
         "lint-html": {
             "executor": "nx:run-commands",
             "options": {
-                "command": "npx prettier --write --loglevel warn packages/frontend/connectors/src/**/{*,*.*}.html"
+                "command": "npx prettier --write --log-level warn packages/frontend/connectors/src/**/{*,*.*}.html"
             }
         }
     },

@@ -1,8 +1,8 @@
 {
     "name": "frontend-sdk",
     "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-    "root": "packages/frontend-sdk",
-    "sourceRoot": "packages/frontend-sdk/src",
+    "root": "packages/frontend/sdk",
+    "sourceRoot": "packages/frontend/sdk/src",
     "projectType": "library",
     "targets": {
         "build": {
@@ -41,7 +41,7 @@
         "lint-html": {
             "executor": "nx:run-commands",
             "options": {
-                "command": "npx prettier --write --loglevel warn packages/frontend/sdk/src/**/{*,*.*}.html"
+                "command": "npx prettier --write --log-level warn packages/frontend/sdk/src/**/{*,*.*}.html"
             }
         }
     },
