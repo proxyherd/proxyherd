@@ -9,7 +9,7 @@
     "homepage": "https://proxyherd.github.io/proxyherd/",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/proxyherd/proxyherd"
+        "url": "git+https://github.com/proxyherd/proxyherd.git"
     },
     "license": "MIT",
     "scripts": {
