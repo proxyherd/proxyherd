@@ -2,7 +2,7 @@ import { sleep } from '@proxyherd/common';
 
 
 export function waitFor(
-    expectation: () => void | Promise<void>, retry = 8, timeout = 1000
+    expectation: () => void | Promise<void>, retry = 25, timeout = 1000
 ): Promise<void> {
     const retryAfterSleep = (err: any) => {
         if (retry > 0) {
