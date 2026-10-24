@@ -1,11 +1,11 @@
 import {
     AUTH_COOKIE,
     catchError,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     randomName,
     toUserToken,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import axios from 'axios';
 import * as cookie from 'cookie';
 import * as jwt from 'jsonwebtoken';
@@ -14,7 +14,7 @@ import type {
     IUserToken,
     IUserToUpdate,
     IUserView,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import type {
     AxiosInstance,
     AxiosResponse,

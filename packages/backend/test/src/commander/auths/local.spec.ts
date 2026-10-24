@@ -5,8 +5,8 @@ import {
     CommanderUsersModule,
     LogExceptionFilter,
     ScrapoxyExpressAdapter,
-} from '@scrapoxy/backend-sdk';
-import { buildStorageModules } from '@scrapoxy/backend-test-sdk';
+} from '@proxyherd/backend-sdk';
+import { buildStorageModules } from '@proxyherd/backend-test-sdk';
 import axios from 'axios';
 import type { INestApplication } from '@nestjs/common';
 import type { AddressInfo } from 'net';

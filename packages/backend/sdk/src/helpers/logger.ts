@@ -1,6 +1,6 @@
 import { EventEmitter } from 'events';
 import type { LoggerService } from '@nestjs/common';
-import type { IProxyLogger } from '@scrapoxy/proxy-sdk';
+import type { IProxyLogger } from '@proxyherd/proxy-sdk';
 
 
 let traceEmitOrder = 0;

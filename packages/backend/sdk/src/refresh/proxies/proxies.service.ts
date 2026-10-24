@@ -3,8 +3,8 @@ import {
     Injectable,
     Logger,
 } from '@nestjs/common';
-import { EFingerprintMode } from '@scrapoxy/common';
-import { Sockets } from '@scrapoxy/proxy-sdk';
+import { EFingerprintMode } from '@proxyherd/common';
+import { Sockets } from '@proxyherd/proxy-sdk';
 import { REFRESH_PROXIES_CONFIG } from './proxies.constants';
 import { CommanderRefreshClientService } from '../../commander-client';
 import { NoProxyToRefreshError } from '../../errors';
@@ -17,7 +17,7 @@ import type {
     IFingerprintRequest,
     IProxiesToRefresh,
     IProxyRefreshed,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Injectable()

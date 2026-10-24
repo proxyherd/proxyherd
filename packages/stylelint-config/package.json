@@ -1,14 +1,14 @@
 {
-    "name": "@scrapoxy/stylelint-config",
+    "name": "@proxyherd/stylelint-config",
     "version": "1.0.9",
     "author": {
-        "name": "Fabien Vauchelles",
-        "url": "https://www.linkedin.com/in/fabienvauchelles"
+        "name": "ProxyHerd maintainers",
+        "url": "https://github.com/proxyherd"
     },
-    "description": "Stylelint config for Scrapoxy",
-    "url": "https://github.com/scrapoxy/scrapoxy",
-    "homepage": "https://scrapoxy.io",
-    "repository": "scrapoxy/scrapoxy",
+    "description": "Stylelint config for ProxyHerd",
+    "url": "https://github.com/proxyherd/proxyherd",
+    "homepage": "https://proxyherd.github.io/proxyherd/",
+    "repository": "proxyherd/proxyherd",
     "license": "MIT",
     "dependencies": {
         "prettier": "~3.1.0",

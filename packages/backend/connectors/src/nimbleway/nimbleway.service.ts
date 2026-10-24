@@ -3,13 +3,13 @@ import {
     CONNECTOR_NIMBLEWAY_TYPE,
     EProxyStatus,
     randomName,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { TRANSPORT_NIMBLEWAY_TYPE } from './transport/nimbleway.constants';
-import type { IConnectorService } from '@scrapoxy/backend-sdk';
+import type { IConnectorService } from '@proxyherd/backend-sdk';
 import type {
     IConnectorProxyRefreshed,
     IProxyKeyToRemove,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 function convertToProxy(key: string): IConnectorProxyRefreshed {

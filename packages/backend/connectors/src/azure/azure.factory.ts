@@ -8,12 +8,12 @@ import {
     CredentialQueryNotFoundError,
     TasksService,
     validate,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     CONNECTOR_AZURE_TYPE,
     EAzureQueryCredential,
     randomName,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { AzureApi } from './api';
 import { ConnectorAzureService } from './azure.service';
 import {
@@ -38,7 +38,7 @@ import type {
     IConnectorConfig,
     IConnectorFactory,
     IConnectorService,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import type {
     IAzureLocation,
     IAzureQueryVmSizes,
@@ -51,7 +51,7 @@ import type {
     IFingerprintOptions,
     IProxyInfo,
     ITaskToCreate,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 const FILTER_VM_SIZES = [

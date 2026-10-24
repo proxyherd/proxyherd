@@ -7,7 +7,7 @@ import type {
     IProjectMetricsView,
     IProjectSync,
     IWindow,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 export interface IProjectModel extends IProjectData, IProjectMetrics {

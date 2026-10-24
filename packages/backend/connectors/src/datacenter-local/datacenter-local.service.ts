@@ -2,13 +2,13 @@ import { Logger } from '@nestjs/common';
 import {
     Agents,
     DatacenterLocalClient,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     CONNECTOR_DATACENTER_LOCAL_TYPE,
     EInstanceDatacenterLocalStatus,
     EProxyStatus,
     randomNames,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { TRANSPORT_DATACENTER_LOCAL_TYPE } from './transport/datacenter-local.constants';
 import type {
     IConnectorDatacenterLocalConfig,
@@ -17,12 +17,12 @@ import type {
 import type {
     IConnectorService,
     ITransportProxyRefreshedConfigDatacenter,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import type {
     IConnectorProxyRefreshed,
     IInstanceDatacenterLocalView,
     IProxyKeyToRemove,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 function convertStatus(status: EInstanceDatacenterLocalStatus): EProxyStatus {

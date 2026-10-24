@@ -1,5 +1,5 @@
 import { Socket } from 'net';
-import type { ISockets } from '@scrapoxy/proxy-sdk';
+import type { ISockets } from '@proxyherd/proxy-sdk';
 
 
 export class SocketsDebug implements ISockets {

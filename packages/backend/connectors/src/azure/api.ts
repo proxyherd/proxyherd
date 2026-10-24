@@ -1,8 +1,8 @@
 import {
     Agents,
     AxiosFormData,
-} from '@scrapoxy/backend-sdk';
-import { SCRAPOXY_DATACENTER_PREFIX } from '@scrapoxy/common';
+} from '@proxyherd/backend-sdk';
+import { SCRAPOXY_DATACENTER_PREFIX } from '@proxyherd/common';
 import axios, { AxiosError } from 'axios';
 import { getAzureErrorMessage } from './azure.helpers';
 import { EAzureProvisioningState } from './azure.interface';
@@ -22,7 +22,7 @@ import type {
     IAzureVirtualMachine,
     IAzureVmSize,
 } from './azure.interface';
-import type { IOAuthToken } from '@scrapoxy/common';
+import type { IOAuthToken } from '@proxyherd/common';
 import type {
     AxiosInstance,
     AxiosRequestConfig,

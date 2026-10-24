@@ -1,4 +1,4 @@
-import type { ISource } from '@scrapoxy/common';
+import type { ISource } from '@proxyherd/common';
 
 
 export interface ISourceModel extends ISource {

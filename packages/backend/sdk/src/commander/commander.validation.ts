@@ -2,7 +2,7 @@ import {
     EProjectStatus,
     EProxyType,
     ONE_SECOND_IN_MS,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import * as Joi from 'joi';
 
 

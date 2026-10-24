@@ -11,14 +11,14 @@ import {
     isTaskSucceed,
     TaskRemovedEvent,
     TaskUpdatedEvent,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import {
     CommanderFrontendClientService,
     ConfirmService,
     EventsService,
     ProjectCurrentService,
     ToastsService,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import { Subscription } from 'rxjs';
 import type {
     OnDestroy,
@@ -27,7 +27,7 @@ import type {
 import type {
     ICommanderFrontendClient,
     ITaskView,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Component({

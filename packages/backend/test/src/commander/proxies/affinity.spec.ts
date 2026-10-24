@@ -3,14 +3,14 @@ import {
     DatacenterLocalApp,
     readCaCert,
     SUBSCRIPTION_LOCAL_DEFAULTS,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     AgentProxyHttpsTunnel,
     CommanderApp,
     MasterApp,
     TestServers,
     waitFor,
-} from '@scrapoxy/backend-test-sdk';
+} from '@proxyherd/backend-test-sdk';
 import {
     CONNECTOR_DATACENTER_LOCAL_TYPE,
     countProxiesOnlineViews,
@@ -19,18 +19,18 @@ import {
     PROXY_TIMEOUT_UNREACHABLE_DEFAULT,
     SCRAPOXY_HEADER_PREFIX,
     SCRAPOXY_HEADER_PREFIX_LC,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import axios from 'axios';
 import { v4 as uuid } from 'uuid';
 import type {
     IConnectorDatacenterLocalConfig,
     IConnectorDatacenterLocalCredential,
-} from '@scrapoxy/backend-connectors';
+} from '@proxyherd/backend-connectors';
 import type {
     IConnectorView,
     IProjectData,
     IProxyView,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import type { RawAxiosRequestHeaders } from 'axios';
 import type { OutgoingHttpHeaders } from 'http';
 

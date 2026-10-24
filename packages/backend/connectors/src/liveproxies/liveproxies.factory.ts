@@ -5,12 +5,12 @@ import {
     CredentialInvalidError,
     CredentialQueryNotFoundError,
     validate,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     CONNECTOR_LIVEPROXIES_TYPE,
     ELiveproxiesPlanStatus,
     ELiveproxiesQueryCredential,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { LiveproxiesApi } from './api';
 import { ConnectorLiveproxiesB2bService } from './liveproxies-b2b.service';
 import { ConnectorLiveproxiesB2cService } from './liveproxies-b2c.service';
@@ -28,7 +28,7 @@ import type {
     IConnectorConfig,
     IConnectorFactory,
     IConnectorService,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import type {
     IConnectorListProxies,
     IConnectorToRefresh,
@@ -36,7 +36,7 @@ import type {
     ICredentialQuery,
     ILiveproxiesPlanB2C,
     ITaskToCreate,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Injectable()

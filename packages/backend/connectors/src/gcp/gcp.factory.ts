@@ -8,12 +8,12 @@ import {
     CredentialQueryNotFoundError,
     TasksService,
     validate,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     CONNECTOR_GCP_TYPE,
     EGcpQueryCredential,
     GCP_DEFAULT_ZONE,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { GcpApi } from './api';
 import { ConnectorGcpService } from './gcp.service';
 import {
@@ -39,7 +39,7 @@ import type {
     IConnectorConfig,
     IConnectorFactory,
     IConnectorService,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import type {
     ICertificate,
     IConnectorData,
@@ -51,7 +51,7 @@ import type {
     IGcpQueryMachineTypes,
     IProxyInfo,
     ITaskToCreate,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 const FILTER_MACHINE_TYPES = [

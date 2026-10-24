@@ -2,24 +2,24 @@ import { Logger } from '@nestjs/common';
 import {
     Agents,
     TRANSPORT_HARDWARE_TYPE,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     CONNECTOR_PROXIDIZE_TYPE,
     EProxyStatus,
     EProxyType,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { ProxidizeApi } from './api';
 import { EProxidizeDeviceStatus } from './proxidize.interface';
 import type {
     IConnectorProxidizeCredential,
     IProxidizeDevice,
 } from './proxidize.interface';
-import type { IConnectorService } from '@scrapoxy/backend-sdk';
+import type { IConnectorService } from '@proxyherd/backend-sdk';
 import type {
     IConnectorProxyRefreshed,
     IProxyKeyToRemove,
     IProxyTransport,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 function convertStatus(status: EProxidizeDeviceStatus): EProxyStatus {

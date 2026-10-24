@@ -2,20 +2,20 @@ import { Injectable } from '@nestjs/common';
 import {
     ATransportDatacenterService,
     TransportprovidersService,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import { TRANSPORT_DATACENTER_LOCAL_TYPE } from './datacenter-local.constants';
 import type { IProxyToConnectConfigDatacenterLocal } from './datacenter-local.interface';
 import type { IConnectorDatacenterLocalConfig } from '../datacenter-local.interface';
 import type {
     ArrayHttpHeaders,
     IUrlOptions,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import type {
     IConnectorProxyRefreshed,
     IConnectorToRefresh,
     IProxyToRefresh,
-} from '@scrapoxy/common';
-import type { ISockets } from '@scrapoxy/proxy-sdk';
+} from '@proxyherd/common';
+import type { ISockets } from '@proxyherd/proxy-sdk';
 import type {
     ClientRequestArgs,
     OutgoingHttpHeaders,

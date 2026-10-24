@@ -1,4 +1,4 @@
-import { ESmartproxyCredentialType } from '@scrapoxy/common';
+import { ESmartproxyCredentialType } from '@proxyherd/common';
 
 
 export interface IConnectorSmartproxyCredential {

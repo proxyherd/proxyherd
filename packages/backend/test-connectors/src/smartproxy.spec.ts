@@ -1,8 +1,8 @@
 import * as fs from 'fs';
-import { ConnectorSmartproxyModule } from '@scrapoxy/backend-connectors';
-import { Agents } from '@scrapoxy/backend-sdk';
-import { testConnectors } from '@scrapoxy/backend-test-sdk';
-import { CONNECTOR_SMARTPROXY_TYPE } from '@scrapoxy/common';
+import { ConnectorSmartproxyModule } from '@proxyherd/backend-connectors';
+import { Agents } from '@proxyherd/backend-sdk';
+import { testConnectors } from '@proxyherd/backend-test-sdk';
+import { CONNECTOR_SMARTPROXY_TYPE } from '@proxyherd/common';
 
 
 describe(

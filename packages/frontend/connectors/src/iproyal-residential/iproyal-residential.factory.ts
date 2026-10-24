@@ -2,11 +2,11 @@ import {
     Injectable,
     Type,
 } from '@angular/core';
-import { CONNECTOR_IPROYAL_RESIDENTIAL_TYPE } from '@scrapoxy/common';
+import { CONNECTOR_IPROYAL_RESIDENTIAL_TYPE } from '@proxyherd/common';
 import {
     ConnectorprovidersService,
     EConnectorType,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import { ConnectorIproyalResidentialComponent } from './connector/connector.component';
 import { CredentialIproyalResidentialComponent } from './credential/credential.component';
 import type {
@@ -15,7 +15,7 @@ import type {
     IConnectorFactory,
     ICredentialComponent,
     IInstallComponent,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 
 
 @Injectable()
@@ -28,7 +28,7 @@ export class ConnectorIproyalResidentialFactory implements IConnectorFactory {
        coupon: null,
        defaultCredentialName: 'IPRoyal Residential Credential',
        defaultConnectorName: 'IPRoyal Residential Connector',
-       url: 'https://iproyal.com/?r=432273',
+       url: 'https://iproyal.com',
        type: EConnectorType.DynamicIP,
        canInstall: false,
        canUninstall: false,

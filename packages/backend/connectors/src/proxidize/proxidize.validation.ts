@@ -1,4 +1,4 @@
-import { schemaHardwareCredential } from '@scrapoxy/backend-sdk';
+import { schemaHardwareCredential } from '@proxyherd/backend-sdk';
 import * as Joi from 'joi';
 
 

@@ -1,10 +1,10 @@
 import { Logger } from '@nestjs/common';
-import { Agents } from '@scrapoxy/backend-sdk';
+import { Agents } from '@proxyherd/backend-sdk';
 import {
     CONNECTOR_BRIGHTDATA_TYPE,
     EProxyStatus,
     randomName,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { BrightdataApi } from './api';
 import { getBrightdataPrefix } from './brightdata.helpers';
 import { TRANSPORT_BRIGHTDATA_RESIDENTIAL_TYPE } from './transport';
@@ -13,11 +13,11 @@ import type {
     IConnectorBrightdataCredential,
     ITransportProxyRefreshedConfigBrightdata,
 } from './brightdata.interface';
-import type { IConnectorService } from '@scrapoxy/backend-sdk';
+import type { IConnectorService } from '@proxyherd/backend-sdk';
 import type {
     IConnectorProxyRefreshed,
     IProxyKeyToRemove,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 function convertToProxy(

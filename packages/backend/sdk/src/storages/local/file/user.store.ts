@@ -1,5 +1,5 @@
 import type { IUserModel } from '../user.model';
-import type { IUserData } from '@scrapoxy/common';
+import type { IUserData } from '@proxyherd/common';
 
 
 export type IUserStore = IUserData;

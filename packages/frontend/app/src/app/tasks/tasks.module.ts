@@ -15,7 +15,7 @@ import {
     UtilitiesModule,
 } from '@coreui/angular';
 import { IconModule } from '@coreui/icons-angular';
-import { SharedSpxModule } from '@scrapoxy/frontend-sdk';
+import { SharedSpxModule } from '@proxyherd/frontend-sdk';
 import { TaskComponent } from './task/task.component';
 import { TasksComponent } from './tasks.component';
 import { routes } from './tasks.routes';

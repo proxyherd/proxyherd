@@ -2,12 +2,12 @@ import { Logger } from '@nestjs/common';
 import {
     Agents,
     TRANSPORT_PROXY_TYPE,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     CONNECTOR_PROXY_CHEAP_SERVER_TYPE,
     EProxyStatus,
     EProxyType,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { ProxyCheapServerApi } from './api';
 import {
     EProxyCheapNetworkType,
@@ -18,12 +18,12 @@ import type {
     IConnectorProxyCheapServerCredential,
     IProxyCheapProxy,
 } from './pc-server.interface';
-import type { IConnectorService } from '@scrapoxy/backend-sdk';
+import type { IConnectorService } from '@proxyherd/backend-sdk';
 import type {
     IConnectorProxyRefreshed,
     IProxyKeyToRemove,
     IProxyTransport,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 function getName(proxy: IProxyCheapProxy): string {

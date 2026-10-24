@@ -3,7 +3,7 @@ import type {
     ValidationErrors,
     ValidatorFn,
 } from '@angular/forms';
-import type { IRange } from '@scrapoxy/common';
+import type { IRange } from '@proxyherd/common';
 
 
 export interface IValidatorDelayRangeOptions {

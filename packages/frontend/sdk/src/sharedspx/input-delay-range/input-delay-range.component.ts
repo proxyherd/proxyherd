@@ -9,9 +9,9 @@ import {
     fromDelay,
     parseNumber,
     toDelay,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import type { ControlValueAccessor } from '@angular/forms';
-import type { IRange } from '@scrapoxy/common';
+import type { IRange } from '@proxyherd/common';
 
 
 @Component({

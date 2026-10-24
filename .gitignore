@@ -48,3 +48,7 @@ Thumbs.db
 .env
 datacenters-local.json
 scrapoxy*.json
+proxyherd*.json
+
+# macOS AppleDouble companions on external volumes
+._*

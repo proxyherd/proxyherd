@@ -6,7 +6,7 @@ import {
 import {
     EConnectMode,
     EProjectStatus,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { pki } from 'node-forge';
 import { COMMANDER_MASTER_MODULE_CONFIG } from './master.constants';
 import {
@@ -25,7 +25,7 @@ import type {
     ICertificate,
     IProjectToConnect,
     IProxyToConnect,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 function isModeMitmActive(

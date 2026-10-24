@@ -6,7 +6,7 @@ import { Test } from '@nestjs/testing';
 import {
     ConnectorDatacenterLocalModule,
     ConnectorProxyLocalModule,
-} from '@scrapoxy/backend-connectors';
+} from '@proxyherd/backend-connectors';
 import {
     Agents,
     AStorageLocal,
@@ -21,8 +21,8 @@ import {
     LogExceptionFilter,
     ScrapoxyExpressAdapter,
     StorageprovidersService,
-} from '@scrapoxy/backend-sdk';
-import { EventsService } from '@scrapoxy/common';
+} from '@proxyherd/backend-sdk';
+import { EventsService } from '@proxyherd/common';
 import { CommanderUsersClient } from '../commander-users-client';
 import { USERAGENT_TEST } from '../info';
 import { buildStorageModules } from '../storageproviders.helpers';
@@ -36,8 +36,8 @@ import type {
 import type {
     IProxyTest,
     IStorageLocalModuleConfig,
-} from '@scrapoxy/backend-sdk';
-import type { ICommanderFrontendClient } from '@scrapoxy/common';
+} from '@proxyherd/backend-sdk';
+import type { ICommanderFrontendClient } from '@proxyherd/common';
 import type { AddressInfo } from 'net';
 
 

@@ -7,7 +7,7 @@ import { connect } from 'tls';
 import {
     SCRAPOXY_HEADER_PREFIX,
     SCRAPOXY_HEADER_PREFIX_LC,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import {
     createConnectionAuto,
     isUrl,
@@ -23,8 +23,8 @@ import type {
 import type {
     IProxyToConnect,
     IProxyToRefresh,
-} from '@scrapoxy/common';
-import type { ISockets } from '@scrapoxy/proxy-sdk';
+} from '@proxyherd/common';
+import type { ISockets } from '@proxyherd/proxy-sdk';
 import type {
     ClientRequestArgs,
     OutgoingHttpHeaders,

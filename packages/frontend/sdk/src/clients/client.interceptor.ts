@@ -5,7 +5,7 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { ECommanderError } from '@scrapoxy/common';
+import { ECommanderError } from '@proxyherd/common';
 import {
     Observable,
     throwError,

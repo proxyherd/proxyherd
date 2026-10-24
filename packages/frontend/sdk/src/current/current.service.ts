@@ -3,7 +3,7 @@ import {
     BehaviorSubject,
     Observable,
 } from 'rxjs';
-import type { IProjectData } from '@scrapoxy/common';
+import type { IProjectData } from '@proxyherd/common';
 
 
 @Injectable()

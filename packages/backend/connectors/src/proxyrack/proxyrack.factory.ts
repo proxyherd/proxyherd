@@ -5,11 +5,11 @@ import {
     CredentialInvalidError,
     CredentialQueryNotFoundError,
     validate,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     CONNECTOR_PROXYRACK_TYPE,
     EProxyrackQueryCredential,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { ProxyrackApi } from './api';
 import { ConnectorProxyrackService } from './proxyrack.service';
 import {
@@ -25,7 +25,7 @@ import type {
     IConnectorConfig,
     IConnectorFactory,
     IConnectorService,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import type {
     IConnectorListProxies,
     IConnectorToRefresh,
@@ -33,7 +33,7 @@ import type {
     ICredentialQuery,
     IProxyrackQueryByCountry,
     ITaskToCreate,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Injectable()

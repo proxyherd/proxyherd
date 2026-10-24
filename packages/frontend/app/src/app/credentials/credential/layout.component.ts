@@ -3,17 +3,17 @@ import {
     ActivatedRoute,
     Router,
 } from '@angular/router';
-import { CredentialRemovedEvent } from '@scrapoxy/common';
+import { CredentialRemovedEvent } from '@proxyherd/common';
 import {
     EventsService,
     ToastsService,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import { Subscription } from 'rxjs';
 import type {
     OnDestroy,
     OnInit,
 } from '@angular/core';
-import type { ICredentialView } from '@scrapoxy/common';
+import type { ICredentialView } from '@proxyherd/common';
 
 
 @Component({

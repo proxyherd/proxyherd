@@ -2,13 +2,13 @@ import * as fs from 'fs';
 import {
     ConnectorBrightdataModule,
     IConnectorBrightdataConfig,
-} from '@scrapoxy/backend-connectors';
-import { Agents } from '@scrapoxy/backend-sdk';
-import { testConnectors } from '@scrapoxy/backend-test-sdk';
+} from '@proxyherd/backend-connectors';
+import { Agents } from '@proxyherd/backend-sdk';
+import { testConnectors } from '@proxyherd/backend-test-sdk';
 import {
     CONNECTOR_BRIGHTDATA_TYPE,
     EBrightdataProductType,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 describe(

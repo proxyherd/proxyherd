@@ -3,7 +3,7 @@ import {
     toConnectorView,
     toProxySync,
     toProxyView,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import type { IFreeproxyModel } from './freeproxy.model';
 import type { IProxyModel } from './proxy.model';
 import type { ISourceModel } from './source.model';
@@ -12,7 +12,7 @@ import type {
     IConnectorData,
     IConnectorProxiesSync,
     IConnectorProxiesView,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 export interface IConnectorModel extends IConnectorData {

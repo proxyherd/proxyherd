@@ -13,7 +13,7 @@ import {
     generateUseragent,
     sleep,
     toOptionalValue,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { deepEqual } from 'fast-equals';
 import { COMMANDER_REFRESH_MODULE_CONFIG } from './refresh.constants';
 import { schemaTaskToUpdate } from './refresh.validation';
@@ -56,7 +56,7 @@ import type {
     ITaskData,
     ITaskToUpdate,
     IWindowAdd,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Injectable()

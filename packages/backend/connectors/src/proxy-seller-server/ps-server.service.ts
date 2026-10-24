@@ -2,13 +2,13 @@ import { Logger } from '@nestjs/common';
 import {
     Agents,
     TRANSPORT_PROXY_TYPE,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     CONNECTOR_PROXY_SELLER_SERVER_TYPE,
     EProxySellerNetworkType,
     EProxyStatus,
     EProxyType,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { ProxySellerServerApi } from './api';
 import { EProxySellerProxyProtocol } from './ps-server.interface';
 import type {
@@ -16,12 +16,12 @@ import type {
     IConnectorProxySellerServerCredential,
     IProxySellerProxy,
 } from './ps-server.interface';
-import type { IConnectorService } from '@scrapoxy/backend-sdk';
+import type { IConnectorService } from '@proxyherd/backend-sdk';
 import type {
     IConnectorProxyRefreshed,
     IProxyKeyToRemove,
     IProxyTransport,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 function getName(proxy: IProxySellerProxy): string {

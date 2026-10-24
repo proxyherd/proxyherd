@@ -19,8 +19,8 @@ jobs:
         run: |
           rm -Rf dist/charts
           mkdir -p dist/charts
-          helm package packages/charts/src/scrapoxy -d dist/charts
-          helm package packages/charts/src/scrapoxy-simple-cluster -d dist/charts
+          helm package packages/charts/src/proxyherd -d dist/charts
+          helm package packages/charts/src/proxyherd-simple-cluster -d dist/charts
           helm repo index dist/charts --url https://charts.scrapoxy.io
 
       - name: Copy file via SSH

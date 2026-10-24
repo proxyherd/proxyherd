@@ -1,4 +1,4 @@
-import { formatUseragent } from '@scrapoxy/backend-sdk';
+import { formatUseragent } from '@proxyherd/backend-sdk';
 
 
 export const VERSION_TEST = '0.0.0';

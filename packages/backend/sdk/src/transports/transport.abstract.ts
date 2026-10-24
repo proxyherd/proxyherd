@@ -8,8 +8,8 @@ import type {
     IConnectorToRefresh,
     IProxyToConnect,
     IProxyToRefresh,
-} from '@scrapoxy/common';
-import type { ISockets } from '@scrapoxy/proxy-sdk';
+} from '@proxyherd/common';
+import type { ISockets } from '@proxyherd/proxy-sdk';
 import type {
     ClientRequestArgs,
     OutgoingHttpHeaders,

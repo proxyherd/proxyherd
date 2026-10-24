@@ -4,8 +4,8 @@ import {
     ConnectorprovidersService,
     CredentialInvalidError,
     validate,
-} from '@scrapoxy/backend-sdk';
-import { CONNECTOR_HYPEPROXY_TYPE } from '@scrapoxy/common';
+} from '@proxyherd/backend-sdk';
+import { CONNECTOR_HYPEPROXY_TYPE } from '@proxyherd/common';
 import { HypeproxyApi } from './api';
 import { ConnectorHypeproxyService } from './hypeproxy.service';
 import { schemaCredential } from './hypeproxy.validation';
@@ -15,12 +15,12 @@ import type {
     IConnectorConfig,
     IConnectorFactory,
     IConnectorService,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import type {
     IConnectorListProxies,
     IConnectorToRefresh,
     ITaskToCreate,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Injectable()

@@ -1,6 +1,6 @@
 import { promises as fs } from 'fs';
 import { resolve } from 'path';
-import { ONE_MINUTE_IN_MS } from '@scrapoxy/common';
+import { ONE_MINUTE_IN_MS } from '@proxyherd/common';
 import {
     md,
     pki,
@@ -11,7 +11,7 @@ import { getEnvAssetsPath } from './config';
 import type {
     ICertificate,
     ICertificateInfo,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 function makeNumberPositive(hexString: string): string {
@@ -37,7 +37,7 @@ export async function readCaCert(): Promise<string> {
     const data = await fs.readFile(resolve(
         getEnvAssetsPath(),
         'certificates',
-        'scrapoxy-ca.crt'
+        'proxyherd-ca.crt'
     ));
 
     return data.toString();
@@ -48,7 +48,7 @@ export async function readCaKey(): Promise<string> {
     const data = await fs.readFile(resolve(
         getEnvAssetsPath(),
         'certificates',
-        'scrapoxy-ca.key'
+        'proxyherd-ca.key'
     ));
 
     return data.toString();

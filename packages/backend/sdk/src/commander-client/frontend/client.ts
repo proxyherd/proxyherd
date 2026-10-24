@@ -1,4 +1,4 @@
-import { EProjectStatus } from '@scrapoxy/common';
+import { EProjectStatus } from '@proxyherd/common';
 import axios from 'axios';
 import { Agents } from '../../helpers';
 import { catchError } from '../client.helpers';
@@ -36,7 +36,7 @@ import type {
     ITaskView,
     IUserProject,
     IUserProjectEmail,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import type { AxiosInstance } from 'axios';
 
 

@@ -1,4 +1,4 @@
-import type { IWindow } from '@scrapoxy/common';
+import type { IWindow } from '@proxyherd/common';
 
 
 export interface IWindowModel extends Omit<IWindow, 'id'>{

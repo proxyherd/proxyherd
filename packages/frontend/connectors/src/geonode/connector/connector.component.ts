@@ -12,18 +12,18 @@ import {
     CONNECTOR_GEONODE_TYPE,
     EGeonodeProductType,
     EGeonodeQueryCredential,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import {
     CommanderFrontendClientService,
     ToastsService,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import type { OnInit } from '@angular/core';
 import type {
     ICommanderFrontendClient,
     IGeonodeQueryCountries,
     IIsocodeCountry,
-} from '@scrapoxy/common';
-import type { IConnectorComponent } from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/common';
+import type { IConnectorComponent } from '@proxyherd/frontend-sdk';
 
 
 @Component({

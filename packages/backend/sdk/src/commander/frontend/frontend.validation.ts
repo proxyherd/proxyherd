@@ -1,4 +1,4 @@
-import { ONE_SECOND_IN_MS } from '@scrapoxy/common';
+import { ONE_SECOND_IN_MS } from '@proxyherd/common';
 import * as Joi from 'joi';
 
 

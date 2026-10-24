@@ -2,7 +2,7 @@ import type {
     FormGroup,
     ValidationErrors,
 } from '@angular/forms';
-import type { IOptionalValue } from '@scrapoxy/common';
+import type { IOptionalValue } from '@proxyherd/common';
 
 
 export function matchTimeout(

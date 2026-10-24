@@ -13,8 +13,8 @@ import {
     TransportprovidersService,
     urlOptionsToUrl,
     urlToUrlOptions,
-} from '@scrapoxy/backend-sdk';
-import { SCRAPOXY_HEADER_PREFIX_LC } from '@scrapoxy/common';
+} from '@proxyherd/backend-sdk';
+import { SCRAPOXY_HEADER_PREFIX_LC } from '@proxyherd/common';
 import { TRANSPORT_PROXY_LOCAL_TYPE } from './proxy-local.constants';
 import type { IProxyToConnectConfigProxyLocal } from './proxy-local.interface';
 import type {
@@ -24,14 +24,14 @@ import type {
 import type {
     ArrayHttpHeaders,
     IUrlOptions,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import type {
     IConnectorProxyRefreshed,
     IConnectorToRefresh,
     IProxyToConnect,
     IProxyToRefresh,
-} from '@scrapoxy/common';
-import type { ISockets } from '@scrapoxy/proxy-sdk';
+} from '@proxyherd/common';
+import type { ISockets } from '@proxyherd/proxy-sdk';
 import type {
     ClientRequestArgs,
     OutgoingHttpHeaders,

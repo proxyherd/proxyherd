@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ONE_SECOND_IN_MS } from '@scrapoxy/common';
+import { ONE_SECOND_IN_MS } from '@proxyherd/common';
 import { MASTER_MODULE_CONFIG } from './master.constants';
 import { MasterService } from './master.service';
 import {
@@ -16,7 +16,7 @@ import type {
     ICommanderRefreshClientModuleConfig,
 } from '../commander-client';
 import type { DynamicModule } from '@nestjs/common';
-import type { ICertificate } from '@scrapoxy/common';
+import type { ICertificate } from '@proxyherd/common';
 
 
 export interface IMasterRefreshClientModuleConfig extends ICommanderRefreshClientModuleConfig {

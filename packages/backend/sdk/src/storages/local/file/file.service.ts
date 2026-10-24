@@ -37,7 +37,7 @@ import type {
     ISource,
     ISynchronizeFreeproxies,
     IUserData,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 interface IStore {

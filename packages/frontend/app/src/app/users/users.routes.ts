@@ -1,4 +1,4 @@
-import { ConfirmGuard } from '@scrapoxy/frontend-sdk';
+import { ConfirmGuard } from '@proxyherd/frontend-sdk';
 import { UserAddComponent } from './user-add/add.component';
 import { UsersComponent } from './users.component';
 import type { Routes } from '@angular/router';

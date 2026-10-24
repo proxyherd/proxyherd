@@ -15,7 +15,7 @@ export class CommanderCaCertificateController implements OnModuleInit {
     @Get()
     @Header(
         'Content-Disposition',
-        'attachment; filename="scrapoxy-ca.crt"'
+        'attachment; filename="proxyherd-ca.crt"'
     )
     async getCaCertificate(): Promise<string> {
         return this.cert;

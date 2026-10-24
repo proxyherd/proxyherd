@@ -8,11 +8,11 @@ import {
     CredentialQueryNotFoundError,
     TasksService,
     validate,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     CONNECTOR_DIGITALOCEAN_TYPE,
     EDigitalOceanQueryCredential,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import axios from 'axios';
 import { DigitalOceanApi } from './api';
 import {
@@ -42,7 +42,7 @@ import type {
     IConnectorConfig,
     IConnectorFactory,
     IConnectorService,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import type {
     ICertificate,
     IConnectorData,
@@ -60,7 +60,7 @@ import type {
     IOAuthToken,
     IProxyInfo,
     ITaskToCreate,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 const FILTER_SIZES = [

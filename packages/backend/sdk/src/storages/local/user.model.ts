@@ -1,4 +1,4 @@
-import type { IUserData } from '@scrapoxy/common';
+import type { IUserData } from '@proxyherd/common';
 
 
 export interface IUserModel extends IUserData {

@@ -3,18 +3,18 @@ import {
     AwsApi,
     ConnectorAwsModule,
     IConnectorAwsConfig,
-} from '@scrapoxy/backend-connectors';
-import { Agents } from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-connectors';
+import { Agents } from '@proxyherd/backend-sdk';
 import {
     ITestCredential,
     testConnectors,
-} from '@scrapoxy/backend-test-sdk';
+} from '@proxyherd/backend-test-sdk';
 import {
     AWS_DEFAULT_INSTANCE_TYPE,
     AWS_DEFAULT_REGION,
     CONNECTOR_AWS_TYPE,
     SCRAPOXY_DATACENTER_PREFIX,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 describe(

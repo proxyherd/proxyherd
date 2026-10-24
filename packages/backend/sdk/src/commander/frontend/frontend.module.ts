@@ -13,7 +13,7 @@ import { TasksModule } from '../../tasks';
 import { TransportprovidersModule } from '../../transports';
 import type { IJwtConfig } from '../../helpers';
 import type { DynamicModule } from '@nestjs/common';
-import type { IFingerprintOptions } from '@scrapoxy/common';
+import type { IFingerprintOptions } from '@proxyherd/common';
 
 
 export interface ICommanderFrontendModuleConfig {

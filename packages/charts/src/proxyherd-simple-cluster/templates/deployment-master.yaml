@@ -4,9 +4,9 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-    name: {{ .Release.Name }}-refresh
+    name: {{ .Release.Name }}-master
     labels:
-        app.kubernetes.io/component: {{ .Release.Name }}-refresh
+        app.kubernetes.io/component: {{ .Release.Name }}-master
         app.kubernetes.io/instance: {{ .Release.Name }}
 spec:
     replicas: 1
@@ -16,7 +16,7 @@ spec:
     template:
         metadata:
             labels:
-                app.kubernetes.io/component: {{ .Release.Name }}-refresh
+                app.kubernetes.io/component: {{ .Release.Name }}-master
                 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- with .Values.podAnnotations }}
             annotations:
@@ -45,21 +45,24 @@ spec:
             restartPolicy: Always
 
             containers:
-                -   name: {{ .Release.Name }}-refresh
+                -   name: {{ .Release.Name }}-master
                     image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
                     imagePullPolicy: {{ .Values.image.pullPolicy }}
                     args:
-{{- with .Values.refresh.debugPort }}
+{{- with .Values.master.debugPort }}
                         - "--inspect={{ . }}"
 {{- end }}
-                        - "scrapoxy.js"
+                        - "proxyherd.js"
                         - "start"
-                        - "-r"
+                        - "-m"
                     ports:
+                        -   name: master
+                            containerPort: {{ .Values.master.port }}
+                            protocol: TCP
                         -   name: probe
                             containerPort: 8887
                             protocol: TCP
-{{- with .Values.refresh.debugPort }}
+{{- with .Values.master.debugPort }}
                         -   name: debug
                             containerPort: {{ . }}
                             protocol: TCP
@@ -73,10 +76,12 @@ spec:
                             path: /
                             port: probe
                     resources:
-                        {{- toYaml .Values.refresh.resources | nindent 24 }}
+                        {{- toYaml .Values.master.resources | nindent 24 }}
                     env:
                         -   name: NODE_ENV
                             value: "production"
+                        -   name: MASTER_PORT
+                            value: "{{ .Values.master.port }}"
                         -   name: COMMANDER_URL
                             value: "http://{{ .Release.Name }}-commander:{{ .Values.commander.port }}/api"
                         -   name: BACKEND_JWT_SECRET

@@ -1,10 +1,10 @@
 import { Logger } from '@nestjs/common';
-import { ProxyHttp } from '@scrapoxy/backend-sdk';
+import { ProxyHttp } from '@proxyherd/backend-sdk';
 import {
     EProxyType,
     IFreeproxyBase,
     ONE_MINUTE_IN_MS,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { testProxy } from './freeproxies.helpers';
 
 

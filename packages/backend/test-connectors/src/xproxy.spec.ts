@@ -1,8 +1,8 @@
 import * as fs from 'fs';
-import { ConnectorXProxyModule } from '@scrapoxy/backend-connectors';
-import { Agents } from '@scrapoxy/backend-sdk';
-import { testConnectors } from '@scrapoxy/backend-test-sdk';
-import { CONNECTOR_XPROXY_TYPE } from '@scrapoxy/common';
+import { ConnectorXProxyModule } from '@proxyherd/backend-connectors';
+import { Agents } from '@proxyherd/backend-sdk';
+import { testConnectors } from '@proxyherd/backend-test-sdk';
+import { CONNECTOR_XPROXY_TYPE } from '@proxyherd/common';
 
 
 describe(

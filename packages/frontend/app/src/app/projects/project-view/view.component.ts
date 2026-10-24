@@ -4,7 +4,7 @@ import {
     Input,
     Output,
 } from '@angular/core';
-import type { IProjectView } from '@scrapoxy/common';
+import type { IProjectView } from '@proxyherd/common';
 
 
 @Component({

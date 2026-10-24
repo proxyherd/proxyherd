@@ -1,15 +1,15 @@
 import { Logger } from '@nestjs/common';
-import { generateRandomString } from '@scrapoxy/backend-sdk';
+import { generateRandomString } from '@proxyherd/backend-sdk';
 import {
     CONNECTOR_PROXY_CHEAP_RESIDENTIAL_TYPE,
     EProxyStatus,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { TRANSPORT_PROXY_CHEAP_RESIDENTIAL_TYPE } from './transport/pc-residential.constants';
-import type { IConnectorService } from '@scrapoxy/backend-sdk';
+import type { IConnectorService } from '@proxyherd/backend-sdk';
 import type{
     IConnectorProxyRefreshed,
     IProxyKeyToRemove,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 function convertToProxy(session: string): IConnectorProxyRefreshed {

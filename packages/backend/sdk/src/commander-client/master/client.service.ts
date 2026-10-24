@@ -2,7 +2,7 @@ import {
     Inject,
     Injectable,
 } from '@nestjs/common';
-import { EConnectMode } from '@scrapoxy/common';
+import { EConnectMode } from '@proxyherd/common';
 import axios from 'axios';
 import * as jwt from 'jsonwebtoken';
 import { COMMANDER_MASTER_CLIENT_MODULE_CONFIG } from './client.constants';
@@ -14,7 +14,7 @@ import type {
     IProjectToConnect,
     IProjectToConnectQuery,
     IProxyToConnect,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import type { AxiosInstance } from 'axios';
 
 

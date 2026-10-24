@@ -2,11 +2,11 @@ import {
     Injectable,
     Type,
 } from '@angular/core';
-import { CONNECTOR_DIGITALOCEAN_TYPE } from '@scrapoxy/common';
+import { CONNECTOR_DIGITALOCEAN_TYPE } from '@proxyherd/common';
 import {
     ConnectorprovidersService,
     EConnectorType,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import { ConnectorDigitaloceanComponent } from './connector/connector.component';
 import { CredentialDigitaloceanComponent } from './credential/credential.component';
 import { InstallDigitaloceanComponent } from './install/install.component';
@@ -16,7 +16,7 @@ import type {
     IConnectorFactory,
     ICredentialComponent,
     IInstallComponent,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 
 
 @Injectable()

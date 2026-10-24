@@ -1,4 +1,4 @@
-import { ConfirmGuard } from '@scrapoxy/frontend-sdk';
+import { ConfirmGuard } from '@proxyherd/frontend-sdk';
 import { CredentialCreateComponent } from './credential/create/create.component';
 import { CredentialLayoutComponent } from './credential/layout.component';
 import { CredentialUpdateComponent } from './credential/update/update.component';

@@ -15,7 +15,7 @@ import {
     ConnectorUpdatedEvent,
     ONE_SECOND_IN_MS,
     ONE_YEAR_IN_MS,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import {
     CommanderFrontendClientService,
     ConfirmService,
@@ -25,7 +25,7 @@ import {
     ProjectCurrentService,
     ToastsService,
     ValidatorDelayOptional,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import { Subscription } from 'rxjs';
 import type {
     OnDestroy,
@@ -37,11 +37,11 @@ import type {
     IConnectorToUpdate,
     IConnectorView,
     ICredentialView,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import type {
     IConnectorConfig,
     IHasModification,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 
 
 @Component({

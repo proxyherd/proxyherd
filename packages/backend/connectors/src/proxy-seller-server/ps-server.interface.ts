@@ -1,4 +1,4 @@
-import { EProxySellerNetworkType } from '@scrapoxy/common';
+import { EProxySellerNetworkType } from '@proxyherd/common';
 
 
 export interface IConnectorProxySellerServerCredential {

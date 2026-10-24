@@ -1,4 +1,4 @@
-import type { IIsocodeCountry } from '@scrapoxy/common';
+import type { IIsocodeCountry } from '@proxyherd/common';
 
 
 const isocodeCountriesAlpha2: { [key: string]: string } = {

@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ONE_YEAR_IN_MS } from '@scrapoxy/common';
+import { ONE_YEAR_IN_MS } from '@proxyherd/common';
 import { COMMANDER_MASTER_MODULE_CONFIG } from './master.constants';
 import { CommanderMasterController } from './master.controller';
 import { CommanderMasterService } from './master.service';

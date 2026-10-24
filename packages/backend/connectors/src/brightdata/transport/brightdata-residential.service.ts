@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { TransportprovidersService } from '@scrapoxy/backend-sdk';
+import { TransportprovidersService } from '@proxyherd/backend-sdk';
 import { ATransportBrightdataService } from './brightdata.abstract';
 import { TRANSPORT_BRIGHTDATA_RESIDENTIAL_TYPE } from './brightdata.constants';
 import type { IConnectorBrightdataConfig } from '../brightdata.interface';
-import type { IProxyToConnectConfigResidential } from '@scrapoxy/backend-sdk';
+import type { IProxyToConnectConfigResidential } from '@proxyherd/backend-sdk';
 import type {
     IConnectorProxyRefreshed,
     IConnectorToRefresh,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 function formatUsername(

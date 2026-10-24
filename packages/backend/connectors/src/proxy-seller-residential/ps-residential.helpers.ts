@@ -1,4 +1,4 @@
-import type { IProxySellerGeoCountryView } from '@scrapoxy/common';
+import type { IProxySellerGeoCountryView } from '@proxyherd/common';
 
 
 export function toProxySellerGeoCountryView(i: IProxySellerGeoCountryView): IProxySellerGeoCountryView {

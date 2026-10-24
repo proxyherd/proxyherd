@@ -5,13 +5,13 @@ import {
     CredentialInvalidError,
     CredentialQueryNotFoundError,
     validate,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     BRIGHTDATA_PRODUCT_TYPES,
     CONNECTOR_BRIGHTDATA_TYPE,
     EBrightdataProductType,
     EBrightdataQueryCredential,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { BrightdataApi } from './api';
 import { ConnectorBrightdataResidentialService } from './brightdata-residential.service';
 import { ConnectorBrightdataServerService } from './brightdata-server.service';
@@ -30,7 +30,7 @@ import type {
     IConnectorConfig,
     IConnectorFactory,
     IConnectorService,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import type {
     IBrightdataZoneView,
     IConnectorListProxies,
@@ -38,7 +38,7 @@ import type {
     ICredentialData,
     ICredentialQuery,
     ITaskToCreate,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Injectable()

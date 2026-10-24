@@ -2,13 +2,13 @@ import {
     CONNECTOR_DATA_META,
     CONNECTOR_SYNC_META,
     CONNECTOR_VIEW_META,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { toMongoMeta } from './mongo/mongo.helpers';
 import type {
     ICertificate,
     IConnectorData,
     IConnectorView,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 export interface IConnectorModel extends Omit<IConnectorView, 'id'>, Omit<IConnectorData, 'id'> {

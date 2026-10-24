@@ -8,9 +8,9 @@ import {
     FormGroup,
     Validators,
 } from '@angular/forms';
-import { parseFreeproxy } from '@scrapoxy/common';
-import { ToastsService } from '@scrapoxy/frontend-sdk';
-import type { IFreeproxyBase } from '@scrapoxy/common';
+import { parseFreeproxy } from '@proxyherd/common';
+import { ToastsService } from '@proxyherd/frontend-sdk';
+import type { IFreeproxyBase } from '@proxyherd/common';
 
 
 @Component({

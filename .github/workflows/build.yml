@@ -26,7 +26,7 @@ jobs:
         run: npx nx build backend-app --skip-nx-cache --configuration production
 
       - name: Publish NPM
-        working-directory: dist/scrapoxy
+        working-directory: dist/proxyherd
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

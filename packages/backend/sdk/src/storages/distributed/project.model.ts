@@ -3,13 +3,13 @@ import {
     PROJECT_METRICS_META,
     PROJECT_SYNC_META,
     PROJECT_VIEW_META,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { toMongoMeta } from './mongo/mongo.helpers';
 import type {
     IProjectData,
     IProjectMetrics,
     IProjectView,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 export interface IProjectModel extends Omit<IProjectView, 'id'>, Omit<IProjectData, 'id'>, Omit<IProjectMetrics, 'id'>{

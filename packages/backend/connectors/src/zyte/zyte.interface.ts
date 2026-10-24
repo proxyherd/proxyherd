@@ -1,4 +1,4 @@
-import { EZyteCredentialType } from '@scrapoxy/common';
+import { EZyteCredentialType } from '@proxyherd/common';
 
 
 export interface IConnectorZyteCredential {

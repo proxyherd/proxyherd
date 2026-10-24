@@ -6,7 +6,7 @@ import type { IProxyToConnectConfigDatacenter } from './datacenter.interface';
 import type {
     IConnectorProxyRefreshed,
     IConnectorToRefresh,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 export class TransportDatacenterServiceImpl extends ATransportDatacenterService {

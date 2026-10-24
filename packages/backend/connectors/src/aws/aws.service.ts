@@ -2,11 +2,11 @@ import { Logger } from '@nestjs/common';
 import {
     Agents,
     TRANSPORT_DATACENTER_TYPE,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     CONNECTOR_AWS_TYPE,
     EProxyStatus,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { AwsApi } from './api';
 import type {
     IConnectorAwsConfig,
@@ -15,11 +15,11 @@ import type {
 import type {
     IConnectorService,
     ITransportProxyRefreshedConfigDatacenter,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import type {
     IConnectorProxyRefreshed,
     IProxyKeyToRemove,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 function convertStatus(code: string): EProxyStatus {

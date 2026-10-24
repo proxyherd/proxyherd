@@ -4,7 +4,7 @@ import {
     EProjectStatus,
     formatFreeproxyId,
     toOptionalValue,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { filterDuplicateOutboundIpFreeproxies } from './frontend/frontend.helpers';
 import {
     ConnectorWrongTypeError,
@@ -20,7 +20,7 @@ import type {
     IProxyIdToRemove,
     ISource,
     ISourceBase,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 export abstract class ACommanderService {

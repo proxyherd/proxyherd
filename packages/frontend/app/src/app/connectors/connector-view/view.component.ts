@@ -9,14 +9,14 @@ import {
     ConfirmService,
     ConnectorprovidersService,
     ToastsService,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import type {
     ICommanderFrontendClient,
     IConnectorView,
     IProjectView,
     IProxyView,
-} from '@scrapoxy/common';
-import type { IConnectorConfig } from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/common';
+import type { IConnectorConfig } from '@proxyherd/frontend-sdk';
 
 
 const SCALING_DEBOUNCE = 300;

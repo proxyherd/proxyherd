@@ -10,9 +10,9 @@ import {
 import {
     CONNECTOR_SMARTPROXY_TYPE,
     ESmartproxyCredentialType,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import type { OnInit } from '@angular/core';
-import type { ICredentialComponent } from '@scrapoxy/frontend-sdk';
+import type { ICredentialComponent } from '@proxyherd/frontend-sdk';
 
 
 @Component({

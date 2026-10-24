@@ -35,7 +35,7 @@ import {
     toTaskView,
     toUserView,
     UserUpdatedEvent,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { lastValueFrom } from 'rxjs';
 import { ProbeprovidersService } from '../../../probe';
 import {
@@ -106,7 +106,7 @@ import type {
     ITaskData,
     ITaskToLock,
     IUserData,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Controller()

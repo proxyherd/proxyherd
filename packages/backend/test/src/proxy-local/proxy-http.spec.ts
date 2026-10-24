@@ -1,14 +1,14 @@
 import { Agent } from 'https';
 import { Logger } from '@nestjs/common';
-import { ProxyHttp } from '@scrapoxy/backend-sdk';
+import { ProxyHttp } from '@proxyherd/backend-sdk';
 import {
     AgentProxyHttpsTunnel,
     TestServers,
-} from '@scrapoxy/backend-test-sdk';
+} from '@proxyherd/backend-test-sdk';
 import {
     ONE_MINUTE_IN_MS,
     sleep,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import axios from 'axios';
 
 

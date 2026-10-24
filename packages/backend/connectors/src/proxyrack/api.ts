@@ -1,6 +1,6 @@
 import { Agent } from 'https';
-import { Agents } from '@scrapoxy/backend-sdk';
-import { Retry } from '@scrapoxy/common';
+import { Agents } from '@proxyherd/backend-sdk';
+import { Retry } from '@proxyherd/common';
 import axios, { AxiosError } from 'axios';
 import {
     formatUsername,

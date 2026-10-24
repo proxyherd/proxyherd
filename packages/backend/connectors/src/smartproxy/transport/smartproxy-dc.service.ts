@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { TransportprovidersService } from '@scrapoxy/backend-sdk';
+import { TransportprovidersService } from '@proxyherd/backend-sdk';
 import { ATransportSmartproxyService } from './smartproxy.abstract';
 import { TRANSPORT_SMARTPROXY_ENDPOINTS_DC_TYPE } from './smartproxy.constants';
 

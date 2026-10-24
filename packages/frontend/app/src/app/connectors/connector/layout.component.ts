@@ -3,17 +3,17 @@ import {
     ActivatedRoute,
     Router,
 } from '@angular/router';
-import { ConnectorRemovedEvent } from '@scrapoxy/common';
+import { ConnectorRemovedEvent } from '@proxyherd/common';
 import {
     EventsService,
     ToastsService,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import { Subscription } from 'rxjs';
 import type {
     OnDestroy,
     OnInit,
 } from '@angular/core';
-import type { IConnectorView } from '@scrapoxy/common';
+import type { IConnectorView } from '@proxyherd/common';
 
 
 @Component({

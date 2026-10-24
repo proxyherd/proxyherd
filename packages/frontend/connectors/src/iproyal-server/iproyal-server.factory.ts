@@ -2,11 +2,11 @@ import {
     Injectable,
     Type,
 } from '@angular/core';
-import { CONNECTOR_IPROYAL_SERVER_TYPE } from '@scrapoxy/common';
+import { CONNECTOR_IPROYAL_SERVER_TYPE } from '@proxyherd/common';
 import {
     ConnectorprovidersService,
     EConnectorType,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import { ConnectorIproyalServerComponent } from './connector/connector.component';
 import { CredentialIproyalServerComponent } from './credential/credential.component';
 import type {
@@ -15,7 +15,7 @@ import type {
     IConnectorFactory,
     ICredentialComponent,
     IInstallComponent,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 
 
 @Injectable()
@@ -28,7 +28,7 @@ export class ConnectorIproyalServerFactory implements IConnectorFactory {
        coupon: null,
        defaultCredentialName: 'IPRoyal Server Credential',
        defaultConnectorName: 'IPRoyal Server Connector',
-       url: 'https://iproyal.com/?r=432273',
+       url: 'https://iproyal.com',
        type: EConnectorType.StaticIp,
        canInstall: false,
        canUninstall: false,

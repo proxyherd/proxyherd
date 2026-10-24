@@ -17,10 +17,10 @@ import { IconModule } from '@coreui/icons-angular';
 import {
     CommanderUsersClientService,
     ToastsService,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import { lastValueFrom } from 'rxjs';
 import type { OnInit } from '@angular/core';
-import type { IAuthService } from '@scrapoxy/common';
+import type { IAuthService } from '@proxyherd/common';
 
 
 @Component({

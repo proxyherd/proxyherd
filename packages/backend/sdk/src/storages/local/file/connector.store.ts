@@ -1,4 +1,4 @@
-import { toConnectorData } from '@scrapoxy/common';
+import { toConnectorData } from '@proxyherd/common';
 import {
     fromFreeproxyStore,
     toFreeproxyStore,
@@ -12,7 +12,7 @@ import type {
     ICertificate,
     IConnectorData,
     ISource,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 export interface IConnectorStore extends IConnectorData {

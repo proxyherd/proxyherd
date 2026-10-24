@@ -1,4 +1,4 @@
-import { BRIGHTDATA_PRODUCT_TYPES } from '@scrapoxy/common';
+import { BRIGHTDATA_PRODUCT_TYPES } from '@proxyherd/common';
 import * as Joi from 'joi';
 
 

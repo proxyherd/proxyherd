@@ -2,11 +2,11 @@ import {
     Injectable,
     Type,
 } from '@angular/core';
-import { CONNECTOR_GCP_TYPE } from '@scrapoxy/common';
+import { CONNECTOR_GCP_TYPE } from '@proxyherd/common';
 import {
     ConnectorprovidersService,
     EConnectorType,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import { ConnectorGcpComponent } from './connector/connector.component';
 import { CredentialGcpComponent } from './credential/credential.component';
 import { InstallGcpComponent } from './install/install.component';
@@ -16,7 +16,7 @@ import type {
     IConnectorFactory,
     ICredentialComponent,
     IInstallComponent,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 
 
 

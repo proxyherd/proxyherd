@@ -1,5 +1,5 @@
 image:
-    repository: scrapoxy/scrapoxy
+    repository: ghcr.io/proxyherd/proxyherd
     tag: latest
     pullPolicy: Always
     pullSecrets: []

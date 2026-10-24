@@ -4,12 +4,12 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { HeaderComponent } from '@coreui/angular';
-import { EventsUserClient } from '@scrapoxy/common';
+import { EventsUserClient } from '@proxyherd/common';
 import {
     CommanderUsersClientService,
     EventsService,
     ToastsService,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import type {
     OnDestroy,
     OnInit,

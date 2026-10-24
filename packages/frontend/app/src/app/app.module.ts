@@ -42,7 +42,7 @@ import {
     ConnectorSmartproxyModule,
     ConnectorXProxyModule,
     ConnectorZyteModule,
-} from '@scrapoxy/frontend-connectors';
+} from '@proxyherd/frontend-connectors';
 import {
     ClientRequestsInterceptor,
     CommanderFrontendClientService,
@@ -52,7 +52,7 @@ import {
     EventsService,
     ProjectCurrentService,
     ToastsService,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import { AppComponent } from './app.component';
 import { routes } from './app.routes';
 import { CallbackComponent } from './callback/callback.component';

@@ -3,7 +3,7 @@ import {
     ConnectorprovidersModule,
     TasksModule,
     TransportDatacenterModule,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import { ConnectorAzureFactory } from './azure.factory';
 
 

@@ -15,13 +15,13 @@ import {
     CommanderFrontendClientService,
     ProjectCurrentService,
     ToastsService,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import type { OnInit } from '@angular/core';
 import type {
     ICommanderFrontendClient,
     IConnectorData,
-} from '@scrapoxy/common';
-import type { IHasModification } from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/common';
+import type { IHasModification } from '@proxyherd/frontend-sdk';
 
 
 @Component({

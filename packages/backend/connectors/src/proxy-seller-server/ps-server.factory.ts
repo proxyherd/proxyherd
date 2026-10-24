@@ -5,11 +5,11 @@ import {
     CredentialInvalidError,
     CredentialQueryNotFoundError,
     validate,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     CONNECTOR_PROXY_SELLER_SERVER_TYPE,
     EProxySellerServerQueryCredential,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { ProxySellerServerApi } from './api';
 import { ConnectorProxySellerServerService } from './ps-server.service';
 import {
@@ -25,7 +25,7 @@ import type {
     IConnectorConfig,
     IConnectorFactory,
     IConnectorService,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import type {
     IConnectorListProxies,
     IConnectorProxySellerServerQueryType,
@@ -33,7 +33,7 @@ import type {
     ICredentialData,
     ICredentialQuery,
     ITaskToCreate,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Injectable()

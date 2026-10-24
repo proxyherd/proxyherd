@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ONE_SECOND_IN_MS } from '@scrapoxy/common';
+import { ONE_SECOND_IN_MS } from '@proxyherd/common';
 import { COMMANDER_REFRESH_MODULE_CONFIG } from './refresh.constants';
 import { CommanderRefreshController } from './refresh.controller';
 import { CommanderRefreshService } from './refresh.service';

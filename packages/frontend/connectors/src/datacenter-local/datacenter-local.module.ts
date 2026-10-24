@@ -9,7 +9,7 @@ import {
     GridModule,
 } from '@coreui/angular';
 import { IconModule } from '@coreui/icons-angular';
-import { ConnectorprovidersModule } from '@scrapoxy/frontend-sdk';
+import { ConnectorprovidersModule } from '@proxyherd/frontend-sdk';
 import { ConnectorDatacenterLocalComponent } from './connector/connector.component';
 import { CredentialDatacenterLocalComponent } from './credential/credential.component';
 import { ConnectorDatacenterLocalFactory } from './datacenter-local.factory';

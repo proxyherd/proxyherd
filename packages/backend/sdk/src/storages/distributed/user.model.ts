@@ -2,9 +2,9 @@ import {
     USER_DATA_META,
     USER_PROJECT_META,
     USER_VIEW_META,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { toMongoMeta } from './mongo/mongo.helpers';
-import type { IUserData } from '@scrapoxy/common';
+import type { IUserData } from '@proxyherd/common';
 
 
 export interface IUserModel extends Omit<IUserData, 'id'> {

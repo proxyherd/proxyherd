@@ -2,18 +2,18 @@ import {
     Agents,
     TaskStepError,
     validate,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     ATaskCommand,
     CONNECTOR_AWS_TYPE,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import * as Joi from 'joi';
 import { AwsApi } from '../api';
 import type {
     ITaskData,
     ITaskFactory,
     ITaskToUpdate,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 export interface IAwsUninstallCommandData {

@@ -8,12 +8,12 @@ import {
     ConnectedEvent,
     ProjectSelectedEvent,
     ProjectUpdatedEvent,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import {
     EToasterType,
     EventsService,
     ToastsService,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import { Subscription } from 'rxjs';
 import { ToastMessageComponent } from './toasts/message.component';
 import type {
@@ -25,7 +25,7 @@ import type { INavData } from '@coreui/angular';
 import type {
     IProjectData,
     IProjectView,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Component({

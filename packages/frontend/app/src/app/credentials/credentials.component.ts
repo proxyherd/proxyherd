@@ -6,18 +6,18 @@ import {
     ActivatedRoute,
     Router,
 } from '@angular/router';
-import { EventsCredentialsClient } from '@scrapoxy/common';
+import { EventsCredentialsClient } from '@proxyherd/common';
 import {
     CommanderFrontendClientService,
     EventsService,
     ProjectCurrentService,
     ToastsService,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import type {
     OnDestroy,
     OnInit,
 } from '@angular/core';
-import type { ICommanderFrontendClient } from '@scrapoxy/common';
+import type { ICommanderFrontendClient } from '@proxyherd/common';
 
 
 @Component({

@@ -3,7 +3,7 @@ import { Test } from '@nestjs/testing';
 import {
     ConnectorDatacenterLocalModule,
     TRANSPORT_DATACENTER_LOCAL_TYPE,
-} from '@scrapoxy/backend-connectors';
+} from '@proxyherd/backend-connectors';
 import {
     ArrayHttpHeaders,
     CommanderMasterClientService,
@@ -13,12 +13,12 @@ import {
     MasterService,
     readCaCert,
     SCRAPOXY_COOKIE_REGEX,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     AgentProxyHttpsTunnel,
     TestServers,
     USERAGENT_TEST,
-} from '@scrapoxy/backend-test-sdk';
+} from '@proxyherd/backend-test-sdk';
 import {
     CONNECTOR_DATACENTER_LOCAL_TYPE,
     EConnectMode,
@@ -32,17 +32,17 @@ import {
     SCRAPOXY_COOKIE_PREFIX,
     SCRAPOXY_HEADER_PREFIX,
     SCRAPOXY_HEADER_PREFIX_LC,
-} from '@scrapoxy/common';
-import { Proxy } from '@scrapoxy/proxy-sdk';
+} from '@proxyherd/common';
+import { Proxy } from '@proxyherd/proxy-sdk';
 import axios, { RawAxiosRequestHeaders } from 'axios';
 import { v4 as uuid } from 'uuid';
 import type { INestApplication } from '@nestjs/common';
-import type { IProxyToConnectConfigDatacenter } from '@scrapoxy/backend-sdk';
+import type { IProxyToConnectConfigDatacenter } from '@proxyherd/backend-sdk';
 import type {
     ICertificate,
     IProjectToConnect,
     IProxyToConnect,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import type { OutgoingHttpHeaders } from 'http';
 
 

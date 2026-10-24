@@ -2,7 +2,7 @@ import type {
     IConnectorProxyLocalConfig,
     IConnectorProxyLocalCredential,
 } from '../proxy-local.interface';
-import type { IFingerprint } from '@scrapoxy/common';
+import type { IFingerprint } from '@proxyherd/common';
 
 
 export interface IConnectorProxyRefreshedConfigProxyLocal {

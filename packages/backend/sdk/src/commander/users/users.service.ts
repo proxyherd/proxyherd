@@ -5,7 +5,7 @@ import {
 import {
     isUserComplete,
     toUserView,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import {
     schemaUserToCreate,
     schemaUserToUpdate,
@@ -19,7 +19,7 @@ import type {
     IUserToCreate,
     IUserToUpdate,
     IUserView,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Injectable()

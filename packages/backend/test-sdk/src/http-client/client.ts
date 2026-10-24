@@ -11,8 +11,8 @@ import {
     ArrayHttpHeaders,
     isUrl,
     urlToUrlOptions,
-} from '@scrapoxy/backend-sdk';
-import { SCRAPOXY_HEADER_PREFIX_LC } from '@scrapoxy/common';
+} from '@proxyherd/backend-sdk';
+import { SCRAPOXY_HEADER_PREFIX_LC } from '@proxyherd/common';
 import { EHttpRequestMode } from './client.interface';
 import type {
     IHttpRequest,

@@ -7,11 +7,11 @@ import {
     FormGroup,
     Validators,
 } from '@angular/forms';
-import { CONNECTOR_NETNUT_TYPE } from '@scrapoxy/common';
-import { convertCodesToCountries } from '@scrapoxy/frontend-sdk';
+import { CONNECTOR_NETNUT_TYPE } from '@proxyherd/common';
+import { convertCodesToCountries } from '@proxyherd/frontend-sdk';
 import type { OnInit } from '@angular/core';
-import type { IIsocodeCountry } from '@scrapoxy/common';
-import type { IConnectorComponent } from '@scrapoxy/frontend-sdk';
+import type { IIsocodeCountry } from '@proxyherd/common';
+import type { IConnectorComponent } from '@proxyherd/frontend-sdk';
 
 
 

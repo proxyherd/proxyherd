@@ -11,18 +11,18 @@ import { Router } from '@angular/router';
 import {
     ONE_MINUTE_IN_MS,
     ONE_SECOND_IN_MS,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import {
     CommanderFrontendClientService,
     ToastsService,
     ValidatorDelayOptional,
     ValidatorDelayRange,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import type {
     ICommanderFrontendClient,
     IProjectToCreate,
-} from '@scrapoxy/common';
-import type { IHasModification } from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/common';
+import type { IHasModification } from '@proxyherd/frontend-sdk';
 
 
 @Component({

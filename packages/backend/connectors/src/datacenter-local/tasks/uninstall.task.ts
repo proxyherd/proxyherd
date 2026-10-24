@@ -4,17 +4,17 @@ import {
     DatacenterLocalNotFoundError,
     TaskStepError,
     validate,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     ATaskCommand,
     CONNECTOR_DATACENTER_LOCAL_TYPE,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import * as Joi from 'joi';
 import type {
     ITaskData,
     ITaskFactory,
     ITaskToUpdate,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 export interface IDatacenterLocalUninstallCommandData {

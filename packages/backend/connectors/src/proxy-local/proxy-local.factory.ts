@@ -7,8 +7,8 @@ import {
     ConnectorprovidersService,
     CredentialInvalidError,
     validate,
-} from '@scrapoxy/backend-sdk';
-import { CONNECTOR_PROXY_LOCAL_TYPE } from '@scrapoxy/common';
+} from '@proxyherd/backend-sdk';
+import { CONNECTOR_PROXY_LOCAL_TYPE } from '@proxyherd/common';
 import { ProxyLocalApi } from './api';
 import { CONNECTOR_PROXY_LOCAL_MODULE_CONFIG } from './proxy-local.constants';
 import { ConnectorProxyLocalService } from './proxy-local.service';
@@ -26,12 +26,12 @@ import type {
     IConnectorConfig,
     IConnectorFactory,
     IConnectorService,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import type {
     IConnectorListProxies,
     IConnectorToRefresh,
     ITaskToCreate,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Injectable()

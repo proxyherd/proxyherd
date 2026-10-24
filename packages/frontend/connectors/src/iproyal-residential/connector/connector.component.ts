@@ -7,11 +7,11 @@ import {
     FormGroup,
     Validators,
 } from '@angular/forms';
-import { CONNECTOR_IPROYAL_RESIDENTIAL_TYPE } from '@scrapoxy/common';
-import { convertCodesToCountries } from '@scrapoxy/frontend-sdk';
+import { CONNECTOR_IPROYAL_RESIDENTIAL_TYPE } from '@proxyherd/common';
+import { convertCodesToCountries } from '@proxyherd/frontend-sdk';
 import { ValidatorLifetime } from './input-lifetime/input-lifetime.component';
 import type { OnInit } from '@angular/core';
-import type { IConnectorComponent } from '@scrapoxy/frontend-sdk';
+import type { IConnectorComponent } from '@proxyherd/frontend-sdk';
 
 
 const IPROYAL_RESIDENTIAL_REGIONS = [

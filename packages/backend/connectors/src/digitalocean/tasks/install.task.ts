@@ -7,7 +7,7 @@ import {
     TRANSPORT_DATACENTER_TYPE,
     TransportDatacenterServiceImpl,
     validate,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     ATaskCommand,
     CONNECTOR_DIGITALOCEAN_TYPE,
@@ -17,8 +17,8 @@ import {
     generateUseragent,
     PROXY_TIMEOUT_DISCONNECTED_DEFAULT,
     randomName,
-} from '@scrapoxy/common';
-import { Sockets } from '@scrapoxy/proxy-sdk';
+} from '@proxyherd/common';
+import { Sockets } from '@proxyherd/proxy-sdk';
 import * as Joi from 'joi';
 import { v4 as uuid } from 'uuid';
 import { DigitalOceanApi } from '../api';
@@ -28,7 +28,7 @@ import {
     EDigitalOceanDropletStatus,
 } from '../digitalocean.interface';
 import type { IConnectorDigitalOceanConfig } from '../digitalocean.interface';
-import type { IProxyToConnectConfigDatacenter } from '@scrapoxy/backend-sdk';
+import type { IProxyToConnectConfigDatacenter } from '@proxyherd/backend-sdk';
 import type {
     ICertificate,
     IFingerprintOptions,
@@ -38,7 +38,7 @@ import type {
     ITaskData,
     ITaskFactory,
     ITaskToUpdate,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 export interface IDigitalOceanInstallCommandData {

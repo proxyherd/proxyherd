@@ -18,7 +18,7 @@ import type {
     IProjectToConnect,
     IProjectToConnectQuery,
     IProxyToConnect,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Controller('api/master')

@@ -1,4 +1,4 @@
-import { ELiveproxiesPlanStatus } from '@scrapoxy/common';
+import { ELiveproxiesPlanStatus } from '@proxyherd/common';
 
 
 export interface IConnectorLiveproxiesCredential {

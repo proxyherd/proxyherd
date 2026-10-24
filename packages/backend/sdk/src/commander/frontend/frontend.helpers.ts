@@ -1,4 +1,4 @@
-import type { IFreeproxy } from '@scrapoxy/common';
+import type { IFreeproxy } from '@proxyherd/common';
 
 
 export function filterDuplicateOutboundIpFreeproxies(freeproxies: IFreeproxy[]): IFreeproxy[] {

@@ -8,7 +8,7 @@ import { Injectable } from '@nestjs/common';
 import {
     EProxyType,
     SCRAPOXY_HEADER_PREFIX_LC,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { SocksClient } from 'socks';
 import { TRANSPORT_PROXY_TYPE } from './proxy.constants';
 import {
@@ -27,8 +27,8 @@ import type {
     IProxyToConnect,
     IProxyToRefresh,
     IProxyTransport,
-} from '@scrapoxy/common';
-import type { ISockets } from '@scrapoxy/proxy-sdk';
+} from '@proxyherd/common';
+import type { ISockets } from '@proxyherd/proxy-sdk';
 import type {
     ClientRequestArgs,
     OutgoingHttpHeaders,

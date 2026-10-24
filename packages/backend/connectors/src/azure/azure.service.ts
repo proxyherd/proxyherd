@@ -2,13 +2,13 @@ import { Logger } from '@nestjs/common';
 import {
     Agents,
     TRANSPORT_DATACENTER_TYPE,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     CONNECTOR_AZURE_TYPE,
     EProxyStatus,
     randomName,
     randomNames,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { AzureApi } from './api';
 import { EAzureDeploymentMode } from './azure.interface';
 import { AzureResourceGroupState } from './state';
@@ -20,11 +20,11 @@ import type {
 import type {
     IConnectorService,
     ITransportProxyRefreshedConfigDatacenter,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import type {
     IConnectorProxyRefreshed,
     IProxyKeyToRemove,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 const VMS_LIMIT_PER_REQUEST = 266;

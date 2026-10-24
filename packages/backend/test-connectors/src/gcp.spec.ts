@@ -2,21 +2,21 @@ import * as fs from 'fs';
 import {
     ConnectorGcpModule,
     GcpApi,
-} from '@scrapoxy/backend-connectors';
-import { Agents } from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-connectors';
+import { Agents } from '@proxyherd/backend-sdk';
 import {
     ITestCredential,
     testConnectors,
-} from '@scrapoxy/backend-test-sdk';
+} from '@proxyherd/backend-test-sdk';
 import {
     CONNECTOR_GCP_TYPE,
     GCP_DEFAULT_MACHINE_TYPE,
     GCP_DEFAULT_ZONE,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import type {
     IConnectorGcpConfig,
     IConnectorGcpInstallConfig,
-} from '@scrapoxy/backend-connectors';
+} from '@proxyherd/backend-connectors';
 
 
 describe(

@@ -2,13 +2,13 @@ import * as fs from 'fs';
 import {
     ConnectorProxySellerServerModule,
     IConnectorProxySellerServerConfig,
-} from '@scrapoxy/backend-connectors';
-import { Agents } from '@scrapoxy/backend-sdk';
-import { testConnectors } from '@scrapoxy/backend-test-sdk';
+} from '@proxyherd/backend-connectors';
+import { Agents } from '@proxyherd/backend-sdk';
+import { testConnectors } from '@proxyherd/backend-test-sdk';
 import {
     CONNECTOR_PROXY_SELLER_SERVER_TYPE,
     EProxySellerNetworkType,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 describe(

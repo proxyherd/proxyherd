@@ -1,16 +1,16 @@
 {
-    "name": "scrapoxy",
+    "name": "proxyherd",
     "version": "4.17.4",
     "author": {
-        "name": "Fabien Vauchelles",
-        "url": "https://www.linkedin.com/in/fabienvauchelles"
+        "name": "ProxyHerd maintainers",
+        "url": "https://github.com/proxyherd"
     },
-    "description": "Scrapoxy is a super proxies manager that orchestrates all your proxies into one place, rather than spreading management across multiple scrapers. Deployed on your own infrastructure, Scrapoxy serves as a single proxy endpoint for your scrapers. It builds a pool of private proxies from your datacenter subscription, integrates them with proxy vendors, manages IP rotation and fingerprinting, and smartly routes traffic to avoid bans.",
-    "url": "https://github.com/scrapoxy/scrapoxy",
-    "homepage": "https://scrapoxy.io",
+    "description": "ProxyHerd is an open-source super proxy manager: one endpoint for all your proxies. It builds a pool of private proxies from your cloud subscription, integrates proxy vendors, manages IP rotation, health checks and sticky sessions, and routes traffic to avoid bans. Community fork of Scrapoxy 4.17.4 (MIT).",
+    "url": "https://github.com/proxyherd/proxyherd",
+    "homepage": "https://proxyherd.github.io/proxyherd/",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/scrapoxy/scrapoxy"
+        "url": "git+https://github.com/proxyherd/proxyherd"
     },
     "license": "MIT",
     "private": true,
@@ -153,5 +153,12 @@
     "engines": {
         "node": ">= 20",
         "npm": ">= 8"
-    }
+    },
+    "contributors": [
+        {
+            "name": "Fabien Vauchelles",
+            "url": "https://github.com/fabienvauchelles",
+            "note": "original author of Scrapoxy, the project this is forked from"
+        }
+    ]
 }

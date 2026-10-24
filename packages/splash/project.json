@@ -6,7 +6,7 @@
     "projectType": "application",
     "targets": {
         "build-docker": {
-            "command": "docker build --no-cache -f packages/splash/Dockerfile . -t scrapoxy/splash"
+            "command": "docker build --no-cache -f packages/splash/Dockerfile . -t ghcr.io/proxyherd/splash"
         }
     },
     "tags": []

@@ -15,7 +15,7 @@ import {
     parseConnectUrl,
     parseError,
     Sockets,
-} from '@scrapoxy/proxy-sdk';
+} from '@proxyherd/proxy-sdk';
 import {
     ArrayHttpHeaders,
     createConnectionAuto,

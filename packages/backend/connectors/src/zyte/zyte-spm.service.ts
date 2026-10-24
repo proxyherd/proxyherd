@@ -1,17 +1,17 @@
 import { Logger } from '@nestjs/common';
-import { Agents } from '@scrapoxy/backend-sdk';
+import { Agents } from '@proxyherd/backend-sdk';
 import {
     CONNECTOR_ZYTE_TYPE,
     EProxyStatus,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { ZyteSmartProxyManagerApi } from './api';
 import { TRANSPORT_ZYTE_SPM_TYPE } from './transport/zyte.constants';
 import type { IConnectorZyteCredential } from './zyte.interface';
-import type { IConnectorService } from '@scrapoxy/backend-sdk';
+import type { IConnectorService } from '@proxyherd/backend-sdk';
 import type {
     IConnectorProxyRefreshed,
     IProxyKeyToRemove,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 function convertToProxy(session: string): IConnectorProxyRefreshed {

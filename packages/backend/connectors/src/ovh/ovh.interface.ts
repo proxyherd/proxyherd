@@ -2,7 +2,7 @@ import type {
     IOvhFlavorView,
     IOvhRegionView,
     IOvhSnapshotView,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 export interface IConnectorOvhCredential {

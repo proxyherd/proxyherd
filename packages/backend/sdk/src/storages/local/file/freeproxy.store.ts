@@ -1,10 +1,10 @@
-import { toOptionalValue } from '@scrapoxy/common';
+import { toOptionalValue } from '@proxyherd/common';
 import type { IConnectorStore } from './connector.store';
 import type { IFreeproxyModel } from '../freeproxy.model';
 import type {
     IConnectorFreeproxyConfig,
     IFreeproxyBase,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 export interface IFreeproxyStore extends IFreeproxyBase {

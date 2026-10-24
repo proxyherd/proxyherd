@@ -2,8 +2,8 @@ import { Agent as AgentHttp } from 'http';
 import { Agent as AgentHttps } from 'https';
 import { Socket } from 'net';
 import { ExpressAdapter } from '@nestjs/platform-express';
-import { ONE_SECOND_IN_MS } from '@scrapoxy/common';
-import { Sockets } from '@scrapoxy/proxy-sdk';
+import { ONE_SECOND_IN_MS } from '@proxyherd/common';
+import { Sockets } from '@proxyherd/proxy-sdk';
 import type { NestApplicationOptions } from '@nestjs/common';
 import type { CreateAxiosDefaults } from 'axios';
 

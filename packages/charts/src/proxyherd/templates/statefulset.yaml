@@ -54,7 +54,7 @@ spec:
 {{- with .Values.debugPort }}
                         - "--inspect={{ . }}"
 {{- end }}
-                        - "scrapoxy.js"
+                        - "proxyherd.js"
                         - "start"
                         - "-s"
                     ports:
@@ -84,7 +84,7 @@ spec:
                         {{- toYaml .Values.resources | nindent 24 }}
                     volumeMounts:
                         -   name: {{ .Release.Name }}-confd
-                            mountPath: "/etc/scrapoxy"
+                            mountPath: "/etc/proxyherd"
                     env:
                         - name: NODE_ENV
                           value: "production"
@@ -115,7 +115,7 @@ spec:
                         - name: FRONTEND_JWT_SECRET
                           value: {{ $frontendJwtSecret }}
                         - name: STORAGE_FILE_FILENAME
-                          value: "/etc/scrapoxy/config.json"
+                          value: "/etc/proxyherd/config.json"
 
     volumeClaimTemplates:
         -   metadata:

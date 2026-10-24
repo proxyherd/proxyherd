@@ -1,7 +1,7 @@
 import type {
     IProfile,
     IUserToken,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 export interface IRequestToken {

@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ConnectorprovidersModule } from '@scrapoxy/backend-sdk';
+import { ConnectorprovidersModule } from '@proxyherd/backend-sdk';
 import { ConnectorIproyalResidentialFactory } from './iproyal-residential.factory';
 import { TransportIproyalResidentialModule } from './transport';
 

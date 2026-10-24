@@ -3,8 +3,8 @@ import {
     buildStorageFileConfig,
     buildStorageMemoryConfig,
     getEnvStorageType,
-} from '@scrapoxy/backend-sdk';
-import type { IStorageModulesConfig } from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
+import type { IStorageModulesConfig } from '@proxyherd/backend-sdk';
 
 
 export function buildStorageModules(): IStorageModulesConfig {

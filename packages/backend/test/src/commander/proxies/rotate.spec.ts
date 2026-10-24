@@ -2,13 +2,13 @@ import { Logger } from '@nestjs/common';
 import {
     DatacenterLocalApp,
     SUBSCRIPTION_LOCAL_DEFAULTS,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     CommanderApp,
     MasterApp,
     TestServers,
     waitFor,
-} from '@scrapoxy/backend-test-sdk';
+} from '@proxyherd/backend-test-sdk';
 import {
     CONNECTOR_DATACENTER_LOCAL_TYPE,
     ONE_MINUTE_IN_MS,
@@ -16,18 +16,18 @@ import {
     PROXY_TIMEOUT_DISCONNECTED_DEFAULT_TEST,
     PROXY_TIMEOUT_UNREACHABLE_DEFAULT,
     sleep,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { v4 as uuid } from 'uuid';
 import type {
     IConnectorDatacenterLocalConfig,
     IConnectorDatacenterLocalCredential,
-} from '@scrapoxy/backend-connectors';
+} from '@proxyherd/backend-connectors';
 import type {
     IConnectorView,
     ICredentialView,
     IProjectData,
     IProjectToCreate,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 describe(

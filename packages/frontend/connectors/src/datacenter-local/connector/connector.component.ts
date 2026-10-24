@@ -11,19 +11,19 @@ import {
 import {
     CONNECTOR_DATACENTER_LOCAL_TYPE,
     EDatacenterLocalQueryCredential,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import {
     CommanderFrontendClientService,
     ToastsService,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import type { OnInit } from '@angular/core';
 import type {
     ICommanderFrontendClient,
     IDatacenterLocalQueryRegionSizes,
     IRegionDatacenterLocal,
     IRegionSizeDatacenterLocal,
-} from '@scrapoxy/common';
-import type { IConnectorComponent } from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/common';
+import type { IConnectorComponent } from '@proxyherd/frontend-sdk';
 
 
 @Component({

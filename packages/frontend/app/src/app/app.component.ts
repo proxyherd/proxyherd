@@ -51,8 +51,8 @@ import {
     flagSet,
 } from '@coreui/icons';
 import { IconSetService } from '@coreui/icons-angular';
-import { ConnectedEvent } from '@scrapoxy/common';
-import { EventsService } from '@scrapoxy/frontend-sdk';
+import { ConnectedEvent } from '@proxyherd/common';
+import { EventsService } from '@proxyherd/frontend-sdk';
 import { Subscription } from 'rxjs';
 import type {
     OnDestroy,

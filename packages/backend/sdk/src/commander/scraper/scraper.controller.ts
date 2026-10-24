@@ -26,7 +26,7 @@ import {
     PROXY_ID_TO_REMOVE_SWAGGER_PROPS,
     SOURCE_BASE_SWAGGER_PROPS,
     SOURCE_SWAGGER_PROPS,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { CommanderScraperService } from './scraper.service';
 import { CommanderScraperTokenGuard } from './token.guard';
 import type { IRequestToken } from '../commander.interface';
@@ -40,7 +40,7 @@ import type {
     IProxyIdToRemove,
     ISource,
     ISourceBase,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @ApiBasicAuth()

@@ -6,9 +6,9 @@ import {
     FormBuilder,
     FormGroup,
 } from '@angular/forms';
-import { CONNECTOR_XPROXY_TYPE } from '@scrapoxy/common';
+import { CONNECTOR_XPROXY_TYPE } from '@proxyherd/common';
 import type { OnInit } from '@angular/core';
-import type { IConnectorComponent } from '@scrapoxy/frontend-sdk';
+import type { IConnectorComponent } from '@proxyherd/frontend-sdk';
 
 
 @Component({

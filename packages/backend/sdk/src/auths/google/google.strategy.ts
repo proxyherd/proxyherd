@@ -9,7 +9,7 @@ import {
     AUTH_GOOGLE_NAME,
 } from './google.constants';
 import type { IAuthGoogleModuleConfig } from './google.module';
-import type { IProfile } from '@scrapoxy/common';
+import type { IProfile } from '@proxyherd/common';
 import type {
     GoogleCallbackParameters,
     Profile,

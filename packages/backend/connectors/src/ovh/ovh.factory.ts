@@ -8,11 +8,11 @@ import {
     CredentialQueryNotFoundError,
     TasksService,
     validate,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     CONNECTOR_OVH_TYPE,
     EOvhQueryCredential,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { OvhApi } from './api';
 import {
     toOvhFlavorView,
@@ -47,7 +47,7 @@ import type {
     IConnectorConfig,
     IConnectorFactory,
     IConnectorService,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import type {
     ICertificate,
     IConnectorData,
@@ -65,7 +65,7 @@ import type {
     IOvhSnapshotView,
     IProxyInfo,
     ITaskToCreate,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 const FLAVOR_TYPES = [

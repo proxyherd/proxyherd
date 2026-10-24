@@ -15,7 +15,7 @@ import {
 } from '@coreui/angular';
 import { ChartjsModule } from '@coreui/angular-chartjs';
 import { IconModule } from '@coreui/icons-angular';
-import { SharedSpxModule } from '@scrapoxy/frontend-sdk';
+import { SharedSpxModule } from '@proxyherd/frontend-sdk';
 import { MetricsComponent } from './metrics.component';
 import { routes } from './metrics.routes';
 import { WidgetRangeComponent } from './widget-range/range.component';

@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 import {
     ONE_MINUTE_IN_MS,
     ONE_SECOND_IN_MS,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import {
     CommanderFrontendClientService,
     ConfirmService,
@@ -19,14 +19,14 @@ import {
     ToastsService,
     ValidatorDelayOptional,
     ValidatorDelayRange,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import type { OnInit } from '@angular/core';
 import type {
     ICommanderFrontendClient,
     IProjectData,
     IProjectToUpdate,
-} from '@scrapoxy/common';
-import type { IHasModification } from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/common';
+import type { IHasModification } from '@proxyherd/frontend-sdk';
 
 
 @Component({

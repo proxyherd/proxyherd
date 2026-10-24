@@ -1,4 +1,4 @@
-import { EBrightdataProductType } from '@scrapoxy/common';
+import { EBrightdataProductType } from '@proxyherd/common';
 
 
 export interface IConnectorBrightdataCredential {

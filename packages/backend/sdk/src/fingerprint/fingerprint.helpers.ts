@@ -5,7 +5,7 @@ import {
 import {
     parseError,
     Sockets,
-} from '@scrapoxy/proxy-sdk';
+} from '@proxyherd/proxy-sdk';
 import {
     ArrayHttpHeaders,
     formatUseragent,
@@ -17,7 +17,7 @@ import type {
     IFingerprintOptions,
     IFingerprintRequest,
     IProxyToRefresh,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import type { ClientRequestArgs } from 'http';
 
 

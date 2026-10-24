@@ -5,8 +5,8 @@ import {
     CommanderEventsModule,
     CommanderScraperModule,
     CommanderUsersModule,
-} from '@scrapoxy/backend-sdk';
-import { CommanderApp } from '@scrapoxy/backend-test-sdk';
+} from '@proxyherd/backend-sdk';
+import { CommanderApp } from '@proxyherd/backend-test-sdk';
 import axios from 'axios';
 
 

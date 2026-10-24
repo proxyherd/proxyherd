@@ -1,4 +1,4 @@
-import { SCRAPOXY_USER_AGENT_PREFIX } from '@scrapoxy/common';
+import { SCRAPOXY_USER_AGENT_PREFIX } from '@proxyherd/common';
 
 
 export function formatUseragent(version: string): string {

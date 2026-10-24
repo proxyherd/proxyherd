@@ -15,13 +15,13 @@ import {
     ProjectSelectedEvent,
     ProjectUpdatedEvent,
     TaskCreatedEvent,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import {
     CommanderFrontendClientService,
     EventsService,
     ProjectCurrentService,
     ToastsService,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import { Subscription } from 'rxjs';
 import type {
     OnDestroy,
@@ -32,7 +32,7 @@ import type {
     IConnectorView,
     IProjectData,
     ITaskView,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Component({

@@ -15,8 +15,8 @@ import {
     Res,
     UseInterceptors,
 } from '@nestjs/common';
-import { validate } from '@scrapoxy/backend-sdk';
-import { sleep } from '@scrapoxy/common';
+import { validate } from '@proxyherd/backend-sdk';
+import { sleep } from '@proxyherd/common';
 import * as Joi from 'joi';
 import { Observable } from 'rxjs';
 import {

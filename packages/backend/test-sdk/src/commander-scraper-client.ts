@@ -1,4 +1,4 @@
-import { EProjectStatus } from '@scrapoxy/common';
+import { EProjectStatus } from '@proxyherd/common';
 import axios from 'axios';
 import type {
     IConnectorProxiesView,
@@ -10,7 +10,7 @@ import type {
     IProxyIdToRemove,
     ISource,
     ISourceBase,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import type { AxiosInstance } from 'axios';
 
 

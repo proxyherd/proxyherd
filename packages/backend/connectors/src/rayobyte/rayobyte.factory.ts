@@ -5,11 +5,11 @@ import {
     CredentialInvalidError,
     CredentialQueryNotFoundError,
     validate,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     CONNECTOR_RAYOBYTE_TYPE,
     ERayobyteQueryCredential,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { RayobyteApi } from './api';
 import { ConnectorRayobyteService } from './rayobyte.service';
 import {
@@ -25,14 +25,14 @@ import type {
     IConnectorConfig,
     IConnectorFactory,
     IConnectorService,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import type {
     IConnectorListProxies,
     IConnectorToRefresh,
     ICredentialData,
     ICredentialQuery,
     ITaskToCreate,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Injectable()

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { EventsService as BaseEventsService } from '@scrapoxy/common';
+import { EventsService as BaseEventsService } from '@proxyherd/common';
 
 
 @Injectable()

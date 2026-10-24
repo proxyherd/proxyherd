@@ -2,17 +2,17 @@ import { Logger } from '@nestjs/common';
 import {
     CONNECTOR_SMARTPROXY_TYPE,
     EProxyStatus,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { TRANSPORT_SMARTPROXY_SERVER_TYPE } from './transport';
 import type { IConnectorSmartproxyCredential } from './smartproxy.interface';
 import type {
     IConnectorService,
     IProxyToConnectConfigResidential,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import type {
     IConnectorProxyRefreshed,
     IProxyKeyToRemove,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 export class ConnectorSmartproxyServerService implements IConnectorService {

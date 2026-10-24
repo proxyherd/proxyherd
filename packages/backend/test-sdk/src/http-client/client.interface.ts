@@ -1,4 +1,4 @@
-import { ArrayHttpHeaders } from '@scrapoxy/backend-sdk';
+import { ArrayHttpHeaders } from '@proxyherd/backend-sdk';
 
 
 export enum EHttpRequestMode {

@@ -8,7 +8,7 @@ import {
 import {
     ONE_MINUTE_IN_MS,
     parseFreeproxy,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import axios from 'axios';
 import { REFRESH_SOURCES_CONFIG } from './sources.constants';
 import { CommanderRefreshClientService } from '../../commander-client';
@@ -19,7 +19,7 @@ import type {
     IFreeproxyBase,
     ISource,
     ISourceRefreshed,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import type { AxiosInstance } from 'axios';
 
 

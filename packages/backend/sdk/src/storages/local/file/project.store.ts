@@ -1,7 +1,7 @@
 import {
     toCredentialData,
     WINDOWS_CONFIG,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { v4 as uuid } from 'uuid';
 import {
     fromConnectorStore,
@@ -16,7 +16,7 @@ import type {
     ICredentialData,
     IProjectData,
     IWindow,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 export interface IProjectStore extends IProjectData {

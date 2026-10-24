@@ -1,4 +1,4 @@
-import { EEventScope } from '@scrapoxy/common';
+import { EEventScope } from '@proxyherd/common';
 import * as Joi from 'joi';
 
 

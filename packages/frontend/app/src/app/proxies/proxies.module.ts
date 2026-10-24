@@ -16,7 +16,7 @@ import {
     TooltipModule,
 } from '@coreui/angular';
 import { IconModule } from '@coreui/icons-angular';
-import { SharedSpxModule } from '@scrapoxy/frontend-sdk';
+import { SharedSpxModule } from '@proxyherd/frontend-sdk';
 import { ProxiesComponent } from './proxies.component';
 import { routes } from './proxies.routes';
 import { ProxyStatusComponent } from './proxy-status/status.component';

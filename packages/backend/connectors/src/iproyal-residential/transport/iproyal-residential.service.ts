@@ -3,18 +3,18 @@ import {
     ATransportResidentialService,
 
     TransportprovidersService,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import { TRANSPORT_IPROYAL_RESIDENTIAL_TYPE } from './iproyal-residential.constants';
 import type {
     IConnectorIproyalResidentialConfig,
     IConnectorIproyalResidentialCredential,
     IIproyalResidentialSessionOptions,
 } from '../iproyal-residential.interface';
-import type { IProxyToConnectConfigResidential } from '@scrapoxy/backend-sdk';
+import type { IProxyToConnectConfigResidential } from '@proxyherd/backend-sdk';
 import type {
     IConnectorProxyRefreshed,
     IConnectorToRefresh,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 function formatPassword(

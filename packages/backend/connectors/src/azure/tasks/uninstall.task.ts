@@ -2,11 +2,11 @@ import {
     Agents,
     TaskStepError,
     validate,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     ATaskCommand,
     CONNECTOR_AZURE_TYPE,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import * as Joi from 'joi';
 import { AzureApi } from '../api';
 import { schemaCredential } from '../azure.validation';
@@ -15,7 +15,7 @@ import type {
     ITaskData,
     ITaskFactory,
     ITaskToUpdate,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 export interface IAzureUninstallCommandData extends IConnectorAzureCredential {

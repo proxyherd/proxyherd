@@ -5,11 +5,11 @@ import {
     CredentialInvalidError,
     CredentialQueryNotFoundError,
     validate,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     CONNECTOR_IPROYAL_SERVER_TYPE,
     EIproyalServerQueryCredential,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { IproyalServerApi } from './api';
 import { ConnectorIproyalService } from './iproyal-server.service';
 import {
@@ -25,14 +25,14 @@ import type {
     IConnectorConfig,
     IConnectorFactory,
     IConnectorService,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import type {
     IConnectorListProxies,
     IConnectorToRefresh,
     ICredentialData,
     ICredentialQuery,
     ITaskToCreate,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Injectable()

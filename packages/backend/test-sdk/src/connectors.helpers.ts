@@ -21,7 +21,7 @@ import {
     RefreshTasksModule,
     ScrapoxyExpressAdapter,
     TaskStepError,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     countProxiesOnlineViews,
     countProxiesViews,
@@ -41,8 +41,8 @@ import {
     PROXY_TIMEOUT_UNREACHABLE_DEFAULT,
     SCRAPOXY_HEADER_PREFIX,
     sleep,
-} from '@scrapoxy/common';
-import { SCRAPOXY_PROXY_HEADER_PREFIX_LC } from '@scrapoxy/proxy-sdk';
+} from '@proxyherd/common';
+import { SCRAPOXY_PROXY_HEADER_PREFIX_LC } from '@proxyherd/proxy-sdk';
 import axios from 'axios';
 import { AgentProxyHttpsTunnel } from './agent-proxy-https-tunnel';
 import { CommanderUsersClient } from './commander-users-client';
@@ -56,7 +56,7 @@ import type {
     INestApplication,
     LoggerService,
 } from '@nestjs/common';
-import type { ICredentialView } from '@scrapoxy/common';
+import type { ICredentialView } from '@proxyherd/common';
 import type { OutgoingHttpHeaders } from 'http';
 import type { AddressInfo } from 'net';
 

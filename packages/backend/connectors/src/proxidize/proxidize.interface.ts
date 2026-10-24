@@ -1,4 +1,4 @@
-import type { IConnectorHardwareCredential } from '@scrapoxy/backend-sdk';
+import type { IConnectorHardwareCredential } from '@proxyherd/backend-sdk';
 
 
 export interface IConnectorProxidizeCredential extends IConnectorHardwareCredential {

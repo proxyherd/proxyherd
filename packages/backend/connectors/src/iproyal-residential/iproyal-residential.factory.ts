@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import {
     ConnectorprovidersService,
     validate,
-} from '@scrapoxy/backend-sdk';
-import { CONNECTOR_IPROYAL_RESIDENTIAL_TYPE } from '@scrapoxy/common';
+} from '@proxyherd/backend-sdk';
+import { CONNECTOR_IPROYAL_RESIDENTIAL_TYPE } from '@proxyherd/common';
 import { ConnectorIproyalService } from './iproyal-residential.service';
 import {
     schemaConfig,
@@ -17,11 +17,11 @@ import type {
     IConnectorConfig,
     IConnectorFactory,
     IConnectorService,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import type {
     IConnectorListProxies,
     ITaskToCreate,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Injectable()

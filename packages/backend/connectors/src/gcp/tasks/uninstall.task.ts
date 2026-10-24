@@ -2,11 +2,11 @@ import {
     Agents,
     TaskStepError,
     validate,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     ATaskCommand,
     CONNECTOR_GCP_TYPE,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import * as Joi from 'joi';
 import { GcpApi } from '../api';
 import { EGcpOperationStatus } from '../gcp.interface';
@@ -16,7 +16,7 @@ import type {
     ITaskData,
     ITaskFactory,
     ITaskToUpdate,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 export interface IGcpUninstallCommandData extends IConnectorGcpCredential{

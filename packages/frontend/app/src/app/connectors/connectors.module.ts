@@ -24,7 +24,7 @@ import { IconModule } from '@coreui/icons-angular';
 import {
     ConnectorprovidersModule,
     SharedSpxModule,
-} from '@scrapoxy/frontend-sdk';
+} from '@proxyherd/frontend-sdk';
 import { ConnectorCreateComponent } from './connector/create/create.component';
 import { ConnectorInstallComponent } from './connector/install/install.component';
 import { ConnectorLayoutComponent } from './connector/layout.component';

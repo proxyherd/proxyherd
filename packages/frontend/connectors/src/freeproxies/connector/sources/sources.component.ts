@@ -4,12 +4,12 @@ import {
     Input,
     Output,
 } from '@angular/core';
-import { ConfirmService } from '@scrapoxy/frontend-sdk';
+import { ConfirmService } from '@proxyherd/frontend-sdk';
 import type {
     OnDestroy,
     OnInit,
 } from '@angular/core';
-import type { ISource } from '@scrapoxy/common';
+import type { ISource } from '@proxyherd/common';
 import type {
     Observable,
     Subscription,

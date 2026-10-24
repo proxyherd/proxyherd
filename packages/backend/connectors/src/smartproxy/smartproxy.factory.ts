@@ -7,11 +7,11 @@ import {
     ConnectorprovidersService,
     getEnvAssetsPath,
     validate,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     CONNECTOR_SMARTPROXY_TYPE,
     ESmartproxyCredentialType,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 import { ConnectorSmartproxyEndpointsService } from './smartproxy-endpoints.service';
 import { ConnectorSmartproxyServerService } from './smartproxy-server.service';
 import {
@@ -35,12 +35,12 @@ import type {
     IConnectorConfig,
     IConnectorFactory,
     IConnectorService,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import type {
     IConnectorListProxies,
     IConnectorToRefresh,
     ITaskToCreate,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 @Injectable()

@@ -14,12 +14,12 @@ import {
     ProxyLocalApp,
     ScrapoxyExpressAdapter,
     SUBSCRIPTION_LOCAL_DEFAULTS,
-} from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-sdk';
 import {
     capitalize,
     ONE_MINUTE_IN_MS,
-} from '@scrapoxy/common';
-import { sigstop } from '@scrapoxy/proxy-sdk';
+} from '@proxyherd/common';
+import { sigstop } from '@proxyherd/proxy-sdk';
 import {
     Command,
     Option,

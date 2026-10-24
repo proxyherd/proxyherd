@@ -3,18 +3,18 @@ import {
     AzureApi,
     ConnectorAzureModule,
     IConnectorAzureConfig,
-} from '@scrapoxy/backend-connectors';
-import { Agents } from '@scrapoxy/backend-sdk';
+} from '@proxyherd/backend-connectors';
+import { Agents } from '@proxyherd/backend-sdk';
 import {
     ITestCredential,
     testConnectors,
-} from '@scrapoxy/backend-test-sdk';
+} from '@proxyherd/backend-test-sdk';
 import {
     AZURE_DEFAULT_LOCATION,
     AZURE_DEFAULT_STORAGE_ACCOUNT_TYPE,
     AZURE_DEFAULT_VM_SIZE,
     CONNECTOR_AZURE_TYPE,
-} from '@scrapoxy/common';
+} from '@proxyherd/common';
 
 
 describe(

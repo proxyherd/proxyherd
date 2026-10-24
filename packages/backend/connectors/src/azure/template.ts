@@ -1,4 +1,4 @@
-import { SCRAPOXY_DATACENTER_PREFIX } from '@scrapoxy/common';
+import { SCRAPOXY_DATACENTER_PREFIX } from '@proxyherd/common';
 import { v4 as uuid } from 'uuid';
 import type { IAzureImageReference } from './azure.interface';
 
