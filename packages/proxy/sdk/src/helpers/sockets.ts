@@ -76,7 +76,7 @@ export function socketWriteAsync(
     ) => {
         socket.write(
             buffer,
-            (err: Error | undefined) => {
+            (err?: Error | null) => {
                 if (err) {
                     reject(err);
                 } else {

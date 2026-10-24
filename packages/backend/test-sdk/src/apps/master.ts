@@ -39,7 +39,9 @@ export interface IMasterAppOptions {
 
 export class MasterApp {
     public static defaults(options: IMasterAppOptions): MasterApp {
-        options.imports = options.imports ?? [];
+        if (!options.imports) {
+            options.imports = [];
+        }
 
         if (options.commanderApp) {
             options.imports.push(
