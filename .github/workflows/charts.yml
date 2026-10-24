@@ -18,10 +18,10 @@ jobs:
     timeout-minutes: 15
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Install Helm
-        uses: azure/setup-helm@v4
+        uses: azure/setup-helm@v5
 
       - name: Lint charts
         run: |

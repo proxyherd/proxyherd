@@ -23,10 +23,10 @@ jobs:
     timeout-minutes: 45
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Use Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: '20.x'
           cache: 'npm'
@@ -53,7 +53,7 @@ jobs:
           echo "fingerprint dependencies:" && node -p "Object.keys(require('./dist/fingerprint/package.json').dependencies).join(' ')"
 
       - name: Upload the bundles
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: dist
           path: |
@@ -74,19 +74,19 @@ jobs:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           sparse-checkout: .github/scripts
 
       - name: Download the bundles
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: dist
           path: dist
 
       # Trusted publishing (OIDC) needs npm 11.5.1 or later and Node 22.14 or later.
       - name: Use Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: '22.x'
 
@@ -126,19 +126,19 @@ jobs:
       packages: write
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Download the bundles
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: dist
           path: dist
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
+        uses: docker/setup-qemu-action@v4
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@v4
 
       - name: Login to GitHub Container Registry
         if: env.DRY_RUN != 'true'
@@ -150,7 +150,7 @@ jobs:
 
       - name: Docker meta (proxyherd)
         id: meta
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         with:
           images: ghcr.io/proxyherd/proxyherd
           tags: |
@@ -160,7 +160,7 @@ jobs:
             type=raw,value=dry-run,enable=${{ env.DRY_RUN == 'true' }}
 
       - name: Build and push (proxyherd)
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v7
         with:
           context: .
           file: packages/backend/app/Dockerfile
@@ -171,7 +171,7 @@ jobs:
 
       - name: Docker meta (fingerprint)
         id: meta_fingerprint
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         with:
           images: ghcr.io/proxyherd/fingerprint
           tags: |
@@ -181,7 +181,7 @@ jobs:
             type=raw,value=dry-run,enable=${{ env.DRY_RUN == 'true' }}
 
       - name: Build and push (fingerprint)
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v7
         with:
           context: .
           file: packages/fingerprint/app/Dockerfile
@@ -202,13 +202,13 @@ jobs:
       contents: write
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Write the release notes from the changelog
         run: node .github/scripts/release-notes.js "$GITHUB_REF_NAME" > release-notes.md && cat release-notes.md
 
       - name: Create the GitHub release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           body_path: release-notes.md
           generate_release_notes: true
