@@ -10,6 +10,7 @@ import {
     CommanderRefreshModule,
     CommanderScraperModule,
     CommanderUsersModule,
+    getEnvFingerprintTextUrl,
     LogExceptionFilter,
     MasterModule,
     MasterService,
@@ -406,7 +407,7 @@ export function testConnectors(
                             jest.it(
                                 'should get a response without proxy',
                                 async() => {
-                                    const res = await instance.get('https://fingerprint.scrapoxy.io/api/text');
+                                    const res = await instance.get(getEnvFingerprintTextUrl());
 
                                     jest.expect(res.status)
                                         .toBe(200);
@@ -424,7 +425,7 @@ export function testConnectors(
                                 'should get different IPs with HTTP over HTTP',
                                 async() => {
                                     const res = await instance.get(
-                                        'http://fingerprint.scrapoxy.io/api/text',
+                                        getEnvFingerprintTextUrl(),
                                         {
                                             headers: {
                                                 'Proxy-Authorization': `Basic ${token}`,
@@ -456,7 +457,7 @@ export function testConnectors(
                                 'should get different IPs with HTTPS over HTTP',
                                 async() => {
                                     const res = await instance.get(
-                                        'https://fingerprint.scrapoxy.io/api/text',
+                                        getEnvFingerprintTextUrl(),
                                         {
                                             headers: {
                                                 'Proxy-Authorization': `Basic ${token}`,
@@ -498,7 +499,7 @@ export function testConnectors(
 
                                     try {
                                         const res = await instance.get(
-                                            'https://fingerprint.scrapoxy.io/api/text',
+                                            getEnvFingerprintTextUrl(),
                                             {
                                                 httpsAgent,
                                             }
@@ -538,7 +539,7 @@ export function testConnectors(
 
                                     try {
                                         const res = await instance.get(
-                                            'https://fingerprint.scrapoxy.io/api/text',
+                                            getEnvFingerprintTextUrl(),
                                             {
                                                 httpsAgent,
                                             }

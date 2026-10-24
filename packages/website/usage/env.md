@@ -48,10 +48,11 @@ To start ProxyHerd, it is mandatory to set the secrets `BACKEND_JWT_SECRET` and 
 
 ### Fingerprint
 
-- `FINGERPRINT_URL` : URL of your ProxyHerd fingerprint service, for example `https://fingerprint.example.com/api/json`. **Required**: there is no default, because the service must be reachable from the public internet through your proxies. See the fingerprint deployment guide.
+- `FINGERPRINT_URL` : URL of your ProxyHerd fingerprint service, for example `https://fingerprint.example.com/api/json`. **Required**: there is no default, because the service must be reachable from the public internet through your proxies. See the [fingerprint service](/deployment/fingerprint) page.
 - `FINGERPRINT_FOLLOW_REDIRECT_MAX` : Max number of HTTP redirects allowed when requesting the fingerprint server. The default value is `3`.
 - `FINGERPRINT_RETRY_MAX` : Maximum retries before stating a proxy or freeproxy are inaccessible. The default value is `2`.
 - `FINGERPRINT_TIMEOUT` : Timeout in milliseconds of request when requesting the fingerprint server. The default value is `5000` (5 seconds).
+- `FINGERPRINT_SEND_STATS` : Also send the installation id and traffic counters with every check, for your own service's logs. The default value is `false`.
 
 
 ### Man-in-the-middle

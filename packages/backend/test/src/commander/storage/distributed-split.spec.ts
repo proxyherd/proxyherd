@@ -111,7 +111,10 @@ async function createApi(
                 url: datacenterLocalApp.url,
             }),
             CommanderEventsModule.forRoot(),
-            CommanderFrontendModule.forRoot(fingerprintUrl),
+            CommanderFrontendModule.forRoot(
+                VERSION_TEST,
+                fingerprintUrl
+            ),
             CommanderMasterModule.forRoot(),
             CommanderRefreshModule.forRootFromEnv(),
             CommanderScraperModule,

@@ -1,5 +1,9 @@
 # Single instance with file storage Deployment
 
+::: warning FINGERPRINT_URL is required
+ProxyHerd refuses to start without `FINGERPRINT_URL`, the address of your [fingerprint service](fingerprint). Add `-e FINGERPRINT_URL=https://fingerprint.example.com/api/json` to the commands below, or the equivalent in Compose or Helm (`fingerprintUrl`).
+:::
+
 This deployment runs a single container that encapsulates all components, including the storage, within a single file.
 
 

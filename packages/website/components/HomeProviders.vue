@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import {withBase} from "vitepress";
 import {VPSponsors} from "vitepress/theme";
 
 export interface IProviders {
@@ -19,7 +20,13 @@ interface IProps {
     data: IProviders[]
 }
 
-defineProps<IProps>();
+const props = defineProps<IProps>();
+
+// Logo paths are site-absolute; prefix them with the deployment base (the theme grid does not).
+const data = props.data.map((tier) => ({
+    ...tier,
+    items: tier.items.map((item) => ({...item, img: withBase(item.img)})),
+}));
 </script>
 
 <template>

@@ -88,6 +88,8 @@ spec:
                     env:
                         - name: NODE_ENV
                           value: "production"
+                        - name: FINGERPRINT_URL
+                          value: {{ required "fingerprintUrl is required (address of your fingerprint service)" .Values.fingerprintUrl | quote }}
                         - name: COMMANDER_PORT
                           value: "{{ .Values.commander.port }}"
 {{- with .Values.auth.local }}

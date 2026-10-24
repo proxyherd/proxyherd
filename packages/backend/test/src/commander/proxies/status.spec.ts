@@ -15,6 +15,7 @@ import {
     CommanderApp,
     MasterApp,
     TestServers,
+    VERSION_TEST,
     waitFor,
 } from '@proxyherd/backend-test-sdk';
 import {
@@ -72,7 +73,10 @@ describe(
                         test: true,
                     }),
                     CommanderEventsModule.forRoot(),
-                    CommanderFrontendModule.forRoot(servers.urlFingerprint),
+                    CommanderFrontendModule.forRoot(
+                        VERSION_TEST,
+                        servers.urlFingerprint
+                    ),
                     CommanderMasterModule.forRoot(),
                     CommanderRefreshModule.forRoot(getEnvCommanderRefreshModuleConfig()),
                     CommanderScraperModule,

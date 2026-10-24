@@ -15,10 +15,7 @@ import {
     ScrapoxyExpressAdapter,
     SUBSCRIPTION_LOCAL_DEFAULTS,
 } from '@proxyherd/backend-sdk';
-import {
-    capitalize,
-    ONE_MINUTE_IN_MS,
-} from '@proxyherd/common';
+import { ONE_MINUTE_IN_MS } from '@proxyherd/common';
 import { sigstop } from '@proxyherd/proxy-sdk';
 import {
     Command,
@@ -189,7 +186,7 @@ async function command(
     }
 
     const swaggerConfig = new DocumentBuilder()
-        .setTitle(capitalize(config.package.name))
+        .setTitle('ProxyHerd')
         .setVersion(config.package.version)
         .setDescription(config.package.description)
         .addBasicAuth()
@@ -262,7 +259,7 @@ export function addCommand(
                 isDefault: true,
             }
         )
-        .description(`Start ${capitalize(pkg.name)}`)
+        .description('Start ProxyHerd')
         .addOption(new Option(
             '-s, --standalone',
             'Run as a standalone instance'

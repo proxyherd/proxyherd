@@ -1,0 +1,33 @@
+{
+    "name": "@proxyherd/fingerprint",
+    "description": "ProxyHerd fingerprint service: tells a proxy manager whether a proxy is online and where it is (IP, network, location) from a local GeoIP database. Self-hosted; nothing leaves your infrastructure.",
+    "author": {
+        "name": "ProxyHerd maintainers",
+        "url": "https://github.com/proxyherd"
+    },
+    "url": "https://github.com/proxyherd/proxyherd",
+    "homepage": "https://proxyherd.github.io/proxyherd/",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/proxyherd/proxyherd"
+    },
+    "license": "MIT",
+    "scripts": {
+    },
+    "dependencies": {
+        "@nestjs/common": "~10.2.0",
+        "@nestjs/core": "~10.2.0",
+        "@nestjs/platform-express": "~10.2.0",
+        "maxmind": "~5.0.0",
+        "reflect-metadata": "~0.1.0",
+        "rxjs": "~7.8.0",
+        "tslib": "^2.3.0"
+    },
+    "engines": {
+        "node": ">= 20",
+        "npm": ">= 8"
+    },
+    "bin": {
+        "proxyherd-fingerprint": "fingerprint.js"
+    }
+}

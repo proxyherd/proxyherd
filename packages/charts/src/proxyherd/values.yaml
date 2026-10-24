@@ -1,3 +1,6 @@
+# Address of your fingerprint service (required): https://proxyherd.github.io/proxyherd/deployment/fingerprint
+fingerprintUrl: ""
+
 image:
     repository: ghcr.io/proxyherd/proxyherd
     tag: latest

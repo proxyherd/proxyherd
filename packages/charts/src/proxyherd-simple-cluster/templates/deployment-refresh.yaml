@@ -77,6 +77,8 @@ spec:
                     env:
                         -   name: NODE_ENV
                             value: "production"
+                        -   name: FINGERPRINT_URL
+                            value: {{ required "fingerprintUrl is required (address of your fingerprint service)" .Values.fingerprintUrl | quote }}
                         -   name: COMMANDER_URL
                             value: "http://{{ .Release.Name }}-commander:{{ .Values.commander.port }}/api"
                         -   name: BACKEND_JWT_SECRET

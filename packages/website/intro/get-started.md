@@ -1,5 +1,9 @@
 # Get Started
 
+::: warning FINGERPRINT_URL is required
+ProxyHerd refuses to start without `FINGERPRINT_URL`, the address of your [fingerprint service](/deployment/fingerprint). Add `-e FINGERPRINT_URL=https://fingerprint.example.com/api/json` to the commands below, or the equivalent in Compose or Helm (`fingerprintUrl`).
+:::
+
 ## With Docker
 
 Ensure that [Docker](https://www.docker.com) is installed on your computer.

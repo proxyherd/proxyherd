@@ -27,11 +27,17 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build proxyherd
-        run: npx nx build backend-app --skip-nx-cache --configuration production
+      - name: Build proxyherd and the fingerprint service
+        run: npx nx run-many --target=build --projects=backend-app,fingerprint-app --skip-nx-cache --configuration production
 
-      - name: Publish to npm
+      - name: Publish proxyherd to npm
         working-directory: dist/proxyherd
+        run: npm publish --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish @proxyherd/fingerprint to npm
+        working-directory: dist/fingerprint
         run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -49,7 +55,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Docker meta
+      - name: Docker meta (proxyherd)
         id: meta
         uses: docker/metadata-action@v5
         with:
@@ -59,7 +65,7 @@ jobs:
             type=pep440,pattern={{major}}.{{minor}}.{{patch}}
             type=raw,value=latest
 
-      - name: Build and push
+      - name: Build and push (proxyherd)
         uses: docker/build-push-action@v5
         with:
           context: .
@@ -68,6 +74,26 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Docker meta (fingerprint)
+        id: meta_fingerprint
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/proxyherd/fingerprint
+          tags: |
+            type=pep440,pattern={{major}}.{{minor}}
+            type=pep440,pattern={{major}}.{{minor}}.{{patch}}
+            type=raw,value=latest
+
+      - name: Build and push (fingerprint)
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: packages/fingerprint/app/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ${{ steps.meta_fingerprint.outputs.tags }}
+          labels: ${{ steps.meta_fingerprint.outputs.labels }}
 
       - name: GitHub Release
         uses: softprops/action-gh-release@v2

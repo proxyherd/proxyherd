@@ -19,7 +19,7 @@ export default defineConfig({
     base: '/proxyherd/',
 
     head: [
-        ['link', {rel: 'icon', type: 'image/svg+xml', href: iconUrl}],
+        ['link', {rel: 'icon', type: 'image/svg+xml', href: `/proxyherd${iconUrl}`}],
         ['meta', {property: 'og:type', content: 'website'}],
         ['meta', {property: 'og:title', content: title}],
         ['meta', {property: 'og:image', content: `${url}/assets/images/proxyherd-og.png`}],
@@ -84,6 +84,7 @@ export default defineConfig({
                 items: [
                     {text: 'Single Instance', link: 'single-instance'},
                     {text: 'Simple Cluster', link: 'simple-cluster'},
+                    {text: 'Fingerprint service', link: 'fingerprint'},
                 ]
             },
             {

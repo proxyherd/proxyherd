@@ -48,7 +48,7 @@ function askFingerprintLoop(
     switch (mode) {
         case 0: {
             requestPromise = axios.get(
-                'https://fingerprint.scrapoxy.io/api/text',
+                (process.env.FINGERPRINT_URL ?? '').replace('/api/json', '/api/text'),
                 {
                     proxy,
                     headers: {
@@ -77,7 +77,7 @@ function askFingerprintLoop(
 
         case 1: {
             requestPromise = axios.get(
-                'https://fingerprint.scrapoxy.io/api/text',
+                (process.env.FINGERPRINT_URL ?? '').replace('/api/json', '/api/text'),
                 {
                     proxy,
                     headers: {
@@ -118,7 +118,7 @@ function askFingerprintLoop(
             };
 
             requestPromise = axios.get(
-                'https://fingerprint.scrapoxy.io/api/text',
+                (process.env.FINGERPRINT_URL ?? '').replace('/api/json', '/api/text'),
                 {
                     httpsAgent,
                     validateStatus: (statusCode) => statusCode === 200,

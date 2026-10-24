@@ -24,7 +24,10 @@ import {
 } from '@proxyherd/backend-sdk';
 import { EventsService } from '@proxyherd/common';
 import { CommanderUsersClient } from '../commander-users-client';
-import { USERAGENT_TEST } from '../info';
+import {
+    USERAGENT_TEST,
+    VERSION_TEST, 
+} from '../info';
 import { buildStorageModules } from '../storageproviders.helpers';
 import type {
     DynamicModule,
@@ -68,7 +71,10 @@ export class CommanderApp {
         );
 
         if (options.fingerprintUrl) {
-            options.imports.push(CommanderFrontendModule.forRoot(options.fingerprintUrl));
+            options.imports.push(CommanderFrontendModule.forRoot(
+                VERSION_TEST,
+                options.fingerprintUrl
+            ));
         }
 
         return new CommanderApp(options);
