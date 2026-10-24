@@ -1,12 +1,17 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-# Git leaks
-gitleaks protect --verbose --redact --staged
+# Git leaks: scan the staged changes for secrets.
+# Install with `brew install gitleaks` or from https://github.com/gitleaks/gitleaks/releases
+if command -v gitleaks >/dev/null 2>&1; then
+    gitleaks protect --verbose --redact --staged
+else
+    echo "pre-commit: gitleaks is not installed, skipping the secret scan (CI runs it on every pull request)" >&2
+fi
 
 # Update versions
 node .husky/version.js
-git add package-lock.json
+git add package-lock.json packages/python-api/src/setup.py
 
 # Lint-staged
 npx lint-staged --concurrent false --relative

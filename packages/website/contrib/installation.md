@@ -23,7 +23,7 @@ ProxyHerd requires:
 Clone the repository:
 
 ```shell
-git clone git@github.com:ghcr.io/proxyherd/proxyherd.git
+git clone git@github.com:proxyherd/proxyherd.git
 
 cd proxyherd
 ```
@@ -57,16 +57,18 @@ Install Node.js dependencies:
 npm install
 ```
 
-## Update test configuration
+## Test configuration
 
-In the folder `packages/backend/test/src/assets`, open the files:
-- `storage-file.env`, 
-- `storage-memory.env` 
-- `storage-distributed.env`
+The test files in `packages/backend/test/src/assets` (`storage-file.env`, `storage-memory.env`, `storage-distributed.env`)
+run the language samples with `python3` and `java` taken from your `PATH`. The Python sample needs the
+`requests` package:
 
-And update the following values:
-- `PYTHON`: path to Python executable
-- `JAVA`: path to Java executable
+```shell
+python3 -m pip install requests
+```
+
+To use other executables, set `PYTHON` and `JAVA` in your shell before running the tests; variables that
+already exist are not overwritten by the env file.
 
 
 ## Build the project
