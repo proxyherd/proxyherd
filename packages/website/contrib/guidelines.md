@@ -25,6 +25,9 @@ The following rules should be followed:
 The pre-commit hook runs [gitleaks](https://github.com/gitleaks/gitleaks), the linter on staged files and commitlint.
 Install gitleaks first (`brew install gitleaks` on macOS, or see its releases page).
 
+Every pull request runs the CI workflow (`.github/workflows/ci.yml`): commit message check, linter, build,
+the whole test suite and a gitleaks scan of the new commits. A pull request is merged only when all of them pass.
+
 
 ## Connectors
 

@@ -1,0 +1,78 @@
+name: Python client
+
+# Pushing a release tag publishes packages/python-api to PyPI through trusted
+# publishing (no token; PyPI must list this repository, this workflow file and
+# the environment "pypi" as a trusted publisher of the project "proxyherd").
+# Running the workflow by hand only builds and checks the distribution.
+on:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Use Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install build tools
+        run: python -m pip install --quiet --upgrade build twine
+
+      - name: Check that the tag matches setup.py
+        if: github.ref_type == 'tag'
+        working-directory: packages/python-api/src
+        run: |
+          version="$(sed -nE "s/^ *version='([^']+)'.*/\1/p" setup.py)"
+          if [ "$version" != "$GITHUB_REF_NAME" ]; then
+            echo "setup.py is at $version but the tag is $GITHUB_REF_NAME" >&2
+            exit 1
+          fi
+
+      - name: Build the distribution
+        working-directory: packages/python-api/src
+        run: python -m build --outdir "$GITHUB_WORKSPACE/dist/python-api"
+
+      - name: Check the distribution
+        run: python -m twine check dist/python-api/*
+
+      - name: Upload the distribution
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-api
+          path: dist/python-api
+          if-no-files-found: error
+
+  publish:
+    name: Publish to PyPI
+    needs: build
+    if: github.ref_type == 'tag'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: pypi
+      url: https://pypi.org/project/proxyherd/
+    permissions:
+      id-token: write
+    steps:
+      - name: Download the distribution
+        uses: actions/download-artifact@v4
+        with:
+          name: python-api
+          path: dist/python-api
+
+      - name: Publish
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist/python-api

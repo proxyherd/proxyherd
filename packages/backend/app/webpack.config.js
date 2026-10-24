@@ -1,16 +1,15 @@
 const {promises: fs} = require('fs');
 const {composePlugins, withNx} = require('@nx/webpack');
-const {BannerPlugin} = require('webpack');
 const {relative} = require('path')
 
 
 module.exports = composePlugins(withNx(), (config) => {
-    // Add shebang to the proxyherd.js file
-    config.plugins.push(new BannerPlugin({banner: "#!/usr/bin/env node", raw: true}));
-
-    // Make the proxyherd.js file executable
     config.plugins.push({
         apply: (compiler) => {
+            // Add shebang to the proxyherd.js file (taken from the compiler so that
+            // webpack itself is not recorded as a dependency of the published package)
+            new compiler.webpack.BannerPlugin({banner: "#!/usr/bin/env node", raw: true}).apply(compiler);
+
             compiler.hooks.afterEmit.tapPromise('AfterEmitPlugin', async () => {
                 // Add the version from the root package.json to the dist package.json
                 const packageJsonRoot = JSON.parse(await fs.readFile('package.json'));

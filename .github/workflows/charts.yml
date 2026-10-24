@@ -1,5 +1,7 @@
 name: Helm Charts
 
+# Pushing a release tag publishes both charts to oci://ghcr.io/proxyherd/charts.
+# Running the workflow by hand only lints and packages them.
 on:
   push:
     tags:
@@ -13,6 +15,7 @@ permissions:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
@@ -20,17 +23,27 @@ jobs:
       - name: Install Helm
         uses: azure/setup-helm@v4
 
+      - name: Lint charts
+        run: |
+          for chart in proxyherd proxyherd-simple-cluster; do
+            helm lint "packages/charts/src/$chart" --strict --values "packages/charts/src/$chart/ci/lint-values.yaml"
+            helm template lint "packages/charts/src/$chart" --values "packages/charts/src/$chart/ci/lint-values.yaml" > /dev/null
+          done
+
       - name: Package charts
         run: |
           rm -Rf dist/charts
           mkdir -p dist/charts
           helm package packages/charts/src/proxyherd -d dist/charts
           helm package packages/charts/src/proxyherd-simple-cluster -d dist/charts
+          ls -l dist/charts
 
       - name: Login to GitHub Container Registry
+        if: github.ref_type == 'tag'
         run: echo "${{ secrets.GITHUB_TOKEN }}" | helm registry login ghcr.io --username "${{ github.actor }}" --password-stdin
 
       - name: Push charts as OCI artifacts
+        if: github.ref_type == 'tag'
         run: |
           for chart in dist/charts/*.tgz; do
             helm push "$chart" oci://ghcr.io/proxyherd/charts

@@ -21,3 +21,5 @@
 .idea/
 *.tmproj
 .vscode/
+# Lint values used by CI
+ci/
