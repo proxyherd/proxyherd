@@ -106,10 +106,10 @@ Limits of this variant:
   city accuracy depends on Cloudflare's data.
 - The free plan allows **100,000 requests per day** for all your Workers
   together; past that, requests fail until the next day and your proxies are
-  marked offline. ProxyHerd issues far more checks than people expect (see
-  Sizing): at default settings the free plan covers only a handful of proxies.
-  Raise `PROXY_REFRESH_DELAY` and `FREEPROXY_REFRESH_DELAY`, or use the paid
-  Workers plan, or run the Docker service.
+  marked offline. At the default one-minute check interval the free plan
+  covers about 60 proxies plus pool entries (see Sizing); shorter
+  `PROXY_REFRESH_DELAY` / `FREEPROXY_REFRESH_DELAY` values reduce that quickly.
+  Beyond that, use the paid Workers plan or run the Docker service.
 - To update the Worker after a new ProxyHerd release, pull the repository and
   run `npx wrangler deploy` again.
 
@@ -125,33 +125,34 @@ GEOIP_DIR=/var/lib/proxyherd/geoip proxyherd-fingerprint
 ## Sizing and proxy traffic
 
 ProxyHerd checks every proxy again and again: the refresh loop takes the proxies
-whose last check is older than `PROXY_REFRESH_DELAY` (default 1 second),
-fetches the fingerprint through each of them, and starts over. A check through
-a proxy takes a few seconds, so in practice **each proxy is checked about every
-5 to 10 seconds** at the default setting, and entries of a Proxy List pool are
-checked on the same rhythm through `FREEPROXY_REFRESH_DELAY` (also 1 second).
+whose last check is older than `PROXY_REFRESH_DELAY`, fetches the fingerprint
+through each of them, and starts over. The default is **one minute**, and
+entries of a Proxy List pool follow `FREEPROXY_REFRESH_DELAY`, also one minute.
+Scrapoxy and ProxyHerd 1.0.0 used one second, which meant a check through every
+proxy every 5 to 10 seconds; set the variables to `1000` if you want that back.
 
 Measured on a 1.0.0 installation with 50 proxies from a Proxy List connector
-(50 running proxies plus the 50 pool entries), default settings: about **1,000
-requests per minute**, that is 1.4 million requests per day, or roughly 14,000
-checks per proxy per day.
+(50 running proxies plus the 50 pool entries) at the former one-second delay:
+about **1,000 requests per minute**, that is 1.4 million requests per day, or
+roughly 14,000 checks per proxy per day. At the one-minute default the same
+installation makes about 1,400 checks per proxy per day.
 
 Consequences:
 
-- **Service capacity.** The Docker service handles this load on the smallest
-  machine; it answers from memory. The Cloudflare free plan does not: 100,000
-  requests per day is about 6 proxies at default settings. With
-  `PROXY_REFRESH_DELAY=60000` and `FREEPROXY_REFRESH_DELAY=60000` a proxy costs
-  about 1,400 checks per day, so the free plan covers about 60 proxies plus pool
-  entries. The paid Workers plan removes the limit.
+- **Service capacity.** The Docker service handles any of this on the smallest
+  machine; it answers from memory. The Cloudflare free plan allows 100,000
+  requests per day: about 60 proxies plus pool entries at the one-minute
+  default, about 6 at a one-second delay. The paid Workers plan removes the
+  limit.
 - **Proxy bandwidth.** Every check goes through the proxy. Over HTTPS each one
   pays a TLS handshake, several kilobytes; over plain HTTP a check is about one
   kilobyte in total. If your proxies are billed per gigabyte, point
-  `FINGERPRINT_URL` at an `http://` address and raise the two delays. The
-  fingerprint answer carries nothing confidential.
+  `FINGERPRINT_URL` at an `http://` address and, if needed, raise the two delays
+  further. The fingerprint answer carries nothing confidential.
 - **Detection speed.** A longer delay means a dead proxy is noticed later. One
-  minute is a reasonable compromise for paid, stable proxies; keep the default
-  for free proxy lists, which die constantly.
+  minute is a reasonable compromise for paid, stable proxies. For free proxy
+  lists, which die constantly, lower `FREEPROXY_REFRESH_DELAY` and
+  `PROXY_REFRESH_DELAY` to a few seconds, at the price of more checks.
 
 Requests per day ≈ (proxies + pool entries) × 86,400 / (delay in seconds + about 5).
 

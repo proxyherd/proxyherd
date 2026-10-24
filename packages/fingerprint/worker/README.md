@@ -20,8 +20,9 @@ request per proxy per refresh, so size accordingly or use the Node service.
 
 Before choosing this variant read the sizing section of the documentation
 (https://proxyherd.github.io/proxyherd/deployment/fingerprint#sizing-and-proxy-traffic):
-at default settings ProxyHerd checks each proxy every few seconds, so the free
-plan's 100,000 requests per day cover only a handful of proxies unless
-`PROXY_REFRESH_DELAY` and `FREEPROXY_REFRESH_DELAY` are raised.
+ProxyHerd checks each proxy once a minute by default (about 1,400 requests per
+proxy per day), so the free plan's 100,000 requests per day cover about 60
+proxies plus pool entries; shorter `PROXY_REFRESH_DELAY` /
+`FREEPROXY_REFRESH_DELAY` values reduce that quickly.
 
 This directory is not part of the Nx build; it is deployed with wrangler only.

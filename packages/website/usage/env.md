@@ -127,7 +127,7 @@ _For RabbitMQ:_
 
 
 - `PROXY_REFRESH_COUNT` : Number of proxies to fingerprint at once. The default value is `1000`.
-- `PROXY_REFRESH_DELAY` : Delay in milliseconds before a proxy is fingerprinted again. The default value is `1000` (1 second), which means a check every few seconds per proxy; raise it to one minute (`60000`) for paid proxies or a request-limited fingerprint service, see [Sizing](/deployment/fingerprint#sizing-and-proxy-traffic).
+- `PROXY_REFRESH_DELAY` : Delay in milliseconds before a proxy is fingerprinted again. The default value is `60000` (1 minute). Scrapoxy and ProxyHerd 1.0.0 used `1000`, a check every few seconds per proxy; set it back for free proxy lists that die quickly, see [Sizing](/deployment/fingerprint#sizing-and-proxy-traffic).
 - `PROXIES_REFRESH_EMPTY_DELAY` : Delay in milliseconds to wait if there is no proxy to refresh. The default value is `1000` (1 second).
 - `PROXIES_REFRESH_ERROR_DELAY` : Delay in milliseconds to wait if proxy's refresh triggers an error. The default value is `2000` (2 seconds).
 
@@ -135,7 +135,7 @@ _For RabbitMQ:_
 ### Freeproxies
 
 - `FREEPROXY_REFRESH_COUNT` : Number of freeproxies to fingerprint at once. The default value is `5000`.
-- `FREEPROXY_REFRESH_DELAY` : Delay in milliseconds before a freeproxy of the pool is fingerprinted again. The default value is `1000` (1 second).
+- `FREEPROXY_REFRESH_DELAY` : Delay in milliseconds before a freeproxy of the pool is fingerprinted again. The default value is `60000` (1 minute); it was `1000` before 1.0.1.
 - `FREEPROXIES_REFRESH_EMPTY_DELAY` : Delay in milliseconds to wait if there is no freeproxy to refresh. The default value is `1000` (1 second).
 - `FREEPROXIES_REFRESH_ERROR_DELAY` : Delay in milliseconds to wait if freeproxy's refresh triggers an error. The default value is `2000` (2 seconds).
 

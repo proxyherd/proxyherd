@@ -66,13 +66,14 @@ ProxyHerd periodically sends requests to the fingerprint service, through each p
 connectivity and collect GEO information. If a request fails, ProxyHerd stops using that proxy.
 
 A proxy is checked again about `PROXY_REFRESH_DELAY` after its previous check finished (default
-1 second, so in practice every 5 to 10 seconds). The answer is about 600 bytes; over HTTPS the
+one minute; Scrapoxy and ProxyHerd 1.0.0 used one second, that is a check every 5 to 10 seconds).
+The answer is about 600 bytes; over HTTPS the
 TLS handshake of each check adds several kilobytes through the proxy, over plain HTTP a check is
 about one kilobyte in total.
 
-_Example:_ with the default settings, 50 proxies produce about 1,000 checks per minute, that is
-1.4 million per day; over HTTPS this is a few gigabytes of proxy traffic per day. With
-`PROXY_REFRESH_DELAY=60000` (one minute) the same proxies produce about 70,000 checks per day.
+_Example:_ at the one-minute default, 50 proxies produce about 70,000 checks per day. At a
+one-second delay the same proxies produce about 1,000 checks per minute, 1.4 million per day,
+which over HTTPS is a few gigabytes of proxy traffic per day.
 
 ```
 Checks per day ≈ (# proxies + # pool entries) × 86,400 / (PROXY_REFRESH_DELAY in seconds + 5)
