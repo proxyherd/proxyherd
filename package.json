@@ -37,12 +37,12 @@
         "@angular/platform-browser": "~17.3.12",
         "@angular/platform-browser-dynamic": "~17.3.12",
         "@angular/router": "~17.3.12",
-        "@coreui/angular": "~4.8.0",
-        "@coreui/angular-chartjs": "~4.8.0",
+        "@coreui/angular": "~4.7.20",
+        "@coreui/angular-chartjs": "~4.7.20",
         "@coreui/chartjs": "~3.1.0",
-        "@coreui/coreui": "~4.3.2",
+        "@coreui/coreui": "~4.2.6",
         "@coreui/icons": "~3.1.0",
-        "@coreui/icons-angular": "~4.8.0",
+        "@coreui/icons-angular": "~4.7.20",
         "@coreui/utils": "~2.0.0",
         "@nestjs/common": "~10.4.22",
         "@nestjs/core": "~10.4.22",
@@ -62,7 +62,7 @@
         "fast-equals": "~5.4.5",
         "joi": "~17.13.8",
         "jsonwebtoken": "~9.0.3",
-        "jsvectormap": "~1.7.0",
+        "jsvectormap": "~1.5.3",
         "maxmind": "~5.0.0",
         "medium-zoom": "~1.1.0",
         "mongodb": "~6.21.0",
@@ -85,7 +85,7 @@
         "umzug": "~3.8.3",
         "uuid": "~9.0.0",
         "xml2js": "~0.6.0",
-        "zone.js": "~0.16.3"
+        "zone.js": "~0.14.10"
     },
     "devDependencies": {
         "@angular-devkit/build-angular": "~17.3.17",
@@ -110,6 +110,7 @@
         "@scrapoxy/stylelint-config": "~1.0.0",
         "@types/chrome": "~0.3.6",
         "@types/compression": "~1.8.1",
+        "@types/cookie": "~0.6.0",
         "@types/cookie-parser": "~1.4.10",
         "@types/jest": "~29.5.0",
         "@types/node": "~20.19.43",
@@ -148,7 +149,7 @@
         "terser-webpack-plugin": "~5.6.1",
         "ts-jest": "~29.4.15",
         "ts-node": "10.9.2",
-        "typescript": "~5.9.3",
+        "typescript": "~5.3.3",
         "vitepress": "~1.6.4"
     },
     "engines": {
