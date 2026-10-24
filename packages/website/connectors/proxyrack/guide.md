@@ -10,7 +10,7 @@
 An active Proxyrack subscription is required.
 
 ::: warning
-Scrapoxy supports only `Private Unmetered Residential` proxies.
+ProxyHerd supports only `Private Unmetered Residential` proxies.
 :::
 
 
@@ -29,9 +29,9 @@ Connect to [Admin](https://member.proxyrack.com/access/member).
 4. Remember `API Key (Password)`.
 
 
-## Scrapoxy
+## ProxyHerd
 
-Open Scrapoxy User Interface and select `Marketplace`:
+Open ProxyHerd User Interface and select `Marketplace`:
 
 
 ### Step 1: Create a new credential
@@ -63,7 +63,7 @@ Complete the form with the following information:
 1. **Credential**: The previous credential;
 2. **Name**: The name of the connector;
 3. **# Proxies**: The number of instances to create;
-4. **Country**: Select the country to use, or `All` to use all countries. Scrapoxy will retrieve the available proxies count for this country;
+4. **Country**: Select the country to use, or `All` to use all countries. ProxyHerd will retrieve the available proxies count for this country;
 5. **City**: Select the city to use, or `All` to use all cities;
 6. **ISP**: Select the Internet Service Provider to use, or `All` to use all ISPs;
 7. **OS**: Select the Operating System to use, or `All` to use all OSs.

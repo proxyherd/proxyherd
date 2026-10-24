@@ -5,24 +5,24 @@ This deployment runs a single container that encapsulates all components, includ
 
 ## Docker
 
-Scrapoxy is hosted on Docker hub: [scrapoxy/scrapoxy](https://hub.docker.com/r/scrapoxy/scrapoxy/).
+ProxyHerd is hosted on Docker hub: [ghcr.io/proxyherd/proxyherd](https://hub.docker.com/r/ghcr.io/proxyherd/proxyherd/).
 
 
 ### Volume
 
-Start Scrapoxy with a volume for the configuration file:
+Start ProxyHerd with a volume for the configuration file:
 
 ```shell
 docker run -d -p 8888:8888 -p 8890:8890 \
   -e AUTH_LOCAL_USERNAME=admin -e AUTH_LOCAL_PASSWORD=password \
   -e BACKEND_JWT_SECRET=secret1 -e FRONTEND_JWT_SECRET=secret2 \
-  -e STORAGE_FILE_FILENAME=/etc/scrapoxy/config.json \
-  -v ./scrapoxy:/etc/scrapoxy \
-  scrapoxy/scrapoxy
+  -e STORAGE_FILE_FILENAME=/etc/proxyherd/config.json \
+  -v ./proxyherd:/etc/proxyherd \
+  ghcr.io/proxyherd/proxyherd
 ```
 
 :::info
-The file `./scrapoxy/config.json` contains the configuration on the host machine.
+The file `./proxyherd/config.json` contains the configuration on the host machine.
 :::
 
 
@@ -35,7 +35,7 @@ docker run -d -p 8888:8888 -p 8890:8890 \
   -e AUTH_LOCAL_USERNAME=admin -e AUTH_LOCAL_PASSWORD=password \
   -e BACKEND_JWT_SECRET=secret1 -e FRONTEND_JWT_SECRET=secret2 \
   -e NODE_ENV=production \
-  scrapoxy/scrapoxy
+  ghcr.io/proxyherd/proxyherd
 ```
 
 
@@ -47,8 +47,8 @@ Edit `docker-compose.yml` with the following content:
 version: '3'
 
 services:
-  scrapoxy:
-    image: scrapoxy/scrapoxy
+  proxyherd:
+    image: ghcr.io/proxyherd/proxyherd
     ports:
       - 8888:8888
       - 8890:8890
@@ -58,9 +58,9 @@ services:
       - AUTH_LOCAL_PASSWORD=password
       - BACKEND_JWT_SECRET=secret1
       - FRONTEND_JWT_SECRET=secret2
-      - STORAGE_FILE_FILENAME=/etc/scrapoxy/config.json
+      - STORAGE_FILE_FILENAME=/etc/proxyherd/config.json
     volumes:
-      - ./scrapoxy:/etc/scrapoxy
+      - ./proxyherd:/etc/proxyherd
 ```
 
 Run the following command:
@@ -75,7 +75,7 @@ docker compose up -d
 Create an umbrella chart with Helm with the following files structure:
 
 ```
-myscrapoxy/
+myproxyherd/
 |- Chart.yaml
 |- values.yaml
 ```
@@ -84,21 +84,21 @@ Edit `Chart.yaml` with the following content:
 
 ```yaml
 apiVersion: v2
-name: scrapoxy
-description: Scrapoxy Single Instance
+name: proxyherd
+description: ProxyHerd Single Instance
 type: application
 version: 1.0.0
 appVersion: latest
 dependencies:
-    -   name: scrapoxy
+    -   name: proxyherd
         version: 1.0.0
-        repository: https://charts.scrapoxy.io
+        repository: oci://ghcr.io/proxyherd/charts
 ```
 
 Edit `values.yaml` with the following content:
 
 ```yaml
-scrapoxy:
+proxyherd:
     auth:
         local:
             username: "admin"
@@ -111,11 +111,11 @@ scrapoxy:
 Build dependencies:
 
 ```shell
-helm dependency build ./myscrapoxy
+helm dependency build ./myproxyherd
 ```
 
 Install the chart:
 
 ```shell
-helm install scrapoxy ./myscrapoxy
+helm install proxyherd ./myproxyherd
 ```

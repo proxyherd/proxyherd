@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-label="ProxyHerd">
+  <title>ProxyHerd</title>
+  <!-- Transparent background, for light surfaces. -->
+  <g stroke="#1F7A5C" stroke-opacity="0.38" stroke-width="7" stroke-linecap="round">
+    <line x1="108" y1="92" x2="176" y2="128"/>
+    <line x1="108" y1="164" x2="176" y2="128"/>
+    <line x1="58" y1="74" x2="108" y2="92"/>
+    <line x1="58" y1="128" x2="108" y2="92"/>
+    <line x1="58" y1="128" x2="108" y2="164"/>
+    <line x1="58" y1="182" x2="108" y2="164"/>
+  </g>
+  <g fill="#1F7A5C">
+    <circle cx="58" cy="74" r="17"/>
+    <circle cx="58" cy="128" r="17"/>
+    <circle cx="58" cy="182" r="17"/>
+    <circle cx="108" cy="92" r="24"/>
+    <circle cx="108" cy="164" r="24"/>
+  </g>
+  <circle cx="176" cy="128" r="36" fill="#F5B041"/>
+</svg>

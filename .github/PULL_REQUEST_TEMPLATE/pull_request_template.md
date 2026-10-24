@@ -14,9 +14,9 @@ Please ensure your pull request includes the following details:
 - Include relevant context to help contributors and users understand the purpose of the modifications.
 
 
-## Contribution Agreement
+## Developer Certificate of Origin
 
-- [ ] I agree with the [contribution guidelines](https://www.scrapoxy.io/contrib/guidelines) and [contributor license](https://www.scrapoxy.io/contrib/licence).
+- [ ] Every commit is signed off (`git commit -s`), certifying the [Developer Certificate of Origin](https://proxyherd.github.io/proxyherd/contrib/licence), and I have read the [contribution guidelines](https://proxyherd.github.io/proxyherd/contrib/guidelines).
 
 
 ## Type of Change
@@ -40,5 +40,5 @@ Please provide details of the tests conducted to verify your changes. Include in
 
 **Test Configuration**:
 
-* Scrapoxy Version:
+* ProxyHerd Version:
 * OS:

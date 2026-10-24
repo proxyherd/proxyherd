@@ -3,9 +3,9 @@
 A _Proxy List_ is a specific type of connector designed to manage a manual list of proxies. 
 Users have the flexibility to either utilize their own private proxies or incorporate a list of public proxies available on the Internet.
 
-Scrapoxy supports HTTP/HTTPS proxies and SOCKS4/SOCKS5 proxies.
+ProxyHerd supports HTTP/HTTPS proxies and SOCKS4/SOCKS5 proxies.
 
-Check out this [video](https://www.youtube.com/watch?v=Uw_xEvIMleY) from [ProxyScrape](https://proxyscrape.com?ref=odgynzc):
+Check out this [video](https://www.youtube.com/watch?v=Uw_xEvIMleY) from [ProxyScrape](https://proxyscrape.com):
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Uw_xEvIMleY?si=Pwx1QOzc6W4erU1w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
@@ -13,12 +13,11 @@ Or this [video](https://www.youtube.com/watch?v=Dk1c6FETufg) from [Proxy-Sale](h
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Dk1c6FETufg?si=1EO3-S0jruFiUQKK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-Additionally, read this [insightful article](https://proxyscrape.com/blog/scrapoxy-the-ultimate-tool-for-unrestricted-web-scraping?ref=odgynzc) from ProxyScrape.
 
 For instance, public proxies can be obtained from:
-- [ProxyScrape](https://proxyscrape.com/free-proxy-list?ref=odgynzc)
+- [ProxyScrape](https://proxyscrape.com/free-proxy-list)
 - [Spys One](https://spys.one)
-- [IPRoyal](https://iproyal.com/free-proxy-list?r=432273)
+- [IPRoyal](https://iproyal.com/free-proxy-list)
 - [Free Proxy CZ](http://free-proxy.cz)
 - [Free Proxy World](https://www.freeproxy.world)
 - [Proxy List Download](https://www.proxy-list.download)
@@ -26,16 +25,16 @@ For instance, public proxies can be obtained from:
 - [ProxyDB.net](https://proxydb.net)
 - ...
 
-Feel free to reach out to me on [Discord](https://discord.gg/ktNGGwZnUD) if you'd like to contribute and add your proxy list.
+Open a [discussion](https://github.com/proxyherd/proxyherd/discussions) if you would like to contribute and add your proxy list.
 
 ::: warning
 Please note that using this connector with Pay-Per-GB subscriptions
 without proper configuration can lead to substantial costs.
 :::
 
-## Scrapoxy
+## ProxyHerd
 
-Open Scrapoxy User Interface and select `Marketplace`:
+Open ProxyHerd User Interface and select `Marketplace`:
 
 
 ### Step 1: Create a new credential
@@ -55,7 +54,7 @@ And click on `Create`.
 
 ::: info
 This credential is a holder for the proxy list connector
-because Scrapoxy always needs a credential to create a connector.
+because ProxyHerd always needs a credential to create a connector.
 :::
 
 
@@ -95,11 +94,11 @@ On the connector, click on `Update`.
 
 Here is a good URL example from [ProxyScrape](https://api.proxyscrape.com/v3/free-proxy-list/get?request=displayproxies&proxy_format=protocolipport&format=text).
 The URL must return a list of proxies, one per line. 
-Scrapoxy will automatically fetch the list of proxies from the URL and update the connector.
+ProxyHerd will automatically fetch the list of proxies from the URL and update the connector.
 
 ::: info
 It is recommended to activate `Freeproxies Kick` to curate offline proxies from the freeproxies pool.
-Proxies will be added again when Scrapoxy fetches the list from the URL.
+Proxies will be added again when ProxyHerd fetches the list from the URL.
 :::
 
 ### Step 4: Add manually some proxies
@@ -108,7 +107,7 @@ Proxies will be added again when Scrapoxy fetches the list from the URL.
 
 Copy / Paste a list of proxies in the textarea.
 
-Scrapoxy supports theses formats:
+ProxyHerd supports theses formats:
 - `ip:port`
 - `ip:port:username:password`
 - `http://ip:port`
@@ -126,7 +125,7 @@ Scrapoxy supports theses formats:
 
 ![Connector Proxies Manage](spx_connector_proxies_manage.png)
 
-Scrapoxy will assess the availability of proxies and retain only those
+ProxyHerd will assess the availability of proxies and retain only those
 that are currently accessible for the connector.
 
 The provided buttons offer the following functionalities:

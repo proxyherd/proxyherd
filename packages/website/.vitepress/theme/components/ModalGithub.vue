@@ -33,11 +33,11 @@ function close() {
         <Transition name="modal">
             <div v-show="showModal" class="modal-mask">
                 <div class="modal-container">
-                    <p>Hi! Scrapoxy is <b>free</b> and <b>open-source</b>.</p>
+                    <p>Hi! ProxyHerd is <b>free</b> and <b>open-source</b>.</p>
                     <p>Your support would mean a lot, just adding a <b>GitHub star 🌟</b> would be awesome!</p>
                     <a class="link"
                        target="_blank"
-                       href="https://github.com/scrapoxy/scrapoxy">https://github.com/scrapoxy/scrapoxy</a>
+                       href="https://github.com/ghcr.io/proxyherd/proxyherd">https://github.com/ghcr.io/proxyherd/proxyherd</a>
                     <p>Thank you! 🙏</p>
                     <p class="signature">Fabien</p>
                     <div class="model-footer">

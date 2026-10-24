@@ -2,7 +2,7 @@
 
 ![Rayobyte](/assets/images/rayobyte.svg){width=230 nozoom}
 
-[Rayobyte](https://billing.rayobyte.com/hosting/aff.php?aff=2444&redirectTo=https://rayobyte.com) is an US platform that provides diverse and rotating residential, datacenter, and mobile proxies.
+[Rayobyte](https://rayobyte.com) is an US platform that provides diverse and rotating residential, datacenter, and mobile proxies.
 
 
 ## Prerequisites
@@ -12,7 +12,7 @@ An active Rayobyte subscription is required.
 
 ## Rayobyte Dashboard
 
-Connect to [Dashboard](https://billing.rayobyte.com/hosting/aff.php?aff=2444&redirectTo=https://rayobyte.com/proxy/dashboard).
+Connect to [Dashboard](https://rayobyte.com/proxy/dashboard).
 
 
 ### Get the credentials
@@ -37,9 +37,9 @@ Choose 'Username / Password' as Authorization Type.
 3. Remember the `API Key`.
 
 
-## Scrapoxy
+## ProxyHerd
 
-Open Scrapoxy User Interface and select `Marketplace`:
+Open ProxyHerd User Interface and select `Marketplace`:
 
 
 ### Step 1: Create a new credential

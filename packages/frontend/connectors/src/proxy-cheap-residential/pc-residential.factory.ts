@@ -28,7 +28,7 @@ export class ConnectorProxyCheapResidentialFactory implements IConnectorFactory 
        coupon: null,
        defaultCredentialName: 'Proxy-Cheap Residential Credential',
        defaultConnectorName: 'Proxy-Cheap Residential Connector',
-       url: 'https://app.proxy-cheap.com/r/lt6xyT',
+       url: 'https://www.proxy-cheap.com',
        type: EConnectorType.DynamicIP,
        canInstall: false,
        canUninstall: false,

@@ -2,7 +2,7 @@
 
 ![Live Proxies](/assets/images/liveproxies.svg){width=230 nozoom}
 
-[Live Proxies](https://liveproxies.io/aff/pv5i8f8) provides top notch private residential proxies tailored to businesses and individuals.
+[Live Proxies](https://liveproxies.io) provides top notch private residential proxies tailored to businesses and individuals.
 
 
 ## Prerequisites
@@ -12,7 +12,7 @@ An active Live Proxies subscription is required.
 
 ## Live Proxies Dashboard
 
-Connect to [Dashboard](https://liveproxies.io/dashboard/overview?aff=pv5i8f8).
+Connect to [Dashboard](https://liveproxies.io/dashboard/overview).
 
 
 ### Get the credentials
@@ -24,9 +24,9 @@ Connect to [Dashboard](https://liveproxies.io/dashboard/overview?aff=pv5i8f8).
 3. Click on `Copy` to save the key in the clipboard.
 
 
-## Scrapoxy
+## ProxyHerd
 
-Open Scrapoxy User Interface and select `Marketplace`:
+Open ProxyHerd User Interface and select `Marketplace`:
 
 
 ### Step 1: Create a new credential

@@ -5,14 +5,20 @@ except ImportError:
 
 
 setup(
-    name='scrapoxy',
+    name='proxyherd',
     packages=find_packages(),
     install_requires=[],
-    version='2.0.4',
-    description='Python API for Scrapoxy',
-    author='Fabien Vauchelles',
-    author_email='fabien@vauchelles.com',
-    url='https://github.com/scrapoxy/scrapoxy',
-    keywords=['crawler', 'crawling', 'scrapoxy', 'scrapy', 'scraper', 'scraping', 'webscraping', 'proxy'],
-    classifiers=[],
+    version='1.0.0',
+    description='Python API and Scrapy middlewares for ProxyHerd, the open-source super proxy manager',
+    long_description=open('README.md').read(),
+    long_description_content_type='text/markdown',
+    author='ProxyHerd maintainers',
+    url='https://github.com/proxyherd/proxyherd',
+    license='MIT',
+    keywords=['crawler', 'crawling', 'proxyherd', 'scrapoxy', 'scrapy', 'scraper', 'scraping', 'webscraping', 'proxy'],
+    classifiers=[
+        'License :: OSI Approved :: MIT License',
+        'Programming Language :: Python :: 3',
+        'Framework :: Scrapy',
+    ],
 )

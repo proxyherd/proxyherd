@@ -25,13 +25,10 @@ export class ConnectorProxySellerServerFactory implements IConnectorFactory {
    readonly config: IConnectorConfig = {
        name: 'Proxy-Seller Server',
        description: 'Proxy-Seller\'s DC/ISP/Mobile proxy service offers businesses a high-quality, cost-effective solution for reliable data access, tailored to meet the demands of professional use.',
-       coupon: {
-           name: 'SCRAPOXY',
-           description: '(20% off all plans)',
-       },
+       coupon: null,
        defaultCredentialName: 'Proxy-Seller Server Credential',
        defaultConnectorName: 'Proxy-Seller Server Connector',
-       url: 'https://proxy-seller.com/?partner=GR930FP5IOO78P',
+       url: 'https://proxy-seller.com',
        type: EConnectorType.StaticIp,
        canInstall: false,
        canUninstall: false,

@@ -4,7 +4,7 @@
 
 [Zyte](https://zyte.com) (formely Crawlera) is a proxies service for Data Extraction.
 
-Scrapoxy supports both [Zyte API (Proxy Mode)](https://docs.zyte.com/zyte-api/usage/proxy-mode.html)
+ProxyHerd supports both [Zyte API (Proxy Mode)](https://docs.zyte.com/zyte-api/usage/proxy-mode.html)
 and [Smart Proxy Manager](https://docs.zyte.com/smart-proxy-manager-get-started.html).
 
 
@@ -18,7 +18,7 @@ An active Zyte subscription is required.
 ::: info
 When using the Zyte API, you need to enable sticky sessions with an HTTP header or cookie because the cookie jar is linked to the Zyte session and its outbound IP. 
 If you try to send the cookie through a different proxy, the Zyte API will remove it.
-A simpler solution is to keep all session requests on the same proxy in Scrapoxy.
+A simpler solution is to keep all session requests on the same proxy in ProxyHerd.
 :::
 
 Connect to the Zyte [App](https://app.zyte.com):
@@ -43,7 +43,7 @@ Connect to the Zyte [App](https://app.zyte.com):
 
 ![Zyte SPM Account Create](zyte_spm_account_create.png)
 
-1. Enter `scrapoxy` as `Account Name`;
+1. Enter `proxyherd` as `Account Name`;
 2. Click on the `Create` button.
 
 ---
@@ -54,9 +54,9 @@ Connect to the Zyte [App](https://app.zyte.com):
 2. Remember the `API Key`.
 
 
-## Scrapoxy
+## ProxyHerd
 
-Open Scrapoxy User Interface and select `Marketplace`:
+Open ProxyHerd User Interface and select `Marketplace`:
 
 
 ### Step 1: Create a new credential

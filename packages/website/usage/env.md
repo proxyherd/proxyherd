@@ -12,11 +12,11 @@
 
 - `FRONTEND_JWT_SECRET` : Secret of the JWT used for users connections.
 - `FRONTEND_JWT_EXPIRATION` : Duration of the JWT for users connections. The default value is `24h`.
-- `FRONTEND_SECURE_COOKIE` : Enable the secure flag on the authentication cookie by setting it to `1`, especially if the Scrapoxy UI is located behind an SSL reverse proxy like [Nginx](https://www.nginx.com). The default value is `0`.
+- `FRONTEND_SECURE_COOKIE` : Enable the secure flag on the authentication cookie by setting it to `1`, especially if the ProxyHerd UI is located behind an SSL reverse proxy like [Nginx](https://www.nginx.com). The default value is `0`.
 
 
 :::warning
-To start Scrapoxy, it is mandatory to set the secrets `BACKEND_JWT_SECRET` and `FRONTEND_JWT_SECRET`.
+To start ProxyHerd, it is mandatory to set the secrets `BACKEND_JWT_SECRET` and `FRONTEND_JWT_SECRET`.
 :::
 
 
@@ -48,7 +48,7 @@ To start Scrapoxy, it is mandatory to set the secrets `BACKEND_JWT_SECRET` and `
 
 ### Fingerprint
 
-- `FINGERPRINT_URL` : URL of the fingerprint server to retrieve proxy information. The default value is `https://fingerprint.scrapoxy.io/api/json`.
+- `FINGERPRINT_URL` : URL of your ProxyHerd fingerprint service, for example `https://fingerprint.example.com/api/json`. **Required**: there is no default, because the service must be reachable from the public internet through your proxies. See the fingerprint deployment guide.
 - `FINGERPRINT_FOLLOW_REDIRECT_MAX` : Max number of HTTP redirects allowed when requesting the fingerprint server. The default value is `3`.
 - `FINGERPRINT_RETRY_MAX` : Maximum retries before stating a proxy or freeproxy are inaccessible. The default value is `2`.
 - `FINGERPRINT_TIMEOUT` : Timeout in milliseconds of request when requesting the fingerprint server. The default value is `5000` (5 seconds).
@@ -151,7 +151,7 @@ _For RabbitMQ:_
 - `TASKS_REFRESH_ERROR_DELAY` : Delay in milliseconds to wait if task's execution triggers an error. The default value is `2000` (2 seconds).
 
 
-### Stopping Scrapoxy
+### Stopping ProxyHerd
 
-- `CLEAR_AT_SHUTDOWN` : Clear all proxies at shutdown. Values are `1` for yes and `0` for no. This is useful when you run Scrapoxy locally. The default value is `0`.
+- `CLEAR_AT_SHUTDOWN` : Clear all proxies at shutdown. Values are `1` for yes and `0` for no. This is useful when you run ProxyHerd locally. The default value is `0`.
 - `STOPPING_DELAY` : Delay in milliseconds between queries count of active proxies during shutdown. It is only available if `CLEAR_AT_SHUTDOWN` is active. The default value is `2000` (2 seconds).

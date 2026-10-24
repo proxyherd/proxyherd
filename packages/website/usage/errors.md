@@ -1,6 +1,6 @@
 # Errors
 
-Scrapoxy can show different errors, each with:
+ProxyHerd can show different errors, each with:
 
 * an HTTP status code
 * an ID
@@ -11,7 +11,7 @@ Here are the errors you might see:
 
 ## 407 HTTP Status
 
-All these errors are related to authentication with Scrapoxy.
+All these errors are related to authentication with ProxyHerd.
 
 
 ### ID: 'no_token'
@@ -36,7 +36,7 @@ Please verify the username and password in the `Project Settings` tab:
 
 ## 557 HTTP Status
 
-All these errors are related to the Scrapoxy behavior.
+All these errors are related to the ProxyHerd behavior.
 
 
 ### ID: 'no_proxy'
@@ -52,8 +52,8 @@ Please ensure you have at least one proxy online (green status) in the `Proxies`
 
 ### ID: 'wrong_url'
 
-The URL sent to Scrapoxy is incorrect.
-This error occurs when Scrapoxy is requested to collect:
+The URL sent to ProxyHerd is incorrect.
+This error occurs when ProxyHerd is requested to collect:
 
 * An empty URL.
 * A URL without a hostname.

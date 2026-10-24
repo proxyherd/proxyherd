@@ -60,7 +60,7 @@
                 {
                     "title": "Features",
                     "commits": [
-                        "**geonode**: add [Geonode](https://geonode.pxf.io/c/5392682/2020638/25070?trafsrc=impact) proxies support"
+                        "**geonode**: add [Geonode](https://geonode.com) proxies support"
                     ]
                 },
                 {
@@ -158,7 +158,7 @@
                 {
                     "title": "Features",
                     "commits": [
-                        "**liveproxies**: add [Live Proxies](https://liveproxies.io/aff/pv5i8f8) support"
+                        "**liveproxies**: add [Live Proxies](https://liveproxies.io) support"
                     ]
                 },
                 {
@@ -207,7 +207,7 @@
                 {
                     "title": "Features",
                     "commits": [
-                        "**smartproxy**: added support for [Smartproxy](https://smartproxy.pxf.io/Qy5mVo) datacenter pay per GB product"
+                        "**smartproxy**: added support for [Smartproxy](https://smartproxy.com) datacenter pay per GB product"
                     ]
                 }
             ]
@@ -218,7 +218,7 @@
                 {
                     "title": "Features",
                     "commits": [
-                        "**smartproxy**: added support for [Smartproxy](https://smartproxy.pxf.io/Qy5mVo)",
+                        "**smartproxy**: added support for [Smartproxy](https://smartproxy.com)",
                         "**task**: enabled naming tasks for better identification"
                     ]
                 },
@@ -266,7 +266,7 @@
                 {
                     "title": "Features",
                     "commits": [
-                        "**brightdata**: add support for Residential and Mobile proxies for [BrightData](https://get.brightdata.com/khkl3keb25ld)",
+                        "**brightdata**: add support for Residential and Mobile proxies for [BrightData](https://brightdata.com)",
                         "**fingerprint**: use GET instead of POST method to access fingerprint server (to bypass firewall restrictions)"
                     ]
                 },
@@ -284,7 +284,7 @@
                 {
                     "title": "Features",
                     "commits": [
-                        "**netnut**: add [NetNut](https://netnut.io?ref=ymzmmmu) connector"
+                        "**netnut**: add [NetNut](https://netnut.io) connector"
                     ]
                 },
                 {
@@ -395,7 +395,7 @@
                 {
                     "title": "Features",
                     "commits": [
-                        "**proxy-seller**: add [Proxy-Seller connector](https://proxy-seller.com/?partner=GR930FP5IOO78P)"
+                        "**proxy-seller**: add [Proxy-Seller connector](https://proxy-seller.com)"
                     ]
                 },
                 {

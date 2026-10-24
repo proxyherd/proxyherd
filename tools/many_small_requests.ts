@@ -30,7 +30,7 @@ const proxy = {
     ),
     protocol: 'http',
 };
-const ca = fs.readFileSync('packages/backend/sdk/src/assets/certificates/scrapoxy-ca.crt')
+const ca = fs.readFileSync('packages/backend/sdk/src/assets/certificates/proxyherd-ca.crt')
     .toString();
 const THREADS_COUNT = 100;
 

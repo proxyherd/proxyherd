@@ -2,11 +2,11 @@
 
 ![Geonode](/assets/images/geonode.svg){width=280 nozoom}
 
-[Geonode](https://geonode.pxf.io/c/5392682/2020638/25070?trafsrc=impact) provides the Right Proxies for Your Business. 
+[Geonode](https://geonode.com) provides the Right Proxies for Your Business. 
 Join thousands of developers using the fastest-growing residential proxy network. 
 Geonode’s proxies speak for themselves.
 
-Scrapoxy is compatible with **Residential Premium** and **Datacenter Shared** products.
+ProxyHerd is compatible with **Residential Premium** and **Datacenter Shared** products.
 
 
 ## Prerequisites
@@ -28,9 +28,9 @@ Connect to [Dashboard](https://app.geonode.com).
 3. Remember the `password`.
 
 
-## Scrapoxy
+## ProxyHerd
 
-Open Scrapoxy User Interface and select `Marketplace`:
+Open ProxyHerd User Interface and select `Marketplace`:
 
 
 ### Step 1: Create a new credential

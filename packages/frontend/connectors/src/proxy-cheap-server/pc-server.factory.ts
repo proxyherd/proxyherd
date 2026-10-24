@@ -28,7 +28,7 @@ export class ConnectorProxyCheapServerFactory implements IConnectorFactory {
        coupon: null,
        defaultCredentialName: 'Proxy-Cheap Server Credential',
        defaultConnectorName: 'Proxy-Cheap Server Connector',
-       url: 'https://app.proxy-cheap.com/r/lt6xyT',
+       url: 'https://www.proxy-cheap.com',
        type: EConnectorType.StaticIp,
        canInstall: false,
        canUninstall: false,

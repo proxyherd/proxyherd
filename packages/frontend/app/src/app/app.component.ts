@@ -113,7 +113,7 @@ export const icons = {
     template: `<router-outlet></router-outlet>`,
 })
 export class AppComponent implements OnInit, OnDestroy {
-    title = 'Scrapoxy';
+    title = 'ProxyHerd';
 
     private readonly subscription = new Subscription();
 

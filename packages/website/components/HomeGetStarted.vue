@@ -6,11 +6,12 @@ interface IProps {
 defineProps<IProps>();
 
 const code = [
-    "docker run -d -p 8888:8888 -p 8890:8890 -v ./scrapoxy:/cfg",
+    "docker run -d -p 8888:8888 -p 8890:8890 -v ./proxyherd:/cfg",
     "-e AUTH_LOCAL_USERNAME=admin -e AUTH_LOCAL_PASSWORD=password",
     "-e BACKEND_JWT_SECRET=secret1 -e FRONTEND_JWT_SECRET=secret2",
-    "-e STORAGE_FILE_FILENAME=/cfg/scrapoxy.json",
-    "scrapoxy/scrapoxy"
+    "-e STORAGE_FILE_FILENAME=/cfg/proxyherd.json",
+    "-e FINGERPRINT_URL=https://fingerprint.example.com/api/json",
+    "ghcr.io/proxyherd/proxyherd"
 ];
 
 async function copy($event) {

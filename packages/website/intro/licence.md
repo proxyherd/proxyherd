@@ -1,3 +1,7 @@
+# Licence
+
+ProxyHerd is released under the MIT License. It is a community fork of Scrapoxy 4.17.4, whose copyright notice is retained below as that licence requires. Contributions are accepted under the [Developer Certificate of Origin](/contrib/licence). The repository's `NOTICE.md` records the exact base commit.
+
 # The MIT License (MIT)
 
 Copyright (c) 2016-present **Fabien Vauchelles**

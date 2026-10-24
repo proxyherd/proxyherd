@@ -2,7 +2,7 @@
 
 ![Bright Data](/assets/images/brightdata.svg){width=280 nozoom}
 
-[Bright Data](https://get.brightdata.com/khkl3keb25ld) provides award-winning proxy networks, AI-powered web scrapers, 
+[Bright Data](https://brightdata.com) provides award-winning proxy networks, AI-powered web scrapers, 
 and business-ready datasets for download. Welcome to the internet’s most trusted web data platform.
 
 ## Prerequisites
@@ -11,8 +11,8 @@ An active Bright Data subscription is required.
 
 Please contact support to:
 
-1. Whitelist the domain `fingerprint.scrapoxy.io` ;
-2. Adjust the rate limit for `fingerprint.scrapoxy.io` if you plan to use more than 10 proxies simultaneously.
+1. Whitelist the domain of your fingerprint service (`FINGERPRINT_URL`) ;
+2. Adjust the rate limit for your fingerprint service if you plan to use more than 10 proxies simultaneously.
 
 The rate limit is calculated as follows:
 
@@ -72,13 +72,13 @@ Choose between Residential, ISP, Datacenter or Mobiles proxies.
 For ISP or Datacenter proxies, select the number of required instances.
 
 ::: warning
-Do not add a Geolocation targeting filter, as Scrapoxy will manage this parameter.
+Do not add a Geolocation targeting filter, as ProxyHerd will manage this parameter.
 :::
 
 
-## Scrapoxy
+## ProxyHerd
 
-Open Scrapoxy User Interface and select `Marketplace`:
+Open ProxyHerd User Interface and select `Marketplace`:
 
 
 ### Step 1: Create a new credential

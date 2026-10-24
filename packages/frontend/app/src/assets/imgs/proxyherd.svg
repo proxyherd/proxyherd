@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 160" width="680" height="160" role="img" aria-label="ProxyHerd">
+  <title>ProxyHerd</title>
+  <!-- Horizontal lockup for light backgrounds. Text uses a font stack; outline it to paths before shipping if pixel-identical rendering is needed. -->
+  <g transform="translate(16 16) scale(0.5)">
+    <rect width="256" height="256" rx="56" fill="#1F7A5C"/>
+    <g stroke="#FFFFFF" stroke-opacity="0.42" stroke-width="7" stroke-linecap="round">
+      <line x1="108" y1="92" x2="176" y2="128"/>
+      <line x1="108" y1="164" x2="176" y2="128"/>
+      <line x1="58" y1="74" x2="108" y2="92"/>
+      <line x1="58" y1="128" x2="108" y2="92"/>
+      <line x1="58" y1="128" x2="108" y2="164"/>
+      <line x1="58" y1="182" x2="108" y2="164"/>
+    </g>
+    <g fill="#FFFFFF">
+      <circle cx="58" cy="74" r="17"/>
+      <circle cx="58" cy="128" r="17"/>
+      <circle cx="58" cy="182" r="17"/>
+      <circle cx="108" cy="92" r="24"/>
+      <circle cx="108" cy="164" r="24"/>
+    </g>
+    <circle cx="176" cy="128" r="36" fill="#F5B041"/>
+  </g>
+  <text x="168" y="106" font-family="Inter, 'SF Pro Display', 'Segoe UI', Helvetica, Arial, sans-serif" font-size="76" font-weight="700" letter-spacing="-2" fill="#14332A">Proxy<tspan fill="#1F7A5C">Herd</tspan></text>
+</svg>

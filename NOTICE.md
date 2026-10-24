@@ -1,6 +1,6 @@
 # Notice of Origin
 
-This repository is a community-maintained derivative of **Scrapoxy**
+**ProxyHerd** is a community-maintained fork of **Scrapoxy**
 (https://github.com/scrapoxy/scrapoxy), created by Fabien Vauchelles.
 
 ## Base commit
@@ -26,17 +26,31 @@ GitHub fork network (notably `adewin/scrapoxy` and `jeanhackpy/scrapoxy`).
 
 ## Copyright
 
-Original work Copyright (c) 2016-present Fabien Vauchelles, licensed under the
+Original work Copyright (c) 2016-2024 Fabien Vauchelles, licensed under the
 MIT License. The MIT licence text and copyright notice are retained in
 `LICENCE.md` as required by that licence.
 
 Modifications made in this repository after the base commit are contributed
-under the MIT License as well unless a file states otherwise.
+under the MIT License as well unless a file states otherwise, and are
+copyright their respective authors (see the git history and the
+`Signed-off-by` lines).
+
+## Compatibility identifiers kept from Scrapoxy
+
+A few identifiers that travel on the wire keep their original values so that
+existing scrapers and existing cloud deployments keep working: the
+`X-Scrapoxy-*` HTTP headers, the `scrapoxy-proxyname` sticky-session cookie,
+the `scrapoxy` prefix of cloud resources, and the storage defaults (file
+`scrapoxy.json`, MongoDB database `scrapoxy`, RabbitMQ queues `scrapoxyorders`
+and `scrapoxyevents`). The prefixes are defined in `packages/common/src/info.ts`. They are
+compatibility names, not branding.
 
 ## Trademark
 
-"Scrapoxy" is the name of the original author's project. This repository is
-not affiliated with, endorsed by, or supported by the original author or
-CoreDump Engineering. Do not use the upstream npm packages, Docker images or
-hosted services (such as `fingerprint.scrapoxy.io`) released after 2025-06-05
-with this code; they are under a different licence.
+"Scrapoxy" is a trademark of the original author (registered in France,
+INPI no. 5031757). ProxyHerd is not affiliated with, endorsed by, or supported
+by the original author or CoreDump Engineering. The name Scrapoxy is used in
+this repository only to describe the origin of the code and compatibility
+with it. Do not use the upstream npm packages, Docker images or hosted
+services released after 2025-06-05 with this code; they are under a different
+licence, and the hosted fingerprint service has been shut down.

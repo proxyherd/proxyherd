@@ -2,7 +2,7 @@
 
 ![Proxy-Seller](/assets/images/proxy-seller.svg){width=260 nozoom}
 
-[Proxy-Seller](https://proxy-seller.com/?partner=GR930FP5IOO78P) offers residential proxy service provides business users with a premium, affordable solution to access data, ensuring top-tier quality and performance for enterprise needs. 
+[Proxy-Seller](https://proxy-seller.com) offers residential proxy service provides business users with a premium, affordable solution to access data, ensuring top-tier quality and performance for enterprise needs. 
 
 This connector is for Rotating Residential Proxies.
 
@@ -31,9 +31,9 @@ Connect to [Dashboard](https://proxy-seller.com/personal/api).
 4. Remember the `Token`.
 
 
-## Scrapoxy
+## ProxyHerd
 
-Open Scrapoxy User Interface and select `Marketplace`:
+Open ProxyHerd User Interface and select `Marketplace`:
 
 
 ### Step 1: Create a new credential
@@ -69,7 +69,7 @@ Complete the form with the following information:
 7. **Region**: Select the region to use in this country, or `All` to use all regions;
 8. **City**: Select the city to use in this region, or `All` to use all cities;
 9. **ISP**: Select the ISP to use in this region, or `All` to use all ISPs;
-10. **List Title**: Keep `Scrapoxy` to use the default list;
+10. **List Title**: Keep `ProxyHerd` to use the default list;
 
 And click on `Create`.
 

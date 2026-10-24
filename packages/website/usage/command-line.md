@@ -2,7 +2,7 @@
 
 ## Minimum versions
 
-Scrapoxy requires a minimum version of:
+ProxyHerd requires a minimum version of:
 - NodeJS: 20.x.x
 - NPM: 8.x.x
 
@@ -12,15 +12,15 @@ Scrapoxy requires a minimum version of:
 Open a terminal and run the following command:
 
 ```bash
-npm install -g scrapoxy
+npm install -g proxyherd
 ```
 
 ## Usage
 
-Start Scrapoxy with the following command:
+Start ProxyHerd with the following command:
 
 ```bash
-scrapoxy start [options]
+proxyherd start [options]
 ```
 
 ### Options

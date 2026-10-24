@@ -2,12 +2,12 @@ import {defineConfig} from 'vitepress'
 import {fileURLToPath, URL} from 'url'
 
 const
-    title = 'Scrapoxy',
-    description = 'Scrapoxy is a super proxies manager that orchestrates all your proxies into one place, rather than spreading management across multiple scrapers. Deployed on your own infrastructure, Scrapoxy serves as a single proxy endpoint for your scrapers. It builds a pool of private proxies from your datacenter subscription, integrates them with proxy vendors, manages IP rotation and fingerprinting, and smartly routes traffic to avoid bans.',
-    iconUrl = '/assets/images/scrapoxy.svg',
-    url = 'https://scrapoxy.io',
-    discordUrl = 'https://discord.gg/ktNGGwZnUD',
-    githubUrl = 'https://github.com/scrapoxy/scrapoxy';
+    title = 'ProxyHerd',
+    description = 'ProxyHerd is an open-source super proxy manager: one endpoint for all your proxies. Deployed on your own infrastructure, it builds a pool of private proxies from your cloud subscription, integrates proxy vendors, checks proxy health and location, manages IP rotation and sticky sessions, and routes traffic to avoid bans. Community fork of ProxyHerd 4.17.4 (MIT).',
+    iconUrl = '/assets/images/proxyherd.svg',
+    url = 'https://proxyherd.github.io/proxyherd',
+    githubUrl = 'https://github.com/proxyherd/proxyherd',
+    discussionsUrl = 'https://github.com/proxyherd/proxyherd/discussions';
 
 export default defineConfig({
     lang: 'en-US',
@@ -16,53 +16,38 @@ export default defineConfig({
     lastUpdated: true,
     cleanUrls: true,
 
-    base: '/',
+    base: '/proxyherd/',
 
     head: [
         ['link', {rel: 'icon', type: 'image/svg+xml', href: iconUrl}],
         ['meta', {property: 'og:type', content: 'website'}],
         ['meta', {property: 'og:title', content: title}],
-        ['meta', {property: 'og:image', content: `${url}/assets/images/scrapoxy-embedded.png`}],
+        ['meta', {property: 'og:image', content: `${url}/assets/images/proxyherd-og.png`}],
         ['meta', {property: 'og:url', content: url}],
         ['meta', {property: 'og:description', content: description}],
         ['meta', {name: 'twitter:card', content: 'summary_large_image'}],
         ['meta', {name: 'twitter:url', content: url}],
-        ['meta', {name: 'twitter:site', content: '@scrapoxy_io'}],
-        ['meta', {name: 'twitter:creator', content: '@fabienv'}],
         ['meta', {name: 'twitter:title', content: title}],
         ['meta', {name: 'twitter:description', content: description}],
-        ['meta', {name: 'twitter:image', content: `${url}/assets/images/logo120.jpg`}],
-        ['meta', {name: 'theme-color', content: '#bd5656'}],
-        [
-            'script',
-            {async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-BWMFWJKLCC'}
-        ],
-        [
-            'script',
-            {},
-            `window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-BWMFWJKLCC');`
-        ],
+        ['meta', {name: 'twitter:image', content: `${url}/assets/images/proxyherd-og.png`}],
+        ['meta', {name: 'theme-color', content: '#1F7A5C'}],
     ],
 
     themeConfig: {
         logo: {
             light: iconUrl,
-            dark: '/assets/images/scrapoxy-dark.svg'
+            dark: '/assets/images/proxyherd-dark.svg'
         },
 
         nav: [
             {text: '🏠 Home', link: '/'},
-            {text: '📄 Documentation', link: '/intro/scrapoxy'},
-            {text: '✉️ Contact', link: `${githubUrl}/issues`},
+            {text: '📄 Documentation', link: '/intro/proxyherd'},
+            {text: '✉️ Contact', link: discussionsUrl},
             {
                 text: '📙 Resources',
                 items: [
                     {text: 'Changelog', link: '/intro/changelog'},
-                    {text: 'Discord', link: discordUrl},
-                    {text: 'Previous version', link: 'https://docs-v3.scrapoxy.io'},
+                    {text: 'Discussions', link: discussionsUrl},
                 ]
             }
         ],
@@ -73,13 +58,11 @@ export default defineConfig({
                 collapsed: false,
                 base: '/intro/',
                 items: [
-                    {text: 'What is Scrapoxy?', link: 'scrapoxy'},
+                    {text: 'What is ProxyHerd?', link: 'proxyherd'},
                     {text: 'Getting Started', link: 'get-started'},
                     {text: 'User Interface', link: 'ui'},
                     {text: 'Q&A', link: 'qna'},
                     {text: 'Changelog', link: 'changelog'},
-                    {text: 'Partnerships', link: 'partnerships'},
-                    {text: 'Sponsorships', link: 'sponsorships'},
                     {text: 'Licence', link: 'licence'},
                 ]
             },
@@ -224,21 +207,15 @@ export default defineConfig({
 
         socialLinks: [
             {icon: 'github', link: githubUrl},
-            {icon: 'discord', link: discordUrl},
         ],
 
         footer: {
-            message: 'Released under the MIT License.',
-            copyright: 'Copyright © 2016-present Fabien Vauchelles'
+            message: 'Released under the MIT License. ProxyHerd is a community fork of ProxyHerd 4.17.4 and is not affiliated with its original author.',
+            copyright: 'Copyright © 2016-2024 Fabien Vauchelles (ProxyHerd) · © 2026 ProxyHerd maintainers'
         },
 
         search: {
-            provider: 'algolia',
-            options: {
-                appId: 'BHEFK0R9M4',
-                apiKey: '7d34631eaec83eb01c977a5c114cb0f4',
-                indexName: 'scrapoxy'
-            }
+            provider: 'local'
         }
     },
 
@@ -291,16 +268,16 @@ export default defineConfig({
                 nav: [
                     {text: '🏠 Home', link: '/'},
                     {text: '📄 Documentation', link: '/fr/docs'},
-                    {text: '✉️ Contact', link: 'https://github.com/scrapoxy/scrapoxy/issues'},
+                    {text: '✉️ Contact', link: 'https://github.com/proxyherd/proxyherd/discussions'},
                     {
                         text: '📙 Resources',
                         items: [
                             {text: 'Versions', link: '/fr/releases'},
                             {text: 'Roadmap', link: '/fr/roadmap'},
-                            {text: 'Discord', link: 'https://discord.com/invite/TOCHANGE'},
+                            {text: 'Discord', link: 'https://github.com/proxyherd/proxyherd/discussions'},
                             {
                                 text: 'Changelog',
-                                link: 'https://github.com/scrapoxy/scrapoxy/blob/master/CHANGELOG.md'
+                                link: 'https://github.com/ghcr.io/proxyherd/proxyherd/blob/master/CHANGELOG.md'
                             },
                         ]
                     }

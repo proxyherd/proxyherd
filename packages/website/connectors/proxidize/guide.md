@@ -9,7 +9,7 @@ built on mobile devices allowing businesses to create ultra-powerful proxies tha
 ## Prerequisites
 
 1. Proxidize material and subscription are required.
-2. Scrapoxy can access to Proxidize admin interface and proxies IP addresses.
+2. ProxyHerd can access to Proxidize admin interface and proxies IP addresses.
 
 
 ## Proxidize Admin
@@ -42,9 +42,9 @@ Go the the Dashboard > API section and click on `View`.
 Remember the `API Token`.
 
 
-## Scrapoxy
+## ProxyHerd
 
-Open Scrapoxy User Interface and select `Marketplace`:
+Open ProxyHerd User Interface and select `Marketplace`:
 
 
 ### Step 1: Create a new credential

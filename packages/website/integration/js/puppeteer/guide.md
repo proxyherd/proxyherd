@@ -17,7 +17,7 @@ npm install puppeteer
 
 ![Credentials Sticky](../../credentials_sticky.png)
 
-1. Open Scrapoxy User interface, and go to the project `Settings`;
+1. Open ProxyHerd User interface, and go to the project `Settings`;
 2. Enable `Keep the same proxy with cookie injection`;
 3. Remember the project's `Username`;
 4. Remember the project's `Password`.
@@ -50,7 +50,7 @@ import puppeteer from 'puppeteer';
 
     const page = await newPage();
 
-    await page.goto('https://fingerprint.scrapoxy.io');
+    await page.goto('https://api.ipify.org?format=json');
 
     const content = await page.content();
     console.log(content);
@@ -142,7 +142,7 @@ import axios from "axios";
 
     const page = await newPage();
 
-    await page.goto('https://fingerprint.scrapoxy.io');
+    await page.goto('https://api.ipify.org?format=json');
 
     const content = await page.content();
     console.log(content);

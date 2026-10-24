@@ -4,25 +4,23 @@ layout: home
 title: 'Home'
 
 hero:
-  name: Scrapoxy
+  name: ProxyHerd
   text: Never be blocked. Again.
   tagline: Manage all your proxies in one place and <br/>smartly routes traffic to avoid bans.
   image:
-    src: /assets/images/scrapoxy-warrior.png
-    alt: Scrapoxy
+    src: /assets/images/proxyherd-hero.png
+    alt: ProxyHerd
   actions:
     - theme: brand
       text: Get Started
-      link: /intro/scrapoxy
-      img: https://img.shields.io/docker/v/scrapoxy/scrapoxy?logo=docker&logoColor=000000&label=docker&color=fafafa&style=social
+      link: /intro/proxyherd
     - theme: alt
-      text: Join
-      link: https://discord.gg/ktNGGwZnUD
-      img: https://img.shields.io/discord/1095676356496461934?logo=discord&logoColor=000000&label=Discord&style=social
+      text: Discussions
+      link: https://github.com/proxyherd/proxyherd/discussions
     - theme: alt
       text: View on Github|Add a Star
-      link: https://github.com/scrapoxy/scrapoxy
-      img: https://img.shields.io/github/stars/scrapoxy/scrapoxy?logo=github&logoColor=000000&label=Star&color=fafafa&style=social
+      link: https://github.com/proxyherd/proxyherd
+      img: https://img.shields.io/github/stars/proxyherd/proxyherd?logo=github&logoColor=000000&label=Star&color=fafafa&style=social
       shiny: confetti
       typewritter: true
 
@@ -57,7 +55,7 @@ providers:
           url: 'https://azure.microsoft.com'
           img: '/assets/images/azure.svg'
         - name: 'Bright Data'
-          url: 'https://get.brightdata.com/khkl3keb25ld'
+          url: 'https://brightdata.com'
           img: '/assets/images/brightdata.svg'
         - name: 'DigitalOcean'
           url: 'https://www.digitalocean.com'
@@ -66,22 +64,22 @@ providers:
           url: 'https://cloud.google.com'
           img: '/assets/images/gcp.svg'
         - name: 'Geonode'
-          url: 'https://geonode.pxf.io/c/5392682/2020638/25070?trafsrc=impact'
+          url: 'https://geonode.com'
           img: '/assets/images/geonode.svg'
         - name: 'HypeProxy'
           url: 'https://hypeproxy.io'
           img: '/assets/images/hypeproxy.svg'
         - name: 'IPRoyal'
-          url: 'https://iproyal.com/?r=432273'
+          url: 'https://iproyal.com'
           img: '/assets/images/iproyal.svg'
         - name: 'NetNut'
-          url: 'https://netnut.io?ref=ymzmmmu'
+          url: 'https://netnut.io'
           img: '/assets/images/netnut.svg'
         - name: 'Live Proxies'
-          url: 'https://liveproxies.io/aff/pv5i8f8'
+          url: 'https://liveproxies.io'
           img: '/assets/images/liveproxies.svg'
         - name: 'Nimble'
-          url: 'https://tracking.nimbleway.com/SH4a'
+          url: 'https://www.nimbleway.com'
           img: '/assets/images/nimbleway.svg'
         - name: 'Ninjas Proxy'
           url: 'https://ninjasproxy.com'
@@ -93,40 +91,29 @@ providers:
           url: 'https://proxidize.com'
           img: '/assets/images/proxidize.svg'
         - name: 'Proxy Cheap'
-          url: 'https://app.proxy-cheap.com/r/lt6xyT'
+          url: 'https://www.proxy-cheap.com'
           img: '/assets/images/proxy-cheap.svg'
         - name: 'Proxy Seller'
-          url: 'https://proxy-seller.com/?partner=GR930FP5IOO78P'
+          url: 'https://proxy-seller.com'
           img: '/assets/images/proxy-seller.svg'
         - name: 'Proxyrack'
           url: 'https://www.proxyrack.com'
           img: '/assets/images/proxyrack.svg'
         - name: 'Rayobyte'
-          url: 'https://billing.rayobyte.com/hosting/aff.php?aff=2444&redirectTo=https://rayobyte.com'
+          url: 'https://rayobyte.com'
           img: '/assets/images/rayobyte.svg'
         - name: 'Smartproxy'
-          url: 'https://smartproxy.pxf.io/Qy5mVo'
+          url: 'https://smartproxy.com'
           img: '/assets/images/smartproxy.svg'
         - name: 'Zyte'
           url: 'https://www.zyte.com'
           img: '/assets/images/zyte.svg'
 
-sponsors:
-    - tier: ""
-      size: 'medium'
-      items:
-          - name: 'BuyMeACoffee'
-            url: 'https://www.buymeacoffee.com/scrapoxy'
-            img: '/assets/images/buymeacoffee.svg'
-
 ---
-<HomeImage message="Your personal proxies manager:" icon="🎯" src="/assets/images/scrapoxy.gif" alt="Scrapoxy" max-width="850px"/>
 <HomeGetStarted message="Get started in a few seconds:" icon="🚀" />
-<HomeProviders message="Scrapoxy has connectors for:" icon="📎" :data="$frontmatter.providers" />
-<HomeProviders message="Sponsor the Open Source project:" icon="❤️" :data="$frontmatter.sponsors" />
+<HomeProviders message="ProxyHerd has connectors for:" icon="📎" :data="$frontmatter.providers" />
 
 <script setup>
-  import HomeImage from './components/HomeImage.vue';
   import HomeGetStarted from './components/HomeGetStarted.vue';
   import HomeProviders from './components/HomeProviders.vue';
 </script>

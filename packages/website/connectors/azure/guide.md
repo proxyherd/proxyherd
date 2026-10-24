@@ -33,7 +33,7 @@ Search the Microsoft Entra ID (aka Active Directory).
 ![App register](azure_app_register.png)
 
 Complete the form with the following information:
-- Name: `scrapoxy`
+- Name: `proxyherd`
 - Supported account types: `Accounts in this organizational directory only (Microsoft only - Single tenant)`
 
 And click on `Register`.
@@ -115,9 +115,9 @@ On the subscription:
 Finally, click on `Review + assign` 2 times.
 
 
-## Scrapoxy
+## ProxyHerd
 
-Open Scrapoxy User Interface and select `Marketplace`:
+Open ProxyHerd User Interface and select `Marketplace`:
 
 
 ### Step 1: Create a new credential
@@ -189,11 +189,11 @@ On the connector list, click on `Install`.
 
 Click on `Install`.
 
-Scrapoxy will start, install and stop the VM to create a custom image.
+ProxyHerd will start, install and stop the VM to create a custom image.
 
 ::: warning
 Do not reuse an installation from a prior setup:
-Scrapoxy embeds a unique TLS certificate within the instance image to secure communication and communication with the Master will fail.
+ProxyHerd embeds a unique TLS certificate within the instance image to secure communication and communication with the Master will fail.
 :::
 
 ---
@@ -231,4 +231,4 @@ Confirm the uninstallation.
 
 ![Connector Uninstalled](spx_connector_uninstalled.png)
 
-Wait for the uninstallation to finish: Scrapoxy will delete the custom image.
+Wait for the uninstallation to finish: ProxyHerd will delete the custom image.

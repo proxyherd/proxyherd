@@ -27,7 +27,7 @@ Connect to [Console](https://console.cloud.google.com).
 
 ![GCP Project Create](gcp_project_create.png)
 
-1. Enter `scrapoxy` as Project name;
+1. Enter `proxyherd` as Project name;
 2. And click on `CREATE`.
 
 ---
@@ -104,13 +104,13 @@ Click on `ENABLE`.
 Open the downloaded file and copy the content in the clipboard.
 
 ::: info
-The copied content will be paste into Scrapoxy with the `Clipboard` button (see below).
+The copied content will be paste into ProxyHerd with the `Clipboard` button (see below).
 :::
 
 
-## Scrapoxy
+## ProxyHerd
 
-Open Scrapoxy User Interface and select `Marketplace`:
+Open ProxyHerd User Interface and select `Marketplace`:
 
 
 ### Step 1: Create a new credential
@@ -176,11 +176,11 @@ Complete the form with the following information:
 
 And click on `Install`.
 
-Scrapoxy will start, install and stop the VM to create a custom image.
+ProxyHerd will start, install and stop the VM to create a custom image.
 
 ::: warning
 Do not reuse an installation from a prior setup:
-Scrapoxy embeds a unique TLS certificate within the instance image to secure communication and communication with the Master will fail.
+ProxyHerd embeds a unique TLS certificate within the instance image to secure communication and communication with the Master will fail.
 :::
 
 ---
@@ -218,4 +218,4 @@ Confirm the uninstallation.
 
 ![Connector Uninstalled](spx_connector_uninstalled.png)
 
-Wait for the uninstallation to finish: Scrapoxy will delete the custom image.
+Wait for the uninstallation to finish: ProxyHerd will delete the custom image.

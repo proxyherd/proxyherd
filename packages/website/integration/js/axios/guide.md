@@ -21,13 +21,13 @@ npm install axios
 
 ![Certificate](../../certificate.png)
 
-1. Open Scrapoxy User interface, and go to the project `Settings`;
+1. Open ProxyHerd User interface, and go to the project `Settings`;
 2. Click on `Download CA certificate` and save the file;
 3. Remember the project's `Username`;
 4. Remember the project's `Password`.
 
 ::: info
-It is assumed that file is saved in `/tmp/scrapoxy-ca.crt`.
+It is assumed that file is saved in `/tmp/proxyherd-ca.crt`.
 :::
 
 
@@ -41,10 +41,10 @@ import fs from 'fs';
 import { Agent } from 'https';
 
 (async () => {
-    const ca = fs.readFileSync('/tmp/scrapoxy-ca.crt');
+    const ca = fs.readFileSync('/tmp/proxyherd-ca.crt');
 
     const res = await axios.get(
-        'https://fingerprint.scrapoxy.io',
+        'https://api.ipify.org?format=json',
         {
             proxy: {
                 host: 'localhost',
@@ -69,7 +69,7 @@ import { Agent } from 'https';
 
 Replace `USERNAME` and `PASSWORD` by the credentials you copied earlier.
 
-Scrapoxy includes a `x-scrapoxy-proxyname` header in each response, 
+ProxyHerd includes a `x-scrapoxy-proxyname` header in each response, 
 indicating the name of the proxy instance assigned for the request.
 
 Run the script:
@@ -89,10 +89,10 @@ import fs from 'fs';
 import { Agent } from 'https';
 
 (async () => {
-    const ca = fs.readFileSync('/tmp/scrapoxy-ca.crt');
+    const ca = fs.readFileSync('/tmp/proxyherd-ca.crt');
 
     const res = await axios.get(
-        'https://fingerprint.scrapoxy.io',
+        'https://api.ipify.org?format=json',
         {
             headers: {
                 'X-Scrapoxy-Proxyname': 'PROXYNAME',

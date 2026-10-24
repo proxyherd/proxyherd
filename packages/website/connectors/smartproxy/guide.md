@@ -2,7 +2,7 @@
 
 ![Smartproxy](/assets/images/smartproxy.svg){width=280 nozoom}
 
-[Smartproxy](https://smartproxy.pxf.io/Qy5mVo) is the award-winning proxy service provider with efficient data extraction and multi-accounting infrastructure.
+[Smartproxy](https://smartproxy.com) is the award-winning proxy service provider with efficient data extraction and multi-accounting infrastructure.
 They provides access to 65M+ global IPs.
 
 
@@ -87,9 +87,9 @@ For Datacenter Pay/GB proxies, you need to reset the password if you can't remem
 3. Remember the password.
 
 
-## Scrapoxy
+## ProxyHerd
 
-Open Scrapoxy User Interface and select `Marketplace`:
+Open ProxyHerd User Interface and select `Marketplace`:
 
 
 ### Step 1: Create a new credential

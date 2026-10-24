@@ -36,9 +36,9 @@ Select `API Access` tab.
 Click on `Copy` to copy the token into the clipboard. 
 
 
-## Scrapoxy
+## ProxyHerd
 
-Open Scrapoxy User Interface and select `Marketplace`:
+Open ProxyHerd User Interface and select `Marketplace`:
 
 
 ### Step 1: Create a new credential
@@ -85,7 +85,7 @@ And click on `Create`.
 ![SPX Proxies](spx_proxies.png)
 
 Within this connector, you can perform 2 actions on the proxies:
-1. **Trash button**: Remove the proxy from the Scrapoxy pool and replace it with a new one;
+1. **Trash button**: Remove the proxy from the ProxyHerd pool and replace it with a new one;
 2. **Cross button**: Force a change in IP address of the proxy (this process takes 8 seconds).
 
 ::: info

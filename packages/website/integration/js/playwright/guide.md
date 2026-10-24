@@ -23,26 +23,26 @@ npx playwright install --with-deps
 
 ![Credentials Sticky](../../credentials_sticky.png)
 
-1. Open Scrapoxy User interface, and go to the project `Settings`;
+1. Open ProxyHerd User interface, and go to the project `Settings`;
 2. Enable `Keep the same proxy with cookie injection`;
 3. Remember the project's `Username`;
 4. Remember the project's `Password`;
 5. And click on `Update`.
 
 
-## Step 3: Retrieve and install Scrapoxy Certificate
+## Step 3: Retrieve and install ProxyHerd Certificate
 
 ![Certificate](../../certificate.png)
 
-1. Open Scrapoxy User interface, and go to the project `Settings`;
-2. Click on `Download CA certificate` and save the file `scrapoxy-ca.crt`;
+1. Open ProxyHerd User interface, and go to the project `Settings`;
+2. Click on `Download CA certificate` and save the file `proxyherd-ca.crt`;
 3. Remember the project's `Username`;
 4. Remember the project's `Password`.
 
 Install the certificate with the following command:
 
 ```shell
-certutil -d sql:$HOME/.pki/nssdb -A -t "C,," -n scrapoxy -i ./scrapoxy-ca.crt
+certutil -d sql:$HOME/.pki/nssdb -A -t "C,," -n proxyherd -i ./proxyherd-ca.crt
 ````
 
 
@@ -69,7 +69,7 @@ import playwright from 'playwright';
     });
 
     const page = await context.newPage();
-    await page.goto('https://fingerprint.scrapoxy.io');
+    await page.goto('https://api.ipify.org?format=json');
 
     const content = await page.content();
     console.log(content);

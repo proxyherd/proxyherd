@@ -112,7 +112,7 @@ export class ConnectorProxySellerResidentialComponent implements IConnectorCompo
                 region: 'all',
                 city: 'all',
                 isp: 'all',
-                title: 'Scrapoxy',
+                title: 'ProxyHerd',
             });
         }
 

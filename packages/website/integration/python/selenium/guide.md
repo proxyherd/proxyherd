@@ -16,14 +16,14 @@ pip install selenium selenium-wire webdriver-manager
 
 ![Certificate](../../certificate_sticky.png)
 
-1. Open Scrapoxy User interface, and go to the project `Settings`;
+1. Open ProxyHerd User interface, and go to the project `Settings`;
 2. Enable `Keep the same proxy with cookie injection`;
 3. Click on `Download CA certificate` and save the file.
 4. Remember the project's `Username`;
 5. Remember the project's `Password`.
 
 ::: info
-It is assumed that file is saved in `/tmp/scrapoxy-ca.crt`.
+It is assumed that file is saved in `/tmp/proxyherd-ca.crt`.
 :::
 
 
@@ -42,12 +42,12 @@ driver = webdriver.Chrome(
         'proxy': {
             'http': f'http://USERNAME:PASSWORD@localhost:8888',
             'verify_ssl': True,
-            'ca_cert': '/tmp/scrapoxy-ca.crt',
+            'ca_cert': '/tmp/proxyherd-ca.crt',
         },
     }
 )
 
-driver.get('https://fingerprint.scrapoxy.io')
+driver.get('https://api.ipify.org?format=json')
 
 print(driver.find_element(By.TAG_NAME, 'body').text)
 ```

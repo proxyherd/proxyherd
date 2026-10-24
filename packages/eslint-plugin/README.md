@@ -1,4 +1,4 @@
-# Scrapoxy ESLint Rules
+# ProxyHerd ESLint Rules
 
 ## Build it
 

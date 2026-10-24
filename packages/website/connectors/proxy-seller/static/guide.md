@@ -2,7 +2,7 @@
 
 ![Proxy-Seller](/assets/images/proxy-seller.svg){width=260 nozoom}
 
-[Proxy-Seller](https://proxy-seller.com/?partner=GR930FP5IOO78P) offers DC/ISP/Mobile proxy service offers businesses a high-quality, cost-effective solution for reliable data access, tailored to meet the demands of professional use.
+[Proxy-Seller](https://proxy-seller.com) offers DC/ISP/Mobile proxy service offers businesses a high-quality, cost-effective solution for reliable data access, tailored to meet the demands of professional use.
 
 This connector is for Mobile Proxies, ISP Proxies and Datacenter Proxies.
 
@@ -31,9 +31,9 @@ Connect to [Dashboard](https://proxy-seller.com/personal/api).
 4. Remember the `Token`.
 
 
-## Scrapoxy
+## ProxyHerd
 
-Open Scrapoxy User Interface and select `Marketplace`:
+Open ProxyHerd User Interface and select `Marketplace`:
 
 
 ### Step 1: Create a new credential

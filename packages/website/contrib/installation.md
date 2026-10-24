@@ -10,7 +10,7 @@ It has also been tested on Windows but it requires more configuration (see below
 
 ### Software
 
-Scrapoxy requires:
+ProxyHerd requires:
 
 - [Node.js](https://nodejs.org): 20.0.0 or later; 
 - [Java](https://openjdk.org): 8 or later;
@@ -23,9 +23,9 @@ Scrapoxy requires:
 Clone the repository:
 
 ```shell
-git clone git@github.com:scrapoxy/scrapoxy.git
+git clone git@github.com:ghcr.io/proxyherd/proxyherd.git
 
-cd scrapoxy
+cd proxyherd
 ```
 
 

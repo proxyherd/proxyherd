@@ -132,7 +132,7 @@ async function command(
         config.proxyLocalAppUrl = proxyLocalApp.url;
     }
 
-    // Start Scrapoxy
+    // Start ProxyHerd
     const app = await NestFactory.create(
         AppStartModule.forRoot(config),
         new ScrapoxyExpressAdapter(),

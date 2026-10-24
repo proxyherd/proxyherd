@@ -11,7 +11,7 @@ I recommend watching this video on how anti-bot systems work and techniques to b
 
 ### Can I access to the master without username:password (e.g. http://localhost:8888) ?
 
-Scrapoxy typically uses a `username:password` combination to select the appropriate project 
+ProxyHerd typically uses a `username:password` combination to select the appropriate project 
 and as a security measure to prevent unauthorized access to the master.
 
 However, you can bypass this security layer by using the [proxy-chain](https://www.npmjs.com/package/proxy-chain) library.
@@ -49,28 +49,27 @@ const proxyChain = require('proxy-chain');
 
 ### Can I host the fingerprint server myself?
 
-Unfortunately, self-hosting the fingerprint server is not possible.
+Yes, and you must: ProxyHerd ships its own fingerprint service, and every installation runs one.
 
-Here are the reasons:
+The service answers the question "is this proxy online, and where is it?". Each proxy fetches it
+to prove that it works, and the response carries the proxy's public IP address, its network (ASN)
+and its approximate location from a local GeoIP database. Nothing is reported to a third party.
 
-1. **Data**: The server provides GEO IP information using a sophisticated algorithm, not just a basic free database. This algorithm is proprietary and will not be released as open source.
-2. **Whitelisting**: Some providers require domain whitelisting. Extensive discussions with their technical and legal teams were necessary to secure this.
-
-To secure this component within the infrastructure,
-it would be greatly appreciated if [a sponsorship could be considered](sponsorships.md) 
-instead of covering the server's hosting costs. 🙏
+Point `FINGERPRINT_URL` at your instance (see [environment variables](/usage/env)). The service
+must be reachable **through your proxies**, that is from the public internet, not only from the
+machine running ProxyHerd.
 
 
-### How much bandwith does the fingerprint use?
+### How much bandwidth does the fingerprint use?
 
-Scrapoxy periodically sends requests to the fingerprint server to verify connectivity and collect GEO information. 
-If a request fails, Scrapoxy will avoid using that particular proxy.
+ProxyHerd periodically sends requests to the fingerprint service to verify connectivity and collect GEO information.
+If a request fails, ProxyHerd will avoid using that particular proxy.
 
 Each request is compressed and consumes approximately **600 bytes** in received bandwidth.
 
 _Example:_ 
 
-With a proxy timeout set to 20 seconds, Scrapoxy will send 3 requests per minute, totaling 180 requests per hour and 4,320 requests per day.
+With a proxy timeout set to 20 seconds, ProxyHerd will send 3 requests per minute, totaling 180 requests per hour and 4,320 requests per day.
 
 The bandwidth consumption per day can be calculated using the following formula:
 
@@ -83,7 +82,7 @@ Bandwidth in Mb Per Day = (# proxies / Proxy Timeout) * 49.44
 
 ### I've got an error `no such file or directory, open 'scrapoxy.json'` at startup
 
-This is a standard warning that occurs during the initial launchof Scrapoxy
+This is a standard warning that occurs during the initial launchof ProxyHerd
 when the configuration file has not been created yet.
 
 Subsequently, you may encounter the following error:
@@ -99,7 +98,7 @@ This error can occur for the following reasons:
 
 1. Incorrect login/password;
 2. When returning to the UI with outdated cookies, requiring a re-login;
-3. If Scrapoxy is hosted on HTTP but the `FRONTEND_SECURE_COOKIE` environment variable is set to 1.
+3. If ProxyHerd is hosted on HTTP but the `FRONTEND_SECURE_COOKIE` environment variable is set to 1.
 
 
 ### Instances are never up
@@ -111,8 +110,8 @@ There can be multiple reasons for this error:
 #### Cause 1: Adding an existing connector to an installation
 
 When adding a connector from a prior setup, be aware that the certificate, won't be transferred.
-This discrepancy arises because Scrapoxy embeds a unique TLS certificate within the instance image to secure communication with the Master.
-As a result, the certificate may not match between the existing instance and the newly integrated Scrapoxy connector.
+This discrepancy arises because ProxyHerd embeds a unique TLS certificate within the instance image to secure communication with the Master.
+As a result, the certificate may not match between the existing instance and the newly integrated ProxyHerd connector.
 To address this issue, it's recommended to uninstall and then reinstall the connector for proper synchronization.
 
 #### Cause 2: Deploying a single image across multiple zones or regions
@@ -120,22 +119,22 @@ To address this issue, it's recommended to uninstall and then reinstall the conn
 It's important to note that most cloud providers restrict the use of a image across various zones or regions.
 It is recommended to perform a separate connector installation for each new zone or region you wish to operate in.
 
-#### Cause 3: Firewall forbids Scrapoxy access to instances
+#### Cause 3: Firewall forbids ProxyHerd access to instances
 
-Scrapoxy needs the ability to access the open port (default is 3128) on the instance.
+ProxyHerd needs the ability to access the open port (default is 3128) on the instance.
 This access facilitates the acquisition of the instance's fingerprint and enables the proper relay of traffic.
 Ensure that your firewall settings include a rule that permits this access.
 
 
 ## Proxy
 
-### Can I add my own proxies such as Squid with Scrapoxy?
+### Can I add my own proxies such as Squid with ProxyHerd?
 
-Yes, Scrapoxy allows for the incorporation of personal proxies.
+Yes, ProxyHerd allows for the incorporation of personal proxies.
 It supports proxy lists with the [free proxies connector](../connectors/freeproxies/guide) to integrate them.
 
 
-### Why does Scrapoxy not support multiple IP addresses for a single instance?
+### Why does ProxyHerd not support multiple IP addresses for a single instance?
 
 In theory, it's possible with cloud providers.
 We can integrate multiple IPs and network interfaces. However, it boils down to economics.

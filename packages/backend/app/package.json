@@ -4,7 +4,7 @@
         "name": "ProxyHerd maintainers",
         "url": "https://github.com/proxyherd"
     },
-    "description": "ProxyHerd is an open-source super proxy manager: one endpoint for all your proxies. It builds a pool of private proxies from your cloud subscription, integrates proxy vendors, manages IP rotation, health checks and sticky sessions, and routes traffic to avoid bans. Community fork of Scrapoxy 4.17.4 (MIT).",
+    "description": "ProxyHerd is an open-source super proxy manager: one endpoint for all your proxies. It builds a pool of private proxies from your cloud subscription, integrates proxy vendors, manages IP rotation, health checks and sticky sessions, and routes traffic to avoid bans. Community fork of ProxyHerd 4.17.4 (MIT).",
     "url": "https://github.com/proxyherd/proxyherd",
     "homepage": "https://proxyherd.github.io/proxyherd/",
     "repository": {

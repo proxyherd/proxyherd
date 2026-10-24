@@ -1,4 +1,4 @@
-# Scrapoxy Stylelint Rules
+# ProxyHerd Stylelint Rules
 
 ## Build it
 

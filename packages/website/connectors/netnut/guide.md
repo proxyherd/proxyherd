@@ -2,7 +2,7 @@
 
 ![NetNut](/assets/images/netnut.svg){width=250 nozoom}
 
-[NetNut](https://netnut.io?ref=ymzmmmu) provides DC, ISP, Residential and Mobiles. 
+[NetNut](https://netnut.io) provides DC, ISP, Residential and Mobiles. 
 With NetNut, transform any websites data into accurate and comprehensive structured data.
 
 
@@ -37,9 +37,9 @@ The password is only displayed once. If you lose it, you will need to update it 
 :::
 
 
-## Scrapoxy
+## ProxyHerd
 
-Open Scrapoxy User Interface and select `Marketplace`:
+Open ProxyHerd User Interface and select `Marketplace`:
 
 
 ### Step 1: Create a new credential
