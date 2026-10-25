@@ -231,7 +231,7 @@ export class MetricsComponent implements OnInit, OnDestroy {
                 {
                     data: snapshots.map(m => m?.requests),
                     label: 'Request count',
-                    borderColor: '#bd5656',
+                    borderColor: '#1f7a5c',
                 },
             ],
         };

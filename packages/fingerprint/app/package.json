@@ -2,7 +2,7 @@
     "name": "@proxyherd/fingerprint",
     "description": "ProxyHerd fingerprint service: tells a proxy manager whether a proxy is online and where it is (IP, network, location) from a local GeoIP database. Self-hosted; nothing leaves your infrastructure.",
     "author": {
-        "name": "Rakesh",
+        "name": "Rakesh Jana",
         "url": "https://github.com/rjanain"
     },
     "url": "https://github.com/proxyherd/proxyherd",

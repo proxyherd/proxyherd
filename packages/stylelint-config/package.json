@@ -2,7 +2,7 @@
     "name": "@proxyherd/stylelint-config",
     "version": "1.0.9",
     "author": {
-        "name": "Rakesh",
+        "name": "Rakesh Jana",
         "url": "https://github.com/rjanain"
     },
     "description": "Stylelint config for ProxyHerd",

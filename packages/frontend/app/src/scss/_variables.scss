@@ -1,14 +1,16 @@
 // Variable overrides
 
-// Colors
-$primary-base: #bd5656;
-$secondary-base: #ac999a;
+// Colors: ProxyHerd brand, green #1f7a5c and amber #f5b041 from the logo,
+// deep green #14332a for the dark tone. Success, info and danger keep their
+// semantic colours (online, pending, error) used by the map and the charts.
+$primary-base: #1f7a5c;
+$secondary-base: #7e948a;
 $success-base: #74c12f;
 $info-base: #f9d76e;
-$warning-base: #feca8e;
+$warning-base: #f5b041;
 $danger-base: #fc1a6d;
 $light-base: #efefef;
-$dark-base: #763249;
+$dark-base: #14332a;
 
 // Font
 $font-family-base: 'Poppins';

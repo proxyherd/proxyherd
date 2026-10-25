@@ -1,7 +1,7 @@
 # The MIT License (MIT)
 
-Copyright (c) 2016-present **Fabien Vauchelles**
-Copyright (c) 2026 **Rakesh**
+Copyright (c) 2016-2024 **Fabien Vauchelles** (Scrapoxy, up to version 4.17.4)
+Copyright (c) 2026-present **Rakesh Jana** (ProxyHerd)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software
 and associated documentation files (the "Software"), to deal in the Software without restriction,

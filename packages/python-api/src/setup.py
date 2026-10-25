@@ -12,7 +12,7 @@ setup(
     description='Python API and Scrapy middlewares for ProxyHerd, the open-source super proxy manager',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
-    author='Rakesh',
+    author='Rakesh Jana',
     url='https://github.com/proxyherd/proxyherd',
     license='MIT',
     keywords=['crawler', 'crawling', 'proxyherd', 'scrapoxy', 'scrapy', 'scraper', 'scraping', 'webscraping', 'proxy'],
