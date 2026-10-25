@@ -81,7 +81,7 @@ Create a new connector and select `Proxy List` as provider:
 Complete the form with the following information:
 1. **Credential**: The previous credential;
 2. **Name**: The name of the connector;
-3. **# Proxies**: The number of instances to create.
+3. **# Proxies**: The number of instances to create;
 4. **Proxies Timeout**: Maximum duration for connecting to a proxy before considering it as offline;
 5. **Proxies Kick**: If enabled, maximum duration for a proxy to be offline before being removed from the pool;
 6. **Freeproxies Timeout**: Same as `Proxies Timeout` but for the freeproxies pool;
@@ -143,10 +143,10 @@ ProxyHerd will assess the availability of proxies and retain only those
 that are currently accessible for the connector.
 
 The provided buttons offer the following functionalities:
-- **Delete One Proxy**: Remove a specific proxy from the list;
-- **Delete Offline Proxies**: Eliminate proxies that are either offline or in a waiting state for fingerprinting;
-- **Delete Duplicates**: Remove proxies that share the same outbound IP address;
-- **Delete All Proxies**: Clear the entire proxy list.
+1. **Delete One Proxy**: Remove a specific proxy from the list;
+2. **Delete Offline Proxies**: Eliminate proxies that are either offline or in a waiting state for fingerprinting;
+3. **Delete Duplicates**: Remove proxies that share the same outbound IP address;
+4. **Delete All Proxies**: Clear the entire proxy list.
 
 
 ### Step 5: Start the connector

@@ -1,7 +1,7 @@
 {
     "name": "proxyherd",
     "author": {
-        "name": "Rakesh",
+        "name": "Rakesh Jana",
         "url": "https://github.com/rjanain"
     },
     "description": "Open-source super proxy manager: one endpoint for all your proxies. Builds a pool of private proxies from your cloud accounts, integrates proxy vendors, handles IP rotation, health checks and sticky sessions. Community fork of Scrapoxy 4.17.4 (MIT).",

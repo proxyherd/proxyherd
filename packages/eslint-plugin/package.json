@@ -2,7 +2,7 @@
     "name": "@proxyherd/eslint-plugin",
     "version": "1.0.11",
     "author": {
-        "name": "Rakesh",
+        "name": "Rakesh Jana",
         "url": "https://github.com/rjanain"
     },
     "description": "ESLint rules for ProxyHerd",

@@ -212,7 +212,7 @@ export default defineConfig({
 
         footer: {
             message: 'Released under the MIT License. ProxyHerd is a community fork of Scrapoxy 4.17.4 and is not affiliated with its original author.',
-            copyright: 'Copyright © 2016-2024 Fabien Vauchelles (Scrapoxy) · © 2026 Rakesh'
+            copyright: 'Copyright © 2016-2024 Fabien Vauchelles (Scrapoxy) · © 2026 Rakesh Jana'
         },
 
         search: {
