@@ -9,7 +9,7 @@ Check out this [video](https://www.youtube.com/watch?v=Uw_xEvIMleY) from [ProxyS
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Uw_xEvIMleY?si=Pwx1QOzc6W4erU1w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-Or this [video](https://www.youtube.com/watch?v=Dk1c6FETufg) from [Proxy-Sale](https://proxy-sale.com/?partner_link=ZnsKIlMpWo):
+Or this [video](https://www.youtube.com/watch?v=Dk1c6FETufg) from [Proxy-Sale](https://proxy-sale.com):
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Dk1c6FETufg?si=1EO3-S0jruFiUQKK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
@@ -31,6 +31,20 @@ Open a [discussion](https://github.com/proxyherd/proxyherd/discussions) if you w
 Please note that using this connector with Pay-Per-GB subscriptions
 without proper configuration can lead to substantial costs.
 :::
+
+## Paid proxy lists (Webshare and others)
+
+The connector is called _Proxy List_ (and _Free Proxies_ in a few field names) because of **how the proxies are supplied**, as a list, not because of their price. Any provider that hands you a list of `ip:port` or `ip:port:username:password` entries works with it, including paid plans from providers without a dedicated connector yet, such as [Webshare](https://www.webshare.io).
+
+With Webshare:
+
+1. In the Webshare dashboard, open **Proxy list**, choose the download format `ip:port:username:password` and copy the **download link**. It is a stable URL on `proxy.webshare.io` that always returns your current list.
+2. In ProxyHerd, create a `Proxy List` credential, which is only a holder ([Step 1](#step-1-create-a-new-credential)), then a `Proxy List` connector with the number of proxies you want to use ([Step 2](#step-2-create-a-new-connector)).
+3. On the connector, click `Update` and add the download link as a **source** with a daily refresh, `86400000` ms ([Step 3](#step-3-add-a-proxies-source)). ProxyHerd fetches the list on that schedule, so rotated or replaced proxies arrive on their own. Pasting the list in the textarea works too ([Step 4](#step-4-add-manually-some-proxies)); the accepted line formats are listed there.
+4. Leave `Freeproxies Kick` disabled, or set it to a generous value. Paid proxies are stable, and a kicked proxy leaves the pool until the next fetch of the list.
+5. Start the connector ([Step 5](#step-5-start-the-connector)). The proxies appear online once they have fetched the [fingerprint service](/deployment/fingerprint).
+
+Other providers work the same way, as long as their list is reachable at a URL or can be pasted. The warning above about pay-per-GB plans still applies: every health check goes through the proxies, see [Sizing and proxy traffic](/deployment/fingerprint#sizing-and-proxy-traffic).
 
 ## ProxyHerd
 
@@ -135,7 +149,7 @@ The provided buttons offer the following functionalities:
 - **Delete All Proxies**: Clear the entire proxy list.
 
 
-### Step 4: Start the connector
+### Step 5: Start the connector
 
 ![Connector Start](spx_connector_start.png)
 

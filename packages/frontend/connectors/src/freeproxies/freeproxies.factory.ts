@@ -24,7 +24,7 @@ export class ConnectorFreeproxiesFactory implements IConnectorFactory {
 
     readonly config: IConnectorConfig = {
         name: 'Proxy List',
-        description: 'Proxy list is a type of connector to hold a manual list of proxies (public or private).',
+        description: 'Proxy list is a type of connector to hold a manual list of proxies: public lists, your own servers, or a paid provider without a dedicated connector, such as Webshare.',
         coupon: null,
         defaultCredentialName: 'Proxy List Credential',
         defaultConnectorName: 'Proxy List Connector',

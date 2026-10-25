@@ -88,6 +88,8 @@ Do not bind-mount it from an exFAT or FAT formatted external drive: ProxyHerd th
 To upgrade ProxyHerd, run `docker compose pull` and then `docker compose up -d` again.
 :::
 
+Already have a proxy subscription from a provider without a dedicated connector, for example Webshare? Load it through the [Proxy List connector](/connectors/freeproxies/guide#paid-proxy-lists-webshare-and-others).
+
 
 ## With NPM
 
