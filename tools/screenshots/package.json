@@ -1,0 +1,8 @@
+{
+    "name": "proxyherd-screenshots",
+    "private": true,
+    "description": "Retakes the documentation screenshots from a local ProxyHerd, see README.md",
+    "dependencies": {
+        "puppeteer-core": "^24.0.0"
+    }
+}
