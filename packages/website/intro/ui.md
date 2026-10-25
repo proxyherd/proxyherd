@@ -21,8 +21,8 @@ ProxyHerd offers various login methods depending on your configuration:
 
 The administration interface includes the following components:
 
-- **Left Menu**: Facilitates navigation between different project sections.
-- **Header**: Displays the name of the connected user and provides a menu for accessing user settings and logging out.
+- **Sidebar**: The left menu, to navigate between the sections of the project.
+- **Header**: Shows the connected user with a menu for the profile and logout, the breadcrumb, and the project status buttons.
 - **Central Area**: Reserved for displaying pages and relevant content.
 
 
@@ -51,7 +51,7 @@ After saving these settings, ProxyHerd will prompt you to create the first crede
 
 ---
 
-![Project settings meny](project_settings_menu.png)
+![Project settings menu](project_settings_menu.png)
 
 Settings can also be accessed through the left menu.
 
