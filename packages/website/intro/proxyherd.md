@@ -28,9 +28,9 @@ ProxyHerd is not:
 
 ## Where ProxyHerd comes from
 
-ProxyHerd is a community fork of **ProxyHerd 4.17.4**, created in October 2026.
+ProxyHerd is a community fork of **Scrapoxy 4.17.4**, created in October 2026.
 
-ProxyHerd was started in 2015 by Fabien Vauchelles and published under the MIT licence
+Scrapoxy was started in 2015 by Fabien Vauchelles and published under the MIT licence
 until version 4.17.4 (December 2024). Later versions moved to a different licence, then to a
 proprietary one, and the project was discontinued in 2026 together with the hosted
 service it depended on for proxy health checks.
@@ -40,11 +40,11 @@ from exactly that commit. The full upstream history is preserved in the reposito
 provenance, and a `NOTICE` file records the origin.
 
 ProxyHerd is not affiliated with, endorsed by, or supported by the original author
-or CoreDump Engineering. "ProxyHerd" is a trademark of its author; it is used here only
+or CoreDump Engineering. "Scrapoxy" is a trademark of its author; it is used here only
 to describe where this project comes from.
 
 
-## What changed from ProxyHerd 4.17.4
+## What changed from Scrapoxy 4.17.4
 
 - **Self-hosted fingerprint service.** The hosted service that checked whether a proxy was online and
   resolved its location no longer exists. ProxyHerd ships its own, running on your infrastructure

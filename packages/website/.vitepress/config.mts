@@ -3,7 +3,7 @@ import {fileURLToPath, URL} from 'url'
 
 const
     title = 'ProxyHerd',
-    description = 'ProxyHerd is an open-source super proxy manager: one endpoint for all your proxies. Deployed on your own infrastructure, it builds a pool of private proxies from your cloud subscription, integrates proxy vendors, checks proxy health and location, manages IP rotation and sticky sessions, and routes traffic to avoid bans. Community fork of ProxyHerd 4.17.4 (MIT).',
+    description = 'ProxyHerd is an open-source super proxy manager: one endpoint for all your proxies. Deployed on your own infrastructure, it builds a pool of private proxies from your cloud subscription, integrates proxy vendors, checks proxy health and location, manages IP rotation and sticky sessions, and routes traffic to avoid bans. Community fork of Scrapoxy 4.17.4 (MIT).',
     iconUrl = '/assets/images/proxyherd.svg',
     url = 'https://proxyherd.github.io/proxyherd',
     githubUrl = 'https://github.com/proxyherd/proxyherd',
@@ -211,8 +211,8 @@ export default defineConfig({
         ],
 
         footer: {
-            message: 'Released under the MIT License. ProxyHerd is a community fork of ProxyHerd 4.17.4 and is not affiliated with its original author.',
-            copyright: 'Copyright © 2016-2024 Fabien Vauchelles (ProxyHerd) · © 2026 ProxyHerd maintainers'
+            message: 'Released under the MIT License. ProxyHerd is a community fork of Scrapoxy 4.17.4 and is not affiliated with its original author.',
+            copyright: 'Copyright © 2016-2024 Fabien Vauchelles (Scrapoxy) · © 2026 Rakesh'
         },
 
         search: {
@@ -253,53 +253,4 @@ export default defineConfig({
         // ignore all localhost links
         /^https?:\/\/localhost/,
     ],
-
-    /*
-    locales: {
-        root: {
-            label: 'English',
-            lang: 'en'
-        },
-        fr: {
-            label: 'French',
-            lang: 'fr',
-            link: '/fr',
-
-            themeConfig: {
-                nav: [
-                    {text: '🏠 Home', link: '/'},
-                    {text: '📄 Documentation', link: '/fr/docs'},
-                    {text: '✉️ Contact', link: 'https://github.com/proxyherd/proxyherd/discussions'},
-                    {
-                        text: '📙 Resources',
-                        items: [
-                            {text: 'Versions', link: '/fr/releases'},
-                            {text: 'Roadmap', link: '/fr/roadmap'},
-                            {text: 'Discord', link: 'https://github.com/proxyherd/proxyherd/discussions'},
-                            {
-                                text: 'Changelog',
-                                link: 'https://github.com/ghcr.io/proxyherd/proxyherd/blob/master/CHANGELOG.md'
-                            },
-                        ]
-                    }
-                ],
-
-                sidebar: [
-                    {
-                        text: 'Exemples',
-                        items: [
-                            {text: 'Exemples', link: '/fr/markdown-examples'},
-                            {text: 'Exemples d\'API d\'exécution', link: '/fr/api-examples'}
-                        ]
-                    }
-                ],
-
-                footer: {
-                    message: 'Publié sous la licence MIT.',
-                    copyright: 'Copyright © 2016-présent Fabien Vauchelles'
-                }
-            },
-        },
-    },
-     */
 })

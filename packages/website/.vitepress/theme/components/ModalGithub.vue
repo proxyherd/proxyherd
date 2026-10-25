@@ -37,9 +37,9 @@ function close() {
                     <p>Your support would mean a lot, just adding a <b>GitHub star 🌟</b> would be awesome!</p>
                     <a class="link"
                        target="_blank"
-                       href="https://github.com/ghcr.io/proxyherd/proxyherd">https://github.com/ghcr.io/proxyherd/proxyherd</a>
+                       href="https://github.com/proxyherd/proxyherd">https://github.com/proxyherd/proxyherd</a>
                     <p>Thank you! 🙏</p>
-                    <p class="signature">Fabien</p>
+                    <p class="signature">Rakesh</p>
                     <div class="model-footer">
                         <button class="modal-button" @click="close()">
                             Close

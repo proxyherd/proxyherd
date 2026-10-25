@@ -9,7 +9,7 @@ This deployment runs a single container that encapsulates all components, includ
 
 ## Docker
 
-ProxyHerd is hosted on Docker hub: [ghcr.io/proxyherd/proxyherd](https://hub.docker.com/r/ghcr.io/proxyherd/proxyherd/).
+The container image is published on GitHub Container Registry: [ghcr.io/proxyherd/proxyherd](https://github.com/proxyherd/proxyherd/pkgs/container/proxyherd).
 
 
 ### Volume
