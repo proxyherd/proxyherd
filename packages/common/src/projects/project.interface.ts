@@ -1,12 +1,12 @@
+import type { ICertificate } from '../certificate';
+import type { IOptionalValue } from '../optional';
+import type { EConnectMode } from '../proxies';
+import type { IRange } from '../range';
 import type {
     ISnapshot,
     IWindow,
     IWindowAdd,
 } from './metrics/window.interface';
-import type { ICertificate } from '../certificate';
-import type { IOptionalValue } from '../optional';
-import type { EConnectMode } from '../proxies';
-import type { IRange } from '../range';
 
 
 export enum EProjectStatus {

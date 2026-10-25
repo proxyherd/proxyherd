@@ -4,12 +4,12 @@ import {
     Input,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { parseNumber } from '../../helpers';
 import {
     ETimeType,
     fromDelay,
-    parseNumber,
     toDelay,
-} from '@proxyherd/frontend-sdk';
+} from '../input-delay';
 import type { ControlValueAccessor } from '@angular/forms';
 import type { IRange } from '@proxyherd/common';
 

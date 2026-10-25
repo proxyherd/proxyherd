@@ -85,7 +85,7 @@ export class AwsApi {
 
         this.instance.interceptors.response.use(
             async(response) => {
-                const contentType = response.headers[ 'content-type' ] ?? '';
+                const contentType = String(response.headers[ 'content-type' ] ?? '');
 
                 if (contentType.includes('xml')) {
                     response.data = await parseStringPromise(
@@ -104,7 +104,7 @@ export class AwsApi {
                     const response = errAxios.response as AxiosResponse;
 
                     if (response) {
-                        const contentType = response.headers[ 'content-type' ] ?? '';
+                        const contentType = String(response.headers[ 'content-type' ] ?? '');
 
                         if (contentType.includes('xml') && response.data) {
                             const data = await parseStringPromise(

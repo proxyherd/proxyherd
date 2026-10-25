@@ -27,6 +27,33 @@ updates:
       - dependency-name: '*'
         update-types:
           - version-update:semver-major
+      # Minor releases that need Angular 18 (CoreUI Angular 4.8 peers on it) or
+      # fall outside Angular 17's peer ranges (typescript >=5.2 <5.5, zone.js
+      # ~0.14). Lift these with the Angular upgrade.
+      - dependency-name: typescript
+        update-types:
+          - version-update:semver-minor
+      - dependency-name: zone.js
+        update-types:
+          - version-update:semver-minor
+      - dependency-name: '@coreui/angular'
+        update-types:
+          - version-update:semver-minor
+      - dependency-name: '@coreui/angular-chartjs'
+        update-types:
+          - version-update:semver-minor
+      - dependency-name: '@coreui/icons-angular'
+        update-types:
+          - version-update:semver-minor
+      # Minor releases that change the frontend's styles or the map's internals
+      # (CoreUI 4.3 SCSS, jsvectormap 1.6 dist layout); upgrade them by hand
+      # and check the UI.
+      - dependency-name: '@coreui/coreui'
+        update-types:
+          - version-update:semver-minor
+      - dependency-name: jsvectormap
+        update-types:
+          - version-update:semver-minor
 
   - package-ecosystem: docker
     directories:

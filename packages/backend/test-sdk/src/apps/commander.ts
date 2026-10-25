@@ -57,7 +57,9 @@ export interface ICommanderAppOptions {
 
 export class CommanderApp {
     public static defaults(options: ICommanderAppOptions): CommanderApp {
-        options.imports = options.imports ?? [];
+        if (!options.imports) {
+            options.imports = [];
+        }
 
         options.imports.push(
             AuthLocalModule.forRoot({

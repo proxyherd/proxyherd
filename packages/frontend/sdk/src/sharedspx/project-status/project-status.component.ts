@@ -3,11 +3,9 @@ import {
     Inject,
 } from '@angular/core';
 import { EProjectStatus } from '@proxyherd/common';
-import {
-    CommanderFrontendClientService,
-    ProjectCurrentService,
-    ToastsService,
-} from '@proxyherd/frontend-sdk';
+import { CommanderFrontendClientService } from '../../clients';
+import { ProjectCurrentService } from '../../current';
+import { ToastsService } from '../../toasts';
 import type {
     ICommanderFrontendClient,
     IProjectData,
