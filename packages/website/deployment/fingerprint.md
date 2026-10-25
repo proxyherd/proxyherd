@@ -10,7 +10,9 @@ ships its own. You run it, and nothing about your proxies is reported anywhere.
 
 ::: warning REQUIRED
 `FINGERPRINT_URL` has no default. ProxyHerd refuses to start until it points at
-a fingerprint service, for example `https://fingerprint.example.com/api/json`.
+a fingerprint service, for example `https://fingerprint.example.com/api/json`,
+or until `FINGERPRINT_URL_DISCOVERY` tells it where to ask for that address
+(see [laptop or behind NAT](#proxyherd-on-a-laptop-or-behind-nat)).
 :::
 
 
@@ -72,6 +74,13 @@ fingerprint container needs a temporary public hostname. One way that needs no
 account is a Cloudflare quick tunnel: a `cloudflared` container next to the
 fingerprint service publishes it on a random `*.trycloudflare.com` hostname.
 
+That hostname changes every time the tunnel starts, so do not copy it into
+`FINGERPRINT_URL`. Point `FINGERPRINT_URL_DISCOVERY` at the metrics endpoint
+of `cloudflared` instead: ProxyHerd asks it for the current hostname at start,
+asks again every ten seconds and switches as soon as the hostname changes. One
+command starts everything, and a reboot or a restarted tunnel needs nothing
+from you.
+
 ```yaml
 services:
   fingerprint:
@@ -82,32 +91,65 @@ services:
     volumes:
       - geoip:/data/geoip
 
-  tunnel:
+  cloudflared:
     image: cloudflare/cloudflared:latest
     restart: unless-stopped
-    command: tunnel --no-autoupdate --url http://fingerprint:3000
+    # --metrics lets the other services read the tunnel's hostname on port 2000 (not published)
+    command: tunnel --no-autoupdate --metrics 0.0.0.0:2000 --url http://fingerprint:3000
     depends_on:
       - fingerprint
 
+  proxyherd:
+    image: ghcr.io/proxyherd/proxyherd
+    restart: unless-stopped
+    depends_on:
+      - cloudflared
+    ports:
+      - "8888:8888"   # proxy endpoint for your scrapers
+      - "8890:8890"   # user interface and API
+    environment:
+      AUTH_LOCAL_USERNAME: admin
+      AUTH_LOCAL_PASSWORD: password
+      BACKEND_JWT_SECRET: secret1
+      FRONTEND_JWT_SECRET: secret2
+      STORAGE_FILE_FILENAME: /cfg/proxyherd.json
+      # Ask cloudflared for the public address of the fingerprint service and follow it
+      FINGERPRINT_URL_DISCOVERY: http://cloudflared:2000/quicktunnel
+    volumes:
+      - cfg:/cfg
+
 volumes:
   geoip:
+  cfg:
 ```
 
 ```shell
-docker compose up -d fingerprint tunnel
-docker compose logs tunnel | grep trycloudflare.com
+docker compose up -d
+docker compose logs proxyherd | grep "Fingerprint address"
 ```
 
-Set `FINGERPRINT_URL=https://<random>.trycloudflare.com/api/json` on
-ProxyHerd and start it. Without Docker, `cloudflared tunnel --url http://localhost:3000`
-does the same for a service running on your machine, and `ngrok http 3000`
-(account required) works the same way.
+Replace `admin`, `password`, `secret1` and `secret2` with your own values;
+nothing else to set. The second command prints the address in use, for example
+`Fingerprint address: https://<random>.trycloudflare.com/api/json`. Check it
+through one of your proxies as shown above. `FINGERPRINT_URL_DISCOVERY` needs
+ProxyHerd 1.1.0 or later.
 
-::: warning The hostname changes on every restart
-Each restart of the tunnel gives it a new hostname. Read it again from the
-logs, update `FINGERPRINT_URL` and restart ProxyHerd, or every proxy goes
-offline. Quick tunnels come with no uptime guarantee: use them for trials,
-not for production.
+The endpoint answers `{"hostname": "<random>.trycloudflare.com"}` and ProxyHerd
+turns it into `https://<hostname>/api/json`. Any endpoint that answers with such
+a `hostname`, or with a complete `url`, works the same way; see the
+[environment variables](/usage/env#fingerprint).
+
+Without Docker, `cloudflared tunnel --url http://localhost:3000 --metrics localhost:2000`
+publishes a service running on your machine, and ProxyHerd started with
+`FINGERPRINT_URL_DISCOVERY=http://localhost:2000/quicktunnel` follows it the
+same way. `ngrok http 3000` (account required) prints its hostname instead:
+copy it into `FINGERPRINT_URL=https://<hostname>/api/json` and restart
+ProxyHerd after every restart of ngrok.
+
+::: warning Trials only
+Quick tunnels come with no uptime guarantee and allow 200 requests in flight.
+Use them for trials and development, not for production: move to a server with
+a public address or to the Cloudflare Worker variant below.
 :::
 
 ### No server at all

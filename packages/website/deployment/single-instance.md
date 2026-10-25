@@ -1,7 +1,7 @@
 # Single instance with file storage Deployment
 
 ::: warning FINGERPRINT_URL is required
-ProxyHerd refuses to start without `FINGERPRINT_URL`, the address of your [fingerprint service](fingerprint). The service must be reachable from the proxies themselves, so it needs a public address. The commands below use `https://fingerprint.example.com/api/json` as a placeholder; replace it with the address of your service (in Helm, the value is `fingerprintUrl`).
+ProxyHerd refuses to start without `FINGERPRINT_URL`, the address of your [fingerprint service](fingerprint). The service must be reachable from the proxies themselves, so it needs a public address. The commands below use `https://fingerprint.example.com/api/json` as a placeholder; replace it with the address of your service (in Helm, the value is `fingerprintUrl`). On a machine without a public address, use `FINGERPRINT_URL_DISCOVERY` instead, as described under [laptop or behind NAT](fingerprint#proxyherd-on-a-laptop-or-behind-nat).
 :::
 
 This deployment runs a single container that encapsulates all components, including the storage, within a single file.

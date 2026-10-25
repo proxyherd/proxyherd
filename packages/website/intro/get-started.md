@@ -5,9 +5,10 @@ that every proxy fetches to prove it is online and to report its location. The f
 reachable **from the proxies**, so it needs a **public address**. A `localhost` address can never work, because
 the proxies are not on your machine. If the proxies cannot reach it, every proxy stays offline.
 
-::: warning FINGERPRINT_URL is required
-ProxyHerd refuses to start without `FINGERPRINT_URL`, the address of your fingerprint service. The quick start
-below runs the service next to ProxyHerd and points `FINGERPRINT_URL` at the public address of the same machine.
+::: warning The fingerprint service needs a public address
+ProxyHerd refuses to start until it knows where its fingerprint service is: `FINGERPRINT_URL` for a fixed public
+address, or `FINGERPRINT_URL_DISCOVERY` when a tunnel assigns one at start. The two Compose files below cover
+both cases: a server with a public IP address, and a laptop or any machine behind NAT.
 :::
 
 
@@ -15,9 +16,11 @@ below runs the service next to ProxyHerd and points `FINGERPRINT_URL` at the pub
 
 Ensure that [Docker](https://www.docker.com) is installed on your computer.
 
-Create a folder, and in it a file named `compose.yaml` with the following content:
+Create a folder, and in it a file named `compose.yaml`. Pick the tab that matches your machine:
 
-```yaml
+::: code-group
+
+```yaml [Server with a public IP]
 services:
   fingerprint:
     image: ghcr.io/proxyherd/fingerprint
@@ -51,9 +54,59 @@ volumes:
   cfg:
 ```
 
-Replace `admin`, `password`, `secret1` and `secret2` with your own values, and `203.0.113.10` with the public
-IP address or hostname of the machine. Open port `3000/tcp` in its firewall or security group. Plain HTTP is
-fine here: the answer carries nothing confidential, and HTTP is cheaper than HTTPS through proxies billed per gigabyte.
+```yaml [Laptop or behind NAT]
+services:
+  fingerprint:
+    image: ghcr.io/proxyherd/fingerprint
+    restart: unless-stopped
+    environment:
+      TRUST_PROXY: "true"   # the proxy's address arrives in X-Forwarded-For
+    volumes:
+      - geoip:/data/geoip
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    restart: unless-stopped
+    # Publishes the fingerprint service on a temporary public hostname (no account needed)
+    command: tunnel --no-autoupdate --metrics 0.0.0.0:2000 --url http://fingerprint:3000
+    depends_on:
+      - fingerprint
+
+  proxyherd:
+    image: ghcr.io/proxyherd/proxyherd
+    restart: unless-stopped
+    depends_on:
+      - cloudflared
+    ports:
+      - "8888:8888"   # proxy endpoint for your scrapers
+      - "8890:8890"   # user interface and API
+    environment:
+      AUTH_LOCAL_USERNAME: admin
+      AUTH_LOCAL_PASSWORD: password
+      BACKEND_JWT_SECRET: secret1
+      FRONTEND_JWT_SECRET: secret2
+      STORAGE_FILE_FILENAME: /cfg/proxyherd.json
+      # Ask cloudflared for the public address of the fingerprint service and follow it
+      FINGERPRINT_URL_DISCOVERY: http://cloudflared:2000/quicktunnel
+    volumes:
+      - cfg:/cfg
+
+volumes:
+  geoip:
+  cfg:
+```
+
+:::
+
+Replace `admin`, `password`, `secret1` and `secret2` with your own values. Then:
+
+- **Server with a public IP**: replace `203.0.113.10` with the public IP address or hostname of the machine and
+  open port `3000/tcp` in its firewall or security group. Plain HTTP is fine here: the answer carries nothing
+  confidential, and HTTP is cheaper than HTTPS through proxies billed per gigabyte.
+- **Laptop or behind NAT**: nothing else to set. The `cloudflared` service publishes the fingerprint service on a
+  temporary `*.trycloudflare.com` hostname, and ProxyHerd asks it for that hostname and follows it when it
+  changes, so a reboot needs no action from you. Quick tunnels have no uptime guarantee: fine for a trial, not for
+  production. Details on the [fingerprint page](/deployment/fingerprint#proxyherd-on-a-laptop-or-behind-nat).
 
 Open the **terminal** in that folder and run:
 
@@ -69,13 +122,15 @@ Before adding proxies, check that the fingerprint service answers from outside, 
 curl -x http://user:password@proxy-host:port http://203.0.113.10:3000/api/json
 ```
 
+On a laptop, `docker compose logs proxyherd | grep "Fingerprint address"` prints the address to check instead
+of `http://203.0.113.10:3000/api/json`.
+
 The answer is a JSON document whose `ip` field is the proxy's public address. If the request fails, fix the
 address or the firewall first: ProxyHerd would mark every proxy offline.
 
-::: tip Laptop, home network or office?
-If the machine has no public IP address, the fingerprint service needs a temporary public hostname instead.
-The fingerprint page explains how under [ProxyHerd on a laptop or behind NAT](/deployment/fingerprint#proxyherd-on-a-laptop-or-behind-nat).
-No server at all? Use the [Cloudflare Worker](/deployment/fingerprint#option-b-cloudflare-worker) variant.
+::: tip No server at all?
+The fingerprint service also runs as a [Cloudflare Worker](/deployment/fingerprint#option-b-cloudflare-worker):
+nothing to host, a stable address, and a free plan that covers small installations.
 :::
 
 ::: warning Storage on Docker Desktop for macOS
