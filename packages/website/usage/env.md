@@ -48,7 +48,9 @@ To start ProxyHerd, it is mandatory to set the secrets `BACKEND_JWT_SECRET` and 
 
 ### Fingerprint
 
-- `FINGERPRINT_URL` : URL of your ProxyHerd fingerprint service, for example `https://fingerprint.example.com/api/json`. **Required**: there is no default, because the service must be reachable from the public internet through your proxies. See the [fingerprint service](/deployment/fingerprint) page.
+- `FINGERPRINT_URL` : URL of your ProxyHerd fingerprint service, for example `https://fingerprint.example.com/api/json`. **Required** unless `FINGERPRINT_URL_DISCOVERY` is set: there is no default, because the service must be reachable from the public internet through your proxies. See the [fingerprint service](/deployment/fingerprint) page.
+- `FINGERPRINT_URL_DISCOVERY` : Endpoint that ProxyHerd asks for the address of the fingerprint service when a tunnel assigns it at start, for example `http://cloudflared:2000/quicktunnel` next to a Cloudflare quick tunnel. ProxyHerd reads it from its own network (not through the proxies) at start and then every `FINGERPRINT_URL_DISCOVERY_DELAY` milliseconds, and switches to the new address as soon as the answer changes. The answer is a JSON document with either a `url`, used as is, or a `hostname`, turned into `https://<hostname>/api/json`. When set, `FINGERPRINT_URL` is optional and only used until the first answer. See [ProxyHerd on a laptop or behind NAT](/deployment/fingerprint#proxyherd-on-a-laptop-or-behind-nat).
+- `FINGERPRINT_URL_DISCOVERY_DELAY` : Milliseconds between two reads of `FINGERPRINT_URL_DISCOVERY`. The default value is `10000` (10 seconds).
 - `FINGERPRINT_FOLLOW_REDIRECT_MAX` : Max number of HTTP redirects allowed when requesting the fingerprint server. The default value is `3`.
 - `FINGERPRINT_RETRY_MAX` : Maximum retries before stating a proxy or freeproxy are inaccessible. The default value is `2`.
 - `FINGERPRINT_TIMEOUT` : Timeout in milliseconds of request when requesting the fingerprint server. The default value is `5000` (5 seconds).

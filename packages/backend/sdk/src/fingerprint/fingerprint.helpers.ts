@@ -7,6 +7,12 @@ import {
     Sockets,
 } from '@proxyherd/proxy-sdk';
 import {
+    FINGERPRINT_URL_DISCOVERY_DELAY_DEFAULT,
+    FINGERPRINT_URL_DISCOVERY_WAIT,
+    FingerprintUrlDiscovery,
+    FingerprintUrlNotDiscoveredError,
+} from './fingerprint.discovery';
+import {
     ArrayHttpHeaders,
     formatUseragent,
     urlToUrlOptions,
@@ -225,15 +231,79 @@ function fingerprintImpl(
 }
 
 
-export function fingerprint(
+const FINGERPRINT_URL_HELP = 'FINGERPRINT_URL is not set. ProxyHerd needs the address of your fingerprint service, '
+    + 'for example https://fingerprint.example.com/api/json, '
+    + 'or FINGERPRINT_URL_DISCOVERY when a tunnel assigns that address at start. '
+    + 'See https://proxyherd.github.io/proxyherd/deployment/fingerprint';
+let discovery: FingerprintUrlDiscovery | undefined = void 0;
+
+
+/**
+ * The run-time discovery of the fingerprint address, started on first use when
+ * FINGERPRINT_URL_DISCOVERY is set. One per process: every module shares the same answer.
+ */
+export function getFingerprintUrlDiscovery(): FingerprintUrlDiscovery | undefined {
+    const discoveryUrl = process.env.FINGERPRINT_URL_DISCOVERY;
+
+    if (!discoveryUrl || discoveryUrl.length <= 0) {
+        if (discovery) {
+            discovery.stop();
+            discovery = void 0;
+        }
+
+        return void 0;
+    }
+
+    if (!discovery || discovery.discoveryUrl !== discoveryUrl) {
+        if (discovery) {
+            discovery.stop();
+        }
+
+        discovery = new FingerprintUrlDiscovery({
+            discoveryUrl,
+            delay: parseInt(
+                process.env.FINGERPRINT_URL_DISCOVERY_DELAY ?? FINGERPRINT_URL_DISCOVERY_DELAY_DEFAULT.toString(),
+                10
+            ),
+            initialUrl: process.env.FINGERPRINT_URL,
+        });
+        discovery.start();
+    }
+
+    return discovery;
+}
+
+
+/**
+ * The address to check against. An empty `url` means the address is discovered at run time
+ * and not known yet: wait a little for the first answer instead of failing the proxy at once.
+ */
+async function resolveFingerprintUrl(options: IFingerprintOptions): Promise<string> {
+    if (options.url && options.url.length > 0) {
+        return options.url;
+    }
+
+    const currentDiscovery = getFingerprintUrlDiscovery();
+
+    if (currentDiscovery) {
+        return currentDiscovery.waitForUrl(FINGERPRINT_URL_DISCOVERY_WAIT);
+    }
+
+    throw new Error(FINGERPRINT_URL_HELP);
+}
+
+
+export async function fingerprint(
     transport: ATransportService,
     proxy: IProxyToRefresh,
     options: IFingerprintOptions,
     fpRequest: IFingerprintRequest,
     sockets: Sockets
 ): Promise<IFingerprint> {
+    const url = await resolveFingerprintUrl(options);
+
     return fingerprintImpl(
-        options.url,
+        url,
         transport,
         proxy,
         fpRequest,
@@ -246,20 +316,44 @@ export function fingerprint(
 }
 
 
-const FINGERPRINT_URL_HELP = 'FINGERPRINT_URL is not set. ProxyHerd needs the address of your fingerprint service, '
-    + 'for example https://fingerprint.example.com/api/json. '
-    + 'See https://proxyherd.github.io/proxyherd/deployment/fingerprint';
-
-
 /**
- * The fingerprint service URL, from the argument or FINGERPRINT_URL. There is no default:
- * the hosted service the original project depended on no longer exists.
+ * The fingerprint service URL: the argument when given, else the address discovered from
+ * FINGERPRINT_URL_DISCOVERY, else FINGERPRINT_URL. There is no default: the hosted service
+ * the original project depended on no longer exists.
+ *
+ * Returns `undefined` while a discovered address is not known yet (unless FINGERPRINT_URL
+ * provides a starting point); throws when nothing is configured at all.
  */
-export function getEnvFingerprintUrl(url?: string): string {
-    const resolved = url && url.length > 0 ? url : process.env.FINGERPRINT_URL;
+function getEnvFingerprintUrlIfKnown(url?: string): string | undefined {
+    if (url && url.length > 0) {
+        return url;
+    }
+
+    const currentDiscovery = getFingerprintUrlDiscovery();
+
+    if (currentDiscovery) {
+        return currentDiscovery.url;
+    }
+
+    const resolved = process.env.FINGERPRINT_URL;
 
     if (!resolved || resolved.length <= 0) {
         throw new Error(FINGERPRINT_URL_HELP);
+    }
+
+    return resolved;
+}
+
+
+/**
+ * Same as above, for callers that need the address now: throws a FingerprintUrlNotDiscoveredError
+ * while a discovered address is not known yet.
+ */
+export function getEnvFingerprintUrl(url?: string): string {
+    const resolved = getEnvFingerprintUrlIfKnown(url);
+
+    if (!resolved) {
+        throw new FingerprintUrlNotDiscoveredError(process.env.FINGERPRINT_URL_DISCOVERY as string);
     }
 
     return resolved;
@@ -283,12 +377,24 @@ export function getEnvFingerprintTextUrl(url?: string): string {
 }
 
 
+/**
+ * Fingerprint options from the environment. Fails at start when no address is configured.
+ * The `url` is read on every access, so a discovered address that changes (a restarted tunnel)
+ * is picked up by the next check without a restart of ProxyHerd. It is an empty string while
+ * a discovered address is not known yet: NestJS serialises module options at start, so the
+ * getter never throws, and `fingerprint()` waits for the address instead.
+ */
 export function getEnvFingerprintConfig(
     version: string,
     url?: string
 ): IFingerprintOptions {
+    // Validates the configuration now: throws when nothing is configured.
+    getEnvFingerprintUrlIfKnown(url);
+
     return {
-        url: getEnvFingerprintUrl(url),
+        get url(): string {
+            return getEnvFingerprintUrlIfKnown(url) ?? '';
+        },
         useragent: formatUseragent(version),
         followRedirectMax: parseInt(
             process.env.FINGERPRINT_FOLLOW_REDIRECT_MAX ?? '3',
