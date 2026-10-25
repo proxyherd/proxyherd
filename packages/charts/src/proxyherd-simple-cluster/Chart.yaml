@@ -2,6 +2,6 @@ apiVersion: v2
 name: proxyherd-simple-cluster
 description: ProxyHerd cluster with file storage
 type: application
-version: 1.0.0
-appVersion: "1.0.0"
+version: 1.0.1
+appVersion: "1.0.1"
 icon: https://proxyherd.github.io/proxyherd/assets/images/logo200.png

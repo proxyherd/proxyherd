@@ -1,6 +1,44 @@
 {
     "releases": [
         {
+            "version": "1.0.1",
+            "description": "Maintenance release. Proxies are checked once a minute instead of every few seconds, the website and the user interface use the ProxyHerd colours, and the Get Started page runs ProxyHerd and its fingerprint service from a single Docker Compose file. Upgrading needs no configuration change.",
+            "commitGroups": [
+                {
+                    "title": "Changes",
+                    "commits": [
+                        "**refresh**: proxies and Proxy List pool entries are fingerprinted once a minute by default instead of every second, about ten times fewer requests through each proxy. For free proxy lists, set `PROXY_REFRESH_DELAY` and `FREEPROXY_REFRESH_DELAY` back to `1000` to notice dead proxies sooner; see <a href=\"/proxyherd/deployment/fingerprint#sizing-and-proxy-traffic\">Sizing and proxy traffic</a>",
+                        "**brand**: the website and the user interface use the green and amber of the ProxyHerd logo instead of the red of Scrapoxy; the Proxy List connector icon follows",
+                        "**licence**: the copyright lines credit Fabien Vauchelles for Scrapoxy up to version 4.17.4 and Rakesh Jana for ProxyHerd; the npm and PyPI metadata name the ProxyHerd maintainer"
+                    ]
+                },
+                {
+                    "title": "Fixes",
+                    "commits": [
+                        "**frontend**: the sidebar shows the logo drawn for light backgrounds, so the whole wordmark is visible",
+                        "**website**: broken GitHub and container registry links, the leftover French locale and other rebranding leftovers"
+                    ]
+                },
+                {
+                    "title": "Documentation",
+                    "commits": [
+                        "**get-started**: one Docker Compose file runs ProxyHerd and its fingerprint service, with a check through a proxy and a warning about exFAT drives on macOS; see <a href=\"/proxyherd/intro/get-started\">Get Started</a>",
+                        "**fingerprint**: deployment patterns for a server with a public IP address, a laptop behind NAT and the Cloudflare Worker, with Worker prerequisites and sizing figures",
+                        "**connectors**: paid proxy lists such as Webshare through the <a href=\"/proxyherd/connectors/freeproxies/guide#paid-proxy-lists-webshare-and-others\">Proxy List connector</a>",
+                        "**website**: the user interface and Proxy List screenshots show ProxyHerd"
+                    ]
+                },
+                {
+                    "title": "Dependencies and build",
+                    "commits": [
+                        "**deps**: minor and patch updates of the npm dependencies and a refreshed lock file resolve 274 Dependabot security alerts; the remaining ones need major framework upgrades, tracked in <a href=\"https://github.com/proxyherd/proxyherd/issues/14\">issue #14</a>",
+                        "**docker**: both images are built on Node.js 20.13.1",
+                        "**ci**: re-running a release skips the npm packages already published, and the end-to-end tests run in three parallel shards"
+                    ]
+                }
+            ]
+        },
+        {
             "version": "1.0.0",
             "description": "First release of ProxyHerd, the community fork of Scrapoxy 4.17.4 (MIT). Configuration, storage, the REST API and the wire identifiers scrapers rely on (`X-Scrapoxy-*` headers, the sticky-session cookie, cloud resource names) are unchanged, so a 4.17.4 installation upgrades in place.",
             "breaking": "The hosted fingerprint service no longer exists. Deploy the <a href=\"/proxyherd/deployment/fingerprint\">ProxyHerd fingerprint service</a> and set <code>FINGERPRINT_URL</code>; ProxyHerd refuses to start without it. The npm package, binary, container image (<code>ghcr.io/proxyherd/proxyherd</code>) and Helm charts are named <code>proxyherd</code>. The Python package is <code>proxyherd</code> (settings <code>PROXYHERD_*</code>); the <code>scrapoxy</code> module and <code>SCRAPOXY_*</code> settings keep working as deprecated aliases.",
