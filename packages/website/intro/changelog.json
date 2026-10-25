@@ -1,6 +1,31 @@
 {
     "releases": [
         {
+            "version": "1.1.0",
+            "description": "ProxyHerd can follow the public address of its fingerprint service when a tunnel assigns it at start. A laptop or any machine behind NAT now runs from one Docker Compose file and one command, and a reboot or a restarted tunnel needs nothing from you. Installations with a fixed <code>FINGERPRINT_URL</code> are not affected; upgrading needs no configuration change.",
+            "commitGroups": [
+                {
+                    "title": "Features",
+                    "commits": [
+                        "**fingerprint**: `FINGERPRINT_URL_DISCOVERY` points ProxyHerd at an endpoint that knows the public address of the fingerprint service, such as the metrics server of a Cloudflare quick tunnel (`http://cloudflared:2000/quicktunnel`). ProxyHerd reads it at start, again every `FINGERPRINT_URL_DISCOVERY_DELAY` milliseconds (10 seconds by default) and switches as soon as the address changes; checks wait for the first answer instead of marking proxies offline. `FINGERPRINT_URL` becomes optional when it is set. See <a href=\"/proxyherd/deployment/fingerprint#proxyherd-on-a-laptop-or-behind-nat\">ProxyHerd on a laptop or behind NAT</a> and the <a href=\"/proxyherd/usage/env#fingerprint\">environment variables</a>"
+                    ]
+                },
+                {
+                    "title": "Documentation",
+                    "commits": [
+                        "**get-started**: two Compose files to pick from, <em>Server with a public IP</em> and <em>Laptop or behind NAT</em>; the laptop one has no address to copy. See <a href=\"/proxyherd/intro/get-started\">Get Started</a>",
+                        "**fingerprint**: the laptop section is one complete Compose file and one command, and `docker compose logs proxyherd | grep \"Fingerprint address\"` shows the address in use"
+                    ]
+                },
+                {
+                    "title": "Dependencies and build",
+                    "commits": [
+                        "**build**: the dependency ranges of the ProxyHerd bundle match the lock file again (a stale `passport-oauth2` range broke the pruned lock file), so the container image installs the locked versions"
+                    ]
+                }
+            ]
+        },
+        {
             "version": "1.0.1",
             "description": "Maintenance release. Proxies are checked once a minute instead of every few seconds, the website and the user interface use the ProxyHerd colours, and the Get Started page runs ProxyHerd and its fingerprint service from a single Docker Compose file. Upgrading needs no configuration change.",
             "commitGroups": [
