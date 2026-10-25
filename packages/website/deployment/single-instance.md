@@ -1,7 +1,7 @@
 # Single instance with file storage Deployment
 
 ::: warning FINGERPRINT_URL is required
-ProxyHerd refuses to start without `FINGERPRINT_URL`, the address of your [fingerprint service](fingerprint). Add `-e FINGERPRINT_URL=https://fingerprint.example.com/api/json` to the commands below, or the equivalent in Compose or Helm (`fingerprintUrl`).
+ProxyHerd refuses to start without `FINGERPRINT_URL`, the address of your [fingerprint service](fingerprint). The service must be reachable from the proxies themselves, so it needs a public address. The commands below use `https://fingerprint.example.com/api/json` as a placeholder; replace it with the address of your service (in Helm, the value is `fingerprintUrl`).
 :::
 
 This deployment runs a single container that encapsulates all components, including the storage, within a single file.
@@ -20,6 +20,7 @@ Start ProxyHerd with a volume for the configuration file:
 docker run -d -p 8888:8888 -p 8890:8890 \
   -e AUTH_LOCAL_USERNAME=admin -e AUTH_LOCAL_PASSWORD=password \
   -e BACKEND_JWT_SECRET=secret1 -e FRONTEND_JWT_SECRET=secret2 \
+  -e FINGERPRINT_URL=https://fingerprint.example.com/api/json \
   -e STORAGE_FILE_FILENAME=/etc/proxyherd/config.json \
   -v ./proxyherd:/etc/proxyherd \
   ghcr.io/proxyherd/proxyherd
@@ -27,6 +28,10 @@ docker run -d -p 8888:8888 -p 8890:8890 \
 
 :::info
 The file `./proxyherd/config.json` contains the configuration on the host machine.
+:::
+
+::: warning Docker Desktop on macOS
+Keep this folder on the internal disk, or use a Docker named volume instead (`-v proxyherd-cfg:/etc/proxyherd`). A bind mount from an exFAT or FAT formatted external drive fails silently: ProxyHerd logs `Cannot write store: ENOENT` on every save, the configuration lives only in memory, and it is lost when the container restarts.
 :::
 
 
@@ -38,6 +43,7 @@ To limit the log level, set the environment variable `NODE_ENV` to `production`:
 docker run -d -p 8888:8888 -p 8890:8890 \
   -e AUTH_LOCAL_USERNAME=admin -e AUTH_LOCAL_PASSWORD=password \
   -e BACKEND_JWT_SECRET=secret1 -e FRONTEND_JWT_SECRET=secret2 \
+  -e FINGERPRINT_URL=https://fingerprint.example.com/api/json \
   -e NODE_ENV=production \
   ghcr.io/proxyherd/proxyherd
 ```
@@ -62,10 +68,13 @@ services:
       - AUTH_LOCAL_PASSWORD=password
       - BACKEND_JWT_SECRET=secret1
       - FRONTEND_JWT_SECRET=secret2
+      - FINGERPRINT_URL=https://fingerprint.example.com/api/json
       - STORAGE_FILE_FILENAME=/etc/proxyherd/config.json
     volumes:
       - ./proxyherd:/etc/proxyherd
 ```
+
+The same storage note applies: on Docker Desktop for macOS, keep `./proxyherd` on the internal disk or replace the bind mount with a named volume.
 
 Run the following command:
 

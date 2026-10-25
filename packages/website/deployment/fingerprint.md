@@ -16,12 +16,106 @@ a fingerprint service, for example `https://fingerprint.example.com/api/json`.
 
 ## Where to run it
 
-The service must be reachable **through your proxies**, so it needs a public
-address: a small VPS, a container platform, or a Cloudflare Worker. It does
-not need to run next to ProxyHerd, and one instance can serve several
-ProxyHerd installations.
+The service must be reachable **through your proxies**, that is from the public
+internet, not only from the machine running ProxyHerd. If the proxies cannot
+reach `FINGERPRINT_URL`, every proxy stays offline. Test the address *through
+one of your proxies*, not from your own shell:
 
-Expect one request per proxy per refresh cycle, about 600 bytes each.
+```shell
+curl -x http://user:password@proxy-host:port http://fingerprint.example.com:3000/api/json
+```
+
+The answer is a JSON document whose `ip` field is the proxy's public address.
+
+One instance can serve several ProxyHerd installations. Expect one request per
+proxy per refresh cycle, about 600 bytes each. There are three ways to run it,
+in order of preference.
+
+### ProxyHerd on a server with a public IP
+
+The common case. Run the fingerprint container on the same host as ProxyHerd,
+publish port 3000, and point `FINGERPRINT_URL` at the public address of that
+host:
+
+```yaml
+services:
+  fingerprint:
+    image: ghcr.io/proxyherd/fingerprint
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - geoip:/data/geoip
+
+  proxyherd:
+    image: ghcr.io/proxyherd/proxyherd
+    environment:
+      FINGERPRINT_URL: http://203.0.113.10:3000/api/json
+    # ...
+
+volumes:
+  geoip:
+```
+
+Replace `203.0.113.10` with the server's public IP address or hostname and
+open `3000/tcp` in its firewall or security group. Nothing else to set up.
+Plain HTTP is fine: the answer carries nothing confidential, and HTTP is
+cheaper than HTTPS through proxies billed per gigabyte. The
+[Get Started](/intro/get-started) page has the complete Compose file, and
+[Option A](#option-a-docker-recommended) below shows how to serve it over
+HTTPS behind a reverse proxy you already run.
+
+### ProxyHerd on a laptop or behind NAT
+
+For a trial or for development on a machine without a public address, the
+fingerprint container needs a temporary public hostname. One way that needs no
+account is a Cloudflare quick tunnel: a `cloudflared` container next to the
+fingerprint service publishes it on a random `*.trycloudflare.com` hostname.
+
+```yaml
+services:
+  fingerprint:
+    image: ghcr.io/proxyherd/fingerprint
+    restart: unless-stopped
+    environment:
+      TRUST_PROXY: "true"   # the proxy's address arrives in X-Forwarded-For
+    volumes:
+      - geoip:/data/geoip
+
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    restart: unless-stopped
+    command: tunnel --no-autoupdate --url http://fingerprint:3000
+    depends_on:
+      - fingerprint
+
+volumes:
+  geoip:
+```
+
+```shell
+docker compose up -d fingerprint tunnel
+docker compose logs tunnel | grep trycloudflare.com
+```
+
+Set `FINGERPRINT_URL=https://<random>.trycloudflare.com/api/json` on
+ProxyHerd and start it. Without Docker, `cloudflared tunnel --url http://localhost:3000`
+does the same for a service running on your machine, and `ngrok http 3000`
+(account required) works the same way.
+
+::: warning The hostname changes on every restart
+Each restart of the tunnel gives it a new hostname. Read it again from the
+logs, update `FINGERPRINT_URL` and restart ProxyHerd, or every proxy goes
+offline. Quick tunnels come with no uptime guarantee: use them for trials,
+not for production.
+:::
+
+### No server at all
+
+The [Cloudflare Worker](#option-b-cloudflare-worker) variant runs the service
+on Cloudflare's network: nothing to host and no database. Read
+[Sizing](#sizing-and-proxy-traffic) first, because the free plan caps the
+number of checks per day.
 
 
 ## Option A: Docker (recommended)
@@ -35,8 +129,10 @@ docker run -d --name fingerprint -p 3000:3000 \
 On first start the service downloads the free DB-IP "lite" city and ASN
 databases (about 150 MB) into the volume, then refreshes them weekly.
 
-Put it behind HTTPS with the reverse proxy of your choice and set
-`TRUST_PROXY=true` so the client address is read from `X-Forwarded-For`.
+Published directly on port 3000, `FINGERPRINT_URL=http://<public address>:3000/api/json`
+is all ProxyHerd needs. To serve it over HTTPS instead, put it behind the
+reverse proxy of your choice and set `TRUST_PROXY=true` so the client address
+is read from `X-Forwarded-For`.
 
 Docker Compose, with Caddy terminating TLS:
 
