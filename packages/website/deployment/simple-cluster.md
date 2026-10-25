@@ -88,7 +88,7 @@ version: 1.0.0
 appVersion: latest
 dependencies:
     -   name: proxyherd-simple-cluster
-        version: 1.0.0
+        version: 1.0.1
         repository: oci://ghcr.io/proxyherd/charts
 ```
 
