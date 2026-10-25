@@ -2,8 +2,8 @@
     "name": "@proxyherd/stylelint-config",
     "version": "1.0.9",
     "author": {
-        "name": "ProxyHerd maintainers",
-        "url": "https://github.com/proxyherd"
+        "name": "Rakesh",
+        "url": "https://github.com/rjanain"
     },
     "description": "Stylelint config for ProxyHerd",
     "url": "https://github.com/proxyherd/proxyherd",

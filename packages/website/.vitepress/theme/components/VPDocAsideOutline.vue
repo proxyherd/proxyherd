@@ -37,9 +37,9 @@ useActiveAnchor(container, marker)
         role="navigation"
     >
         <div class="content">
-            <a class="outline-image" href="https://github.com/ghcr.io/proxyherd/proxyherd" target="_blank">
+            <a class="outline-image" href="https://github.com/proxyherd/proxyherd" target="_blank">
                 <img
-                    src="https://img.shields.io/github/stars/ghcr.io/proxyherd/proxyherd?logo=github&logoColor=000000&labelColor=ededed&label=Give us a star!&color=ededed&style=for-the-badge"
+                    src="https://img.shields.io/github/stars/proxyherd/proxyherd?logo=github&logoColor=000000&labelColor=ededed&label=Give us a star!&color=ededed&style=for-the-badge"
                     alt="Github">
             </a>
 

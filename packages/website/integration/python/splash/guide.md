@@ -15,7 +15,7 @@ The official image has the following issues:
 Use the image `ghcr.io/proxyherd/splash` to solve these issues.
 
 ::: info
-If you're interested in the underlying code, you can find it [here](https://github.com/ghcr.io/proxyherd/proxyherd/tree/master/packages/splash/src).
+If you're interested in the underlying code, you can find it [here](https://github.com/proxyherd/proxyherd/tree/main/packages/splash/src).
 :::
 
 
