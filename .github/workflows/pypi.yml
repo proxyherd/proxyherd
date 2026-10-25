@@ -72,7 +72,10 @@ jobs:
           name: python-api
           path: dist/python-api
 
+      # Like the npm job, a re-run (or a tag pushed again) must not fail on a
+      # version that PyPI already has: files that exist are skipped.
       - name: Publish
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           packages-dir: dist/python-api
+          skip-existing: true

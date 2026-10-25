@@ -108,13 +108,13 @@ jobs:
         working-directory: dist/proxyherd
         run: |
           chmod +x proxyherd.js
-          "$GITHUB_WORKSPACE/.github/scripts/npm-publish.sh" ${{ env.DRY_RUN == 'true' && '--dry-run' || '' }}
+          sh "$GITHUB_WORKSPACE/.github/scripts/npm-publish.sh" ${{ env.DRY_RUN == 'true' && '--dry-run' || '' }}
 
       - name: Publish @proxyherd/fingerprint
         working-directory: dist/fingerprint
         run: |
           chmod +x fingerprint.js
-          "$GITHUB_WORKSPACE/.github/scripts/npm-publish.sh" ${{ env.DRY_RUN == 'true' && '--dry-run' || '' }}
+          sh "$GITHUB_WORKSPACE/.github/scripts/npm-publish.sh" ${{ env.DRY_RUN == 'true' && '--dry-run' || '' }}
 
   docker:
     name: Publish container images
