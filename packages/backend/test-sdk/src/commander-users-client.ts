@@ -143,7 +143,7 @@ export class CommanderUsersClient {
             newPayload,
             secret,
             {
-                expiresIn: newExpiration,
+                expiresIn: newExpiration as jwt.SignOptions['expiresIn'],
             }
         );
     }

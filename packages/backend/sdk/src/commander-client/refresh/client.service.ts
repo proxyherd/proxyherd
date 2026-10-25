@@ -54,7 +54,7 @@ export class CommanderRefreshClientService implements OnModuleDestroy {
                     {},
                     this.config.jwt.secret,
                     {
-                        expiresIn: this.config.jwt.expiration,
+                        expiresIn: this.config.jwt.expiration as jwt.SignOptions['expiresIn'],
                     }
                 );
 

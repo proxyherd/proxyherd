@@ -85,7 +85,7 @@ export function addAuthCookie(
         user,
         config.secret,
         {
-            expiresIn: config.expiration,
+            expiresIn: config.expiration as jwt.SignOptions['expiresIn'],
         }
     );
 
