@@ -103,6 +103,8 @@ proxyherd-simple-cluster:
 
     backendJwtSecret: "secret1"
     frontendJwtSecret: "secret2"
+
+    fingerprintUrl: "https://fingerprint.example.com/api/json"
 ```
 
 Build dependencies:

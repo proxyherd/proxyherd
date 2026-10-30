@@ -36,8 +36,9 @@ proprietary one, and the project was discontinued in 2026 together with the host
 service it depended on for proxy health checks.
 
 The MIT licence on the code up to 4.17.4 cannot be withdrawn, so this fork continues
-from exactly that commit. The full upstream history is preserved in the repository as
-provenance, and a `NOTICE` file records the origin.
+from exactly that commit, and nothing from later versions is included. The full upstream
+history is preserved in the repository as provenance, and
+[NOTICE.md](https://github.com/proxyherd/proxyherd/blob/main/NOTICE.md) records the origin.
 
 ProxyHerd is not affiliated with, endorsed by, or supported by the original author
 or CoreDump Engineering. "Scrapoxy" is a trademark of its author; it is used here only
@@ -53,4 +54,4 @@ to describe where this project comes from.
 - **New name everywhere a user sees it**: package, binary, container image, Helm charts and this documentation.
 - **Everything else is compatible.** Configuration files, storage, the REST API, the `X-Scrapoxy-*`
   headers, the sticky-session cookie and the naming of cloud instances are unchanged, so an
-  existing 4.17.4 installation upgrades in place.
+  existing 4.17.4 installation upgrades in place. The [migration guide](/intro/migrate) lists the steps.
