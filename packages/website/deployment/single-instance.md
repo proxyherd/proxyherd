@@ -104,7 +104,7 @@ version: 1.0.0
 appVersion: latest
 dependencies:
     -   name: proxyherd
-        version: 1.0.1
+        version: 1.1.0
         repository: oci://ghcr.io/proxyherd/charts
 ```
 

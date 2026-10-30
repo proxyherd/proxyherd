@@ -8,7 +8,7 @@ setup(
     name='proxyherd',
     packages=find_packages(),
     install_requires=[],
-    version='1.0.1',
+    version='1.1.0',
     description='Python API and Scrapy middlewares for ProxyHerd, the open-source super proxy manager',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
