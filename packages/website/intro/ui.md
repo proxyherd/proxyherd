@@ -47,6 +47,15 @@ During the initial connection, ProxyHerd will guide you through the creation of 
 12. **Override User-Agent**: If enabled, ProxyHerd overrides the User-Agent header with the value assigned to a proxy instance. All requests made with this instance will have the same User-Agent header;
 13. **Shuffle TLS Ciphersuite**: If enabled, ProxyHerd assigns a random TLS cipher suite to each proxy instance, helping to prevent [TLS fingerprinting](https://youtu.be/0S5SRT-WIUo?t=497);
 
+::: warning The CA certificate is the same in every installation
+ProxyHerd ships one CA certificate, inherited from Scrapoxy, and its private key is public in the source
+repository. Trust it only in the scrapers and browsers that send traffic through ProxyHerd, never in an
+operating system or a browser you use for anything else: anyone holding the key can issue certificates
+that such a client would accept. MITM is enabled by default for new projects; if you do not need request
+interception, turn it off and HTTPS traffic passes through without the certificate. A CA generated for
+each installation is planned.
+:::
+
 After saving these settings, ProxyHerd will prompt you to create the first credential for the project.
 
 ---
