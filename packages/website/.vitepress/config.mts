@@ -60,6 +60,7 @@ export default defineConfig({
                 items: [
                     {text: 'What is ProxyHerd?', link: 'proxyherd'},
                     {text: 'Getting Started', link: 'get-started'},
+                    {text: 'Migrating from Scrapoxy', link: 'migrate'},
                     {text: 'User Interface', link: 'ui'},
                     {text: 'Q&A', link: 'qna'},
                     {text: 'Changelog', link: 'changelog'},
