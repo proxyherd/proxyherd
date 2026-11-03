@@ -1,3 +1,32 @@
 name = "proxyherd-fingerprint"
 main = "src/index.ts"
 compatibility_date = "2025-01-01"
+
+# Your own deployment (`npx wrangler deploy`) has no rate limit. To add one, copy the
+# [[env.hosted.ratelimits]] block below without the `env.hosted.` prefix.
+
+# The shared service at fingerprint.proxyherd.com, deployed by the maintainers with
+# `npx wrangler deploy --env hosted` from the Cloudflare account that holds the proxyherd.com zone.
+[env.hosted]
+name = "proxyherd-fingerprint-hosted"
+workers_dev = false
+routes = [
+    { pattern = "fingerprint.proxyherd.com", custom_domain = true },
+]
+
+[env.hosted.vars]
+HOSTED = "true"
+
+[env.hosted.observability]
+enabled = false
+
+# 20 requests per minute per IP address and Cloudflare location. ProxyHerd checks each proxy
+# once a minute by default (up to 3 requests when a check is retried), so this leaves room for
+# a few proxies behind one address and stops anyone hammering the service from one address.
+[[env.hosted.ratelimits]]
+name = "RATE_LIMITER"
+namespace_id = "1001"
+
+  [env.hosted.ratelimits.simple]
+  limit = 20
+  period = 60

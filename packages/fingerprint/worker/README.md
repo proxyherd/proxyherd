@@ -26,3 +26,20 @@ proxies plus pool entries; shorter `PROXY_REFRESH_DELAY` /
 `FREEPROXY_REFRESH_DELAY` values reduce that quickly.
 
 This directory is not part of the Nx build; it is deployed with wrangler only.
+
+## Rate limit and the shared service
+
+`npx wrangler deploy` deploys without a rate limit. The `hosted` environment in
+`wrangler.toml` is the shared service at `fingerprint.proxyherd.com`, which
+ProxyHerd uses when `FINGERPRINT_URL` is not set:
+
+```shell
+npx wrangler deploy --env hosted
+```
+
+It adds a [rate limiting binding](https://developers.cloudflare.com/workers/runtime-apis/bindings/rate-limit/)
+of 20 requests per minute per IP address (counted per Cloudflare location, so
+approximate), answers `429 Too Many Requests` with a short explanation over
+the limit, and disables request logs. `/health` is never limited. To protect
+your own deployment the same way, copy the `[[env.hosted.ratelimits]]` block
+without the `env.hosted.` prefix.
