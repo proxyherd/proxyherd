@@ -1,7 +1,7 @@
 # Cluster with file storage Deployment
 
-::: warning FINGERPRINT_URL is required
-ProxyHerd refuses to start without `FINGERPRINT_URL`, the address of your [fingerprint service](fingerprint). Add `-e FINGERPRINT_URL=https://fingerprint.example.com/api/json` to the commands below, or the equivalent in Compose or Helm (`fingerprintUrl`). On a machine without a public address, `FINGERPRINT_URL_DISCOVERY` replaces it; see [laptop or behind NAT](fingerprint#proxyherd-on-a-laptop-or-behind-nat).
+::: tip Fingerprint service
+Without `FINGERPRINT_URL`, ProxyHerd uses the [shared fingerprint service](fingerprint#shared-service-default), which is best effort and rate limited per IP address. For production, run [your own](fingerprint#running-your-own) and add `-e FINGERPRINT_URL=https://fingerprint.example.com/api/json` to the commands below, or the equivalent in Compose or Helm (`fingerprintUrl`). On a machine without a public address, `FINGERPRINT_URL_DISCOVERY` replaces it; see [laptop or behind NAT](fingerprint#proxyherd-on-a-laptop-or-behind-nat).
 :::
 
 This deployment consists of 3 instances:
@@ -104,7 +104,7 @@ proxyherd-simple-cluster:
     backendJwtSecret: "secret1"
     frontendJwtSecret: "secret2"
 
-    fingerprintUrl: "https://fingerprint.example.com/api/json"
+    # fingerprintUrl: "https://fingerprint.example.com/api/json"   # your own service; empty = shared service
 ```
 
 Build dependencies:

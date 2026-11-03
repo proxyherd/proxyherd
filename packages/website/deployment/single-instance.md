@@ -1,7 +1,7 @@
 # Single instance with file storage Deployment
 
-::: warning FINGERPRINT_URL is required
-ProxyHerd refuses to start without `FINGERPRINT_URL`, the address of your [fingerprint service](fingerprint). The service must be reachable from the proxies themselves, so it needs a public address. The commands below use `https://fingerprint.example.com/api/json` as a placeholder; replace it with the address of your service (in Helm, the value is `fingerprintUrl`). On a machine without a public address, use `FINGERPRINT_URL_DISCOVERY` instead, as described under [laptop or behind NAT](fingerprint#proxyherd-on-a-laptop-or-behind-nat).
+::: tip Fingerprint service
+Without `FINGERPRINT_URL`, ProxyHerd uses the [shared fingerprint service](fingerprint#shared-service-default), which is best effort and rate limited per IP address. For production, run [your own](fingerprint#running-your-own) and set `FINGERPRINT_URL` to its address, for example `https://fingerprint.example.com/api/json` (in Helm, the value is `fingerprintUrl`). The service must be reachable from the proxies themselves, so it needs a public address; on a machine without one, use `FINGERPRINT_URL_DISCOVERY` as described under [laptop or behind NAT](fingerprint#proxyherd-on-a-laptop-or-behind-nat).
 :::
 
 This deployment runs a single container that encapsulates all components, including the storage, within a single file.
@@ -20,7 +20,6 @@ Start ProxyHerd with a volume for the configuration file:
 docker run -d -p 8888:8888 -p 8890:8890 \
   -e AUTH_LOCAL_USERNAME=admin -e AUTH_LOCAL_PASSWORD=password \
   -e BACKEND_JWT_SECRET=secret1 -e FRONTEND_JWT_SECRET=secret2 \
-  -e FINGERPRINT_URL=https://fingerprint.example.com/api/json \
   -e STORAGE_FILE_FILENAME=/etc/proxyherd/config.json \
   -v ./proxyherd:/etc/proxyherd \
   ghcr.io/proxyherd/proxyherd
@@ -43,7 +42,6 @@ To limit the log level, set the environment variable `NODE_ENV` to `production`:
 docker run -d -p 8888:8888 -p 8890:8890 \
   -e AUTH_LOCAL_USERNAME=admin -e AUTH_LOCAL_PASSWORD=password \
   -e BACKEND_JWT_SECRET=secret1 -e FRONTEND_JWT_SECRET=secret2 \
-  -e FINGERPRINT_URL=https://fingerprint.example.com/api/json \
   -e NODE_ENV=production \
   ghcr.io/proxyherd/proxyherd
 ```
@@ -68,7 +66,6 @@ services:
       - AUTH_LOCAL_PASSWORD=password
       - BACKEND_JWT_SECRET=secret1
       - FRONTEND_JWT_SECRET=secret2
-      - FINGERPRINT_URL=https://fingerprint.example.com/api/json
       - STORAGE_FILE_FILENAME=/etc/proxyherd/config.json
     volumes:
       - ./proxyherd:/etc/proxyherd
@@ -120,7 +117,7 @@ proxyherd:
     backendJwtSecret: "secret1"
     frontendJwtSecret: "secret2"
 
-    fingerprintUrl: "https://fingerprint.example.com/api/json"
+    # fingerprintUrl: "https://fingerprint.example.com/api/json"   # your own service; empty = shared service
 ```
 
 Build dependencies:

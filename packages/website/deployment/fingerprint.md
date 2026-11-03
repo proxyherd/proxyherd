@@ -6,17 +6,42 @@ public IP address, its network (ASN) and its approximate location. A proxy that
 cannot reach it is marked offline and receives no traffic.
 
 Scrapoxy relied on a hosted service for this, which no longer exists. ProxyHerd
-ships its own. You run it, and nothing about your proxies is reported anywhere.
-
-::: warning REQUIRED
-`FINGERPRINT_URL` has no default. ProxyHerd refuses to start until it points at
-a fingerprint service, for example `https://fingerprint.example.com/api/json`,
-or until `FINGERPRINT_URL_DISCOVERY` tells it where to ask for that address
-(see [laptop or behind NAT](#proxyherd-on-a-laptop-or-behind-nat)).
-:::
+works out of the box with a **shared service** run by the project, and ships
+the same service for you to run yourself.
 
 
-## Where to run it
+## Shared service (default)
+
+When neither `FINGERPRINT_URL` nor `FINGERPRINT_URL_DISCOVERY` is set, ProxyHerd
+uses the shared service at `https://fingerprint.proxyherd.com/api/json` and says
+so once in its log at start. Nothing to install: start ProxyHerd, add proxies,
+and they come online. ProxyHerd 1.2.0 and later; earlier versions refuse to
+start without `FINGERPRINT_URL`.
+
+It is meant for trials and small installations:
+
+- **Rate limited per IP address.** About 20 requests per minute from one public
+  address. A proxy checked at the default one-minute interval uses one; the
+  limit is reached when many proxies share one exit address, or when
+  `PROXY_REFRESH_DELAY` / `FREEPROXY_REFRESH_DELAY` are lowered to a few
+  seconds. Requests over the limit get `429 Too Many Requests`, and the proxy is
+  shown offline with that message.
+- **Best effort.** There is no uptime guarantee. If the shared service cannot be
+  reached, every proxy that depends on it is marked offline.
+- **What it receives.** Each check arrives through your proxy, so the service
+  sees the proxy's public IP address and the `ProxyHerd/<version>` user agent,
+  nothing else (see [what ProxyHerd sends](#what-proxyherd-sends)). Request logs
+  are disabled. The service runs on Cloudflare, which processes the requests.
+- **Geo data from Cloudflare**, as with the [Worker variant](#option-b-cloudflare-worker):
+  `asnNetwork` is always `null`.
+
+For production, for large pools, for proxies billed per gigabyte (your own
+service can answer over plain HTTP), or to keep proxy addresses to yourself,
+run your own service as described below and set `FINGERPRINT_URL`. Nothing else
+changes.
+
+
+## Running your own
 
 The service must be reachable **through your proxies**, that is from the public
 internet, not only from the machine running ProxyHerd. If the proxies cannot
@@ -278,7 +303,8 @@ installation makes about 1,400 checks per proxy per day.
 Consequences:
 
 - **Service capacity.** The Docker service handles any of this on the smallest
-  machine; it answers from memory. The Cloudflare free plan allows 100,000
+  machine; it answers from memory. The [shared service](#shared-service-default)
+  accepts about 20 requests per minute from one public address. The Cloudflare free plan allows 100,000
   requests per day: about 60 proxies plus pool entries at the one-minute
   default, about 6 at a one-second delay. The paid Workers plan removes the
   limit.
@@ -332,7 +358,8 @@ when you set `FINGERPRINT_SEND_STATS=true`, for your own service's logs.
 
 ## Attribution
 
-With the default provider, IP geolocation is provided by
+The shared service and the Worker variant use Cloudflare's geolocation data.
+For the Docker and npm service, with the default provider, IP geolocation is provided by
 [DB-IP](https://db-ip.com) under the Creative Commons Attribution 4.0
 licence. With `maxmind`, the data comes from MaxMind's GeoLite2 databases
 under the GeoLite2 End User License Agreement.

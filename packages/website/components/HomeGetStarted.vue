@@ -10,7 +10,6 @@ const code = [
     "-e AUTH_LOCAL_USERNAME=admin -e AUTH_LOCAL_PASSWORD=password",
     "-e BACKEND_JWT_SECRET=secret1 -e FRONTEND_JWT_SECRET=secret2",
     "-e STORAGE_FILE_FILENAME=/cfg/proxyherd.json",
-    "-e FINGERPRINT_URL=https://fingerprint.example.com/api/json",
     "ghcr.io/proxyherd/proxyherd"
 ];
 
