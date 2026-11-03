@@ -35,7 +35,7 @@ original author or CoreDump Engineering. Coming from Scrapoxy? Follow the
 - **Proxy vendors**: Bright Data, Smartproxy, IPRoyal, Zyte, Rayobyte, Proxy-Seller, NetNut, Proxy-Cheap, Geonode, HypeProxy, Live Proxies, Nimble, Ninjas Proxy, Proxyrack and more, with country and OS selection where the vendor supports it.
 - **Hardware**: 4G proxy farms such as Proxidize and XProxy, with IP rotation through their APIs.
 - **Proxy lists**: plain HTTP, HTTPS, SOCKS4 and SOCKS5 lists, tested for connectivity before use.
-- **Health checks and geo data** from a fingerprint service you host yourself. Offline or slow proxies are removed from the pool automatically; no data leaves your infrastructure.
+- **Health checks and geo data** from a fingerprint service: the shared one to start, or your own so that no data leaves your infrastructure. Offline or slow proxies are removed from the pool automatically.
 - **Auto-rotation** of IP addresses at the interval you choose, and **auto-scaling** of the pool to match incoming traffic.
 - **Sticky sessions**, including for headless browsers, by intercepting requests and injecting a session cookie.
 - **Ban management**: the proxy name is injected into every response, so a scraper that detects a ban can ask ProxyHerd to drop that proxy.
@@ -45,60 +45,28 @@ original author or CoreDump Engineering. Coming from Scrapoxy? Follow the
 
 ## Quick start
 
-This Compose file runs everything on a laptop or any machine behind NAT:
-ProxyHerd, its fingerprint service, and a temporary public address for that
-service (no account needed). Save it as `compose.yaml`:
+One container is enough to start:
 
-```yaml
-services:
-  fingerprint:
-    image: ghcr.io/proxyherd/fingerprint
-    restart: unless-stopped
-    environment:
-      TRUST_PROXY: "true"   # the proxy's address arrives in X-Forwarded-For
-    volumes:
-      - geoip:/data/geoip
-
-  cloudflared:
-    image: cloudflare/cloudflared:latest
-    restart: unless-stopped
-    # Publishes the fingerprint service on a temporary public hostname (no account needed)
-    command: tunnel --no-autoupdate --metrics 0.0.0.0:2000 --url http://fingerprint:3000
-    depends_on:
-      - fingerprint
-
-  proxyherd:
-    image: ghcr.io/proxyherd/proxyherd
-    restart: unless-stopped
-    depends_on:
-      - cloudflared
-    ports:
-      - "8888:8888"   # proxy endpoint for your scrapers
-      - "8890:8890"   # user interface and API
-    environment:
-      AUTH_LOCAL_USERNAME: admin
-      AUTH_LOCAL_PASSWORD: password
-      BACKEND_JWT_SECRET: secret1
-      FRONTEND_JWT_SECRET: secret2
-      STORAGE_FILE_FILENAME: /cfg/proxyherd.json
-      # Ask cloudflared for the public address of the fingerprint service and follow it
-      FINGERPRINT_URL_DISCOVERY: http://cloudflared:2000/quicktunnel
-    volumes:
-      - cfg:/cfg
-
-volumes:
-  geoip:
-  cfg:
+```shell
+docker run -d --name proxyherd --restart unless-stopped \
+  -p 8888:8888 -p 8890:8890 -v proxyherd:/cfg \
+  -e AUTH_LOCAL_USERNAME=admin -e AUTH_LOCAL_PASSWORD=password \
+  -e BACKEND_JWT_SECRET=secret1 -e FRONTEND_JWT_SECRET=secret2 \
+  -e STORAGE_FILE_FILENAME=/cfg/proxyherd.json \
+  ghcr.io/proxyherd/proxyherd
 ```
 
-Replace `admin`, `password`, `secret1` and `secret2` with your own values, run
-`docker compose up -d`, and open http://localhost:8890.
+Replace `admin`, `password`, `secret1` and `secret2` with your own values and
+open http://localhost:8890. Your scrapers connect to port 8888.
 
-Every proxy fetches the fingerprint service to prove it is online, which is why
-the service needs a public address. The temporary address is fine for a trial;
-for production, run the fingerprint service on a server or as a Cloudflare
-Worker. The [documentation](https://proxyherd.github.io/proxyherd/intro/get-started)
-covers servers with a public IP, npm, Kubernetes and the fingerprint service.
+Every proxy fetches a fingerprint service to prove it is online. Out of the
+box ProxyHerd uses the shared service run by the project, which is best effort
+and rate limited per IP address: fine for a trial or a small pool. For
+production, run your own on a server, behind NAT with a tunnel, or as a
+Cloudflare Worker, and set `FINGERPRINT_URL`; see the
+[fingerprint page](https://proxyherd.github.io/proxyherd/deployment/fingerprint).
+The [documentation](https://proxyherd.github.io/proxyherd/intro/get-started)
+also covers npm and Kubernetes.
 
 ## Compatibility with Scrapoxy 4.17.4
 
@@ -111,9 +79,9 @@ wire identifiers that scrapers depend on are unchanged on purpose:
 - the `scrapoxy` prefix of cloud resources, so existing instances are found and reused.
 
 The npm package, binary, container image, Helm charts and Python package are
-named `proxyherd`. The fingerprint service is now self-hosted and must be
-configured; the hosted service the original project depended on no longer
-exists. The [migration guide](https://proxyherd.github.io/proxyherd/intro/migrate)
+named `proxyherd`. The hosted fingerprint service the original project
+depended on no longer exists: ProxyHerd uses a shared service run by the
+project by default, and you can run your own. The [migration guide](https://proxyherd.github.io/proxyherd/intro/migrate)
 lists every step.
 
 ## Contributing

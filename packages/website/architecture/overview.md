@@ -99,7 +99,7 @@ Periodically, the refresh module queries the connector to update the list of pro
 
 On datacenter providers, ProxyHerd instructs the start or removal of VM instances.
 
-Additionally, ProxyHerd leverages the master module to query your self-hosted fingerprint service (`FINGERPRINT_URL`) to obtain proxies' status. 
+Additionally, ProxyHerd leverages the master module to query the fingerprint service (`FINGERPRINT_URL`, by default the shared service) to obtain proxies' status. 
 This server provides details such as the real IP address, geo-localization, and other information about the proxy.
 
 

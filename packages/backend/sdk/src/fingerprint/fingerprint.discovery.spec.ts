@@ -5,7 +5,9 @@ import {
     parseFingerprintUrlDiscoveryAnswer,
 } from './fingerprint.discovery';
 import {
+    FINGERPRINT_URL_DEFAULT,
     getEnvFingerprintConfig,
+    getEnvFingerprintTextUrl,
     getEnvFingerprintUrl,
     getFingerprintUrlDiscovery,
 } from './fingerprint.helpers';
@@ -239,12 +241,14 @@ describe(
                         });
 
                         it(
-                            'should prefer an explicit address, then FINGERPRINT_URL, and fail without any',
+                            'should prefer an explicit address, then FINGERPRINT_URL, then the shared service',
                             () => {
-                                expect(() => getEnvFingerprintUrl())
-                                    .toThrow('FINGERPRINT_URL is not set');
-                                expect(() => getEnvFingerprintConfig('1.0.0'))
-                                    .toThrow('FINGERPRINT_URL is not set');
+                                expect(getEnvFingerprintUrl())
+                                    .toBe(FINGERPRINT_URL_DEFAULT);
+                                expect(getEnvFingerprintConfig('1.0.0').url)
+                                    .toBe(FINGERPRINT_URL_DEFAULT);
+                                expect(getEnvFingerprintTextUrl())
+                                    .toBe('https://fingerprint.proxyherd.com/api/text');
 
                                 process.env.FINGERPRINT_URL = 'http://env.example.com/api/json';
 

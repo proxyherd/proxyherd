@@ -2,6 +2,7 @@ import {
     IncomingMessage,
     request,
 } from 'http';
+import { Logger } from '@nestjs/common';
 import {
     parseError,
     Sockets,
@@ -231,11 +232,19 @@ function fingerprintImpl(
 }
 
 
-const FINGERPRINT_URL_HELP = 'FINGERPRINT_URL is not set. ProxyHerd needs the address of your fingerprint service, '
-    + 'for example https://fingerprint.example.com/api/json, '
-    + 'or FINGERPRINT_URL_DISCOVERY when a tunnel assigns that address at start. '
-    + 'See https://proxyherd.github.io/proxyherd/deployment/fingerprint';
+/**
+ * The shared fingerprint service run by the ProxyHerd project, used when neither FINGERPRINT_URL
+ * nor FINGERPRINT_URL_DISCOVERY is set. Best effort and rate limited per IP address: production
+ * installations should run their own.
+ */
+export const FINGERPRINT_URL_DEFAULT = 'https://fingerprint.proxyherd.com/api/json';
+
+const FINGERPRINT_URL_DEFAULT_NOTICE = `Using the shared fingerprint service ${FINGERPRINT_URL_DEFAULT} `
+    + '(best effort, rate limited per IP address). Set FINGERPRINT_URL to use your own: '
+    + 'https://proxyherd.github.io/proxyherd/deployment/fingerprint';
+const logger = new Logger('Fingerprint');
 let discovery: FingerprintUrlDiscovery | undefined = void 0;
+let defaultNoticeLogged = false;
 
 
 /**
@@ -289,7 +298,7 @@ async function resolveFingerprintUrl(options: IFingerprintOptions): Promise<stri
         return currentDiscovery.waitForUrl(FINGERPRINT_URL_DISCOVERY_WAIT);
     }
 
-    throw new Error(FINGERPRINT_URL_HELP);
+    return FINGERPRINT_URL_DEFAULT;
 }
 
 
@@ -318,11 +327,10 @@ export async function fingerprint(
 
 /**
  * The fingerprint service URL: the argument when given, else the address discovered from
- * FINGERPRINT_URL_DISCOVERY, else FINGERPRINT_URL. There is no default: the hosted service
- * the original project depended on no longer exists.
+ * FINGERPRINT_URL_DISCOVERY, else FINGERPRINT_URL, else the shared service (FINGERPRINT_URL_DEFAULT).
  *
  * Returns `undefined` while a discovered address is not known yet (unless FINGERPRINT_URL
- * provides a starting point); throws when nothing is configured at all.
+ * provides a starting point).
  */
 function getEnvFingerprintUrlIfKnown(url?: string): string | undefined {
     if (url && url.length > 0) {
@@ -338,7 +346,7 @@ function getEnvFingerprintUrlIfKnown(url?: string): string | undefined {
     const resolved = process.env.FINGERPRINT_URL;
 
     if (!resolved || resolved.length <= 0) {
-        throw new Error(FINGERPRINT_URL_HELP);
+        return FINGERPRINT_URL_DEFAULT;
     }
 
     return resolved;
@@ -378,7 +386,7 @@ export function getEnvFingerprintTextUrl(url?: string): string {
 
 
 /**
- * Fingerprint options from the environment. Fails at start when no address is configured.
+ * Fingerprint options from the environment. Says once at start when the shared service is used.
  * The `url` is read on every access, so a discovered address that changes (a restarted tunnel)
  * is picked up by the next check without a restart of ProxyHerd. It is an empty string while
  * a discovered address is not known yet: NestJS serialises module options at start, so the
@@ -388,8 +396,10 @@ export function getEnvFingerprintConfig(
     version: string,
     url?: string
 ): IFingerprintOptions {
-    // Validates the configuration now: throws when nothing is configured.
-    getEnvFingerprintUrlIfKnown(url);
+    if (!defaultNoticeLogged && getEnvFingerprintUrlIfKnown(url) === FINGERPRINT_URL_DEFAULT) {
+        defaultNoticeLogged = true;
+        logger.log(FINGERPRINT_URL_DEFAULT_NOTICE);
+    }
 
     return {
         get url(): string {

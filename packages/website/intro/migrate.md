@@ -5,8 +5,8 @@ from later versions is included. [NOTICE.md](https://github.com/proxyherd/proxyh
 records the provenance.
 
 An installation of **Scrapoxy 4.17.4** upgrades in place: ProxyHerd reads the same configuration,
-storage and REST API. The only new requirement is a fingerprint service of your own, because the hosted
-one Scrapoxy relied on no longer exists.
+storage and REST API. The hosted fingerprint service Scrapoxy relied on no longer exists: ProxyHerd uses a
+shared service run by the project instead, and you can run your own.
 
 ::: warning Later Scrapoxy versions
 Scrapoxy 4.18 and later were published under other licences and have not been tested with ProxyHerd.
@@ -17,9 +17,9 @@ If you run one of them, back up your storage first and tell us what you find in
 
 ## What stays the same
 
-- **Environment variables**: same names and meaning. `FINGERPRINT_URL` used to default to the hosted
-  service and is now required; `FINGERPRINT_URL_DISCOVERY` is new and replaces it on a machine without a
-  public address.
+- **Environment variables**: same names and meaning. `FINGERPRINT_URL` used to default to Scrapoxy's
+  hosted service and now defaults to the [shared ProxyHerd service](/deployment/fingerprint#shared-service-default);
+  `FINGERPRINT_URL_DISCOVERY` is new and replaces it on a machine without a public address.
 - **Storage**: the file storage keeps its format and its default name `scrapoxy.json`; the MongoDB database
   `scrapoxy` and the RabbitMQ queues `scrapoxyorders` and `scrapoxyevents` keep their names.
 - **Projects, credentials and connectors**: they live in the storage, so they come across as they are,
@@ -39,7 +39,7 @@ If you run one of them, back up your storage first and tell us what you find in
 | npm package and command | `scrapoxy` | `proxyherd` |
 | Helm charts | `scrapoxy` from `https://charts.scrapoxy.io` | `proxyherd` from `oci://ghcr.io/proxyherd/charts` |
 | Python package (Scrapy) | `scrapoxy` | `proxyherd` |
-| Fingerprint service | hosted by the original author, now offline | [self-hosted](/deployment/fingerprint), required |
+| Fingerprint service | hosted by the original author, now offline | [shared service](/deployment/fingerprint#shared-service-default) by default, or [your own](/deployment/fingerprint#running-your-own) |
 
 
 ## Step 1: Back up the storage
@@ -51,20 +51,22 @@ If you run one of them, back up your storage first and tell us what you find in
 - **MongoDB** (distributed deployments): `mongodump --db scrapoxy`.
 
 
-## Step 2: Run a fingerprint service
+## Step 2: Choose a fingerprint service
 
-Every proxy fetches the fingerprint service to prove it is online and to report its location, so it must
-be reachable from the proxies, that is from the public internet. Pick one of the setups in
-[Get Started](/intro/get-started) or on the [fingerprint page](/deployment/fingerprint): a server with a
-public address (`FINGERPRINT_URL`), a laptop or a machine behind NAT (`FINGERPRINT_URL_DISCOVERY`), or a
-Cloudflare Worker.
+Every proxy fetches the fingerprint service to prove it is online and to report its location. Without any
+setting, ProxyHerd uses the [shared service](/deployment/fingerprint#shared-service-default): best effort and
+rate limited per IP address, fine for a trial or a small pool. For production, run your own, reachable from
+the proxies, that is from the public internet. Pick one of the setups in [Get Started](/intro/get-started) or
+on the [fingerprint page](/deployment/fingerprint): a server with a public address (`FINGERPRINT_URL`), a
+laptop or a machine behind NAT (`FINGERPRINT_URL_DISCOVERY`), or a Cloudflare Worker.
 
 
 ## Step 3: Switch the installation
 
 ### Docker
 
-Keep your volume and your environment variables, change the image, and add the fingerprint address:
+Keep your volume and your environment variables and change the image. With your own fingerprint service,
+also add its address:
 
 ```shell
 docker run -d -p 8888:8888 -p 8890:8890 -v ./scrapoxy:/cfg \
@@ -75,19 +77,21 @@ docker run -d -p 8888:8888 -p 8890:8890 -v ./scrapoxy:/cfg \
   ghcr.io/proxyherd/proxyherd
 ```
 
-Replace `203.0.113.10` with the public address of your fingerprint service. With Docker Compose, change
-`image:` and add `FINGERPRINT_URL` under `environment:` in the same way.
+Replace `203.0.113.10` with the public address of your fingerprint service, or drop that line to use the
+shared service. With Docker Compose, change `image:` and add `FINGERPRINT_URL` under `environment:` in the
+same way.
 
 ### npm
 
-Run `npx --yes proxyherd` instead of `npx --yes scrapoxy`, with the same environment variables plus
-`FINGERPRINT_URL`.
+Run `npx --yes proxyherd` instead of `npx --yes scrapoxy`, with the same environment variables, plus
+`FINGERPRINT_URL` for your own fingerprint service.
 
 ### Kubernetes
 
 Install the `proxyherd` chart as described in [Single Instance](/deployment/single-instance) or
 [Simple Cluster](/deployment/simple-cluster). The chart has a new name, so Helm installs it as a new
-release: its values go under `proxyherd:` (or `proxyherd-simple-cluster:`), and `fingerprintUrl` is required.
+release: its values go under `proxyherd:` (or `proxyherd-simple-cluster:`), and `fingerprintUrl` holds the
+address of your own fingerprint service (leave it empty for the shared service).
 
 The new release starts with an empty volume. Copy the backup from step 1 into the commander pod, at the
 new path, and restart the pod. Do it before anyone logs in to the new release: any change made there
@@ -129,4 +133,6 @@ later. See the [Scrapy guide](/integration/python/scrapy/guide).
 
 Open the user interface on port `8890`. Your projects and connectors are there, and proxies come online
 within a minute or two. If every proxy stays offline, the proxies cannot reach the fingerprint service:
-check its address and firewall as described in [Get Started](/intro/get-started).
+check its address and firewall as described in [Get Started](/intro/get-started). With the shared service, a
+`429` error on the proxies means too many checks from one address; see its
+[limits](/deployment/fingerprint#shared-service-default).

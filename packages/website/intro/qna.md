@@ -49,11 +49,14 @@ const proxyChain = require('proxy-chain');
 
 ### Can I host the fingerprint server myself?
 
-Yes, and you must: ProxyHerd ships its own fingerprint service, and every installation runs one.
+Yes, and it is recommended for production. ProxyHerd ships its own fingerprint service; without any
+setting it uses the [shared service](/deployment/fingerprint#shared-service-default) run by the project,
+which is best effort and rate limited per IP address.
 
 The service answers the question "is this proxy online, and where is it?". Each proxy fetches it
 to prove that it works, and the response carries the proxy's public IP address, its network (ASN)
-and its approximate location from a local GeoIP database. Nothing is reported to a third party.
+and its approximate location. Your own service answers from a local GeoIP database, and nothing
+is reported to a third party.
 
 Point `FINGERPRINT_URL` at your instance (see [environment variables](/usage/env)). The service
 must be reachable **through your proxies**, that is from the public internet, not only from the

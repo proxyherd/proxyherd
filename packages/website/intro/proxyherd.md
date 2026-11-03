@@ -47,9 +47,10 @@ to describe where this project comes from.
 
 ## What changed from Scrapoxy 4.17.4
 
-- **Self-hosted fingerprint service.** The hosted service that checked whether a proxy was online and
-  resolved its location no longer exists. ProxyHerd ships its own, running on your infrastructure
-  from a local GeoIP database. Nothing is reported to a third party.
+- **New fingerprint service.** The hosted service that checked whether a proxy was online and
+  resolved its location no longer exists. ProxyHerd uses a shared service run by the project by
+  default, and ships the same service for you to run on your own infrastructure from a local GeoIP
+  database, where nothing is reported to a third party.
 - **No telemetry.** The health-check request no longer carries an installation identifier or traffic counters.
 - **New name everywhere a user sees it**: package, binary, container image, Helm charts and this documentation.
 - **Everything else is compatible.** Configuration files, storage, the REST API, the `X-Scrapoxy-*`
