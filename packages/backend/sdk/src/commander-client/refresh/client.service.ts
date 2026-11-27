@@ -155,8 +155,18 @@ export class CommanderRefreshClientService implements OnModuleDestroy {
             );
     }
 
-    async getNextProxiesToRefresh(): Promise<IProxiesToRefresh> {
-        const res = await this.instance.get<IProxiesToRefresh>('proxies');
+    /**
+     * `count`: the most proxies to take in this turn; the commander's own count when not given.
+     */
+    async getNextProxiesToRefresh(count?: number): Promise<IProxiesToRefresh> {
+        const res = await this.instance.get<IProxiesToRefresh>(
+            'proxies',
+            {
+                params: count === undefined ? void 0 : {
+                    count,
+                },
+            }
+        );
 
         return res.data;
     }
@@ -196,8 +206,15 @@ export class CommanderRefreshClientService implements OnModuleDestroy {
         return res.data;
     }
 
-    async getNextFreeproxiesToRefresh(): Promise<IFreeproxiesToRefresh> {
-        const res = await this.instance.get<IFreeproxiesToRefresh>('freeproxies');
+    async getNextFreeproxiesToRefresh(count?: number): Promise<IFreeproxiesToRefresh> {
+        const res = await this.instance.get<IFreeproxiesToRefresh>(
+            'freeproxies',
+            {
+                params: count === undefined ? void 0 : {
+                    count,
+                },
+            }
+        );
 
         return res.data;
     }

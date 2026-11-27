@@ -8,11 +8,17 @@ import {
     Sockets,
 } from '@proxyherd/proxy-sdk';
 import {
+    FINGERPRINT_SHARED_CHECKS_BURST,
+    FINGERPRINT_SHARED_CHECKS_PER_MINUTE,
+    FingerprintBudget,
+} from './fingerprint.budget';
+import {
     FINGERPRINT_URL_DISCOVERY_DELAY_DEFAULT,
     FINGERPRINT_URL_DISCOVERY_WAIT,
     FingerprintUrlDiscovery,
     FingerprintUrlNotDiscoveredError,
 } from './fingerprint.discovery';
+import { FingerprintServiceWatch } from './fingerprint.watch';
 import {
     ArrayHttpHeaders,
     formatUseragent,
@@ -266,14 +272,104 @@ function fingerprintImpl(
  * nor FINGERPRINT_URL_DISCOVERY is set. Best effort and rate limited per IP address: production
  * installations should run their own.
  */
-export const FINGERPRINT_URL_DEFAULT = 'https://fingerprint.proxyherd.com/api/json';
+export const FINGERPRINT_SHARED_HOSTNAME = 'fingerprint.proxyherd.com';
 
+export const FINGERPRINT_URL_DEFAULT = `https://${FINGERPRINT_SHARED_HOSTNAME}/api/json`;
+
+const FINGERPRINT_DOCS_URL = 'https://proxyherd.github.io/proxyherd/deployment/fingerprint';
 const FINGERPRINT_URL_DEFAULT_NOTICE = `Using the shared fingerprint service ${FINGERPRINT_URL_DEFAULT} `
-    + '(best effort, rate limited per IP address). Set FINGERPRINT_URL to use your own: '
-    + 'https://proxyherd.github.io/proxyherd/deployment/fingerprint';
+    + `(best effort: up to ${FINGERPRINT_SHARED_CHECKS_PER_MINUTE} checks a minute for this installation, `
+    + 'so a large pool is checked less often). '
+    + `Set FINGERPRINT_URL to use your own: ${FINGERPRINT_DOCS_URL}`;
+const FINGERPRINT_BUDGET_NOTICE = `The shared fingerprint service checks up to ${FINGERPRINT_SHARED_CHECKS_PER_MINUTE} `
+    + 'proxies a minute for one installation, and this one has more to check: each proxy is now checked less '
+    + 'often than PROXY_REFRESH_DELAY asks, and a dead proxy is noticed later. '
+    + `Run your own service to check them all on time: ${FINGERPRINT_DOCS_URL}`;
 const logger = new Logger('Fingerprint');
 let discovery: FingerprintUrlDiscovery | undefined = void 0;
 let defaultNoticeLogged = false;
+let sharedBudget: FingerprintBudget | undefined = void 0;
+let sharedBudgetNoticeLogged = false;
+let serviceWatch: FingerprintServiceWatch | undefined = void 0;
+
+
+/**
+ * True for the shared fingerprint service of the project, over HTTP or HTTPS, however the
+ * address was given (the default, FINGERPRINT_URL or a discovered one).
+ */
+export function isSharedFingerprintUrl(url: string): boolean {
+    try {
+        return new URL(url).hostname.toLowerCase() === FINGERPRINT_SHARED_HOSTNAME;
+    } catch (err: any) {
+        return false;
+    }
+}
+
+
+/**
+ * How many checks may start now against this address. `undefined` means no budget applies,
+ * which is the case of every service but the shared one. One budget per process: the loops
+ * that check proxies and pool entries draw from the same one.
+ */
+export function getFingerprintCheckAllowance(url: string): number | undefined {
+    if (!isSharedFingerprintUrl(url)) {
+        return void 0;
+    }
+
+    if (!sharedBudget) {
+        sharedBudget = new FingerprintBudget(
+            FINGERPRINT_SHARED_CHECKS_PER_MINUTE,
+            FINGERPRINT_SHARED_CHECKS_BURST
+        );
+    }
+
+    const allowance = sharedBudget.available();
+
+    // The reserve is used up: there is more to check than the budget covers. Say it once.
+    if (allowance <= 0 && !sharedBudgetNoticeLogged) {
+        sharedBudgetNoticeLogged = true;
+        logger.warn(FINGERPRINT_BUDGET_NOTICE);
+    }
+
+    return allowance;
+}
+
+
+/**
+ * Counts the checks that were started against this address (see getFingerprintCheckAllowance).
+ */
+export function countFingerprintChecks(
+    url: string, count: number
+) {
+    if (sharedBudget && isSharedFingerprintUrl(url)) {
+        sharedBudget.consume(count);
+    }
+}
+
+
+/**
+ * The watch that tells a fingerprint service that is down from proxies that are down.
+ * One per process: every loop shares what is known about the service.
+ */
+export function getFingerprintServiceWatch(useragent: string): FingerprintServiceWatch {
+    if (!serviceWatch) {
+        serviceWatch = new FingerprintServiceWatch(useragent);
+    }
+
+    return serviceWatch;
+}
+
+
+/**
+ * Forgets the budget and the watch of this process, or replaces them. For the tests.
+ */
+export function resetFingerprintState(
+    budget?: FingerprintBudget, watch?: FingerprintServiceWatch
+) {
+    sharedBudget = budget;
+    sharedBudgetNoticeLogged = false;
+    serviceWatch = watch;
+}
 
 
 /**

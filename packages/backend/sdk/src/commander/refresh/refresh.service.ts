@@ -59,6 +59,55 @@ import type {
 } from '@proxyherd/common';
 
 
+/**
+ * True when a proxy has been without a fingerprint for longer than its connector allows, and
+ * must be removed so that another one takes its place. That covers a proxy that never finishes
+ * starting, and a started proxy whose checks fail.
+ *
+ * It does not cover a started proxy whose first check has not run yet: with a budget of checks,
+ * or while the fingerprint service is down, a proxy can wait for longer than the timeout
+ * without anything being known against it. Removing it would only put another one in the same
+ * position.
+ */
+export function isUnreachableForTooLong(
+    proxy: Pick<IProxyData, 'status' | 'fingerprint' | 'fingerprintError' | 'disconnectedTs' | 'timeoutUnreachable'>,
+    nowTime: number
+): boolean {
+    if (!proxy.disconnectedTs ||
+        !proxy.timeoutUnreachable ||
+        nowTime - proxy.disconnectedTs <= proxy.timeoutUnreachable) {
+        return false;
+    }
+
+    const waitsForFirstCheck = proxy.status === EProxyStatus.STARTED &&
+        proxy.fingerprint === null &&
+        proxy.fingerprintError === null;
+
+    return !waitsForFirstCheck;
+}
+
+
+/**
+ * The number of items handed out in one turn: the configured count, lowered to what the caller
+ * asked for when it asked for less.
+ */
+export function limitRefreshCount(
+    configured: number, max: number | undefined
+): number {
+    if (max === undefined || !Number.isFinite(max)) {
+        return configured;
+    }
+
+    return Math.max(
+        0,
+        Math.min(
+            configured,
+            Math.floor(max)
+        )
+    );
+}
+
+
 @Injectable()
 export class CommanderRefreshService extends ACommanderService implements OnModuleDestroy {
     protected readonly logger = new Logger(CommanderRefreshService.name);
@@ -558,9 +607,10 @@ export class CommanderRefreshService extends ACommanderService implements OnModu
                     }
 
                     default: {
-                        if (localProxy.disconnectedTs &&
-                            localProxy.timeoutUnreachable &&
-                            nowTime - localProxy.disconnectedTs > localProxy.timeoutUnreachable) {
+                        if (isUnreachableForTooLong(
+                            localProxy,
+                            nowTime
+                        )) {
                             this.logger.debug(`refreshConnectorProxies: ask to remove proxy ${localProxy.key} disconnected for too long`);
                             localProxy.removing = true;
                         } else if (
@@ -833,17 +883,26 @@ export class CommanderRefreshService extends ACommanderService implements OnModu
         await this.storageproviders.storage.addProxiesMetrics(proxies);
     }
 
-    async getNextProxiesToRefresh(): Promise<IProxiesToRefresh> {
-        this.logger.debug('getNextProxiesToRefresh()');
+    /**
+     * The proxies whose check is due, the longest overdue first. `max` lowers the number handed
+     * out in one turn (a refresh loop with a budget of checks): the others stay due.
+     */
+    async getNextProxiesToRefresh(max?: number): Promise<IProxiesToRefresh> {
+        this.logger.debug(`getNextProxiesToRefresh(): max=${max}`);
 
-        if (this.config.proxyRefresh.count <= 0) {
+        const count = limitRefreshCount(
+            this.config.proxyRefresh.count,
+            max
+        );
+
+        if (count <= 0) {
             throw new NoProxyToRefreshError();
         }
 
         const nowTime = Date.now();
         const proxies = await this.storageproviders.storage.getNextProxiesToRefresh(
             nowTime,
-            this.config.proxyRefresh.count
+            count
         );
         const ids = proxies.map((p) => p.id);
         const [
@@ -902,17 +961,22 @@ export class CommanderRefreshService extends ACommanderService implements OnModu
         return freeproxies;
     }
 
-    async getNextFreeproxiesToRefresh(): Promise<IFreeproxiesToRefresh> {
-        this.logger.debug('getNextFreeproxiesToRefresh()');
+    async getNextFreeproxiesToRefresh(max?: number): Promise<IFreeproxiesToRefresh> {
+        this.logger.debug(`getNextFreeproxiesToRefresh(): max=${max}`);
 
-        if (this.config.freeproxyRefresh.count <= 0) {
+        const count = limitRefreshCount(
+            this.config.freeproxyRefresh.count,
+            max
+        );
+
+        if (count <= 0) {
             throw new NoFreeproxyToRefreshError();
         }
 
         const nowTime = Date.now();
         const freeproxies = await this.storageproviders.storage.getNextFreeproxiesToRefresh(
             nowTime,
-            this.config.freeproxyRefresh.count
+            count
         );
 
         if (freeproxies.length <= 0) {
