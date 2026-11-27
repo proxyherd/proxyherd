@@ -61,7 +61,7 @@
         "commander": "~11.1.0",
         "compression": "~1.8.2",
         "fast-equals": "~5.4.5",
-        "joi": "~17.13.8",
+        "joi": "~17.13.9",
         "jsonwebtoken": "~9.0.3",
         "jsvectormap": "~1.5.3",
         "maxmind": "~5.0.0",
