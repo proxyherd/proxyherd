@@ -55,7 +55,7 @@ If you run one of them, back up your storage first and tell us what you find in
 
 Every proxy fetches the fingerprint service to prove it is online and to report its location. Without any
 setting, ProxyHerd uses the [shared service](/deployment/fingerprint#shared-service-default): best effort and
-rate limited per IP address, fine for a trial or a small pool. For production, run your own, reachable from
+limited to 10 checks a minute per installation, fine for a trial or a small pool. For production, run your own, reachable from
 the proxies, that is from the public internet. Pick one of the setups in [Get Started](/intro/get-started) or
 on the [fingerprint page](/deployment/fingerprint): a server with a public address (`FINGERPRINT_URL`), a
 laptop or a machine behind NAT (`FINGERPRINT_URL_DISCOVERY`), or a Cloudflare Worker.
@@ -134,5 +134,5 @@ later. See the [Scrapy guide](/integration/python/scrapy/guide).
 Open the user interface on port `8890`. Your projects and connectors are there, and proxies come online
 within a minute or two. If every proxy stays offline, the proxies cannot reach the fingerprint service:
 check its address and firewall as described in [Get Started](/intro/get-started). With the shared service, a
-`429` error on the proxies means too many checks from one address; see its
-[limits](/deployment/fingerprint#shared-service-default).
+`429` error on the proxies means too many checks from one address, and a large pool is checked less often
+than a small one; see its [limits](/deployment/fingerprint#shared-service-default).

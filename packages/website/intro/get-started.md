@@ -21,8 +21,8 @@ docker run -d --name proxyherd --restart unless-stopped \
 Replace `admin`, `password`, `secret1` and `secret2` with your own values. The user interface is now running on
 http://localhost:8890, the proxy endpoint for your scrapers on port `8888`.
 
-The shared service is best effort and limits each public address to about 20 requests per minute: fine for a
-trial or a small pool checked at the default interval. For production, run your own fingerprint service as
+The shared service is best effort, and ProxyHerd sends it at most 10 checks a minute: fine for a trial or a
+small pool, and a larger pool is checked less often. For production, run your own fingerprint service as
 shown below.
 
 

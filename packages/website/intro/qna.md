@@ -51,7 +51,7 @@ const proxyChain = require('proxy-chain');
 
 Yes, and it is recommended for production. ProxyHerd ships its own fingerprint service; without any
 setting it uses the [shared service](/deployment/fingerprint#shared-service-default) run by the project,
-which is best effort and rate limited per IP address.
+which is best effort and limited to 10 checks a minute per installation.
 
 The service answers the question "is this proxy online, and where is it?". Each proxy fetches it
 to prove that it works, and the response carries the proxy's public IP address, its network (ASN)

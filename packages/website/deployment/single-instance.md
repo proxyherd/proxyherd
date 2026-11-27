@@ -1,7 +1,7 @@
 # Single instance with file storage Deployment
 
 ::: tip Fingerprint service
-Without `FINGERPRINT_URL`, ProxyHerd uses the [shared fingerprint service](fingerprint#shared-service-default), which is best effort and rate limited per IP address. For production, run [your own](fingerprint#running-your-own) and set `FINGERPRINT_URL` to its address, for example `https://fingerprint.example.com/api/json` (in Helm, the value is `fingerprintUrl`). The service must be reachable from the proxies themselves, so it needs a public address; on a machine without one, use `FINGERPRINT_URL_DISCOVERY` as described under [laptop or behind NAT](fingerprint#proxyherd-on-a-laptop-or-behind-nat).
+Without `FINGERPRINT_URL`, ProxyHerd uses the [shared fingerprint service](fingerprint#shared-service-default), which is best effort and limited to 10 checks a minute per installation. For production, run [your own](fingerprint#running-your-own) and set `FINGERPRINT_URL` to its address, for example `https://fingerprint.example.com/api/json` (in Helm, the value is `fingerprintUrl`). The service must be reachable from the proxies themselves, so it needs a public address; on a machine without one, use `FINGERPRINT_URL_DISCOVERY` as described under [laptop or behind NAT](fingerprint#proxyherd-on-a-laptop-or-behind-nat).
 :::
 
 This deployment runs a single container that encapsulates all components, including the storage, within a single file.

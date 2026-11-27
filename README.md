@@ -61,7 +61,8 @@ open http://localhost:8890. Your scrapers connect to port 8888.
 
 Every proxy fetches a fingerprint service to prove it is online. Out of the
 box ProxyHerd uses the shared service run by the project, which is best effort
-and rate limited per IP address: fine for a trial or a small pool. For
+and limited to 10 checks a minute per installation: fine for a trial or a small
+pool, checked less often as it grows. For
 production, run your own on a server, behind NAT with a tunnel, or as a
 Cloudflare Worker, and set `FINGERPRINT_URL`; see the
 [fingerprint page](https://proxyherd.github.io/proxyherd/deployment/fingerprint).
