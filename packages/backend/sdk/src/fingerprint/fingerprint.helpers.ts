@@ -2,16 +2,23 @@ import {
     IncomingMessage,
     request,
 } from 'http';
+import { Logger } from '@nestjs/common';
 import {
     parseError,
     Sockets,
 } from '@proxyherd/proxy-sdk';
+import {
+    FINGERPRINT_SHARED_CHECKS_BURST,
+    FINGERPRINT_SHARED_CHECKS_PER_MINUTE,
+    FingerprintBudget,
+} from './fingerprint.budget';
 import {
     FINGERPRINT_URL_DISCOVERY_DELAY_DEFAULT,
     FINGERPRINT_URL_DISCOVERY_WAIT,
     FingerprintUrlDiscovery,
     FingerprintUrlNotDiscoveredError,
 } from './fingerprint.discovery';
+import { FingerprintServiceWatch } from './fingerprint.watch';
 import {
     ArrayHttpHeaders,
     formatUseragent,
@@ -31,6 +38,32 @@ class RedirectError extends Error {
     constructor(public readonly location: string) {
         super();
     }
+}
+
+
+const HTTP_STATUS_TOO_MANY_REQUESTS = 429;
+
+
+/**
+ * The service answered, with something else than 200. The message is the reason shown on the proxy.
+ */
+class FingerprintStatusError extends Error {
+    constructor(
+        public readonly statusCode: number | undefined,
+        body: string
+    ) {
+        super(`Get ${statusCode} status code: ${body}`);
+    }
+}
+
+
+/**
+ * A rate limited check is not tried again at once: every new request counts against the same
+ * limit, so it would be refused too and keep the address over the limit for longer.
+ * The next refresh, PROXY_REFRESH_DELAY later, is the retry.
+ */
+function isRetryable(err: any): boolean {
+    return !(err instanceof FingerprintStatusError && err.statusCode === HTTP_STATUS_TOO_MANY_REQUESTS);
 }
 
 
@@ -88,7 +121,10 @@ function fingerprintRequest(args: ClientRequestArgs) {
                                 reject(err);
                             }
                         } else {
-                            reject(new Error(`Get ${response.statusCode} status code: ${rawData}`));
+                            reject(new FingerprintStatusError(
+                                response.statusCode,
+                                rawData
+                            ));
                         }
                     }
                 );
@@ -212,7 +248,7 @@ function fingerprintImpl(
                 );
             }
 
-            if (retry > 0) {
+            if (retry > 0 && isRetryable(err)) {
                 return fingerprintImpl(
                     url,
                     transport,
@@ -231,11 +267,109 @@ function fingerprintImpl(
 }
 
 
-const FINGERPRINT_URL_HELP = 'FINGERPRINT_URL is not set. ProxyHerd needs the address of your fingerprint service, '
-    + 'for example https://fingerprint.example.com/api/json, '
-    + 'or FINGERPRINT_URL_DISCOVERY when a tunnel assigns that address at start. '
-    + 'See https://proxyherd.github.io/proxyherd/deployment/fingerprint';
+/**
+ * The shared fingerprint service run by the ProxyHerd project, used when neither FINGERPRINT_URL
+ * nor FINGERPRINT_URL_DISCOVERY is set. Best effort and rate limited per IP address: production
+ * installations should run their own.
+ */
+export const FINGERPRINT_SHARED_HOSTNAME = 'fingerprint.proxyherd.com';
+
+export const FINGERPRINT_URL_DEFAULT = `https://${FINGERPRINT_SHARED_HOSTNAME}/api/json`;
+
+const FINGERPRINT_DOCS_URL = 'https://proxyherd.github.io/proxyherd/deployment/fingerprint';
+const FINGERPRINT_URL_DEFAULT_NOTICE = `Using the shared fingerprint service ${FINGERPRINT_URL_DEFAULT} `
+    + `(best effort: up to ${FINGERPRINT_SHARED_CHECKS_PER_MINUTE} checks a minute for this installation, `
+    + 'so a large pool is checked less often). '
+    + `Set FINGERPRINT_URL to use your own: ${FINGERPRINT_DOCS_URL}`;
+const FINGERPRINT_BUDGET_NOTICE = `The shared fingerprint service checks up to ${FINGERPRINT_SHARED_CHECKS_PER_MINUTE} `
+    + 'proxies a minute for one installation, and this one has more to check: each proxy is now checked less '
+    + 'often than PROXY_REFRESH_DELAY asks, and a dead proxy is noticed later. '
+    + `Run your own service to check them all on time: ${FINGERPRINT_DOCS_URL}`;
+const logger = new Logger('Fingerprint');
 let discovery: FingerprintUrlDiscovery | undefined = void 0;
+let defaultNoticeLogged = false;
+let sharedBudget: FingerprintBudget | undefined = void 0;
+let sharedBudgetNoticeLogged = false;
+let serviceWatch: FingerprintServiceWatch | undefined = void 0;
+
+
+/**
+ * True for the shared fingerprint service of the project, over HTTP or HTTPS, however the
+ * address was given (the default, FINGERPRINT_URL or a discovered one).
+ */
+export function isSharedFingerprintUrl(url: string): boolean {
+    try {
+        return new URL(url).hostname.toLowerCase() === FINGERPRINT_SHARED_HOSTNAME;
+    } catch (err: any) {
+        return false;
+    }
+}
+
+
+/**
+ * How many checks may start now against this address. `undefined` means no budget applies,
+ * which is the case of every service but the shared one. One budget per process: the loops
+ * that check proxies and pool entries draw from the same one.
+ */
+export function getFingerprintCheckAllowance(url: string): number | undefined {
+    if (!isSharedFingerprintUrl(url)) {
+        return void 0;
+    }
+
+    if (!sharedBudget) {
+        sharedBudget = new FingerprintBudget(
+            FINGERPRINT_SHARED_CHECKS_PER_MINUTE,
+            FINGERPRINT_SHARED_CHECKS_BURST
+        );
+    }
+
+    const allowance = sharedBudget.available();
+
+    // The reserve is used up: there is more to check than the budget covers. Say it once.
+    if (allowance <= 0 && !sharedBudgetNoticeLogged) {
+        sharedBudgetNoticeLogged = true;
+        logger.warn(FINGERPRINT_BUDGET_NOTICE);
+    }
+
+    return allowance;
+}
+
+
+/**
+ * Counts the checks that were started against this address (see getFingerprintCheckAllowance).
+ */
+export function countFingerprintChecks(
+    url: string, count: number
+) {
+    if (sharedBudget && isSharedFingerprintUrl(url)) {
+        sharedBudget.consume(count);
+    }
+}
+
+
+/**
+ * The watch that tells a fingerprint service that is down from proxies that are down.
+ * One per process: every loop shares what is known about the service.
+ */
+export function getFingerprintServiceWatch(useragent: string): FingerprintServiceWatch {
+    if (!serviceWatch) {
+        serviceWatch = new FingerprintServiceWatch(useragent);
+    }
+
+    return serviceWatch;
+}
+
+
+/**
+ * Forgets the budget and the watch of this process, or replaces them. For the tests.
+ */
+export function resetFingerprintState(
+    budget?: FingerprintBudget, watch?: FingerprintServiceWatch
+) {
+    sharedBudget = budget;
+    sharedBudgetNoticeLogged = false;
+    serviceWatch = watch;
+}
 
 
 /**
@@ -289,7 +423,7 @@ async function resolveFingerprintUrl(options: IFingerprintOptions): Promise<stri
         return currentDiscovery.waitForUrl(FINGERPRINT_URL_DISCOVERY_WAIT);
     }
 
-    throw new Error(FINGERPRINT_URL_HELP);
+    return FINGERPRINT_URL_DEFAULT;
 }
 
 
@@ -318,11 +452,10 @@ export async function fingerprint(
 
 /**
  * The fingerprint service URL: the argument when given, else the address discovered from
- * FINGERPRINT_URL_DISCOVERY, else FINGERPRINT_URL. There is no default: the hosted service
- * the original project depended on no longer exists.
+ * FINGERPRINT_URL_DISCOVERY, else FINGERPRINT_URL, else the shared service (FINGERPRINT_URL_DEFAULT).
  *
  * Returns `undefined` while a discovered address is not known yet (unless FINGERPRINT_URL
- * provides a starting point); throws when nothing is configured at all.
+ * provides a starting point).
  */
 function getEnvFingerprintUrlIfKnown(url?: string): string | undefined {
     if (url && url.length > 0) {
@@ -338,7 +471,7 @@ function getEnvFingerprintUrlIfKnown(url?: string): string | undefined {
     const resolved = process.env.FINGERPRINT_URL;
 
     if (!resolved || resolved.length <= 0) {
-        throw new Error(FINGERPRINT_URL_HELP);
+        return FINGERPRINT_URL_DEFAULT;
     }
 
     return resolved;
@@ -378,7 +511,7 @@ export function getEnvFingerprintTextUrl(url?: string): string {
 
 
 /**
- * Fingerprint options from the environment. Fails at start when no address is configured.
+ * Fingerprint options from the environment. Says once at start when the shared service is used.
  * The `url` is read on every access, so a discovered address that changes (a restarted tunnel)
  * is picked up by the next check without a restart of ProxyHerd. It is an empty string while
  * a discovered address is not known yet: NestJS serialises module options at start, so the
@@ -388,8 +521,10 @@ export function getEnvFingerprintConfig(
     version: string,
     url?: string
 ): IFingerprintOptions {
-    // Validates the configuration now: throws when nothing is configured.
-    getEnvFingerprintUrlIfKnown(url);
+    if (!defaultNoticeLogged && getEnvFingerprintUrlIfKnown(url) === FINGERPRINT_URL_DEFAULT) {
+        defaultNoticeLogged = true;
+        logger.log(FINGERPRINT_URL_DEFAULT_NOTICE);
+    }
 
     return {
         get url(): string {

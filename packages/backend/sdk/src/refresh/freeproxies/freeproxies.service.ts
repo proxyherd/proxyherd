@@ -11,7 +11,12 @@ import { Sockets } from '@proxyherd/proxy-sdk';
 import { REFRESH_FREEPROXIES_CONFIG } from './freeproxies.constants';
 import { CommanderRefreshClientService } from '../../commander-client';
 import { NoFreeproxyToRefreshError } from '../../errors';
-import { fingerprint } from '../../fingerprint';
+import {
+    countFingerprintChecks,
+    fingerprint,
+    getFingerprintCheckAllowance,
+    getFingerprintServiceWatch,
+} from '../../fingerprint';
 import {
     TRANSPORT_PROXY_TYPE,
     TransportprovidersService,
@@ -41,8 +46,21 @@ export class RefreshFreeproxiesService extends ARefresh<IFreeproxiesToRefresh> {
     }
 
     async next(): Promise<IFreeproxiesToRefresh | undefined> {
+        // With a budget of checks (the shared service), take what it covers now and leave the rest due
+        const url = this.config.fingerprint.url;
+        const allowance = getFingerprintCheckAllowance(url);
+
+        if (allowance !== undefined && allowance <= 0) {
+            return;
+        }
+
         try {
-            const freeproxies = await this.commander.getNextFreeproxiesToRefresh();
+            const freeproxies = await this.commander.getNextFreeproxiesToRefresh(allowance);
+
+            countFingerprintChecks(
+                url,
+                freeproxies.freeproxies.length
+            );
 
             return freeproxies;
         } catch (err: any) {
@@ -56,6 +74,10 @@ export class RefreshFreeproxiesService extends ARefresh<IFreeproxiesToRefresh> {
 
     async task(freeproxieToRefresh: IFreeproxiesToRefresh): Promise<void> {
         this.logger.debug(`fingerprint ${freeproxieToRefresh.freeproxies.length} free proxies`);
+
+        const url = this.config.fingerprint.url;
+        const watch = getFingerprintServiceWatch(this.config.fingerprint.useragent);
+        watch.touch(url);
 
         const transport = this.provider.getTransportByType(TRANSPORT_PROXY_TYPE);
         const sockets = new Sockets();
@@ -125,6 +147,13 @@ export class RefreshFreeproxiesService extends ARefresh<IFreeproxiesToRefresh> {
             sockets.closeAll();
         }
 
-        await this.commander.updateFreeproxies(freeproxiesRefreshed);
+        // A failed check counts against the proxy only while the fingerprint service itself answers
+        if (freeproxiesRefreshed.some((freeproxy) => !freeproxy.fingerprint) && await watch.isDown(url)) {
+            freeproxiesRefreshed = freeproxiesRefreshed.filter((freeproxy) => freeproxy.fingerprint);
+        }
+
+        if (freeproxiesRefreshed.length > 0) {
+            await this.commander.updateFreeproxies(freeproxiesRefreshed);
+        }
     }
 }

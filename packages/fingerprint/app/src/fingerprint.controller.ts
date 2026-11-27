@@ -2,26 +2,25 @@ import {
     Controller,
     Get,
     Header,
+    Inject,
     Req,
 } from '@nestjs/common';
+import { clientIp } from './client-ip';
+import { FINGERPRINT_SERVICE_CONFIG } from './config';
 import { GeoipService } from './geoip/geoip.service';
-import { normalizeIp } from './geoip/network';
+import type { IFingerprintServiceConfig } from './config';
 import type { IGeoipStatus } from './geoip/geoip.service';
 import type { IFingerprint } from '@proxyherd/common';
 import type { Request } from 'express';
 
 
-function clientIp(req: Request): string {
-    // Express applies the "trust proxy" setting to req.ip (X-Forwarded-For); the socket address otherwise.
-    const ip = req.ip ?? req.socket.remoteAddress ?? '';
-
-    return normalizeIp(ip);
-}
-
-
 @Controller()
 export class FingerprintController {
-    constructor(private readonly geoip: GeoipService) {}
+    constructor(
+        @Inject(FINGERPRINT_SERVICE_CONFIG)
+        private readonly config: IFingerprintServiceConfig,
+        private readonly geoip: GeoipService
+    ) {}
 
     @Get()
     @Header(
@@ -45,14 +44,21 @@ export class FingerprintController {
     }
 
     @Get('health')
-    getHealth(): IGeoipStatus & { status: string } {
+    getHealth(): IGeoipStatus & { status: string; rateLimit: boolean } {
         return {
             status: 'ok',
             ...this.geoip.status,
+            // Lets a deployment check and a monitor see that RATE_LIMIT_PER_MINUTE is in place
+            rateLimit: this.config.rateLimitPerMinute > 0,
         };
     }
 
+    // The answers depend on the caller's address: nothing on the way back may store and replay them
     @Get('api/json')
+    @Header(
+        'Cache-Control',
+        'no-store'
+    )
     getJson(@Req() req: Request): IFingerprint {
         const ip = clientIp(req);
         const useragent = req.headers[ 'user-agent' ];
@@ -68,6 +74,10 @@ export class FingerprintController {
     @Header(
         'Content-Type',
         'text/plain; charset=utf-8'
+    )
+    @Header(
+        'Cache-Control',
+        'no-store'
     )
     getText(@Req() req: Request): string {
         return clientIp(req);

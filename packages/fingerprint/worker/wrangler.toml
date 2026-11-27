@@ -1,3 +1,15 @@
 name = "proxyherd-fingerprint"
 main = "src/index.ts"
 compatibility_date = "2025-01-01"
+
+# Optional rate limit: 20 requests per minute per IP address (per /64 network for IPv6) and
+# Cloudflare location, answered with 429 and a short explanation over the limit. To turn it on,
+# remove the leading "# " of the lines below. It needs wrangler 4.36.0 or later. After a deploy,
+# `GET /health` must answer "rateLimit": true; if it does not, the binding was not deployed.
+# [[ratelimits]]
+# name = "RATE_LIMITER"
+# namespace_id = "1001"
+#
+#   [ratelimits.simple]
+#   limit = 20
+#   period = 60

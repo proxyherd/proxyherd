@@ -1,0 +1,33 @@
+{
+    "name": "fingerprint-worker",
+    "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+    "root": "packages/fingerprint/worker",
+    "sourceRoot": "packages/fingerprint/worker/src",
+    "projectType": "application",
+    "targets": {
+        "lint": {
+            "executor": "@nx/linter:eslint",
+            "outputs": [
+                "{options.outputFile}"
+            ],
+            "options": {
+                "lintFilePatterns": [
+                    "packages/fingerprint/worker/**/*.ts"
+                ],
+                "fix": true
+            }
+        },
+        "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": [
+                "{workspaceRoot}/coverage/{projectRoot}"
+            ],
+            "options": {
+                "jestConfig": "packages/fingerprint/worker/jest.config.ts",
+                "passWithNoTests": false,
+                "runInBand": true
+            }
+        }
+    },
+    "tags": []
+}

@@ -8,7 +8,12 @@ import { Sockets } from '@proxyherd/proxy-sdk';
 import { REFRESH_PROXIES_CONFIG } from './proxies.constants';
 import { CommanderRefreshClientService } from '../../commander-client';
 import { NoProxyToRefreshError } from '../../errors';
-import { fingerprint } from '../../fingerprint';
+import {
+    countFingerprintChecks,
+    fingerprint,
+    getFingerprintCheckAllowance,
+    getFingerprintServiceWatch,
+} from '../../fingerprint';
 import { TransportprovidersService } from '../../transports';
 import { ARefresh } from '../refresh.abstract';
 import type { IRefreshProxiesModuleConfig } from './proxies.module';
@@ -46,8 +51,21 @@ export class RefreshProxiesService extends ARefresh<IProxiesToRefresh> implement
     }
 
     async next(): Promise<IProxiesToRefresh | undefined> {
+        // With a budget of checks (the shared service), take what it covers now and leave the rest due
+        const url = this.config.fingerprint.url;
+        const allowance = getFingerprintCheckAllowance(url);
+
+        if (allowance !== undefined && allowance <= 0) {
+            return;
+        }
+
         try {
-            const proxies = await this.commander.getNextProxiesToRefresh();
+            const proxies = await this.commander.getNextProxiesToRefresh(allowance);
+
+            countFingerprintChecks(
+                url,
+                proxies.proxies.length
+            );
 
             return proxies;
         } catch (err: any) {
@@ -61,6 +79,10 @@ export class RefreshProxiesService extends ARefresh<IProxiesToRefresh> implement
 
     async task(proxiesToRefresh: IProxiesToRefresh): Promise<void> {
         this.logger.debug(`fingerprint ${proxiesToRefresh.proxies.length} instances`);
+
+        const url = this.config.fingerprint.url;
+        const watch = getFingerprintServiceWatch(this.config.fingerprint.useragent);
+        watch.touch(url);
 
         // Parallel version
         const sockets = new Sockets(this.sockets);
@@ -105,7 +127,14 @@ export class RefreshProxiesService extends ARefresh<IProxiesToRefresh> implement
             sockets.closeAll();
         }
 
-        await this.commander.refreshProxies(proxiesRefreshed);
+        // A failed check counts against the proxy only while the fingerprint service itself answers
+        if (proxiesRefreshed.some((proxy) => !proxy.fingerprint) && await watch.isDown(url)) {
+            proxiesRefreshed = proxiesRefreshed.filter((proxy) => proxy.fingerprint);
+        }
+
+        if (proxiesRefreshed.length > 0) {
+            await this.commander.refreshProxies(proxiesRefreshed);
+        }
     }
 
     onModuleDestroy() {

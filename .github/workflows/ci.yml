@@ -18,6 +18,10 @@ concurrency:
 
 env:
   NX_DAEMON: 'false'
+  # Nx 17 refuses a cache entry written on a machine with another ID, which is what the runners
+  # get when GitHub updates their image: the lint step then fails although every project passed.
+  # The cache only ever comes from this repository's own runs (see the keys below).
+  NX_REJECT_UNKNOWN_LOCAL_CACHE: '0'
   DOTENV_FILE: packages/backend/test/src/assets/storage-file.env
 
 jobs:

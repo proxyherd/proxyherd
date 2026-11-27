@@ -6,17 +6,55 @@ public IP address, its network (ASN) and its approximate location. A proxy that
 cannot reach it is marked offline and receives no traffic.
 
 Scrapoxy relied on a hosted service for this, which no longer exists. ProxyHerd
-ships its own. You run it, and nothing about your proxies is reported anywhere.
-
-::: warning REQUIRED
-`FINGERPRINT_URL` has no default. ProxyHerd refuses to start until it points at
-a fingerprint service, for example `https://fingerprint.example.com/api/json`,
-or until `FINGERPRINT_URL_DISCOVERY` tells it where to ask for that address
-(see [laptop or behind NAT](#proxyherd-on-a-laptop-or-behind-nat)).
-:::
+works out of the box with a **shared service** run by the project, and ships
+the same service for you to run yourself.
 
 
-## Where to run it
+## Shared service (default)
+
+When neither `FINGERPRINT_URL` nor `FINGERPRINT_URL_DISCOVERY` is set, ProxyHerd
+uses the shared service at `https://fingerprint.proxyherd.com/api/json` and says
+so once in its log at start. Nothing to install: start ProxyHerd, add proxies,
+and they come online. ProxyHerd 1.2.0 and later; earlier versions refuse to
+start without `FINGERPRINT_URL`.
+
+It is meant for trials and small installations:
+
+- **10 checks a minute per installation.** Every installation that has not set
+  up its own service shares this one, so ProxyHerd spreads its own checks: a
+  reserve of 100 at start, so that a first pool comes online at once, then 10 a
+  minute. Nothing fails beyond that; each proxy is checked less often. With 10
+  proxies each one is checked every minute, with 100 every ten minutes, and a
+  dead proxy is noticed that much later. Pool entries of a Proxy List connector
+  count as well. ProxyHerd says so once in its log when a pool outgrows the
+  budget. In a cluster, each refresh process has its own budget.
+- **Rate limited per IP address.** The service accepts about 20 requests per
+  minute from one public address; IPv6 addresses are counted together with the
+  rest of their /64 network. The limit is reached when many proxies share one
+  exit address or one IPv6 /64. Requests over it get `429 Too Many Requests`,
+  and the proxy is shown offline with that message. ProxyHerd does not repeat a
+  rate limited check at once; the next refresh tries again.
+- **Best effort.** There is no uptime guarantee. While the service does not
+  answer, ProxyHerd keeps the last known state of your proxies instead of
+  marking them offline; see
+  [when the fingerprint service is down](#when-the-fingerprint-service-is-down).
+- **What it receives.** Each check arrives through your proxy, so the service
+  sees the proxy's public IP address and the `ProxyHerd/<version>` user agent.
+  About once a minute ProxyHerd also asks it directly, to tell an outage of the
+  service from dead proxies, so it sees the public address of the machine
+  running ProxyHerd as well. Nothing else is sent (see
+  [what ProxyHerd sends](#what-proxyherd-sends)). The service keeps no request
+  log. It sits behind Cloudflare, which forwards the requests to it.
+- **The same service as the one you can run**: the
+  [Docker service](#option-a-docker-recommended) with its default DB-IP data.
+
+For production, for large pools, for proxies billed per gigabyte (your own
+service can answer over plain HTTP), or to keep proxy addresses to yourself,
+run your own service as described below and set `FINGERPRINT_URL`. Nothing else
+changes, and no budget applies.
+
+
+## Running your own
 
 The service must be reachable **through your proxies**, that is from the public
 internet, not only from the machine running ProxyHerd. If the proxies cannot
@@ -174,7 +212,8 @@ databases (about 150 MB) into the volume, then refreshes them weekly.
 Published directly on port 3000, `FINGERPRINT_URL=http://<public address>:3000/api/json`
 is all ProxyHerd needs. To serve it over HTTPS instead, put it behind the
 reverse proxy of your choice and set `TRUST_PROXY=true` so the client address
-is read from `X-Forwarded-For`.
+is read from `X-Forwarded-For`. The same setting is right behind a Cloudflare
+Tunnel.
 
 Docker Compose, with Caddy terminating TLS:
 
@@ -241,7 +280,8 @@ on ProxyHerd.
 Limits of this variant:
 
 - `asnNetwork` is always `null` (Cloudflare does not expose the prefix), and
-  city accuracy depends on Cloudflare's data.
+  city accuracy depends on Cloudflare's data. The country is `null` when
+  Cloudflare has no data for the address, and for exits of the Tor network.
 - The free plan allows **100,000 requests per day** for all your Workers
   together; past that, requests fail until the next day and your proxies are
   marked offline. At the default one-minute check interval the free plan
@@ -278,7 +318,8 @@ installation makes about 1,400 checks per proxy per day.
 Consequences:
 
 - **Service capacity.** The Docker service handles any of this on the smallest
-  machine; it answers from memory. The Cloudflare free plan allows 100,000
+  machine; it answers from memory. The [shared service](#shared-service-default)
+  takes 10 checks a minute from one installation. The Cloudflare free plan allows 100,000
   requests per day: about 60 proxies plus pool entries at the one-minute
   default, about 6 at a one-second delay. The paid Workers plan removes the
   limit.
@@ -305,7 +346,8 @@ Requests per day ≈ (proxies + pool entries) × 86,400 / (delay in seconds + ab
 | `GEOIP_AUTO_DOWNLOAD` | `true` | Download the databases at start and refresh them |
 | `GEOIP_REFRESH_HOURS` | `168` | Refresh interval |
 | `MAXMIND_LICENSE_KEY` | | Required for `GEOIP_PROVIDER=maxmind`; sign up at maxmind.com/en/geolite2/signup |
-| `TRUST_PROXY` | `false` | Read the client address from `X-Forwarded-For`; only behind a reverse proxy you control |
+| `TRUST_PROXY` | `false` | `true` behind one reverse proxy you control, or the number of them. The client address is then read from `X-Forwarded-For`, counted from the right, so an address the caller put in the header itself is never used |
+| `RATE_LIMIT_PER_MINUTE` | `0` (no limit) | Requests per minute accepted from one address (one /64 network for IPv6) on `/api/json` and `/api/text`. Over it the service answers `429` with an explanation, which ProxyHerd shows on the proxy |
 
 You can also place your own `city.mmdb` and `asn.mmdb` in `GEOIP_DIR` and set
 `GEOIP_AUTO_DOWNLOAD=false`.
@@ -317,9 +359,39 @@ You can also place your own `city.mmdb` and `asn.mmdb` in `GEOIP_DIR` and set
 |---|---|
 | `GET /api/json` | `{ ip, useragent, asnName, asnNetwork, continentCode, continentName, countryCode, countryName, cityName, timezone, latitude, longitude }`; every field but `ip` may be `null` |
 | `GET /api/text` | the client IP address as plain text |
-| `GET /health` | provider, database state and last refresh |
+| `GET /health` | provider, database state, last refresh and whether a rate limit is in place (`rateLimit`); the Worker reports the provider and `rateLimit` |
 
 Check it from a shell: `curl https://fingerprint.example.com/api/json`.
+
+The answers of `/api/json` and `/api/text` depend on who asks, so they carry
+`Cache-Control: no-store`: a caching proxy must not replay one caller's answer
+to another.
+
+
+## When the fingerprint service is down
+
+A failed check normally means that the proxy is dead. It can also mean that the
+fingerprint service did not answer, and from the proxy's side the two look the
+same. Taking the second for the first would mark every proxy offline at once.
+
+So ProxyHerd also asks the service directly, from its own machine: about once a
+minute, and again when checks fail. When the service answered there before and
+does not now, the failed checks of that moment are set aside. Proxies keep
+their last known state, nothing is marked offline or removed, and the log says
+so once. Checks count again as soon as the service answers.
+
+This holds for the shared service and for your own, with ProxyHerd 1.2.0 and
+later. Two limits:
+
+- The machine running ProxyHerd must be able to reach the service directly.
+  Where it never could (the service is only open to the proxies, or outgoing
+  traffic is filtered), nothing changes: every failed check counts.
+- A proxy that dies during the outage is noticed when the service is back.
+
+A started proxy waiting for its first check is not removed as unreachable
+either, whether it waits for the service or for the budget of the shared
+service: unreachable means checked and failed. A proxy that never finishes
+starting is still replaced after its connector's timeout, as before.
 
 
 ## What ProxyHerd sends
@@ -329,10 +401,18 @@ Each check is `GET <FINGERPRINT_URL>?version=3` through the proxy, with a
 sent an installation identifier and traffic counters; ProxyHerd only does so
 when you set `FINGERPRINT_SEND_STATS=true`, for your own service's logs.
 
+Since 1.2.0 ProxyHerd also sends `GET <FINGERPRINT_URL>` directly, without a
+proxy, about once a minute while it has proxies to check, and again when
+checks fail (see [when the fingerprint service is down](#when-the-fingerprint-service-is-down)).
+It carries the same `User-Agent` and nothing else, and it comes from the
+machine running ProxyHerd, so the fingerprint service sees that machine's
+public address.
+
 
 ## Attribution
 
-With the default provider, IP geolocation is provided by
+The Worker variant uses Cloudflare's geolocation data. For the shared service
+and the Docker and npm service, with the default provider, IP geolocation is provided by
 [DB-IP](https://db-ip.com) under the Creative Commons Attribution 4.0
 licence. With `maxmind`, the data comes from MaxMind's GeoLite2 databases
 under the GeoLite2 End User License Agreement.

@@ -6,6 +6,7 @@ import {
     Param,
     Post,
     Put,
+    Query,
     UseGuards,
 } from '@nestjs/common';
 import { CommanderRefreshService } from './refresh.service';
@@ -31,6 +32,19 @@ import type {
     ITaskToUpdate,
     ITaskView,
 } from '@proxyherd/common';
+
+
+// Optional `count` of the refresh loops: the most items they take in one turn
+function parseCount(count: string | undefined): number | undefined {
+    if (count === undefined || !(/^\d+$/).test(count)) {
+        return void 0;
+    }
+
+    return parseInt(
+        count,
+        10
+    );
+}
 
 
 @Controller('api/refresh')
@@ -108,8 +122,8 @@ export class CommanderRefreshController {
     }
 
     @Get('proxies')
-    async getNextProxiesToRefresh(): Promise<IProxiesToRefresh> {
-        const proxies = await this.commander.getNextProxiesToRefresh();
+    async getNextProxiesToRefresh(@Query('count') count?: string): Promise<IProxiesToRefresh> {
+        const proxies = await this.commander.getNextProxiesToRefresh(parseCount(count));
 
         return proxies;
     }
@@ -147,8 +161,8 @@ export class CommanderRefreshController {
     }
 
     @Get('freeproxies')
-    async getNextFreeproxiesToRefresh(): Promise<IFreeproxiesToRefresh> {
-        const freeproxies = await this.commander.getNextFreeproxiesToRefresh();
+    async getNextFreeproxiesToRefresh(@Query('count') count?: string): Promise<IFreeproxiesToRefresh> {
+        const freeproxies = await this.commander.getNextFreeproxiesToRefresh(parseCount(count));
 
         return freeproxies;
     }

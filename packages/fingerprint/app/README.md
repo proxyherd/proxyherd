@@ -28,7 +28,7 @@ set `TRUST_PROXY=true` so the client address is read from `X-Forwarded-For`.
 |---|---|
 | `GET /api/json` | `{ ip, useragent, asnName, asnNetwork, continentCode, continentName, countryCode, countryName, cityName, timezone, latitude, longitude }`; every field but `ip` may be `null` |
 | `GET /api/text` | the client IP address as plain text |
-| `GET /health` | provider, database state and last refresh |
+| `GET /health` | provider, database state, last refresh and whether a rate limit is in place (`rateLimit`) |
 | `GET /` | a short description and the GeoIP attribution |
 
 ## Configuration
@@ -41,7 +41,8 @@ set `TRUST_PROXY=true` so the client address is read from `X-Forwarded-For`.
 | `GEOIP_AUTO_DOWNLOAD` | `true` | Download the databases at start and refresh them |
 | `GEOIP_REFRESH_HOURS` | `168` | Refresh interval |
 | `MAXMIND_LICENSE_KEY` | | Required for `GEOIP_PROVIDER=maxmind` |
-| `TRUST_PROXY` | `false` | Read the client address from `X-Forwarded-For` (only behind a reverse proxy you control) |
+| `TRUST_PROXY` | `false` | `true` behind one reverse proxy you control, or the number of them. The client address is then read from `X-Forwarded-For`, counted from the right, so an address the caller put in the header itself is never used |
+| `RATE_LIMIT_PER_MINUTE` | `0` (no limit) | Requests per minute accepted from one address (one /64 network for IPv6) on `/api/json` and `/api/text`. Over it the service answers `429` with an explanation |
 
 You can also drop your own `city.mmdb` and `asn.mmdb` into `GEOIP_DIR` and
 set `GEOIP_AUTO_DOWNLOAD=false`.
