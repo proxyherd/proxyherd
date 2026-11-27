@@ -20,9 +20,12 @@ HOSTED = "true"
 [env.hosted.observability]
 enabled = false
 
-# 20 requests per minute per IP address and Cloudflare location. ProxyHerd checks each proxy
-# once a minute by default (up to 3 requests when a check is retried), so this leaves room for
-# a few proxies behind one address and stops anyone hammering the service from one address.
+# 20 requests per minute per IP address (per /64 network for IPv6) and Cloudflare location.
+# ProxyHerd checks each proxy once a minute by default (up to 3 requests when a failed check is
+# retried; a rate limited check is not), so this leaves room for a few proxies behind one address
+# and stops anyone hammering the service from one address.
+# Needs wrangler 4.36.0 or later. After a deploy, `GET /health` must answer "rateLimit": true;
+# if it does not, the binding was not deployed and the service has no limit.
 [[env.hosted.ratelimits]]
 name = "RATE_LIMITER"
 namespace_id = "1001"

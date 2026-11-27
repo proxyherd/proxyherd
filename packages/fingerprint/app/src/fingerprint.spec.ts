@@ -36,7 +36,7 @@ const LOOKUP: IGeoipLookup = {
 
 function fetch(
     port: number, path: string, headers: Record<string, string> = {}
-): Promise<{ status: number; contentType: string; body: string }> {
+): Promise<{ status: number; contentType: string; cacheControl: string; body: string }> {
     return new Promise((
         resolve, reject
     ) => {
@@ -60,6 +60,7 @@ function fetch(
                         resolve({
                             status: res.statusCode ?? 0,
                             contentType: res.headers[ 'content-type' ] ?? '',
+                            cacheControl: res.headers[ 'cache-control' ] ?? '',
                             body: Buffer.concat(chunks)
                                 .toString(),
                         });
@@ -134,6 +135,8 @@ describe(
                     .toBe(200);
                 expect(res.contentType)
                     .toContain('application/json');
+                expect(res.cacheControl)
+                    .toBe('no-store');
 
                 const fingerprint = JSON.parse(res.body) as IFingerprint;
                 expect(fingerprint.ip)
@@ -158,6 +161,8 @@ describe(
                     .toBe(200);
                 expect(res.contentType)
                     .toContain('text/plain');
+                expect(res.cacheControl)
+                    .toBe('no-store');
                 expect(res.body)
                     .toBe('127.0.0.1');
             }

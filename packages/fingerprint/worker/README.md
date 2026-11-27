@@ -15,8 +15,10 @@ on ProxyHerd.
 
 Differences from the Node service: `asnNetwork` is always `null` (Cloudflare
 does not expose the prefix), and city-level accuracy depends on Cloudflare's
-data. The free plan allows 100,000 requests per day; ProxyHerd issues one
-request per proxy per refresh, so size accordingly or use the Node service.
+data. The country is `null` when Cloudflare has no data for the address and
+for exits of the Tor network. The free plan allows 100,000 requests per day;
+ProxyHerd issues one request per proxy per refresh, so size accordingly or use
+the Node service.
 
 Before choosing this variant read the sizing section of the documentation
 (https://proxyherd.github.io/proxyherd/deployment/fingerprint#sizing-and-proxy-traffic):
@@ -26,6 +28,16 @@ proxies plus pool entries; shorter `PROXY_REFRESH_DELAY` /
 `FREEPROXY_REFRESH_DELAY` values reduce that quickly.
 
 This directory is not part of the Nx build; it is deployed with wrangler only.
+It is linted and tested with the rest of the repository:
+
+```shell
+npx nx run fingerprint-worker:lint
+npx nx run fingerprint-worker:test
+```
+
+The tests run the Worker in Node.js with a fake rate limiter. Before deploying
+a change, also try it in Cloudflare's runtime with
+`npx wrangler dev --env hosted`.
 
 ## Rate limit and the shared service
 
@@ -43,3 +55,18 @@ approximate), answers `429 Too Many Requests` with a short explanation over
 the limit, and disables request logs. `/health` is never limited. To protect
 your own deployment the same way, copy the `[[env.hosted.ratelimits]]` block
 without the `env.hosted.` prefix.
+
+How the limit behaves:
+
+- An IPv4 address is counted on its own. An IPv6 address is counted with its
+  /64 network, because one machine usually owns the whole /64.
+- The limit protects the service and cannot take it down: if the limiter itself
+  fails, the request is answered and the error is logged without the caller's
+  address.
+- The binding needs wrangler 4.36.0 or later. Check after every deploy that it
+  is in place; without it the Worker answers every request:
+
+  ```shell
+  curl https://fingerprint.example.com/health
+  # {"status":"ok","provider":"cloudflare","rateLimit":true}
+  ```

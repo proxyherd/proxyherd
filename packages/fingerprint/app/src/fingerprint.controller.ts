@@ -52,7 +52,12 @@ export class FingerprintController {
         };
     }
 
+    // The answers depend on the caller's address: nothing on the way back may store and replay them
     @Get('api/json')
+    @Header(
+        'Cache-Control',
+        'no-store'
+    )
     getJson(@Req() req: Request): IFingerprint {
         const ip = clientIp(req);
         const useragent = req.headers[ 'user-agent' ];
@@ -68,6 +73,10 @@ export class FingerprintController {
     @Header(
         'Content-Type',
         'text/plain; charset=utf-8'
+    )
+    @Header(
+        'Cache-Control',
+        'no-store'
     )
     getText(@Req() req: Request): string {
         return clientIp(req);
