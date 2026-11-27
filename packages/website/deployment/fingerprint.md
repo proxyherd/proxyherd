@@ -21,11 +21,13 @@ start without `FINGERPRINT_URL`.
 It is meant for trials and small installations:
 
 - **Rate limited per IP address.** About 20 requests per minute from one public
-  address. A proxy checked at the default one-minute interval uses one; the
-  limit is reached when many proxies share one exit address, or when
-  `PROXY_REFRESH_DELAY` / `FREEPROXY_REFRESH_DELAY` are lowered to a few
-  seconds. Requests over the limit get `429 Too Many Requests`, and the proxy is
-  shown offline with that message.
+  address; IPv6 addresses are counted together with the rest of their /64
+  network. A proxy checked at the default one-minute interval uses one; the
+  limit is reached when many proxies share one exit address or one IPv6 /64,
+  or when `PROXY_REFRESH_DELAY` / `FREEPROXY_REFRESH_DELAY` are lowered to a
+  few seconds. Requests over the limit get `429 Too Many Requests`, and the
+  proxy is shown offline with that message. ProxyHerd does not repeat a rate
+  limited check at once; the next refresh tries again.
 - **Best effort.** There is no uptime guarantee. If the shared service cannot be
   reached, every proxy that depends on it is marked offline.
 - **What it receives.** Each check arrives through your proxy, so the service
@@ -266,7 +268,8 @@ on ProxyHerd.
 Limits of this variant:
 
 - `asnNetwork` is always `null` (Cloudflare does not expose the prefix), and
-  city accuracy depends on Cloudflare's data.
+  city accuracy depends on Cloudflare's data. The country is `null` when
+  Cloudflare has no data for the address, and for exits of the Tor network.
 - The free plan allows **100,000 requests per day** for all your Workers
   together; past that, requests fail until the next day and your proxies are
   marked offline. At the default one-minute check interval the free plan
@@ -343,9 +346,13 @@ You can also place your own `city.mmdb` and `asn.mmdb` in `GEOIP_DIR` and set
 |---|---|
 | `GET /api/json` | `{ ip, useragent, asnName, asnNetwork, continentCode, continentName, countryCode, countryName, cityName, timezone, latitude, longitude }`; every field but `ip` may be `null` |
 | `GET /api/text` | the client IP address as plain text |
-| `GET /health` | provider, database state and last refresh |
+| `GET /health` | provider, database state and last refresh; on the Worker, the provider and whether a rate limit is in place (`rateLimit`) |
 
 Check it from a shell: `curl https://fingerprint.example.com/api/json`.
+
+The answers of `/api/json` and `/api/text` depend on who asks, so they carry
+`Cache-Control: no-store`: a caching proxy must not replay one caller's answer
+to another.
 
 
 ## What ProxyHerd sends
