@@ -1,6 +1,40 @@
 {
     "releases": [
         {
+            "version": "1.2.0",
+            "description": "A new installation now runs from one container. When neither <code>FINGERPRINT_URL</code> nor <code>FINGERPRINT_URL_DISCOVERY</code> is set, ProxyHerd uses a shared fingerprint service run by the project, best effort and limited to 10 checks a minute per installation. An outage of a fingerprint service, the shared one or your own, no longer marks every proxy offline. Installations that set <code>FINGERPRINT_URL</code> keep using their own service.",
+            "breaking": "ProxyHerd no longer refuses to start without <code>FINGERPRINT_URL</code>: it falls back to the shared service, which then sees the addresses of your proxies. If you run your own service, check that the variable is still set; the log says at start when the shared service is in use. If your fingerprint service sits behind two or more reverse proxies with <code>TRUST_PROXY=true</code>, set <code>TRUST_PROXY</code> to their number: <code>true</code> now stands for one proxy. With a single reverse proxy nothing changes.",
+            "commitGroups": [
+                {
+                    "title": "Features",
+                    "commits": [
+                        "**fingerprint**: shared fingerprint service as the default address, `https://fingerprint.proxyherd.com/api/json`, used when neither `FINGERPRINT_URL` nor `FINGERPRINT_URL_DISCOVERY` is set; one log line at start says so. It is meant for trials and small pools: ProxyHerd sends it at most 10 checks a minute per installation, with a reserve of 100 at start, so a larger pool is checked less often and nothing fails, and the service accepts about 20 requests a minute from one address. See <a href=\"/proxyherd/deployment/fingerprint#shared-service-default\">Shared service</a>",
+                        "**fingerprint**: a fingerprint service that is down is told from proxies that are down. ProxyHerd also asks the service directly, about once a minute and when checks fail; when it answered before and does not now, the failed checks are set aside and proxies keep their last state instead of all going offline and being removed. This works with any fingerprint service that the machine running ProxyHerd can reach directly, and it means the service sees that machine's public address. See <a href=\"/proxyherd/deployment/fingerprint#when-the-fingerprint-service-is-down\">When the fingerprint service is down</a>",
+                        "**fingerprint service**: `RATE_LIMIT_PER_MINUTE` limits the requests of one address (one /64 network for IPv6) on `/api/json` and `/api/text`. Over it the service answers `429` with an explanation that ProxyHerd shows on the proxy. Off by default; `/health` reports `rateLimit`",
+                        "**fingerprint service**: `TRUST_PROXY` counts reverse proxies (`true` is one) and reads the caller's address from the right of `X-Forwarded-For`, so an address the caller puts in the header itself is never used. It is the right setting behind a Cloudflare Tunnel",
+                        "**fingerprint worker**: optional rate limit per IP address, commented out in `wrangler.toml`; `/health` reports `rateLimit`",
+                        "**charts**: `fingerprintUrl` is optional; when it is empty, the shared service is used"
+                    ]
+                },
+                {
+                    "title": "Fixes",
+                    "commits": [
+                        "**refresh**: a started proxy that still waits for its first check is no longer removed as unreachable and started again. A proxy that never finishes starting is still replaced",
+                        "**fingerprint**: a check that the service answers with `429` is not repeated at once; the next refresh tries again",
+                        "**fingerprint worker**: a caller from the Tor network made the Worker fail, because Cloudflare reports its country as `T1`. `T1` and `XX` (no data) are now an unknown country",
+                        "**fingerprint service**, **fingerprint worker**: `/api/json` and `/api/text` answer with `Cache-Control: no-store`, so a caching proxy cannot replay another caller's answer"
+                    ]
+                },
+                {
+                    "title": "Documentation",
+                    "commits": [
+                        "**get-started**: one container is enough to start; the Compose files for a fingerprint service of your own follow. See <a href=\"/proxyherd/intro/get-started\">Get Started</a>",
+                        "**fingerprint**: the limits of the shared service, what it receives, the two new service settings and what happens during an outage. See the <a href=\"/proxyherd/deployment/fingerprint\">fingerprint service</a> page"
+                    ]
+                }
+            ]
+        },
+        {
             "version": "1.1.0",
             "description": "ProxyHerd can follow the public address of its fingerprint service when a tunnel assigns it at start. A laptop or any machine behind NAT now runs from one Docker Compose file and one command, and a reboot or a restarted tunnel needs nothing from you. Installations with a fixed <code>FINGERPRINT_URL</code> are not affected; upgrading needs no configuration change.",
             "commitGroups": [
