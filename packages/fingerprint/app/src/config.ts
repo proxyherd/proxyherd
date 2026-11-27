@@ -12,7 +12,10 @@ export interface IFingerprintServiceConfig {
     autoDownload: boolean;
     refreshIntervalMs: number;
     maxmindLicenseKey: string | undefined;
-    trustProxy: boolean;
+    // Number of reverse proxies in front of the service whose X-Forwarded-For entry is trusted (0: none)
+    trustProxy: number;
+    // Requests per minute accepted from one address on /api/json and /api/text (0: no limit)
+    rateLimitPerMinute: number;
     downloadTimeoutMs: number;
 }
 
@@ -33,6 +36,42 @@ function parseBoolean(
         'yes',
         'on',
     ].includes(value.toLowerCase());
+}
+
+
+/**
+ * TRUST_PROXY: `true` for one reverse proxy in front of the service, or the number of them.
+ * Each trusted proxy accounts for one X-Forwarded-For entry, counted from the right, so the
+ * address that is read is the one the outermost trusted proxy saw. Entries further left come
+ * from the caller and are never used: a proxy that appends to the header (nginx, Cloudflare)
+ * cannot be made to report an address of the caller's choosing.
+ */
+export function parseTrustProxy(value: string | undefined): number {
+    if (value === undefined || value.length <= 0) {
+        return 0;
+    }
+
+    if ((/^\d+$/).test(value)) {
+        return parseInt(
+            value,
+            10
+        );
+    }
+
+    return parseBoolean(
+        value,
+        false
+    ) ? 1 : 0;
+}
+
+
+function parsePositiveInt(value: string | undefined): number {
+    const parsed = parseInt(
+        value ?? '0',
+        10
+    );
+
+    return Number.isFinite(parsed) && parsed > 0 ? parsed : 0;
 }
 
 
@@ -77,10 +116,8 @@ export function getEnvConfig(): IFingerprintServiceConfig {
             10
         ) * 60 * 60 * 1000,
         maxmindLicenseKey,
-        trustProxy: parseBoolean(
-            process.env.TRUST_PROXY,
-            false
-        ),
+        trustProxy: parseTrustProxy(process.env.TRUST_PROXY),
+        rateLimitPerMinute: parsePositiveInt(process.env.RATE_LIMIT_PER_MINUTE),
         downloadTimeoutMs: parseInt(
             process.env.GEOIP_DOWNLOAD_TIMEOUT ?? '600000',
             10
