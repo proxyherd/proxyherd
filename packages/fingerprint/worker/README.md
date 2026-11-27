@@ -37,24 +37,16 @@ npx nx run fingerprint-worker:test
 
 The tests run the Worker in Node.js with a fake rate limiter. Before deploying
 a change, also try it in Cloudflare's runtime with
-`npx wrangler dev --env hosted`.
+`npx wrangler dev`.
 
-## Rate limit and the shared service
+## Rate limit
 
-`npx wrangler deploy` deploys without a rate limit. The `hosted` environment in
-`wrangler.toml` is the shared service at `fingerprint.proxyherd.com`, which
-ProxyHerd uses when `FINGERPRINT_URL` is not set:
-
-```shell
-npx wrangler deploy --env hosted
-```
-
-It adds a [rate limiting binding](https://developers.cloudflare.com/workers/runtime-apis/bindings/rate-limit/)
-of 20 requests per minute per IP address (counted per Cloudflare location, so
-approximate), answers `429 Too Many Requests` with a short explanation over
-the limit, and disables request logs. `/health` is never limited. To protect
-your own deployment the same way, copy the `[[env.hosted.ratelimits]]` block
-without the `env.hosted.` prefix.
+`npx wrangler deploy` deploys without a rate limit. `wrangler.toml` holds an
+optional [rate limiting binding](https://developers.cloudflare.com/workers/runtime-apis/bindings/rate-limit/),
+commented out: 20 requests per minute per IP address (counted per Cloudflare
+location, so approximate). Over the limit the Worker answers
+`429 Too Many Requests` with a short explanation, which ProxyHerd shows as the
+reason the proxy is offline. `/health` is never limited.
 
 How the limit behaves:
 
@@ -67,6 +59,10 @@ How the limit behaves:
   is in place; without it the Worker answers every request:
 
   ```shell
-  curl https://fingerprint.example.com/health
+  curl https://proxyherd-fingerprint.<your-subdomain>.workers.dev/health
   # {"status":"ok","provider":"cloudflare","rateLimit":true}
   ```
+
+The Node service has the same limit as a setting, `RATE_LIMIT_PER_MINUTE`, and
+counts requests the same way. The shared service of the project
+(`fingerprint.proxyherd.com`) runs the Node service, not this Worker.

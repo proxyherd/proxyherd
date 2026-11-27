@@ -5,21 +5,19 @@
  * geolocation and ASN data to every request (`request.cf`). Deploy with `npx wrangler deploy`
  * from this directory, then set FINGERPRINT_URL=https://<worker>.workers.dev/api/json.
  *
- * The shared service at fingerprint.proxyherd.com is the same Worker deployed with
- * `npx wrangler deploy --env hosted`, which adds a per-IP rate limit (see wrangler.toml).
+ * wrangler.toml holds an optional rate limit per IP address. The Node service counts requests
+ * the same way (packages/fingerprint/app/src/ratelimit); keep the two alike.
  */
 
 export interface IRateLimiter {
     limit: (options: { key: string }) => Promise<{ success: boolean }>;
 }
 
-// The names of the bindings and variables of wrangler.toml
+// The names of the bindings of wrangler.toml
 export interface IEnv {
-    // Optional: only declared in the environments of wrangler.toml that limit requests per IP
+    // Optional: only there when the rate limit of wrangler.toml is turned on
     // eslint-disable-next-line @typescript-eslint/naming-convention
     RATE_LIMITER?: IRateLimiter;
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    HOSTED?: string;
 }
 
 export interface ICfProperties {
@@ -285,13 +283,8 @@ async function handle(
         }
 
         default: {
-            const description = env.HOSTED === 'true' ?
-                'Shared ProxyHerd fingerprint service: best effort, rate limited per IP address, no request logs.\n'
-                + `For production, run your own: ${DOCS_URL}\n` :
-                'ProxyHerd fingerprint service (Cloudflare Worker)\n';
-
             return new Response(
-                `${description}GET /api/json, GET /api/text, GET /health\n`,
+                'ProxyHerd fingerprint service (Cloudflare Worker)\nGET /api/json, GET /api/text, GET /health\n',
                 {
                     headers: {
                         'Content-Type': 'text/plain; charset=utf-8',

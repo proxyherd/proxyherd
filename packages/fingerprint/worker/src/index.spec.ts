@@ -299,17 +299,10 @@ describe(
                 );
 
                 it(
-                    'should describe the shared service on other paths',
+                    'should describe itself on other paths',
                     async() => {
                         expect(await (await call('/')).text())
                             .toContain('ProxyHerd fingerprint service (Cloudflare Worker)');
-                        expect(await (await call(
-                            '/',
-                            {
-                                HOSTED: 'true',
-                            }
-                        )).text())
-                            .toContain('Shared ProxyHerd fingerprint service');
                     }
                 );
             }
