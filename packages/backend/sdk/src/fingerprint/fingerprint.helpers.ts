@@ -35,6 +35,32 @@ class RedirectError extends Error {
 }
 
 
+const HTTP_STATUS_TOO_MANY_REQUESTS = 429;
+
+
+/**
+ * The service answered, with something else than 200. The message is the reason shown on the proxy.
+ */
+class FingerprintStatusError extends Error {
+    constructor(
+        public readonly statusCode: number | undefined,
+        body: string
+    ) {
+        super(`Get ${statusCode} status code: ${body}`);
+    }
+}
+
+
+/**
+ * A rate limited check is not tried again at once: every new request counts against the same
+ * limit, so it would be refused too and keep the address over the limit for longer.
+ * The next refresh, PROXY_REFRESH_DELAY later, is the retry.
+ */
+function isRetryable(err: any): boolean {
+    return !(err instanceof FingerprintStatusError && err.statusCode === HTTP_STATUS_TOO_MANY_REQUESTS);
+}
+
+
 function fingerprintRequest(args: ClientRequestArgs) {
     return new Promise<IFingerprint>((
         resolve, reject
@@ -89,7 +115,10 @@ function fingerprintRequest(args: ClientRequestArgs) {
                                 reject(err);
                             }
                         } else {
-                            reject(new Error(`Get ${response.statusCode} status code: ${rawData}`));
+                            reject(new FingerprintStatusError(
+                                response.statusCode,
+                                rawData
+                            ));
                         }
                     }
                 );
@@ -213,7 +242,7 @@ function fingerprintImpl(
                 );
             }
 
-            if (retry > 0) {
+            if (retry > 0 && isRetryable(err)) {
                 return fingerprintImpl(
                     url,
                     transport,
